@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}">
-		<title>Elstar - HTML Tailwind Admin Template</title>
+		<title>{{ $siteTitle .' -' . $siteDescription ?? '' }}</title>
 
 		<!-- Core CSS -->
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
@@ -30,28 +30,31 @@
                                                 <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-10.jpg')}}" loading="lazy">
                                             </span> --}}
                                             <div class="text-white">
-                                                <div class="font-semibold text-base">SIPP-DLHK</div>
+                                                <div class="font-semibold text-4xl">
+                                                    {{ $siteTitle }}
+                                                </div>
                                                 {{-- <span class="opacity-80">CTO, Onward</span> --}}
                                             </div>
                                         </div>
-                                        <p class="text-lg text-white opacity-80">Sistem Informasi Pelayanan Persampahan
-                                            Dinas Lingkungan Hidup dan Kebersihan Kota Jayapura</p>
+                                        <p class="text-lg text-white opacity-80 uppercase">
+                                            {{ $siteDescription }}
+                                        </p>
                                     </div>
                                     <span class="text-white">Copyright © 2024
-                                        <span class="font-semibold">Nokensoft</span>
+                                        <span class="font-semibold">- Powered by <a href="https://nokensoft.com" class="hover:underline" target="_blank">Nokensoft</a></span>
                                     </span>
                                 </div>
                                 <div class="col-span-2 flex flex-col justify-center items-center bg-white dark:bg-gray-800">
                                     <div class="xl:min-w-[450px] px-8">
                                         <div class="mb-8">
-                                            <h3 class="mb-1">Welcome back!</h3>
-                                            <p>Please enter your credentials to sign in!</p>
+                                            <h3 class="mb-1">Login</h3>
+                                            <p>Silahkan masukan nama pengguna dan kata sandi adminmaster!</p>
                                         </div>
                                         <div>
                                             <form action="{{route('adminmaster.dashboard')}}">
                                                 <div class="form-container vertical">
                                                     <div class="form-item vertical">
-                                                        <label class="form-label mb-2">User Name</label>
+                                                        <label class="form-label mb-2">Nama Pengguna</label>
                                                         <div>
                                                             <input
                                                                 class="input"
@@ -64,7 +67,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-item vertical">
-                                                        <label class="form-label mb-2">Password</label>
+                                                        <label class="form-label mb-2">Kata Sandi</label>
                                                         <div>
                                                             <span class="input-wrapper">
                                                                 <input
@@ -99,12 +102,10 @@
                                                             <input class="checkbox" type="checkbox" value="true" checked>
                                                             <span class="ltr:ml-2 rtl:mr-2">Remember Me</span>
                                                         </label>
-                                                        <a class="text-primary-600 hover:underline" href="forgot-password-side.html">Forgot Password?</a>
+                                                        <a class="text-primary-600 hover:underline" href="forgot-password-side.html">Lupa Kada Sandi?</a>
                                                     </div>
-                                                    <button class="btn btn-solid w-full" type="submit">Sign In</button>
+                                                    <button class="btn btn-solid w-full" type="submit">Masuk</button>
                                                     <div class="mt-4 text-center">
-                                                        <span>Don't have an account yet?</span>
-                                                        <a class="text-primary-600 hover:underline" href="signup-side.html">Sign up</a>
                                                     </div>
                                                 </div>
                                             </form>
