@@ -11,7 +11,7 @@ https://github.com/nokensoft/sipp-dlhk-kotajayapura
 https://github.com/orgs/nokensoft/projects/12
 
 🏷️ Domain Demo
-[https://github.com/orgs/nokensoft/projects/12](https://sipp-dlhk.nokensoft.web.id)
+https://sipp-dlhk.nokensoft.web.id
 
 ## Important CLI Commands
 
