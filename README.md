@@ -10,6 +10,9 @@ https://github.com/nokensoft/sipp-dlhk-kotajayapura
 🏷️ GitHub Project
 https://github.com/orgs/nokensoft/projects/12
 
+🏷️ Admin Template - Tailwind CSS
+https://drive.google.com/drive/folders/1sA0SKJ3kTFXY9mIy8TaWRpAkCAkWW2f6?usp=sharing
+
 🏷️ Domain Demo
 https://sipp-dlhk.nokensoft.web.id
 
