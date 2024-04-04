@@ -13,16 +13,21 @@ https://github.com/orgs/nokensoft/projects/12
 ## Important CLI Commands
 
 ### Composer Install
+Install package laravel dari composer
 ```
 composer install
 ```
 
 ### Setup .env
+
+Config file .env
 ```
 cp .env.example .env
 ```
 
 ### Git Comands
+
+Cara mendownload project melalui GitHub ke local repository.
 ```
 git clone https://github.com/nokensoft/sipp-dlhk-kotajayapura.git
 ```
