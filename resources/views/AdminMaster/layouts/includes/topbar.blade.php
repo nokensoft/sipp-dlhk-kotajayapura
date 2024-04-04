@@ -39,8 +39,8 @@
                         <span class="avatar avatar-circle" data-avatar-size="32" style="width: 32px">
                         <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt=""></span>
                         <div class="hidden md:block">
-                            <div class="text-xs capitalize">admin</div>
-                            <div class="font-bold">Carolyn Perkins</div>
+                            <div class="text-xs capitalize">Admin Master</div>
+                            <div class="font-bold">@adminmaster</div>
                         </div>
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                                 <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt="">
                             </span>
                             <div>
-                                <div class="font-bold text-gray-900 dark:text-gray-100">Carolyn Perkins</div>
-                                <div class="text-xs">carolyn.p@elstar.com</div>
+                                <div class="font-bold text-gray-900 dark:text-gray-100">Admin Master</div>
+                                <div class="text-xs">admin.master@dlhk.jayapurakota.go.id</div>
                             </div>
                         </div>
                     </li>
@@ -68,14 +68,14 @@
                         </a>
                     </li>
                     <li class="menu-item menu-item-hoverable mb-1 h-[35px]">
-                        <a class="flex gap-2 items-center" href="{{route('adminmaster.setting')}}">
+                        <a class="flex gap-2 items-center" href="{{route('adminmaster.pengaturan')}}">
                             <span class="text-xl opacity-50">
                                 <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
                             </span>
-                            <span>Account Setting</span>
+                            <span>Pengaturan Akun</span>
                         </a>
                     </li>
                     <li id="menu-item-29-2VewETdxAb" class="menu-item-divider"></li>
@@ -87,7 +87,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                                 </svg>
                             </span>
-                            <span>Sign Out</span>
+                            <span>Keluar</span>
                         </a>
                     </li>
                 </ul>

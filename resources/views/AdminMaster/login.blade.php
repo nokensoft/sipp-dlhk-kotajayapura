@@ -51,7 +51,7 @@
                                             <p>Silahkan masukan nama pengguna dan kata sandi adminmaster!</p>
                                         </div>
                                         <div>
-                                            <form action="{{route('adminmaster.dashboard')}}">
+                                            <form action="{{route('adminmaster.dasbor')}}">
                                                 <div class="form-container vertical">
                                                     <div class="form-item vertical">
                                                         <label class="form-label mb-2">Nama Pengguna</label>
