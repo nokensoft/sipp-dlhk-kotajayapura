@@ -36,3 +36,8 @@ git clone https://github.com/nokensoft/sipp-dlhk-kotajayapura.git
 ```
 php artisan migrate:fresh --seed
 ```
+
+Generate APP key 
+```
+php artisan key:generate
+```
