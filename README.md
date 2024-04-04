@@ -29,5 +29,5 @@ git clone https://github.com/janzenfaidiban/laravel-livewire-plygrounds.git
 
 ### Artisan Commands
 ```
-php arti
+php artisan migrate:fresh --seed
 ```
