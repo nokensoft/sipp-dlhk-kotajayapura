@@ -37,7 +37,7 @@
                 <div class="dropdown-toggle" id="user-dropdown" data-bs-toggle="dropdown">
                     <div class="header-action-item flex items-center gap-2">
                         <span class="avatar avatar-circle" data-avatar-size="32" style="width: 32px">
-                        <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt=""></span>
+                        <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-4.jpg')}}" loading="lazy" alt=""></span>
                         <div class="hidden md:block">
                             <div class="text-xs capitalize">Admin Master</div>
                             <div class="font-bold">@adminmaster</div>

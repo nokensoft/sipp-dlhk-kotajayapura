@@ -22,7 +22,7 @@
                             <div class="grid lg:grid-cols-3 h-full">
                                 <div class="bg-no-repeat bg-cover py-6 px-16 flex-col justify-between hidden lg:flex" style="background-image: url('assets/img/others/auth-side-bg.jpg');">
                                     <div class="logo">
-                                        <img src="{{asset('assets/img/logo/logo-dark-full.png')}}" alt="Elstar logo">
+                                        <img src="{{asset('assets/img/logo/logo-dark-full.png')}}" alt="Logo SIPP DLHK">
                                     </div>
                                     <div>
                                         <div class="mb-6 flex items-center gap-4">

@@ -1,7 +1,7 @@
 <div class="side-nav side-nav-transparent side-nav-expand">
     <div class="side-nav-header">
         <div class="logo px-6">
-            <img src="{{asset('assets/img/logo/logo-light-full.png')}}" alt="Elstar logo">
+            <img src="{{asset('assets/img/logo/logo-light-full.png')}}" alt="Logo SIPP DLHK">
         </div>
     </div>
     <div class="side-nav-content relative side-nav-scroll">
