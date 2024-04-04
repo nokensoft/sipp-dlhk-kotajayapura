@@ -24,7 +24,7 @@ cp .env.example .env
 
 ### Git Comands
 ```
-git clone https://github.com/janzenfaidiban/laravel-livewire-plygrounds.git
+git clone https://github.com/nokensoft/sipp-dlhk-kotajayapura.git
 ```
 
 ### Artisan Commands
