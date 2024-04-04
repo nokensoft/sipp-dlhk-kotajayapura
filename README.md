@@ -12,6 +12,22 @@ https://github.com/orgs/nokensoft/projects/12
 
 ## Important CLI Commands
 
+### Composer Install
+```
+composer install
+```
+
+### Setup .env
+```
+cp .env.example .env
+```
+
 ### Git Comands
+```
+git clone https://github.com/janzenfaidiban/laravel-livewire-plygrounds.git
+```
 
 ### Artisan Commands
+```
+php arti
+```
