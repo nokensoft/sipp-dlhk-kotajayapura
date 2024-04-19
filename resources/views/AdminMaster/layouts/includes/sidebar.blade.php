@@ -7,49 +7,173 @@
     <div class="side-nav-content relative side-nav-scroll">
         <nav class="menu menu-transparent px-4 pb-4">
 
-            <div class="menu-group">
-                <div class="menu-title menu-title-transparent">
-                    Menu Utama
-                </div>
+
+            <div class="menu-group mt-5">
                 <ul>
-                    <li data-menu-item="menu-item-icon" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{route('adminmaster.dasbor')}}">
-                            <svg class="menu-item-icon" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-dashboard text-lg"></i>
                             <span class="menu-item-text">Dasbor</span>
                         </a>
                     </li>
-                    <li data-menu-item="menu-item-icon" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{route('adminmaster.dasbor')}}">
-                            <svg class="menu-item-icon" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                            <span class="menu-item-text">Laporan Harian</span>
-                        </a>
-                    </li>
-                    <div class="menu-title menu-title-transparent">
-                        Manajemen Pegawai
-                    </div>
-                    <ul>
-                        <li data-menu-item="menu-item-icon" class="menu-item menu-item-single mb-2">
-                            <a class="menu-item-link" href="{{route('adminmaster.dasbor')}}">
-                                <svg class="menu-item-icon" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span class="menu-item-text">ASN</span>
-                            </a>
-                        </li>
-                        <li data-menu-item="menu-item-icon" class="menu-item menu-item-single mb-2">
-                            <a class="menu-item-link" href="{{route('adminmaster.dasbor')}}">
-                                <svg class="menu-item-icon" stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span class="menu-item-text">Non ASN</span>
-                            </a>
-                        </li>
                 </ul>
             </div>
+            {{-- menu-group end --}}
+
+
+            <div class="menu-group">
+                <div class="menu-title menu-title-transparent">
+                    Pegawai
+                </div>
+                <ul>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-users text-lg"></i>
+                            <span class="menu-item-text">ASN</span>
+                        </a>
+                    </li>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-users text-lg"></i>
+                            <span class="menu-item-text">Non ASN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {{-- menu-group end --}}
+
+
+            <div class="menu-group">
+                <div class="menu-title menu-title-transparent">
+                    Manajemen Kerja
+                </div>
+                <ul>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-tags text-lg"></i>
+                            <span class="menu-item-text">Bidang</span>
+                        </a>
+                    </li>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-map text-lg"></i>
+                            <span class="menu-item-text">Lokasi</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {{-- menu-group end --}}
+
+
+            <div class="menu-group">
+                <div class="menu-title menu-title-transparent">
+                    Pengaturan
+                </div>
+
+                <ul>
+                    <li class="menu-collapse">
+                        <div class="menu-collapse-item">
+                            <i class="fa-solid fa-box text-lg"></i>
+                            <span class="menu-item-text">Data Master</span>
+                        </div>
+                        <ul>
+                            <li data-menu-item="classic-settings" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-settings.html">
+                                    <span>Pangkat/Golongan</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-invoice.html">
+                                    <span>Jabatan</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-activity-log" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-activity-log.html">
+                                    <span>Tugas</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Gelar Depan</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Gelar Belakang</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Gelar Non Akademis</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Jenjang Pendidikan</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Diklat</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Sertifikat Keahlian</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Status Perkawinan</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Agama</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Jenis Kelamin</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Suku</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Distrik</span>
+                                </a>
+                            </li>
+                            <li data-menu-item="classic-kyc-form" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="classic-kyc-form.html">
+                                    <span>Kelurahan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-users text-lg"></i>
+                            <span class="menu-item-text">Pengguna</span>
+                        </a>
+                    </li>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
+                        <a class="menu-item-link" href="#">
+                            <i class="fa-solid fa-gear text-lg"></i>
+                            <span class="menu-item-text">Informasi Situs</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {{-- menu-group end --}}
+
+
         </nav>
     </div>
 </div>
