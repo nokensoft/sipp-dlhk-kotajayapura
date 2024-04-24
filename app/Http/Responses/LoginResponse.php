@@ -14,9 +14,7 @@ class LoginResponse implements LoginResponseContract
         // replace this with your own code
         // the user can be located with Auth facade
 
-        return $request->wantsJson()
-            ? response()->json(['two_factor' => false])
-            : redirect()->intended(config('fortify.home'));
+        return redirect()->intended(config('fortify.home'));
     }
 
 }
