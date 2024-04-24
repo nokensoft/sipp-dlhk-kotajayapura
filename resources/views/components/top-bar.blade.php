@@ -1,4 +1,4 @@
-<header class="header border-b border-gray-200 dark:border-gray-700">
+<header class="header border-b border-gray-200">
     <div class="header-wrapper h-16">
         <!-- Header Nav Start start-->
         <div class="header-action header-action-start">
@@ -51,7 +51,7 @@
                                 <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt="">
                             </span>
                             <div>
-                                <div class="font-bold text-gray-900 dark:text-gray-100">Admin Master</div>
+                                <div class="font-bold text-gray-900">Admin Master</div>
                                 <div class="text-xs">admin.master@dlhk.jayapurakota.go.id</div>
                             </div>
                         </div>
@@ -80,16 +80,19 @@
                     </li>
                     <li id="menu-item-29-2VewETdxAb" class="menu-item-divider"></li>
 
-                    <li class="menu-item menu-item-hoverable mb-1 h-[35px]">
-                        <a class="flex gap-2 items-center" href="{{route('login')}}">
-                            <span class="text-xl opacity-50">
-                                <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                                </svg>
-                            </span>
-                            <span>Keluar</span>
+                    <form method="POST" x-ref="submit" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <a class="flex gap-2 items-center" href=#" @click.prevent="$refs.submit.submit();">
+                            <li class="menu-item menu-item-hoverable mb-1 h-[35px]">
+                                    <span class="text-xl opacity-50">
+                                        <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                        </svg>
+                                    </span>
+                                    <span>Keluar</span>
+                            </li>
                         </a>
-                    </li>
+                    </form>
                 </ul>
             </div>
         </div>

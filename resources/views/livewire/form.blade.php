@@ -153,11 +153,11 @@
                                                 <div class="my-16 text-center">
                                                     <img src="img/others/upload.png" alt="" class="mx-auto">
                                                     <p class="font-semibold">
-                                                        <span class="text-gray-800 dark:text-white">Drop your image
+                                                        <span class="text-gray-800">Drop your image
                                                             here, or</span>
                                                         <span class="text-blue-500">browse</span>
                                                     </p>
-                                                    <p class="mt-1 opacity-60 dark:text-white">Support: jpeg, png</p>
+                                                    <p class="mt-1 opacity-60">Support: jpeg, png</p>
                                                 </div>
                                             </div>
                                         </div>
