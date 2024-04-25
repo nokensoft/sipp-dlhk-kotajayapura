@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             JenisKelaminSeeder::class,
             AgamaSeeder::class,
             PangkatGolonganSeeder::class,
+            SukuSeeder::class,
        ]);
     }
 }
