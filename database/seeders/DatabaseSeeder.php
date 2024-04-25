@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             LokasiKerjaSeeder::class,
             JenisKelaminSeeder::class,
             AgamaSeeder::class,
+            PangkatGolonganSeeder::class,
        ]);
     }
 }
