@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\DataMaster\PangkatGolongan\Index as PangkatGolongan;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -29,4 +30,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('data-master')->group(function () {
+        Route::get('pangkat-golongan', PangkatGolongan::class)->name('pangkatGolongan');
+    });
 });
