@@ -47,3 +47,6 @@ Generate APP key
 ```
 php artisan key:generate
 ```
+
+
+
