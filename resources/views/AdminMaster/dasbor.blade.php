@@ -13,7 +13,7 @@
             <div class="card card-layout-frame">
                 <div class="card-body">
                     <div class="flex items-center gap-4">
-                        <span class="avatar avatar-rounded bg-indigo-100 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-100 avatar-lg text-3xl" data-avatar-size="55">
+                        <span class="avatar avatar-rounded bg-indigo-100 text-indigo-600 avatar-lg text-3xl" data-avatar-size="55">
                             <span class="avatar-icon">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
@@ -32,7 +32,7 @@
             <div class="card card-layout-frame">
                 <div class="card-body">
                     <div class="flex items-center gap-4">
-                        <span class="avatar avatar-rounded bg-cyan-100 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-100 avatar-lg text-3xl" data-avatar-size="55">
+                        <span class="avatar avatar-rounded bg-cyan-100 text-cyan-600 avatar-lg text-3xl" data-avatar-size="55">
                             <span class="avatar-icon">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
@@ -51,7 +51,7 @@
             <div class="card card-layout-frame">
                 <div class="card-body">
                     <div class="flex items-center gap-4">
-                        <span class="avatar avatar-rounded bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-100 avatar-lg text-3xl" data-avatar-size="55">
+                        <span class="avatar avatar-rounded bg-emerald-100 text-emerald-600 avatar-lg text-3xl" data-avatar-size="55">
                             <span class="avatar-icon">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
@@ -70,7 +70,7 @@
             <div class="card card-layout-frame">
                 <div class="card-body">
                     <div class="flex items-center gap-4">
-                        <span class="avatar avatar-rounded bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-100 avatar-lg text-3xl" data-avatar-size="55">
+                        <span class="avatar avatar-rounded bg-amber-100 text-amber-600 avatar-lg text-3xl" data-avatar-size="55">
                             <span class="avatar-icon">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
@@ -124,7 +124,7 @@
                                         Samuel Bosawer
                                     </td>
                                     <td>
-                                        <div class="tag text-green-600 bg-green-100 dark:text-green-100 dark:bg-green-500/20 rounded border-0">
+                                        <div class="tag text-green-600 bg-green-100 rounded border-0">
                                             Online
                                         </div>
                                     </td>
@@ -135,7 +135,7 @@
                                         Obi Pranata
                                     </td>
                                     <td>
-                                        <div class="tag text-green-600 bg-green-100 dark:text-green-100 dark:bg-green-500/20 rounded border-0">
+                                        <div class="tag text-green-600 bg-green-100 rounded border-0">
                                             Online
                                         </div>
                                     </td>

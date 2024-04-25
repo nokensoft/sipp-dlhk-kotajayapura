@@ -23,7 +23,7 @@
                                 <h5>General</h5>
                                 <p>Basic info, like your name and address that will displayed in public</p>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">Name</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">Email</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">Avatar</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -106,7 +106,7 @@
                                                     title=""
                                                     value=""
                                                 >
-                                                <span class="avatar avatar-circle avatat-lg border-2 border-white dark:border-gray-800 shadow-lg" data-avatar-size="60">
+                                                <span class="avatar avatar-circle avatat-lg border-2 border-white shadow-lg" data-avatar-size="60">
                                                     <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-3.jpg')}}" loading="lazy">
                                                 </span>
                                             </div>
@@ -183,7 +183,7 @@
                                 <h5>Password</h5>
                                 <p>Enter your current &amp; new password to reset your password</p>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">Current Password</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">New Password</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -219,7 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 dark:border-gray-600 items-center">
+                            <div class="grid md:grid-cols-3 gap-4 py-8 border-b border-gray-200 items-center">
                                 <div class="font-semibold">Confirm Password</div>
                                 <div class="col-span-2">
                                     <div class="form-item vertical mb-0 max-w-[700px]">
@@ -248,8 +248,8 @@
                             <h5>Where you're signed in</h5>
                             <p>You're signed in to your account on these devices.</p>
                         </div>
-                        <div class="rounded-lg border border-gray-200 dark:border-gray-600 mt-6">
-                            <div class="flex items-center px-4 py-6 border-b border-gray-200 dark:border-gray-600">
+                        <div class="rounded-lg border border-gray-200 mt-6">
+                            <div class="flex items-center px-4 py-6 border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="text-3xl">
                                         <svg
@@ -267,8 +267,8 @@
                                     </div>
                                     <div class="ml-3 rtl:mr-3">
                                         <div class="flex items-center">
-                                            <div class="text-gray-900 dark:text-gray-100 font-semibold">Desktop FKL-278</div>
-                                            <div class="tag bg-emerald-100 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-100 rounded-md border-0 mx-2">
+                                            <div class="text-gray-900 font-semibold">Desktop FKL-278</div>
+                                            <div class="tag bg-emerald-100 text-emerald-600 rounded-md border-0 mx-2">
                                                 <span class="capitalize"> Current</span>
                                             </div>
                                         </div>
@@ -276,7 +276,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex items-center px-4 py-6 border-b border-gray-200 dark:border-gray-600">
+                            <div class="flex items-center px-4 py-6 border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="text-3xl">
                                         <svg
@@ -294,7 +294,7 @@
                                     </div>
                                     <div class="ml-3 rtl:mr-3">
                                         <div class="flex items-center">
-                                            <div class="text-gray-900 dark:text-gray-100 font-semibold">iPhone 13 Pro Max</div>
+                                            <div class="text-gray-900 font-semibold">iPhone 13 Pro Max</div>
                                         </div>
                                         <span>Manhattan, United State • 04-Mar-2022, 08:15 PM</span>
                                     </div>
@@ -318,7 +318,7 @@
                                     </div>
                                     <div class="ml-3 rtl:mr-3">
                                         <div class="flex items-center">
-                                            <div class="text-gray-900 dark:text-gray-100 font-semibold">iPad Air</div>
+                                            <div class="text-gray-900 font-semibold">iPad Air</div>
                                         </div>
                                         <span>New York, United State • 01-Mar-2022, 05:15 PM</span>
                                     </div>

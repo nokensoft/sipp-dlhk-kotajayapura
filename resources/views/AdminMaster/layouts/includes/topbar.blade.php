@@ -1,4 +1,4 @@
-<header class="header border-b border-gray-200 dark:border-gray-700">
+<header class="header border-b border-gray-200">
     <div class="header-wrapper h-16">
         <!-- Header Nav Start start-->
         <div class="header-action header-action-start">
@@ -51,7 +51,7 @@
                                 <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt="">
                             </span>
                             <div>
-                                <div class="font-bold text-gray-900 dark:text-gray-100">Admin Master</div>
+                                <div class="font-bold text-gray-900">Admin Master</div>
                                 <div class="text-xs">admin.master@dlhk.jayapurakota.go.id</div>
                             </div>
                         </div>

@@ -44,14 +44,15 @@
                                         <span class="font-semibold">- Powered by <a href="https://nokensoft.com" class="hover:underline" target="_blank">Nokensoft</a></span>
                                     </span>
                                 </div>
-                                <div class="col-span-2 flex flex-col justify-center items-center bg-white dark:bg-gray-800">
+                                <div class="col-span-2 flex flex-col justify-center items-center bg-white">
                                     <div class="xl:min-w-[450px] px-8">
                                         <div class="mb-8">
                                             <h3 class="mb-1">Login</h3>
                                             <p>Silahkan masukan nama pengguna dan kata sandi adminmaster!</p>
                                         </div>
                                         <div>
-                                            <form action="{{route('adminmaster.dasbor')}}">
+                                            <form method="POST" action="{{ route('login') }}">
+                                                @csrf
                                                 <div class="form-container vertical">
                                                     <div class="form-item vertical">
                                                         <label class="form-label mb-2">Nama Pengguna</label>
@@ -59,7 +60,7 @@
                                                             <input
                                                                 class="input"
                                                                 type="text"
-                                                                name="userName"
+                                                                name="username"
                                                                 autocomplete="off"
                                                                 placeholder="User Name"
                                                                 value=""
@@ -99,10 +100,10 @@
                                                     </div>
                                                     <div class="flex justify-between mb-6">
                                                         <label class="checkbox-label mb-0">
-                                                            <input class="checkbox" type="checkbox" value="true" checked>
+                                                            <input class="checkbox" name="remember" type="checkbox" value="true" checked>
                                                             <span class="ltr:ml-2 rtl:mr-2">Remember Me</span>
                                                         </label>
-                                                        <a class="text-primary-600 hover:underline" href="forgot-password-side.html">Lupa Kada Sandi?</a>
+                                                        <a class="text-primary-600 hover:underline" href="forgot-password-side.html">Lupa Kata Sandi?</a>
                                                     </div>
                                                     <button class="btn btn-solid w-full" type="submit">Masuk</button>
                                                     <div class="mt-4 text-center">
