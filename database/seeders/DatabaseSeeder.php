@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
             // Datamaster
             LokasiKerjaSeeder::class,
+            JenisKelaminSeeder::class,
        ]);
     }
 }
