@@ -28,7 +28,7 @@
 
 				<!-- Header Nav start-->
 				<div
-					class="flex flex-col flex-auto min-h-screen min-w-0 relative w-full bg-white border-l border-gray-200">
+					class="flex flex-col flex-auto min-h-screen min-w-0 relative w-full bg-amber-50 border-l border-gray-200">
 
 					<x-top-bar />
 					<div>
@@ -41,7 +41,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<!-- Core Vendors JS -->
