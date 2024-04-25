@@ -1,1 +1,0 @@
-(()=>{const a={lengthChange:!1,searching:!1};$("#trade-table").DataTable(a),$("#deposit-table").DataTable(a),$("#withdraw-table").DataTable(a)})();

@@ -1,1 +1,0 @@
-$('#customers-data-table').DataTable();
