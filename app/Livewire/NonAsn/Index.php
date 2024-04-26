@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Asn;
+namespace App\Livewire\NonAsn;
 
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
@@ -12,14 +12,14 @@ class Index extends Component
     public ?string $page = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data ASN";
+    public string $subtitle = "Data Non ASN";
 
     public function mount(): void
     {
         if ($this->page === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data ASN";
+            $this->subtitle = "Tambah Data Non ASN";
         }
     }
 
@@ -34,12 +34,11 @@ class Index extends Component
             $this->page = 'create';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data ASN";
+            $this->subtitle = "Tambah Data Non ASN";
         }
     }
-
     public function render(): View
     {
-        return view('livewire.asn.index');
+        return view('livewire.non-asn.index');
     }
 }

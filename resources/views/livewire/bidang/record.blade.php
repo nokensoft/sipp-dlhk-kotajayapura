@@ -1,3 +1,4 @@
+
 <div class="mt-4">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}">
         <div class="flex justify-between">
@@ -17,7 +18,7 @@
                     <div class="border p-2 w-16 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
                         <span class="mr-1" x-text="selected">10</span> <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click="isSelectOpen = !isSelectOpen" @click.away="isSelectOpen = false">
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(10)">10</a>
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(15)">25</a>
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(50)">50</a>
@@ -35,40 +36,29 @@
                 <input type="search" class="block w-full px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari..." required />
             </div>
         </div>
-        <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
-            <thead>
+        <table class="table-default table-hover data-table mt-4">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
-                <th>Nama Lengkap</th>
-                <th>NIK (KTP)</th>
-                <th>Jenis Kelamin</th>
-                <th>Tempat, Tanggal lahir</th>
-                <th>Umur</th>
-                <th></th>
+                <th scope="col" class="px-6 py-3">
+                    Bidang Kerja
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Keterangan
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="">Edit</span>
+                </th>
             </tr>
             </thead>
             <tbody>
-
-            <tr>
-                <td>
-                    <div class="flex items-center">
-                        <span class="avatar avatar-rounded avatar-md">
-                            <img class="avatar-img avatar-rounded"
-                                 src="{{ asset('assets/img/avatars/man.png') }}" loading="lazy">
-                        </span>
-                        <span class="ml-2 rtl:mr-2 font-semibold">Abdul Jabbaar</span>
-                    </div>
+            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
+                <td class="px-6 py-4 text-gray-900 whitespace-nowrap">
+                    Petugas Jaga Bank Sampah
                 </td>
-                <td>
-                    <span class="capitalize">9171010501830002</span>
+                <td class="px-6 py-4">
+                    Lorem ipsum dolor sit amet.
                 </td>
-                <td>Laki-Laki</td>
-                <td>
-                    Jayapura, 5 Januari 1983
-                </td>
-                <td>
-                    40
-                </td>
-                <td>
+                <td class="px-6 py-4 text-right">
                     <div class="flex justify-end items-center text-lg ">
                         <span class="cursor-pointer p-2 hover:text-indigo-600">
                             <i class="fa-solid fa-edit text-sm"></i>
@@ -79,28 +69,14 @@
                     </div>
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    <div class="flex items-center">
-                        <span class="avatar avatar-rounded avatar-md">
-                            <img class="avatar-img avatar-rounded"
-                                 src="{{ asset('assets/img/avatars/girl.png') }}" loading="lazy">
-                        </span>
-                        <span class="ml-2 rtl:mr-2 font-semibold">Natalia Kristy Merauje</span>
-                    </div>
+            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
+                <td class="px-6 py-4 text-gray-900 whitespace-nowrap">
+                    Petugas Pembabatan Jalan
                 </td>
-                <td>
-                    <span class="capitalize">9171036512890004</span>
+                <td class="px-6 py-4">
+                    Lorem ipsum dolor sit amet.
                 </td>
-                <td>Perempuan</td>
-                <td>
-                    Jayapura, 25 Desember 1989
-                </td>
-                <td>
-                    34
-                </td>
-                <td>
+                <td class="px-6 py-4 text-right">
                     <div class="flex justify-end items-center text-lg ">
                         <span class="cursor-pointer p-2 hover:text-indigo-600">
                             <i class="fa-solid fa-edit text-sm"></i>
@@ -111,28 +87,14 @@
                     </div>
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    <div class="flex items-center">
-                        <span class="avatar avatar-rounded avatar-md">
-                            <img class="avatar-img avatar-rounded"
-                                 src="{{ asset('assets/img/avatars/man-2.png') }}" loading="lazy">
-                        </span>
-                        <span class="ml-2 rtl:mr-2 font-semibold">Andi Akbar</span>
-                    </div>
+            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
+                <td class="px-6 py-4 text-gray-900 whitespace-nowrap">
+                    Sopir (9DT/Ambrol)
                 </td>
-                <td>
-                    <span class="capitalize">7310090404910003</span>
+                <td class="px-6 py-4">
+                    Lorem ipsum dolor sit amet.
                 </td>
-                <td>Laki-Laki</td>
-                <td>
-                    Segiri, 4 April 1991
-                </td>
-                <td>
-                    32
-                </td>
-                <td>
+                <td class="px-6 py-4 text-right">
                     <div class="flex justify-end items-center text-lg ">
                         <span class="cursor-pointer p-2 hover:text-indigo-600">
                             <i class="fa-solid fa-edit text-sm"></i>
@@ -143,39 +105,6 @@
                     </div>
                 </td>
             </tr>
-
-            <tr>
-                <td>
-                    <div class="flex items-center">
-                        <span class="avatar avatar-rounded avatar-md">
-                            <img class="avatar-img avatar-rounded"
-                                 src="{{ asset('assets/img/avatars/girl-2.png') }}" loading="lazy">
-                        </span>
-                        <span class="ml-2 rtl:mr-2 font-semibold">Johanna Syane Kailola</span>
-                    </div>
-                </td>
-                <td>
-                    <span class="capitalize">8171034103830001</span>
-                </td>
-                <td>Perempuan</td>
-                <td>
-                    Ternate, 1 Maret 1983
-                </td>
-                <td>
-                    40
-                </td>
-                <td>
-                    <div class="flex justify-end items-center text-lg ">
-                        <span class="cursor-pointer p-2 hover:text-indigo-600">
-                            <i class="fa-solid fa-edit text-sm"></i>
-                        </span>
-                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
-                            <i class="fa-solid fa-trash text-sm"></i>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-
             </tbody>
         </table>
 

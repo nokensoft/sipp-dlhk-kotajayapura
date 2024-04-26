@@ -16,11 +16,14 @@ use App\Livewire\Dasbor;
 use App\Livewire\Profil;
 use App\Livewire\Pengaturan;
 use App\Livewire\Asn\Index as Asn;
+use App\Livewire\NonAsn\Index as NonAsn;
+use App\Livewire\Bidang\Index as Bidang;
+use App\Livewire\Lokasi\Index as Lokasi;
+use App\Livewire\Pengguna\Index as Pengguna;
 
 Route::get('/profil', Profil::class)->name('adminmaster.profil');
 Route::get('/pengaturan', Pengaturan::class)->name('adminmaster.pengaturan');
 
-Route::get('/asn', Asn::class)->name('asn');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -31,6 +34,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/asn', Asn::class)->name('asn');
+    Route::get('/non-asn', NonAsn::class)->name('nonAsn');
+    Route::get('/bidang', Bidang::class)->name('bidang');
+    Route::get('/lokasi', Lokasi::class)->name('lokasi');
+    Route::get('/pengguna', Pengguna::class)->name('pengguna');
     Route::prefix('data-master')->group(function () {
         Route::get('pangkat-golongan', PangkatGolongan::class)->name('pangkatGolongan');
     });

@@ -18,7 +18,7 @@
                     <div class="border p-2 w-16 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
                         <span class="mr-1" x-text="selected">10</span> <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click="isSelectOpen = !isSelectOpen">
+                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click="isSelectOpen = !isSelectOpen" @click.away="isSelectOpen = false">
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(10)">10</a>
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(15)">25</a>
                         <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(50)">50</a>
@@ -40,7 +40,13 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Pangkat Golongan
+                    Lokasi Kerja
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Latitude
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Longitude
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Keterangan
@@ -53,38 +59,74 @@
             <tbody>
             <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Gol A
+                    Entrop
                 </th>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
                 <td class="px-6 py-4">
                     Lorem ipsum dolor sit amet.
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="bg-green-700 text-white rounded-lg py-2.5 px-5 hover:bg-green-800">Edit</a>
-                    <a href="#" class="bg-red-700 text-white rounded-lg py-2.5 px-5 hover:bg-red-800" @click="openModalDelete = true">Delete</a>
+                    <div class="flex justify-end items-center text-lg ">
+                        <span class="cursor-pointer p-2 hover:text-indigo-600">
+                            <i class="fa-solid fa-edit text-sm"></i>
+                        </span>
+                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
+                            <i class="fa-solid fa-trash text-sm"></i>
+                        </span>
+                    </div>
                 </td>
             </tr>
             <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Gol B
+                    Hamadi
                 </th>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
                 <td class="px-6 py-4">
                     Lorem ipsum dolor sit amet.
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="bg-green-700 text-white rounded-lg py-2.5 px-5 hover:bg-green-800">Edit</a>
-                    <a href="#" class="bg-red-700 text-white rounded-lg py-2.5 px-5 hover:bg-red-800" @click="openModalDelete = true">Delete</a>
+                    <div class="flex justify-end items-center text-lg ">
+                        <span class="cursor-pointer p-2 hover:text-indigo-600">
+                            <i class="fa-solid fa-edit text-sm"></i>
+                        </span>
+                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
+                            <i class="fa-solid fa-trash text-sm"></i>
+                        </span>
+                    </div>
                 </td>
             </tr>
             <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Gol C
+                    Polimak
                 </th>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
+                <td class="px-6 py-4">
+                    129.293238.12831
+                </td>
                 <td class="px-6 py-4">
                     Lorem ipsum dolor sit amet.
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <a href="#" class="bg-green-700 text-white rounded-lg py-2.5 px-5 hover:bg-green-800">Edit</a>
-                    <a href="#" class="bg-red-700 text-white rounded-lg py-2.5 px-5 hover:bg-red-800" @click="openModalDelete = true">Delete</a>
+                    <div class="flex justify-end items-center text-lg ">
+                        <span class="cursor-pointer p-2 hover:text-indigo-600">
+                            <i class="fa-solid fa-edit text-sm"></i>
+                        </span>
+                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
+                            <i class="fa-solid fa-trash text-sm"></i>
+                        </span>
+                    </div>
                 </td>
             </tr>
             </tbody>
