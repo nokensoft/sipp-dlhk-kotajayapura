@@ -12,14 +12,14 @@ class Index extends Component
     public ?string $page = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data Bidang";
+    public string $subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
 
     public function mount(): void
     {
         if ($this->page === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data Bidang";
+            $this->subtitle = "Tambah data bidang kerja untuk setiap petugas lapangan";
         }
     }
 
@@ -29,12 +29,12 @@ class Index extends Component
             $this->page = '';
             $this->buttonTitle = 'Tambah';
             $this->buttonIcon = 'fa-solid fa-plus';
-            $this->subtitle = "Data Bidang";
+            $this->subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
         }else{
             $this->page = 'create';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data Bidang";
+            $this->subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
         }
     }
     public function render(): View
