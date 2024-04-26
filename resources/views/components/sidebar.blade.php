@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('dasbor') }}">
+                        <a class="menu-item-link" href="{{ route('nonAsn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Non ASN</span>
                         </a>
@@ -49,13 +49,13 @@
                 </div>
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('dasbor') }}">
+                        <a class="menu-item-link" href="{{ route('bidang') }}">
                             <i class="fa-solid fa-tags text-lg"></i>
                             <span class="menu-item-text">Bidang</span>
                         </a>
                     </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('dasbor') }}">
+                        <a class="menu-item-link" href="{{ route('lokasi') }}">
                             <i class="fa-solid fa-map text-lg"></i>
                             <span class="menu-item-text">Lokasi</span>
                         </a>
@@ -78,7 +78,7 @@
                         </div>
                         <ul>
                             <li data-menu-item="classic-settings" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('pangkatGolongan') }}">
                                     <span>Pangkat/Golongan</span>
                                 </a>
                             </li>
@@ -158,7 +158,7 @@
 
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('dasbor') }}">
+                        <a class="menu-item-link" href="{{ route('pengguna') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Pengguna</span>
                         </a>
