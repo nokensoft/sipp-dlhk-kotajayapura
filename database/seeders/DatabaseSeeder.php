@@ -16,6 +16,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->withPersonalTeam()->create();
 
+        User::factory()->withPersonalTeam()->create([
+            'name' => 'admin',
+            'email' => bcrypt('123'),
+        ]);
+
        $this->call([
 
             // Datamaster
