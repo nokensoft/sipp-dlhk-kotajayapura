@@ -14,14 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->withPersonalTeam()->create();
+        User::factory(10)->withPersonalTeam()->create();
 
-        User::factory()->withPersonalTeam()->create([
-            'name' => 'admin',
-            'email' => bcrypt('123'),
-        ]);
-
-       $this->call([
+        $this->call([
 
             // Datamaster
             LokasiKerjaSeeder::class,
