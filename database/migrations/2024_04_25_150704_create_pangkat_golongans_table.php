@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pangkat_golongans', function (Blueprint $table) {
             $table->id();
             $table->string('pangkat_golongan');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

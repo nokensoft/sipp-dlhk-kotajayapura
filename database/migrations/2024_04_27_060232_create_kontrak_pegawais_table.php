@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jenis_kelamins', function (Blueprint $table) {
+        Schema::create('kontrak_pegawais', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_kelamin');
-            $table->mediumText('keterangan')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->bigInteger('kontrak_id');
+            $table->bigInteger('user_id');
+            $table->string('tanggal');
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jenis_kelamins');
+        Schema::dropIfExists('kontrak_pegawais');
     }
 };

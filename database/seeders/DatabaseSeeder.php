@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Distrik;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -25,6 +23,25 @@ class DatabaseSeeder extends Seeder
             PangkatGolonganSeeder::class,
             SukuSeeder::class,
             DistrikSeeder::class,
+            KelurahanSeeder::class,
+            JabatanSeeder::class,
+            DeskripsiTugasSeeder::class,
+            KontrakSeeder::class,
+            KontrakPegawaiSeeder::class,
+            GelarDepanSeeder::class,
+            GelarBelakangSeeder::class,
+            GelarAkademisSeeder::class,
+            JenjangPendidikanSeeder::class,
+            StatusPerkawinanSeeder::class,
+            BidangSeeder::class,
+
+            //  Role
+            RoleSeeder::class,
+             // User
+             UserSeeder::class,
+             PegawaiSeeder::class,
+
+
        ]);
     }
 }

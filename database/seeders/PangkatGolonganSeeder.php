@@ -15,13 +15,6 @@ class PangkatGolonganSeeder extends Seeder
     {
         PangkatGolongan::create(
             [
-                'pangkat_golongan' => 'Golongan Ia',
-                'keterangan' => 'Golongan Ia: juru muda'
-            ]
-        );
-
-        PangkatGolongan::create(
-            [
                 'pangkat_golongan' => 'Golongan Ib',
                 'keterangan' => 'Golongan Ib: juru muda tingkat I'
             ]

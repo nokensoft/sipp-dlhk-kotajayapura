@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('lokasi_kerja');
             $table->string('latitude');
             $table->string('longitude');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
