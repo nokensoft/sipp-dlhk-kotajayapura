@@ -44,6 +44,7 @@ class PegawaiSeeder extends Seeder
             'gelar_akademis_id' => 1,
             'jenjang_pendidikan_id' => 1,
             'status_perkawinan_id' => 1,
+
             'keterangan' => '',
             'catatan' => '',
             'user_id' => 2,

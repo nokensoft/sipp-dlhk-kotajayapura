@@ -16,7 +16,7 @@ class KontrakPegawaiSeeder extends Seeder
         KontrakPegawai::create(
             [
                 'kontrak_id' => 1,
-                'pengawai_id' => 1,
+                'user_id' => 2,
                 'tanggal' => '01/03/2024',
             ]
         );
@@ -24,7 +24,7 @@ class KontrakPegawaiSeeder extends Seeder
         KontrakPegawai::create(
             [
                 'kontrak_id' => 2,
-                'pengawai_id' => 1,
+                'user_id' => 2,
                 'tanggal' => '01/04/2024',
             ]
         );
