@@ -15,76 +15,26 @@ class JabatanSeeder extends Seeder
     {
         Jabatan::create(
             [
-                'jabatan' => 'Staf Administrasi',
-                'keterangan' => ''
-            ]
-        );
-        Jabatan::create(
-            [
-                'jabatan' => 'BANK Sampah',
-                'keterangan' => ''
-            ]
-        );
-        Jabatan::create(
-            [
-                'jabatan' => 'Sopir Truck',
-                'keterangan' => ''
-            ]
-        );
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Pengangkutan Sampah',
+                'jabatan' => 'Kepala Dinas',
                 'keterangan' => ''
             ]
         );
 
         Jabatan::create(
             [
-                'jabatan' => 'Sopir Ambrol 53',
-                'keterangan' => ''
-            ]
-        );
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Pengangkutan Sampah',
+                'jabatan' => 'Kepala Bidang',
                 'keterangan' => ''
             ]
         );
 
         Jabatan::create(
             [
-                'jabatan' => 'Sopir',
+                'jabatan' => 'Kepala Seksi',
                 'keterangan' => ''
             ]
         );
 
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Pembabatan Jalan',
-                'keterangan' => ''
-            ]
-        );
 
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Mobasah',
-                'keterangan' => ''
-            ]
-        );
-
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Penyisiran Jalan',
-                'keterangan' => ''
-            ]
-        );
-
-        Jabatan::create(
-            [
-                'jabatan' => 'Petugas Penyapuan',
-                'keterangan' => ''
-            ]
-        );
 
 
     }

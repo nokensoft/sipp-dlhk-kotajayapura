@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kelurahans', function (Blueprint $table) {
             $table->id();
             $table->string('kelurahan');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->bigInteger('distrik_id');
             $table->timestamps();
             $table->softDeletes();

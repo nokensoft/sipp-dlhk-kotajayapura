@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('distriks', function (Blueprint $table) {
             $table->id();
             $table->string('distrik');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

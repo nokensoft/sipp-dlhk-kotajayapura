@@ -43,8 +43,8 @@ class AgamaSeeder extends Seeder
 
         Agama::create(
             [
-                'agama' => 'Budha﻿',
-                'keterangan' => 'Agama Budha﻿'
+                'agama' => 'Budha',
+                'keterangan' => 'Agama Budha'
             ]
         );
     }

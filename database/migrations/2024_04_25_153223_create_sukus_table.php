@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sukus', function (Blueprint $table) {
             $table->id();
             $table->string('suku');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

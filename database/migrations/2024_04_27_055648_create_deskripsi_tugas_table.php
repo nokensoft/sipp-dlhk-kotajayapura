@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('deskripsi_tugas', function (Blueprint $table) {
             $table->id();
             $table->string('deskripsi_tugas');
-            $table->mediumText('keterangan');
+            $table->mediumText('keterangan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
