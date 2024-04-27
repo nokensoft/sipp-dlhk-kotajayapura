@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             KontrakSeeder::class,
             KontrakPegawaiSeeder::class,
             GelarDepanSeeder::class,
-            GelarDepanSeeder::class,
+            GelarBelakangSeeder::class,
             GelarAkademisSeeder::class,
             JenjangPendidikanSeeder::class,
             StatusPerkawinanSeeder::class,
