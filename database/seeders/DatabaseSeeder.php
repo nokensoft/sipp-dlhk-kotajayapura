@@ -35,9 +35,12 @@ class DatabaseSeeder extends Seeder
             StatusPerkawinanSeeder::class,
             BidangSeeder::class,
 
+            //  Role
+            RoleSeeder::class,
              // User
              UserSeeder::class,
              PegawaiSeeder::class,
+
 
        ]);
     }

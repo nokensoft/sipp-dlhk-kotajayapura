@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kontrak_pegawais', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('kontrak_id');
-            $table->bigInteger('pengawai_id');
+            $table->bigInteger('user_id');
             $table->string('tanggal');
         });
     }
