@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / Pegawai / <span class="font-bold">ASN</span></p>
-                            @if($page === 'create')
+                            @if($menu === 'create')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -22,16 +22,9 @@
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($page === 'create')
-                        <livewire:asn.form />
+                    @if($menu === 'create' || ($menu === 'edit' && $id != ''))
+                        <livewire:asn.form :id="$id"/>
                     @else
-                        <div class="flex gap-4 mt-8 items-center">
-                            <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="action"><i class="{{$buttonIcon}}"></i> Tambah</a>
-                            <a href="#" class="text-gray-500 hover:border-b-2 hover:border-gray-500 pb-2 hover:pb-0 transition duration:200">Semua (10)</a>
-                            <a href="#" class="text-gray-500 hover:border-b-2 hover:border-gray-500 pb-2 hover:pb-0 transition duration:200">Publik (10)</a>
-                            <a href="#" class="text-gray-500 hover:border-b-2 hover:border-gray-500 pb-2 hover:pb-0 transition duration:200">Konsep (10)</a>
-                            <a href="#" class="text-gray-500 hover:border-b-2 hover:border-gray-500 pb-2 hover:pb-0 transition duration:200">Tempat Sampah (10)</a>
-                        </div>
                         <livewire:asn.record />
                     @endif
 

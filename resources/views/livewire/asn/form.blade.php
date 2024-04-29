@@ -1,141 +1,121 @@
 <main class="h-full">
     <div class="page-container relative h-full flex flex-auto flex-col px-4 sm:px-6 md:px-8 py-4 sm:py-6">
         <div class="container mx-auto">
-            <h3 class="mb-4">Add New Product</h3>
-            <form action="#">
+            <form wire:submit.prevent="save">
                 <div class="form-container vertical">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Basic Information</h5>
-                                    <p class="mb-6">Section to config basic product information</p>
-                                    <div class="form-item vertical">
-                                        <label class="form-label mb-2">Product Name</label>
-                                        <div>
-                                            <input class="input" type="text" name="name" autocomplete="off"
-                                                placeholder="Name" value="">
+                                    <h5>Informasi Pribadi</h5>
+                                    <p class="mb-6">Informasi probadi pegawai</p>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/3">
+                                            <x-admin.input label="Nama Depan" id="nama-depan" name="pegawai.nama_depan"  />
+                                        </div>
+                                        <div class="w-1/3">
+                                            <x-admin.input label="Nama Tengah" id="nama-tengah" name="pegawai.nama_tengah"  />
+                                        </div>
+                                        <div class="w-1/3">
+                                            <x-admin.input label="Nama Belakang" id="nama-belakang" name="pegawai.nama_belakang" />
                                         </div>
                                     </div>
-                                    <div class="form-item vertical">
-                                        <label class="form-label mb-2">Code</label>
-                                        <input class="input" type="text" name="productCode" autocomplete="off"
-                                            placeholder="Code" value="">
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.input label="email" id="email" type="email"  name="pegawai.email" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.input label="No HP" id="no-hp" type="number" name="pegawai.no_hp" />
+                                        </div>
                                     </div>
-                                    <div class="form-item vertical">
-                                        <label class="form-label mb-2">Description</label>
-                                        <div class="rich-text-editor">
-                                            <div id="description"></div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="KTP" subtitle="Upload KTP" id="ktp" label="KTP" name="pegawai.ktp" :img="isset($pegawai['ktp']) && !empty($pegawai) ? $pegawai['ktp'] : ''"/>
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="Kartu Keluarga" subtitle="Upload Kartu Keluarga" id="kk" label="Kartu Keluarga" name="pegawai.kk" :img="isset($pegawai['kk']) && !empty($pegawai) ? $pegawai['kk'] : ''"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="Gambar" subtitle="Upload Gambar" id="gambar" label="Gambar" name="pegawai.gambar" :img="isset($pegawai['gambar']) && !empty($pegawai) ? $pegawai['gambar'] : ''"/>
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="Ijazah" subtitle="Upload Ijazah" id="ijazah" label="Ijazah" name="pegawai.ijazah" :img="isset($pegawai['ijazah']) && !empty($pegawai) ? $pegawai['ijazah'] : ''"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Pricing</h5>
-                                    <p class="mb-6">Section to config product sales information</p>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">SKU</label>
-                                                <div>
-                                                    <input class="input" type="text" name="stock" autocomplete="off"
-                                                        placeholder="Stock" value="0" inputmode="numeric">
-                                                </div>
-                                            </div>
+                                    <h5>Data master</h5>
+                                    <p class="mb-6">form untuk mengisi data master</p>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Bidang Kerja" id="bidang-kerja" optionName="bidang" :options="$bidangKerja" name="pegawai.bidang_kerja_id" />
                                         </div>
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Price</label>
-                                                <div>
-                                                    <span class="input-wrapper undefined">
-                                                        <div class="input-suffix-start"> $</div>
-                                                        <input class="input pl-8" type="text" name="price"
-                                                            autocomplete="off" placeholder="Price" value="0"
-                                                            inputmode="numeric">
-                                                    </span>
-                                                </div>
-                                            </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Lokasi Kerja" id="lokasi-kerja" optionName="lokasi_kerja" :options="$lokasiKerja" name="pegawai.lokasi_kerja_id" />
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Bulk Discount Price</label>
-                                                <div>
-                                                    <span class="input-wrapper undefined">
-                                                        <div class="input-suffix-start"> $</div>
-                                                        <input class="input pl-8" type="text" name="bulkDiscountPrice"
-                                                            autocomplete="off" placeholder="Bulk Discount Price"
-                                                            value="0" inputmode="numeric">
-                                                    </span>
-                                                </div>
-                                            </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Jenis Kelamin" id="jenis-kelamin" optionName="jenis_kelamin" :options="$jenisKelamin" name="pegawai.jenis_kelamin_id" />
                                         </div>
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Tax Rate(%)</label>
-                                                <div>
-                                                    <input class="input" type="text" name="taxRate" autocomplete="off"
-                                                        placeholder="Tax Rate" value="6" inputmode="numeric">
-                                                </div>
-                                            </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Agama" id="agama" optionName="agama" :options="$agama" name="pegawai.agama_id" />
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="card adaptable-card pb-6 py-4 ">
-                                <div class="card-body">
-                                    <h5>Organizations</h5>
-                                    <p class="mb-6">Section to config the product attribute</p>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Category</label>
-                                                <div>
-                                                    <select class="input">
-                                                        <option selected>Select...</option>
-                                                        <option value="Bags">Bags</option>
-                                                        <option value="Cloths">Cloths</option>
-                                                        <option value="Devices">Devices</option>
-                                                        <option value="Shoes">Shoes</option>
-                                                        <option value="Watches">Watches</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Pangkat Golongan" id="pangkat-golongan" optionName="pangkat_golongan" :options="$pangkatGolongan" name="pegawai.pangkat_golongan_id" />
                                         </div>
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Tags</label>
-                                                <div>
-                                                    <select class="input">
-                                                        <option selected>Select...</option>
-                                                        <option value="Trend">Trend</option>
-                                                        <option value="Unisex">Unisex</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Suku" id="suku" optionName="suku" :options="$suku" name="pegawai.suku_id" />
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Brand</label>
-                                                <div>
-                                                    <input class="input" type="text" name="brand" autocomplete="off"
-                                                        placeholder="Brand">
-                                                </div>
-                                            </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Distrik" id="distrik" optionName="distrik" :options="$distrik" name="pegawai.distrik_id" />
                                         </div>
-                                        <div class="col-span-1">
-                                            <div class="form-item vertical">
-                                                <label class="form-label mb-2">Vendor</label>
-                                                <div>
-                                                    <input class="input" type="text" name="vendor" autocomplete="off"
-                                                        placeholder="Vendor">
-                                                </div>
-                                            </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Kelurahan" id="kelurahan" optionName="kelurahan" :options="$kelurahan" name="pegawai.kelurahan_id" />
                                         </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Jabatan" id="jabatan" optionName="jabatan" :options="$jabatan" name="pegawai.jabatan_id" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Deskripsi Tugas" id="deskripsi-tugas" optionName="deskripsi_tugas" :options="$deskripsiTugas" name="pegawai.deskripsi_tugas_id" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Gelar Depan" id="gelar-depan" optionName="gelar_depan" :options="$gelarDepan" name="pegawai.gelar_depan_id" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Gelar Belakang" id="gelar-belakang" optionName="gelar_belakang" :options="$gelarBelakang" name="pegawai.gelar_belakang_id" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Gelar Akademis" id="gelar-akademis" optionName="gelar_akademis" :options="$gelarAkademis" name="pegawai.gelar_akademis_id" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Jenjang Pendidikan" id="jenjang-pendidikan" optionName="jenjang_pendidikan" :options="$jenjangPendidikan" name="pegawai.jenjang_pendidikan_id" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.input label="Keterangan" id="keterangan" name="pegawai.keterangan" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <x-admin.input label="Catatan" id="catatan" name="pegawai.catatan" />
                                     </div>
                                 </div>
                             </div>
@@ -143,25 +123,9 @@
                         <div class="lg:col-span-1">
                             <div class="card adaptable-card mb-4">
                                 <div class="card-body">
-                                    <h5>Product Image</h5>
-                                    <p class="mb-6">Add or change image for the product</p>
-                                    <div class="form-item vertical">
-                                        <label class="form-label"></label>
-                                        <div>
-                                            <div class="upload upload-draggable hover:border-primary-600">
-                                                <input class="upload-input draggable" type="file" title="" value="">
-                                                <div class="my-16 text-center">
-                                                    <img src="img/others/upload.png" alt="" class="mx-auto">
-                                                    <p class="font-semibold">
-                                                        <span class="text-gray-800">Drop your image
-                                                            here, or</span>
-                                                        <span class="text-blue-500">browse</span>
-                                                    </p>
-                                                    <p class="mt-1 opacity-60">Support: jpeg, png</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <x-admin.upload-file title="Transkip Nilai" subtitle="Upload Transkip Nilai" id="transkip-nilai" label="Transkip Nilai" name="pegawai.transkip_nilai"  :img="isset($pegawai['transkip_nilai']) && !empty($pegawai) ? $pegawai['transkip_nilai'] : ''" />
+                                    <x-admin.upload-file title="Akte Kelahiran" subtitle="Upload Akte Kelahiran" id="akte-kelahiran" label="Akte Kelahiran" name="pegawai.akte_kelahiran" :img="isset($pegawai['akte_kelahiran']) && !empty($pegawai) ? $pegawai['akte_kelahiran'] : ''"/>
+                                    <x-admin.upload-file title="Akte Pernikahan" subtitle="Upload Akte Pernikahan" id="akte-pernikahan" label="Akte Pernikahan" name="pegawai.akte_pernikahan" :img="isset($pegawai['akte_pernikahan']) && !empty($pegawai) ? $pegawai['akte_pernikahan'] : ''"/>
                                 </div>
                             </div>
                         </div>
