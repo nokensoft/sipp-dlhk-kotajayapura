@@ -143,30 +143,35 @@ class Form extends Component
             Log::info('Error: '. $e->getMessage());
             return;
         }
+        $message = 'tambahkan data baru!';
+        if (isset($this->pegawai['id'])){
+            $message = 'ubah data!';
+        }
+        session()->flash('success', $message);
         $this->redirectRoute('asn');
     }
 
     private function fileChecking(): void
     {
-        if(isset($this->pegawai) && is_string($this->pegawai['ktp'])){
+        if(isset($this->pegawai['ktp']) && is_string($this->pegawai['ktp'])){
             $this->rules['pegawai.ktp'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['kk'])){
+        if(isset($this->pegawai['kk']) && is_string($this->pegawai['kk'])){
             $this->rules['pegawai.kk'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['gambar'])){
+        if(isset($this->pegawai['gambar']) && is_string($this->pegawai['gambar'])){
             $this->rules['pegawai.gambar'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['ijazah'])){
+        if(isset($this->pegawai['ijazah']) && is_string($this->pegawai['ijazah'])){
             $this->rules['pegawai.ijazah'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['transkip_nilai'])){
+        if(isset($this->pegawai['transkip_nilai']) && is_string($this->pegawai['transkip_nilai'])){
             $this->rules['pegawai.transkip_nilai'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['akte_kelahiran'])){
+        if(isset($this->pegawai['akte_kelahiran']) && is_string($this->pegawai['akte_kelahiran'])){
             $this->rules['pegawai.akte_kelahiran'] = 'nullable';
         }
-        if(isset($this->pegawai) && is_string($this->pegawai['akte_pernikahan'])){
+        if(isset($this->pegawai['akte_pernikahan']) && is_string($this->pegawai['akte_pernikahan'])){
             $this->rules['pegawai.akte_pernikahan'] = 'nullable';
         }
     }
