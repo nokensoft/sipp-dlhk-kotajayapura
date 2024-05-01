@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Asn;
+namespace App\Livewire\Pegawai;
 
 use App\Models\Pegawai;
 use Illuminate\View\View;
@@ -15,16 +15,24 @@ class Index extends Component
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
     public string $subtitle = "Data ASN";
+    public string $title = "ASN";
+    public bool $isAsn = true;
 
     #[Url(history: true)]
     public string $id = '';
 
     public function mount(): void
     {
+        if (request()->segment(1) === 'non-asn'){
+            $this->title = 'Non ASN';
+            $this->subtitle = 'Data Non ASN';
+            $this->isAsn = false;
+        }
+
         if ($this->menu === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data ASN";
+            $this->subtitle = "Tambah Data $this->title";
         }
     }
 
@@ -32,16 +40,13 @@ class Index extends Component
     public function action():void
     {
         if ($this->menu === 'create') {
-            $this->menu = '';
-            $this->buttonTitle = 'Tambah';
-            $this->buttonIcon = 'fa-solid fa-plus';
-            $this->subtitle = "Data ASN";
+            $this->redirect(route('asn'));
         }
         if($this->menu === ''){
             $this->menu = 'create';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data ASN";
+            $this->subtitle = "Tambah Data $this->title";
         }
     }
 
@@ -54,6 +59,6 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.asn.index');
+        return view('livewire.pegawai.index');
     }
 }

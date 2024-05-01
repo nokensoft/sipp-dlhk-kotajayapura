@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Asn;
+namespace App\Livewire\Pegawai;
 
 use App\Models\Agama;
 use App\Models\Bidang;
@@ -20,6 +20,7 @@ use App\Models\StatusPerkawinan;
 use App\Models\Suku;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
@@ -31,7 +32,9 @@ class Form extends Component
 {
     use WithFileUploads;
     public $pegawai = [];
+    public $user = [];
     public $bidangKerja, $lokasiKerja, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
+    public bool $isAsn = true;
 
     #[Url(history: true)]
     public string $id = '';
@@ -40,6 +43,7 @@ class Form extends Component
         'pegawai.nama_depan' => 'required',
         'pegawai.nama_tengah' => 'nullable',
         'pegawai.nama_belakang' => 'nullable',
+        'user.username' => 'required|unique:users,username',
         'pegawai.email' => 'nullable',
         'pegawai.no_hp' => 'nullable',
         'pegawai.gambar' => 'nullable|mimes:jpeg,png,jpg',
@@ -70,6 +74,8 @@ class Form extends Component
 
     protected $messages = [
         'pegawai.nama_depan.required' => 'Nama Depan tidak boleh kosong',
+        'user.username.required' => 'Username tidak boleh kosong',
+        'user.username.unique' => 'Username sudah digunakan!',
         'pegawai.gambar.mimes' => 'Gambar harus berupa format JPG, JPEG, atau PNG',
         'pegawai.ktp.mimes' => 'KTP harus berupa format JPG, JPEG, atau PNG',
         'pegawai.kk.mimes' => 'Kartu Keluarga harus berupa format JPG, JPEG, atau PNG',
@@ -82,9 +88,9 @@ class Form extends Component
     public function mount(): void
     {
         if ($this->id != ''){
-            $this->pegawai = Pegawai::query()->find($this->id)->toArray();
+            $this->pegawai = Pegawai::query()->find($this->id)?->toArray();
+            $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
         }
-
         $this->bidangKerja = Bidang::query()->get();
         $this->lokasiKerja = LokasiKerja::query()->get();
         $this->jenisKelamin = JenisKelamin::query()->get();
@@ -104,17 +110,22 @@ class Form extends Component
 
     public function save(): void
     {
+        if(isset($this->user['id'])){
+            $this->rules['user.username'] = 'required|unique:users,username,'.$this->user['id'];
+        }
         $this->fileChecking();
         $this->validate();
         try {
             DB::beginTransaction();
+            $this->user['password'] = Hash::make($this->user['username']);
              $user = User::updateOrCreate(
-                 ['id' => $this->pegawai['user_id'] ?? null],
                  [
-                 'username' => $this->pegawai['nama_depan'],
-                 'password' => bcrypt($this->pegawai['nama_depan'])
-             ]);
+                     'id' => $this->user['id'] ?? null
+                 ],
+                 $this->user
+             );
              $this->pegawai['user_id'] = $user->id;
+
              if (isset($this->pegawai['ktp']) && $this->pegawai['ktp'] != '' && !is_string($this->pegawai['ktp'])) {
                  $this->pegawai['ktp'] =  $this->uploadFile($this->pegawai['nama_depan'].'_ktp_',$this->pegawai['ktp']);
              }
@@ -136,7 +147,15 @@ class Form extends Component
              if (isset($this->pegawai['akte_pernikahan']) && $this->pegawai['akte_pernikahan'] != '' && !is_string($this->pegawai['akte_pernikahan'])) {
                  $this->pegawai['akte_pernikahan'] = $this->uploadFile($this->pegawai['nama_depan'].'_akte_pernikahan_',$this->pegawai['akte_pernikahan']);
              }
-             Pegawai::updateOrCreate(['id' => $this->pegawai['id'] ?? null], $this->pegawai);
+
+            $this->pegawai['is_asn'] = $this->isAsn;
+
+             Pegawai::updateOrCreate(
+                 [
+                     'id' => $this->pegawai['id'] ?? null
+                 ],
+                 $this->pegawai
+             );
              DB::commit();
         }catch (Exception $e){
             DB::rollBack();
@@ -148,7 +167,7 @@ class Form extends Component
             $message = 'ubah data!';
         }
         session()->flash('success', $message);
-        $this->redirectRoute('asn');
+        $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
     }
 
     private function fileChecking(): void
@@ -185,6 +204,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.asn.form');
+        return view('livewire.pegawai.form');
     }
 }

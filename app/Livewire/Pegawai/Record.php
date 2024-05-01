@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Asn;
+namespace App\Livewire\Pegawai;
 
 use App\Models\Pegawai;
 use Illuminate\Support\Carbon;
@@ -29,6 +29,12 @@ class Record extends Component
     public $id;
     public $paginate = 5;
     public $listPaginate = [5,10,25,50,100];
+    public bool $isAsn = true;
+
+    public function mount(): void
+    {
+        $this->isAsn = request()->segment(1) === 'asn';
+    }
 
     public function action($menu): void
     {
@@ -51,10 +57,18 @@ class Record extends Component
 
     public function delete($id): void
     {
+        $record = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        if(isset($record->deleted_at)){
+            $record->user?->forceDelete();
+            $record->forceDelete();
+            session()->flash('success', 'Data berhasil dihapus permanen');
+            return;
+        }
         $record = Pegawai::query()->find($id);
         $record->published_at = null;
         $record->save();
         $record->delete();
+        session()->flash('success', 'Data berhasil dihapus sementara');
     }
 
     public function modal($id): void
@@ -69,11 +83,11 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Pegawai::query()->count();
-        $this->totalPublik = Pegawai::query()->published()->count();
-        $this->totalKonsep = Pegawai::query()->draft()->count();
-        $this->totalTempatSampah = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->count();
-        $query = Pegawai::query()->where('is_asn',true)
+        $this->totalAll = Pegawai::query()->where('is_asn',$this->isAsn)->count();
+        $this->totalPublik = Pegawai::query()->where('is_asn',$this->isAsn)->published()->count();
+        $this->totalKonsep = Pegawai::query()->where('is_asn',$this->isAsn)->draft()->count();
+        $this->totalTempatSampah = Pegawai::query()->where('is_asn',$this->isAsn)->withTrashed()->whereNotNull('deleted_at')->count();
+        $query = Pegawai::query()
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where('nama_depan', 'like', '%' . $this->search . '%')
@@ -101,17 +115,17 @@ class Record extends Component
             })
         ;
         if ($this->menu === '' || $this->menu == 'semua') {
-            $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
+            $records = $query->where('is_asn',$this->isAsn)->withTrashed()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'publik'){
-            $records = $query->published()->paginate($this->paginate)->withQueryString();
+            $records = $query->where('is_asn',$this->isAsn)->published()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'konsep'){
-            $records = $query->draft()->paginate($this->paginate)->withQueryString();
+            $records = $query->where('is_asn',$this->isAsn)->draft()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'tempat_sampah'){
-            $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
+            $records = $query->where('is_asn',$this->isAsn)->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
-        return view('livewire.asn.record', ['records' => $records]);
+        return view('livewire.pegawai.record', ['records' => $records]);
     }
 }

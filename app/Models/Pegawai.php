@@ -14,6 +14,11 @@ class Pegawai extends Model
 
     protected $guarded = ['id'];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function bidang(): BelongsTo
     {
         return $this->belongsTo(Bidang::class, 'bidang_kerja_id');

@@ -21,10 +21,13 @@
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
+                                        <div class="w-1/3">
+                                            <x-admin.input label="username" id="username" type="text"  name="user.username" />
+                                        </div>
+                                        <div class="w-1/3">
                                             <x-admin.input label="email" id="email" type="email"  name="pegawai.email" />
                                         </div>
-                                        <div class="w-1/2">
+                                        <div class="w-1/3">
                                             <x-admin.input label="No HP" id="no-hp" type="number" name="pegawai.no_hp" />
                                         </div>
                                     </div>

@@ -5,11 +5,11 @@
                 <div class="card-body">
                     <div class="lg:flex items-center justify-between mb-2">
                         <div class="space-y-2">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900">ASN</h3>
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900">{{$title}}</h3>
                             <p>{{$subtitle}}</p>
                         </div>
                         <div class="flex flex-col justify-end gap-2">
-                            <p class="italic">Dasbor / Pegawai / <span class="font-bold">ASN</span></p>
+                            <p class="italic">Dasbor / Pegawai / <span class="font-bold">{{$title}}</span></p>
                             @if($menu === 'create')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
@@ -23,9 +23,9 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != ''))
-                        <livewire:asn.form :id="$id"/>
+                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn"/>
                     @else
-                        <livewire:asn.record />
+                        <livewire:pegawai.record />
                     @endif
 
                 </div>
