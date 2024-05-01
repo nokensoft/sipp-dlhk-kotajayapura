@@ -73,7 +73,7 @@ class Record extends Component
         $this->totalPublik = Pegawai::query()->published()->count();
         $this->totalKonsep = Pegawai::query()->draft()->count();
         $this->totalTempatSampah = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->count();
-        $query = Pegawai::query()
+        $query = Pegawai::query()->where('is_asn',true)
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where('nama_depan', 'like', '%' . $this->search . '%')
