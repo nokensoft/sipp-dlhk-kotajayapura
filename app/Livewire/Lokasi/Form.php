@@ -3,55 +3,70 @@
 namespace App\Livewire\Lokasi;
 
 use App\Models\Lokasi;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Exception;
 
-class Index extends Component
+class Form extends Component
 {
-    #[Url(history: true)]
-    public ?string $menu = '';
-    public ?string $buttonTitle = 'Tambah';
-    public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data lokasi kerja di untuks setiap petugas lapangan";
-    public string $title = "Lokasi";
+    public $lokasi = [];
 
     #[Url(history: true)]
     public string $id = '';
 
-    public function mount(): void
-    {
-        if ($this->menu === 'create') {
-            $this->buttonTitle = 'Kembali';
-            $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah data lokasi kerja untuk setiap petugas lapangan";
-        }
-    }
+    protected $rules = [
+        'lokasi.lokasi' => 'required',
+        'lokasi.keterangan' => 'nullable',
+    ];
 
-    #[On('action')]
-    public function action(): void
-    {
-        if ($this->menu === 'create') {
-            $this->redirect(route('lokasi'));
-        }
-        if ($this->menu === '') {
-            $this->menu = 'create';
-            $this->buttonTitle = 'Kembali';
-            $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data $this->title";
-        }
-    }
+    protected $messages = [
+        'lokasi.lokasi.required' => 'Nama lokasi tidak boleh kosong',
+    ];
 
-    #[On('edit')]
-    public function edit($id): void
+    public function mount(): void 
     {
-        $this->menu = 'edit';
-        $this->id = $id;
+        if ($this->id != ''){
+            $this->lokasi = Lokasi::query()->find($this->id)?->toArray();
+        }        
     }
+    
+    public function save(): void 
+    {
+        $this->validate();
 
+        try {
+            DB::beginTransaction();
+            
+            Lokasi::updateOrCreate(
+                [
+                    'id' => $this->lokasi['id'] ?? null
+                ],
+                $this->lokasi
+            );
+
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info('Error: '. $e->getMessage());
+            return;
+        }
+        
+        $message = 'tambahkan data baru!';
+        if (isset($this->pegawai['id'])) {
+            $message = 'ubah data!';
+        }
+        
+        session()->flash('success', $message);
+        $this->redirectRoute('lokasi');
+    }
+    
     public function render(): View
     {
-        return view('livewire.lokasi.index');
+        return view('livewire.lokasi.form');
     }
 }

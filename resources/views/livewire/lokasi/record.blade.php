@@ -1,6 +1,17 @@
-
-<div class="mt-4">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}">
+<div class="mt-8">
+    @if(session()->has('success'))
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
+            <span class="font-medium">Berhasil </span> {{session()->get('success')}}
+        </div>
+    @endif
+    <div class="flex gap-4 mb-4 items-center">
+        <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
+        <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
+        <a href="#" wire:click.prevent="action('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
+        <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
+        <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
+    </div>
+    <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex justify-between">
             <div class="flex gap-1 items-center">
                 <span>Tampilkan</span>
@@ -8,21 +19,18 @@
                     class="relative text-center"
                     x-data="{
                         isSelectOpen:false,
-                        selected: 10,
-                        select(val){
-                            this.selected = val;
+                        select(){
                             this.isSelectOpen = false;
                         }
                     }"
                 >
                     <div class="border p-2 w-16 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                        <span class="mr-1" x-text="selected">10</span> <i class="fa-solid fa-chevron-down"></i>
+                        <span class="mr-1">{{$paginate}}</span> <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click="isSelectOpen = !isSelectOpen" @click.away="isSelectOpen = false">
-                        <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(10)">10</a>
-                        <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(15)">25</a>
-                        <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(50)">50</a>
-                        <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select(100)">100</a>
+                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($listPaginate as $list)
+                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="changePaginate({{$list}})">{{$list}}</a>
+                        @endforeach
                     </div>
                 </div>
                 <span>data</span>
@@ -33,120 +41,79 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="search" class="block w-full px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari..." required />
+                <input type="search" class="block w-full px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari..." wire:model.live="search" />
             </div>
         </div>
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 mt-4 border">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-100">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Lokasi Kerja
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Latitude
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Longitude
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Keterangan
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="">Edit</span>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Entrop
-                </th>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <div class="flex justify-end items-center text-lg ">
-                        <span class="cursor-pointer p-2 hover:text-indigo-600">
-                            <i class="fa-solid fa-edit text-sm"></i>
-                        </span>
-                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
-                            <i class="fa-solid fa-trash text-sm"></i>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Hamadi
-                </th>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <div class="flex justify-end items-center text-lg ">
-                        <span class="cursor-pointer p-2 hover:text-indigo-600">
-                            <i class="fa-solid fa-edit text-sm"></i>
-                        </span>
-                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
-                            <i class="fa-solid fa-trash text-sm"></i>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-            <tr class="bg-white hover:bg-gray-50 odd:bg-white even:bg-gray-100">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Polimak
-                </th>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    129.293238.12831
-                </td>
-                <td class="px-6 py-4">
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td class="px-6 py-4 text-right">
-                    <div class="flex justify-end items-center text-lg ">
-                        <span class="cursor-pointer p-2 hover:text-indigo-600">
-                            <i class="fa-solid fa-edit text-sm"></i>
-                        </span>
-                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true">
-                            <i class="fa-solid fa-trash text-sm"></i>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
+                <thead>
+                <tr>
+                    <th>Lokasi</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Keterangan</th>
+                    <th>Publik</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach($records as $record)
+                        <tr>
+                            <td>{{$record->lokasi}}</td>
+                            <td>{{$record->latitude}}</td>
+                            <td>{{$record->longitude}}</td>
+                            <td>{{$record->keterangan}}</td>
+                            <td>
+                                @php
+                                    $status = '';
+                                    if($record->published_at == null){
+                                        $status = 'konsep';
+                                    }else{
+                                        $status = 'publik';
+                                    }
+                                @endphp
+                                <div class="relative">
+                                    <label class="inline-flex items-center cursor-pointer" wire:key="toggle-{{$record->id}}">
+                                        <input type="checkbox" value="" class="sr-only peer" @checked(isset($record->published_at)) wire:change="publishOrDraft({{$record->id}})">
+                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="flex justify-end items-center text-lg ">
+                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })">
+                                        <i class="fa-solid fa-edit text-sm"></i>
+                                    </span>
+                                    <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})">
+                                        <i class="fa-solid fa-trash text-sm"></i>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <!-- Modal Delete -->
         <x-modal-alpine modalName="openModalDelete" title="Peringatan!">
-            <div class="p-4 text-center">
-                <svg class="mx-auto mb-4 text-gray-700 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-700">Apakah anda yakin ingin menghapus data ini?</h3>
-                <button @click="openModalDelete=false" wire:click.prevent="delete()" data-modal-hide="popup-modal" type="button" class="bg-cyan-500 text-white px-4 py-2.5 rounded-lg hover:bg-cyan-600">
-                    Ya, saya yakin
-                </button>
-                <button @click="openModalDelete=false" data-modal-hide="popup-modal" type="button" class="bg-red-600 hover:bg-red-500 text-white px-4 py-2.5 rounded-lg ml-4">Tidak, batal</button>
+            <div class="p-4 py-6 text-center">
+                <i class="fa-solid fa-info-circle text-6xl text-rose-400"></i>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-600">Apakah anda yakin ingin menghapus data ini?</h3>
+                <div class="my-3 flex gap-2 justify-center items-center">
+                    <button @click="openModalDelete=false" wire:click.prevent="delete({{$id}})" data-modal-hide="popup-modal" type="button" class="text-rose-400">
+                        Ya, saya yakin
+                    </button>
+
+                    <button @click="openModalDelete=false" data-modal-hide="popup-modal" type="button" class="btn btn-xs btn-solid">Tidak, batalkan</button>
+                </div>
             </div>
         </x-modal-alpine>
     </div>
 
-    <x-pagination/>
+    <div class="mt-6">
+        {{ $records->links() }}
+    </div>
+{{--    <x-pagination/>--}}
 </div>
 

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             // Datamaster
-            LokasiKerjaSeeder::class,
+            LokasiSeeder::class,
             JenisKelaminSeeder::class,
             AgamaSeeder::class,
             PangkatGolonganSeeder::class,
