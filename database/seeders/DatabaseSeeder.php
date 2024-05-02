@@ -38,9 +38,9 @@ class DatabaseSeeder extends Seeder
 
             //  Role
             RoleSeeder::class,
-             // User
-             UserSeeder::class,
-             PegawaiSeeder::class,
+            // User
+            UserSeeder::class,
+            PegawaiSeeder::class,
 
 
        ]);

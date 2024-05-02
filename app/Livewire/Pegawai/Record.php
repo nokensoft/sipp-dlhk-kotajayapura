@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Pegawai;
 
+use Livewire\Component;
 use App\Models\Pegawai;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
-use Livewire\Component;
 use Livewire\WithPagination;
 
 class Record extends Component
