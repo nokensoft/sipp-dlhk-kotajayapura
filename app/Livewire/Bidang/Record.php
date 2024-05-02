@@ -92,18 +92,15 @@ class Record extends Component
                     });
             });
         
-            if ($this->menu === '' || $this->menu == 'semua') {
-                $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
-            }
-            if($this->menu === 'publik'){
-                $records = $query->published()->paginate($this->paginate)->withQueryString();
-            }
-            if($this->menu === 'konsep'){
-                $records = $query->draft()->paginate($this->paginate)->withQueryString();
-            }
-            if($this->menu === 'tempat_sampah'){
-                $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
-            }
+        if ($this->menu === '' || $this->menu == 'semua') {
+            $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
+        } elseif($this->menu === 'publik'){
+            $records = $query->published()->paginate($this->paginate)->withQueryString();
+        } elseif($this->menu === 'konsep'){
+            $records = $query->draft()->paginate($this->paginate)->withQueryString();
+        } elseif($this->menu === 'tempat_sampah'){
+            $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
+        }
         
         return view('livewire.bidang.record', ['records' => $records]);
         

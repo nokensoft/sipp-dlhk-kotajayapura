@@ -11,7 +11,7 @@ use Livewire\Component;
 class Index extends Component
 {
     #[Url(history: true)]
-    public ?string $menu = '' ?? 'publik';
+    public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
     public string $subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
@@ -30,12 +30,12 @@ class Index extends Component
     }
 
     #[On('action')]
-    public function action():void
+    public function action(): void
     {
         if ($this->menu === 'create') {
             $this->redirect(route('bidang'));
         }
-        if($this->menu === ''){
+        if ($this->menu === '') {
             $this->menu = 'create';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
@@ -44,9 +44,9 @@ class Index extends Component
     }
 
     #[On('edit')]
-    public function edit($id):void
+    public function edit($id): void
     {
-        $this->menu='edit';
+        $this->menu = 'edit';
         $this->id = $id;
     }
 

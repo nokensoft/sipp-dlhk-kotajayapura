@@ -2,20 +2,17 @@
 
 namespace App\Livewire\Bidang;
 
-use App\Models\Bidang; // Added this line
+use App\Models\Bidang;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use Exception;
 
 class Form extends Component
 {
-
     public $bidang = [];
 
     #[Url(history: true)]
@@ -39,7 +36,6 @@ class Form extends Component
     
     public function save(): void 
     {
-        // $this->fileChecking();
         $this->validate();
 
         try {
@@ -54,17 +50,19 @@ class Form extends Component
 
             DB::commit();
 
-        }catch (Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             Log::info('Error: '. $e->getMessage());
             return;
         }
+        
         $message = 'tambahkan data baru!';
-        if (isset($this->pegawai['id'])){
+        if (isset($this->pegawai['id'])) {
             $message = 'ubah data!';
         }
+        
         session()->flash('success', $message);
-        $this->redirectRoute( 'bidang');
+        $this->redirectRoute('bidang');
     }
     
     public function render(): View
