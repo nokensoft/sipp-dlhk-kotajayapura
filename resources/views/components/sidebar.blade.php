@@ -31,13 +31,13 @@
                 </div>
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'asn' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}?menu=publik">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">ASN</span>
                         </a>
                     </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}?menu=publik">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Non ASN</span>
                         </a>
@@ -53,7 +53,7 @@
                 </div>
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'bidang' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}?menu=publik">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}">
                             <i class="fa-solid fa-tags text-lg"></i>
                             <span class="menu-item-text">Bidang</span>
                         </a>

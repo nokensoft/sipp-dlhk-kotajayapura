@@ -11,7 +11,7 @@ use Livewire\Component;
 class Index extends Component
 {
     #[Url(history: true)]
-    public ?string $menu = '';
+    public ?string $menu = '' ?? 'publik';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
     public string $subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
