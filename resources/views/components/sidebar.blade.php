@@ -15,7 +15,7 @@
             <div class="menu-group mt-5">
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'dasbor' ? $active : ''}}">
-                        <a class="menu-item-link {{$segment == 'dasbor' ? 'text-white' : ''}}" href="{{ route('dasbor') }}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'dasbor' ? 'text-white' : ''}}" href="{{ route('dasbor') }}">
                             <i class="fa-solid fa-dashboard text-lg"></i>
                             <span class="menu-item-text">Dasbor</span>
                         </a>
@@ -31,13 +31,13 @@
                 </div>
                 <ul>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'asn' ? $active : ''}}">
-                        <a class="menu-item-link {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}?menu=publik">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">ASN</span>
                         </a>
                     </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
-                        <a class="menu-item-link {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}?menu=publik">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Non ASN</span>
                         </a>
@@ -52,8 +52,8 @@
                     Manajemen Kerja
                 </div>
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('bidang') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'bidang' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}?menu=publik">
                             <i class="fa-solid fa-tags text-lg"></i>
                             <span class="menu-item-text">Bidang</span>
                         </a>

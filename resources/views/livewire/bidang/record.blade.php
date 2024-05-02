@@ -50,6 +50,7 @@
                 <tr>
                     <th>Bidang</th>
                     <th>Keterangan</th>
+                    <th>Publik</th>
                     <th></th>
                 </tr>
                 </thead>
