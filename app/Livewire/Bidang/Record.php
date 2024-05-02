@@ -92,7 +92,7 @@ class Record extends Component
                     });
             });
         
-        if ($this->menu === '' || $this->menu == 'semua') {
+        if ($this->menu === '') {
             $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
         } elseif($this->menu === 'publik'){
             $records = $query->published()->paginate($this->paginate)->withQueryString();
