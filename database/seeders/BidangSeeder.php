@@ -13,77 +13,25 @@ class BidangSeeder extends Seeder
      */
     public function run(): void
     {
-        Bidang::create(
-            [
-                'bidang' => 'Staf Administrasi',
-                'keterangan' => ''
-            ]
-        );
-        Bidang::create(
-            [
-                'bidang' => 'BANK Sampah',
-                'keterangan' => ''
-            ]
-        );
-        Bidang::create(
-            [
-                'bidang' => 'Sopir Truck',
-                'keterangan' => ''
-            ]
-        );
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Pengangkutan Sampah',
-                'keterangan' => ''
-            ]
-        );
+        $data = collect([
+            ['bidang' => 'Contoh Data di Publik', 'keterangan' => 'Keterangan tentang bidang...', 'published_at' => now()],
+            ['bidang' => 'Contoh Data di Tempat Sampah', 'keterangan' => 'Keterangan tentang bidang...', 'deleted_at' => now()],
+            
+            ['bidang' => 'Staf Administrasi', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'BANK Sampah', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Sopir Truck', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Pengangkutan Sampah', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Sopir Ambrol 53', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Pengangkutan Sampah', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Sopir', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Pembabatan Jalan', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Mobasah', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Penyisiran Jalan', 'keterangan' => 'Keterangan tentang bidang...'],
+            ['bidang' => 'Petugas Penyapuan', 'keterangan' => 'Keterangan tentang bidang...']
+        ]);
 
-        Bidang::create(
-            [
-                'bidang' => 'Sopir Ambrol 53',
-                'keterangan' => ''
-            ]
-        );
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Pengangkutan Sampah',
-                'keterangan' => ''
-            ]
-        );
-
-        Bidang::create(
-            [
-                'bidang' => 'Sopir',
-                'keterangan' => ''
-            ]
-        );
-
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Pembabatan Jalan',
-                'keterangan' => ''
-            ]
-        );
-
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Mobasah',
-                'keterangan' => ''
-            ]
-        );
-
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Penyisiran Jalan',
-                'keterangan' => ''
-            ]
-        );
-
-        Bidang::create(
-            [
-                'bidang' => 'Petugas Penyapuan',
-                'keterangan' => ''
-            ]
-        );
+        $data->each(function ($item) {
+            Bidang::create($item);
+        });
     }
 }
