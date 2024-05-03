@@ -35,9 +35,13 @@ class Form extends Component
     public $user = [];
     public $bidangKerja, $lokasiKerja, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
     public bool $isAsn = true;
+    public bool $isDisabled = false;
 
     #[Url(history: true)]
     public string $id = '';
+
+    #[Url(history: true)]
+    public string $menu = '';
 
     protected $rules = [
         'pegawai.nama_depan' => 'required',
@@ -88,9 +92,10 @@ class Form extends Component
     public function mount(): void
     {
         if ($this->id != ''){
-            $this->pegawai = Pegawai::query()->find($this->id)?->toArray();
+            $this->pegawai = Pegawai::query()->withTrashed()->find($this->id)?->toArray();
             $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
         }
+        if($this->menu == 'view') $this->isDisabled = true;
         $this->bidangKerja = Bidang::query()->get();
         $this->lokasiKerja = LokasiKerja::query()->get();
         $this->jenisKelamin = JenisKelamin::query()->get();

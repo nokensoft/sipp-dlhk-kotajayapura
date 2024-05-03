@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / Pegawai / <span class="font-bold">{{$title}}</span></p>
-                            @if($menu === 'create')
+                            @if(in_array($this->menu, ['create', 'view']))
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -22,8 +22,8 @@
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($menu === 'create' || ($menu === 'edit' && $id != ''))
-                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn"/>
+                    @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
+                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn" :menu="$menu"/>
                     @else
                         <livewire:pegawai.record />
                     @endif
