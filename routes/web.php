@@ -15,7 +15,7 @@ Route::get('/', function () {
 use App\Livewire\Dasbor;
 use App\Livewire\Profil;
 use App\Livewire\Pengaturan;
-use App\Livewire\Asn\Index as Asn;
+use App\Livewire\Pegawai\Index as Asn;
 use App\Livewire\NonAsn\Index as NonAsn;
 use App\Livewire\Bidang\Index as Bidang;
 use App\Livewire\Lokasi\Index as Lokasi;
@@ -35,7 +35,8 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/asn', Asn::class)->name('asn');
-    Route::get('/non-asn', NonAsn::class)->name('nonAsn');
+    Route::get('/non-asn', Asn::class)->name('nonAsn');
+//    Route::get('/non-asn', NonAsn::class)->name('nonAsn');
     Route::get('/bidang', Bidang::class)->name('bidang');
     Route::get('/lokasi', Lokasi::class)->name('lokasi');
     Route::get('/pengguna', Pengguna::class)->name('pengguna');

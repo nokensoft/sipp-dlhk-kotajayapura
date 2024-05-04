@@ -7,11 +7,15 @@
     <div class="side-nav-content relative side-nav-scroll">
         <nav class="menu menu-transparent px-4 pb-4">
 
+            @php
+                $segment = request()->segment(1);
+                $active = 'bg-[#4F46E5] rounded-lg pl-2';
+            @endphp
 
             <div class="menu-group mt-5">
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('dasbor') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'dasbor' ? $active : ''}}">
+                        <a class="menu-item-link {{$segment == 'dasbor' ? 'text-white' : ''}}" href="{{ route('dasbor') }}">
                             <i class="fa-solid fa-dashboard text-lg"></i>
                             <span class="menu-item-text">Dasbor</span>
                         </a>
@@ -26,14 +30,14 @@
                     Pegawai
                 </div>
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('asn') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'asn' ? $active : ''}}">
+                        <a class="menu-item-link {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">ASN</span>
                         </a>
                     </li>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2">
-                        <a class="menu-item-link" href="{{ route('nonAsn') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
+                        <a class="menu-item-link {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Non ASN</span>
                         </a>
