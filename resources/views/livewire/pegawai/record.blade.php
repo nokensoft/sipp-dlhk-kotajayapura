@@ -61,8 +61,8 @@
                         <th>Nama Lengkap</th>
                         <th>Email</th>
                         <th>No Hp</th>
-                        <th>Bidang Kerja</th>
-                        <th>Lokasi Kerja</th>
+                        <th>Bidang</th>
+                        <th>Lokasi</th>
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>
                         <th>Pangkat Golongan</th>
@@ -111,7 +111,7 @@
                                 </td>
                                 <td>{{$record->no_hp}}</td>
                                 <td>{{$record->bidang?->bidang}}</td>
-                                <td>{{$record->lokasiKerja?->lokasi_kerja}}</td>
+                                <td>{{$record->lokasi?->lokasi}}</td>
                                 <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
                                 <td>{{$record->agama?->agama}}</td>
                                 <td>{{$record->pangkatGolongan?->pangkat_golongan}}</td>

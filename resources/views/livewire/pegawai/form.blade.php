@@ -55,10 +55,10 @@
                                     <p class="mb-6">form untuk mengisi data master</p>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.select label="Bidang Kerja" id="bidang-kerja" optionName="bidang" :options="$bidangKerja" name="pegawai.bidang_kerja_id"  :isDisabled="$isDisabled" />
+                                            <x-admin.select label="Bidang Kerja" id="bidang" optionName="bidang" :options="$bidang" name="pegawai.bidang_id"  :isDisabled="$isDisabled" />
                                         </div>
                                         <div class="w-1/2">
-                                            <x-admin.select label="Lokasi Kerja" id="lokasi-kerja" optionName="lokasi_kerja" :options="$lokasiKerja" name="pegawai.lokasi_kerja_id"  :isDisabled="$isDisabled" />
+                                            <x-admin.select label="Lokasi Kerja" id="lokasi" optionName="lokasi" :options="$lokasi" name="pegawai.lokasi_id"  :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">

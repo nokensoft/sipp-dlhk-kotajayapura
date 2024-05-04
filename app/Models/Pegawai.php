@@ -21,12 +21,12 @@ class Pegawai extends Model
 
     public function bidang(): BelongsTo
     {
-        return $this->belongsTo(Bidang::class, 'bidang_kerja_id');
+        return $this->belongsTo(Bidang::class, 'bidang_id');
     }
 
     public function lokasi(): BelongsTo
     {
-        return $this->belongsTo(Lokasi::class, 'lokasi_kerja_id');
+        return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 
     public function jenisKelamin(): BelongsTo

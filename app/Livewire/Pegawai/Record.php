@@ -127,7 +127,7 @@ class Record extends Component
                     ->orWhere('keterangan', 'like', '%' . $this->search . '%')
                     ->orWhere('catatan', 'like', '%' . $this->search . '%')
                     ->orWhereHas('bidang', fn ($query) => $query->where('bidang', 'like', '%' . $this->search . '%'))
-                    ->orWhereHas('lokasiKerja', fn ($query) => $query->where('lokasi_kerja', 'like', '%' . $this->search . '%'))
+                    ->orWhereHas('lokasi', fn ($query) => $query->where('lokasi', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('jenisKelamin', fn ($query) => $query->where('jenis_kelamin', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('agama', fn ($query) => $query->where('agama', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('pangkatGolongan', fn ($query) => $query->where('pangkat_golongan', 'like', '%' . $this->search . '%'))

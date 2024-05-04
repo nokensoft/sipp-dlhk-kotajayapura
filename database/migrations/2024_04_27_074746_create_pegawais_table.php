@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('akte_pernikahan')->nullable();
 
             // Data Master
-            $table->bigInteger('bidang_kerja_id')->nullable();
-            $table->bigInteger('lokasi_kerja_id')->nullable();
+            $table->bigInteger('bidang_id')->nullable();
+            $table->bigInteger('lokasi_id')->nullable();
             $table->bigInteger('jenis_kelamin_id')->nullable();
             $table->bigInteger('agama_id')->nullable();
             $table->bigInteger('pangkat_golongan_id')->nullable();

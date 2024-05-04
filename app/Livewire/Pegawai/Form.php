@@ -13,7 +13,7 @@ use App\Models\Jabatan;
 use App\Models\JenisKelamin;
 use App\Models\JenjangPendidikan;
 use App\Models\Kelurahan;
-use App\Models\LokasiKerja;
+use App\Models\Lokasi;
 use App\Models\PangkatGolongan;
 use App\Models\Pegawai;
 use App\Models\StatusPerkawinan;
@@ -33,7 +33,7 @@ class Form extends Component
     use WithFileUploads;
     public $pegawai = [];
     public $user = [];
-    public $bidangKerja, $lokasiKerja, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
+    public $bidang, $lokasi, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
     public bool $isAsn = true;
     public bool $isDisabled = false;
 
@@ -57,8 +57,8 @@ class Form extends Component
         'pegawai.ijazah' => 'nullable|mimes:jpeg,png,jpg',
         'pegawai.akte_kelahiran' => 'nullable|mimes:jpeg,png,jpg',
         'pegawai.akte_pernikahan' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.bidang_kerja_id' => 'nullable',
-        'pegawai.lokasi_kerja_id' => 'nullable',
+        'pegawai.bidang_id' => 'nullable',
+        'pegawai.lokasi_id' => 'nullable',
         'pegawai.jenis_kelamin_id' => 'nullable',
         'pegawai.agama_id' => 'nullable',
         'pegawai.pangkat_golongan_id' => 'nullable',
@@ -96,8 +96,8 @@ class Form extends Component
             $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
         }
         if($this->menu == 'view') $this->isDisabled = true;
-        $this->bidangKerja = Bidang::query()->get();
-        $this->lokasiKerja = LokasiKerja::query()->get();
+        $this->bidang = Bidang::query()->get();
+        $this->lokasi = Lokasi::query()->get();
         $this->jenisKelamin = JenisKelamin::query()->get();
         $this->agama = Agama::query()->get();
         $this->pangkatGolongan = PangkatGolongan::query()->get();
