@@ -9,7 +9,7 @@
                             <p>{{$subtitle}}</p>
                         </div>
                         <div class="flex flex-col justify-end gap-2">
-                            <p class="italic">Dasbor / Bidang / <span class="font-bold">{{$title}}</span></p>
+                            <p class="italic">Dasbor / <span class="font-bold">{{$title}}</span></p>
                             @if($menu === 'create')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
