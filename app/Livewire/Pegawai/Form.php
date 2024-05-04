@@ -22,7 +22,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -51,12 +53,12 @@ class Form extends Component
         'pegawai.email' => 'nullable',
         'pegawai.no_hp' => 'nullable',
         'pegawai.gambar' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.ktp' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.kk' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.transkip_nilai' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.ijazah' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.akte_kelahiran' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.akte_pernikahan' => 'nullable|mimes:jpeg,png,jpg',
+        'pegawai.ktp' => 'nullable|mimes:jpeg,png,jpg,pdf',
+        'pegawai.kk' => 'nullable|mimes:jpeg,png,jpg,pdf',
+        'pegawai.transkip_nilai' => 'nullable|mimes:jpeg,png,jpg,pdf',
+        'pegawai.ijazah' => 'nullable|mimes:jpeg,png,jpg,pdf',
+        'pegawai.akte_kelahiran' => 'nullable|mimes:jpeg,png,jpg,pdf',
+        'pegawai.akte_pernikahan' => 'nullable|mimes:jpeg,png,jpg,pdf',
         'pegawai.bidang_id' => 'nullable',
         'pegawai.lokasi_id' => 'nullable',
         'pegawai.jenis_kelamin_id' => 'nullable',
@@ -91,11 +93,7 @@ class Form extends Component
 
     public function mount(): void
     {
-        if ($this->id != ''){
-            $this->pegawai = Pegawai::query()->withTrashed()->find($this->id)?->toArray();
-            $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
-        }
-        if($this->menu == 'view') $this->isDisabled = true;
+        $this->loadPegawai($this->id, $this->menu);
         $this->bidang = Bidang::query()->get();
         $this->lokasi = Lokasi::query()->get();
         $this->jenisKelamin = JenisKelamin::query()->get();
@@ -205,6 +203,27 @@ class Form extends Component
         $fileName = $fileName. '_'.microtime().'.'.$file->extension();
         $file->storeAs('public/files', $fileName);
         return 'files/'.$fileName;
+    }
+
+    #[On('download')]
+    public function download($img){
+        $filepath = public_path('storage/').$img;
+        return Response::download($filepath);
+    }
+
+    #[On('load-pegawai')]
+    public function loadPegawai($id, $menu = 'view'):void
+    {
+        $this->menu = $menu;
+        if ($this->id != ''){
+            $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
+            $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
+        }
+        if($this->menu == 'view') {
+            $this->isDisabled = true;
+        } else{
+            $this->isDisabled = false;
+        }
     }
 
     public function render(): View
