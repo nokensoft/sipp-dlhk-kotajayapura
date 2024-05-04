@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('gambar')->nullable();
-            $table->boolean('is_asn')->default(true);
+            $table->boolean('is_asn')->default(true); //true (1) = asn, false (0) = non asn
 
             // file
             $table->string('ktp')->nullable();

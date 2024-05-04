@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Pegawai;
 
-use App\Models\Pegawai;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -29,7 +28,7 @@ class Index extends Component
             $this->isAsn = false;
         }
 
-        if ($this->menu === 'create') {
+        if (in_array($this->menu, ['create', 'view'])) {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
@@ -39,7 +38,7 @@ class Index extends Component
     #[On('action')]
     public function action():void
     {
-        if ($this->menu === 'create') {
+        if (in_array($this->menu, ['create', 'view'])) {
             $this->redirect(route('asn'));
         }
         if($this->menu === ''){
@@ -54,6 +53,12 @@ class Index extends Component
     public function edit($id):void
     {
         $this->menu='edit';
+        $this->id = $id;
+    }
+    #[On('view')]
+    public function view($id):void
+    {
+        $this->menu='view';
         $this->id = $id;
     }
 

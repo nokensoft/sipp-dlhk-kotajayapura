@@ -5,6 +5,7 @@ namespace App\Livewire\Pegawai;
 use Livewire\Component;
 use App\Models\Pegawai;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
@@ -55,20 +56,48 @@ class Record extends Component
         $record->save();
     }
 
-    public function delete($id): void
+    public function undo($id): void
     {
         $record = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
-        if(isset($record->deleted_at)){
-            $record->user?->forceDelete();
-            $record->forceDelete();
-            session()->flash('success', 'Data berhasil dihapus permanen');
-            return;
-        }
-        $record = Pegawai::query()->find($id);
-        $record->published_at = null;
+        $record->deleted_at = null;
         $record->save();
-        $record->delete();
-        session()->flash('success', 'Data berhasil dihapus sementara');
+        session()->flash('success', 'Data berhasil dikembalikan!');
+    }
+
+    public function delete($id): void
+    {
+        try {
+            $record = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+
+            // jika hapus permanen
+            if(isset($record->deleted_at)){
+                $pathGambar = storage_path('app/public/' . $record->gambar ?? '');
+                $pathKtp = storage_path('app/public/' . $record->ktp ?? '');
+                $pathKk = storage_path('app/public/' . $record->kk ?? '');
+                $pathIjazah= storage_path('app/public/' . $record->ijazah ?? '');
+                $pathTranskipNilai= storage_path('app/public/' . $record->transkip_nilai ?? '');
+                $pathAkteKelahiran= storage_path('app/public/' . $record->akte_kelahiran ?? '');
+                $pathAktePernikahan= storage_path('app/public/' . $record->akte_pernikahan ?? '');
+                if (file_exists($pathGambar)) unlink($pathGambar);
+                if (file_exists($pathKtp)) unlink($pathKtp);
+                if (file_exists($pathKk)) unlink($pathKk);
+                if (file_exists($pathIjazah)) unlink($pathIjazah);
+                if (file_exists($pathTranskipNilai)) unlink($pathTranskipNilai);
+                if (file_exists($pathAkteKelahiran)) unlink($pathAkteKelahiran);
+                if (file_exists($pathAktePernikahan)) unlink($pathAktePernikahan);
+                $record->user?->forceDelete();
+                $record->forceDelete();
+                session()->flash('success', 'Data berhasil dihapus permanen');
+                return;
+            }
+
+            $record = Pegawai::query()->find($id);
+            $record->delete();
+            session()->flash('success', 'Data berhasil dihapus sementara');
+        }catch (\Exception $e){
+            Log::info('Error : '. $e->getMessage());
+            session()->flash('error', 'Error: '.$e->getMessage());
+        }
     }
 
     public function modal($id): void
@@ -83,7 +112,7 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Pegawai::query()->where('is_asn',$this->isAsn)->count();
+        $this->totalAll = Pegawai::query()->withTrashed()->where('is_asn',$this->isAsn)->count();
         $this->totalPublik = Pegawai::query()->where('is_asn',$this->isAsn)->published()->count();
         $this->totalKonsep = Pegawai::query()->where('is_asn',$this->isAsn)->draft()->count();
         $this->totalTempatSampah = Pegawai::query()->where('is_asn',$this->isAsn)->withTrashed()->whereNotNull('deleted_at')->count();

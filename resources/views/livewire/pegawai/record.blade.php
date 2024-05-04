@@ -4,6 +4,11 @@
             <span class="font-medium">Berhasil </span> {{session()->get('success')}}
         </div>
     @endif
+    @if(session()->has('error'))
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <span class="font-medium">Gagal </span> {{session()->get('error')}}
+        </div>
+    @endif
     <div class="flex gap-4 mb-4 items-center">
         <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
         <a href="#" wire:click.prevent="action('semua')" class="{{$menu === 'semua' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
@@ -44,100 +49,121 @@
                 <input type="search" class="block w-full px-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari..." wire:model.live="search" />
             </div>
         </div>
-        <div class="overflow-x-auto">
-            <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
-                <thead>
-                <tr>
-                    <th>Nama Lengkap</th>
-                    <th>Email</th>
-                    <th>No Hp</th>
-                    <th>Bidang Kerja</th>
-                    <th>Lokasi Kerja</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Agama</th>
-                    <th>Pangkat Golongan</th>
-                    <th>Suku</th>
-                    <th>Distrik</th>
-                    <th>Kelurahan</th>
-                    <th>Jabatan</th>
-                    <th>Deskripsi Tugas</th>
-                    <th>Gelar Depan</th>
-                    <th>Gelar Belakang</th>
-                    <th>Gelar Akademis</th>
-                    <th>Jenjang Pendidikan</th>
-                    <th>Status Perkawinan</th>
-                    <th>Keterangan</th>
-                    <th>Catatan</th>
-                    <th>Toggle</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($records as $record)
-                        <tr>
-                            <td>
-                                <div class="flex items-center">
-                                    <span class="avatar avatar-rounded avatar-md">
-                                        <img class="avatar-img avatar-rounded"
-                                             src="{{ isset($record->gambar) && !empty($record->gambar) ? asset('storage/'.$record->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy">
-                                    </span>
-                                    <span class="ml-2 rtl:mr-2 font-semibold">
-                                        {{$record->nama_depan}} {{$record->nama_tengah}} {{$record->nama_belakang}}
-                                    </span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="capitalize">{{$record->email}}</span>
-                            </td>
-                            <td>{{$record->no_hp}}</td>
-                            <td>{{$record->bidang?->bidang}}</td>
-                            <td>{{$record->lokasiKerja?->lokasi_kerja}}</td>
-                            <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
-                            <td>{{$record->agama?->agama}}</td>
-                            <td>{{$record->pangkatGolongan?->pangkat_golongan}}</td>
-                            <td>{{$record->suku?->suku}}</td>
-                            <td>{{$record->distrik?->distrik}}</td>
-                            <td>{{$record->kelurahan?->kelurahan}}</td>
-                            <td>{{$record->jabatan?->jabatan}}</td>
-                            <td>{{$record->deskripsiTugas?->deskripsi_tugas}}</td>
-                            <td>{{$record->gelarDepan?->gelar_depan}}</td>
-                            <td>{{$record->gelarBelakang?->gelar_belakang}}</td>
-                            <td>{{$record->gelarAkademis?->gelar_akademis}}</td>
-                            <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
-                            <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
-                            <td>{{$record->keterangan}}</td>
-                            <td>{{$record->catatan}}</td>
-                            <td>
-                                @php
-                                    $status = '';
-                                    if($record->published_at == null){
-                                        $status = 'konsep';
-                                    }else{
-                                        $status = 'publik';
-                                    }
-                                @endphp
-                                <div class="relative">
-                                    <label class="inline-flex items-center cursor-pointer" wire:key="toggle-{{$record->id}}">
-                                        <input type="checkbox" value="" class="sr-only peer" @checked(isset($record->published_at)) wire:change="publishOrDraft({{$record->id}})">
-                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="flex justify-end items-center text-lg ">
-                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })">
-                                        <i class="fa-solid fa-edit text-sm"></i>
-                                    </span>
-                                    <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})">
-                                        <i class="fa-solid fa-trash text-sm"></i>
-                                    </span>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        @if($records->total() == 0)
+            <div class="flex justify-center">
+                <img src="{{asset('assets/undraw_no_data.svg')}}" class="w-60" alt="">
+            </div>
+        @else
+            <div class="overflow-x-auto">
+                <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <th>Email</th>
+                        <th>No Hp</th>
+                        <th>Bidang Kerja</th>
+                        <th>Lokasi Kerja</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Agama</th>
+                        <th>Pangkat Golongan</th>
+                        <th>Suku</th>
+                        <th>Distrik</th>
+                        <th>Kelurahan</th>
+                        <th>Jabatan</th>
+                        <th>Deskripsi Tugas</th>
+                        <th>Gelar Depan</th>
+                        <th>Gelar Belakang</th>
+                        <th>Gelar Akademis</th>
+                        <th>Jenjang Pendidikan</th>
+                        <th>Status Perkawinan</th>
+                        <th>Keterangan</th>
+                        <th>Catatan</th>
+                        @if($menu != 'tempat_sampah')
+                            <th>Toggle</th>
+                        @endif
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($records as $record)
+                            @php
+                                $status = '';
+                                if($record->published_at == null){
+                                    $status = 'konsep';
+                                }else{
+                                    $status = 'publik';
+                                }
+                            @endphp
+                            <tr>
+                                <td>
+                                    <div class="flex items-center">
+                                        <span class="avatar avatar-rounded avatar-md">
+                                            <img class="avatar-img avatar-rounded"
+                                                 src="{{ isset($record->gambar) && !empty($record->gambar) ? asset('storage/'.$record->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy">
+                                        </span>
+                                        <span class="ml-2 rtl:mr-2 font-semibold">
+                                            {{$record->nama_depan}} {{$record->nama_tengah}} {{$record->nama_belakang}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="capitalize">{{$record->email}}</span>
+                                </td>
+                                <td>{{$record->no_hp}}</td>
+                                <td>{{$record->bidang?->bidang}}</td>
+                                <td>{{$record->lokasiKerja?->lokasi_kerja}}</td>
+                                <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
+                                <td>{{$record->agama?->agama}}</td>
+                                <td>{{$record->pangkatGolongan?->pangkat_golongan}}</td>
+                                <td>{{$record->suku?->suku}}</td>
+                                <td>{{$record->distrik?->distrik}}</td>
+                                <td>{{$record->kelurahan?->kelurahan}}</td>
+                                <td>{{$record->jabatan?->jabatan}}</td>
+                                <td>{{$record->deskripsiTugas?->deskripsi_tugas}}</td>
+                                <td>{{$record->gelarDepan?->gelar_depan}}</td>
+                                <td>{{$record->gelarBelakang?->gelar_belakang}}</td>
+                                <td>{{$record->gelarAkademis?->gelar_akademis}}</td>
+                                <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
+                                <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
+                                <td>{{$record->keterangan}}</td>
+                                <td>{{$record->catatan}}</td>
+                                @if(!isset($record->deleted_at))
+                                    <td>
+                                        <div class="relative">
+                                            <label class="inline-flex items-center cursor-pointer" wire:key="toggle-{{$record->id}}">
+                                                <input type="checkbox" value="" class="sr-only peer" @checked(isset($record->published_at)) wire:change.prevent="publishOrDraft({{$record->id}})">
+                                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                            </label>
+                                        </div>
+                                    </td>
+                                @else
+                                    <td></td>
+                                @endif
+                                <td>
+                                    <div class="flex justify-end items-center text-lg ">
+                                        @if(isset($record->deleted_at))
+                                            <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="undo({{$record->id}})">
+                                                <i class="fa-solid fa-rotate-left"></i>
+                                            </span>
+                                        @else
+                                            <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })">
+                                                <i class="fa-solid fa-eye text-sm"></i>
+                                            </span>
+                                            <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })">
+                                                <i class="fa-solid fa-edit text-sm"></i>
+                                            </span>
+                                        @endif
+                                        <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})">
+                                            <i class="fa-solid fa-trash text-sm"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
 
         <!-- Modal Delete -->
         <x-modal-alpine modalName="openModalDelete" title="Peringatan!">
