@@ -39,7 +39,6 @@ class PegawaiSeeder extends Seeder
                 'nama_depan' => 'Efrain', 'nama_tengah' => '', 'nama_belakang' => 'Silubun', 'email' => '', 'no_hp' => '', 'gambar' => '', 'ktp' => '', 'kk' => '', 'ijazah' => '', 'transkip_nilai' => '', 'akte_kelahiran' => '', 'akte_pernikahan' => '', 'bidang_id' => 1, 'lokasi_id' => 1, 'jenis_kelamin_id' => 1, 'agama_id' => 1, 'pangkat_golongan_id' => 1, 'suku_id' => 1, 'distrik_id' => 1, 'kelurahan_id' => 1, 'deskripsi_tugas_id' => 1, 'gelar_depan_id' => 1, 'gelar_belakang_id' => 1, 'gelar_akademis_id' => 1, 'jenjang_pendidikan_id' => 1, 'status_perkawinan_id' => 1, 'keterangan' => '', 'catatan' => '', 'user_id' => 2,
             ],
         ])->each(function ($items) {
-            // membuat data dan melipatgandakan menjadi 20 kali
             for ($i = 0; $i < 15; $i++) {
                 Pegawai::create($items);
             }
