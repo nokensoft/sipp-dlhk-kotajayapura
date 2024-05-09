@@ -111,11 +111,7 @@ class Index extends Component
             $record = Pegawai::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara');
-            if ($this->title === 'Non ASN'){
-                $this->redirectRoute('nonAsn');
-            }else{
-                $this->redirectRoute('asn');
-            }
+            $this->redirectRoute($this->title === 'Non ASN' ? 'nonAsn' : 'asn', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
