@@ -170,7 +170,11 @@ class Form extends Component
             $message = 'ubah data!';
         }
         session()->flash('success', $message);
-        $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+        if (isset($this->pegawai['id'])){
+            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'view', 'id' => $this->pegawai['id'] ?? '']);
+        }else{
+            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+        }
     }
 
     private function fileChecking(): void
@@ -224,6 +228,12 @@ class Form extends Component
         } else{
             $this->isDisabled = false;
         }
+    }
+
+    #[On('delete-file')]
+    public function deleteFile($name):void
+    {
+        $this->pegawai[$name] = '';
     }
 
     public function render(): View
