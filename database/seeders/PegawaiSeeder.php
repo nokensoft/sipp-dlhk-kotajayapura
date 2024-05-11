@@ -14,6 +14,7 @@ class PegawaiSeeder extends Seeder
     public function run(): void
     {
         Pegawai::factory()->count(15)->create();
+        
         collect([
             [
                 'nama_depan' => fake()->firstName, 
