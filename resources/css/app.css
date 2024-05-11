@@ -5,3 +5,11 @@
 [x-cloak] {
     display: none;
 }
+
+.tippy-box[data-theme~='primary'] {
+    background-color: #E0E7FF;
+    color: #4F46E5;
+}
+.tippy-box[data-theme~='primary'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: #E0E7FF;
+}

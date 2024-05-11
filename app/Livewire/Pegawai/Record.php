@@ -67,6 +67,7 @@ class Record extends Component
     public function delete($id): void
     {
         try {
+            $this->search = '';
             $record = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
 
             // jika hapus permanen
@@ -110,6 +111,11 @@ class Record extends Component
         $this->paginate = $value;
     }
 
+    public function paginationView()
+    {
+        return 'customPagination.custom-pagination-view';
+    }
+
     public function render(): View
     {
         $this->totalAll = Pegawai::query()->withTrashed()->where('is_asn',$this->isAsn)->count();
@@ -143,7 +149,7 @@ class Record extends Component
                     ->orWhereHas('statusPerkawinan', fn ($query) => $query->where('status_perkawinan', 'like', '%' . $this->search . '%'));
             })
         ;
-        if ($this->menu === '' || $this->menu == 'semua') {
+        if (in_array($this->menu, ['','semua'])) {
             $records = $query->where('is_asn',$this->isAsn)->withTrashed()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'publik'){
