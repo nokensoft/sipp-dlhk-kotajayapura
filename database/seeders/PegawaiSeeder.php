@@ -22,7 +22,14 @@ class PegawaiSeeder extends Seeder
                 'nama_belakang' => fake()->lastName, 
                 'email' => '', 
                 'no_hp' => '', 
-                'gambar' => '', 
+                'gambar' => fake()->randomElement(
+                    [
+                        'avatars/man.png', 
+                        'avatars/girl.png', 
+                        'avatars/man1.png',
+                        'avatars/girl-2.png'
+                    ]
+                ), 
                 'ktp' => '', 
                 'kk' => '', 
                 'ijazah' => '', 
@@ -53,8 +60,15 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '', 
                 'nama_belakang' => fake()->lastName, 
                 'email' => '', 
-                'no_hp' => '', 
-                'gambar' => '', 
+                'no_hp' => '',  
+                'gambar' => fake()->randomElement(
+                    [
+                        'avatars/man.png', 
+                        'avatars/girl.png', 
+                        'avatars/man1.png',
+                        'avatars/girl-2.png'
+                    ]
+                ), 
                 'ktp' => '', 
                 'kk' => '', 
                 'ijazah' => '', 

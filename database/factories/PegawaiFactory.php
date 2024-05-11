@@ -22,7 +22,14 @@ class PegawaiFactory extends Factory
             'nama_belakang' => fake()->lastName,
             'email' => fake()->email,
             'no_hp' => fake()->phoneNumber,
-            'gambar' => 'avatar.png',
+            'gambar' => fake()->randomElement(
+                [
+                    'avatars/man.png', 
+                    'avatars/girl.png', 
+                    'avatars/man1.png',
+                    'avatars/girl-2.png'
+                ]
+            ),
             'ktp' => 'ktp.png',
             'kk' => 'kk.png',
             'ijazah' => 'ijazah.png',
