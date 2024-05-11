@@ -54,6 +54,7 @@ class PegawaiFactory extends Factory
             'keterangan' => '',
             'catatan' => '',
             'user_id' => 2,
+            'is_asn' => fake()->numberBetween(0, 1),
             'published_at' => now(),
         ];
     }
