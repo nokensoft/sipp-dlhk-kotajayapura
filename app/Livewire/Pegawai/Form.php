@@ -202,9 +202,15 @@ class Form extends Component
         }
     }
 
+    private function microtime_float(): float
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
+
     private function uploadFile($fileName, $file): string
     {
-        $fileName = $fileName. '_'.microtime().'.'.$file->extension();
+        $fileName = $fileName. '_'.$this->microtime_float().'.'.$file->extension();
         $file->storeAs('public/files', $fileName);
         return 'files/'.$fileName;
     }
