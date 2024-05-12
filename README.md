@@ -48,5 +48,9 @@ Generate APP key
 php artisan key:generate
 ```
 
+### bugs and sollutions
+
+Ketika file dari storage tidak bisa akses
+`cd storage/app/public/` kemudian `chmod 777 files`. "files" merupakan nama folder
 
 
