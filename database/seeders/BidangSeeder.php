@@ -31,10 +31,11 @@ class BidangSeeder extends Seeder
         ]);
 
         $data->each(function ($item) {
-            // membuat data dan melipatgandakan menjadi 20 kali
-            for ($i = 0; $i < 20; $i++) {
-                Bidang::create($item);
-            }
+            // // membuat data dan melipatgandakan menjadi 20 kali
+            // for ($i = 0; $i < 20; $i++) {
+            //     Bidang::create($item);
+            // }
+            Bidang::create($item);
         });
     }
 }
