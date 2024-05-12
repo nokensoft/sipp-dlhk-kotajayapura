@@ -7,8 +7,8 @@
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Informasi Pribadi</h5>
-                                    <p class="mb-6">Informasi probadi pegawai</p>
+                                    <h5 class="font-semibold text-lg">Informasi Pribadi</h5>
+                                    <p class="mb-6">Informasi biodata pegawai</p>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/3">
                                             <x-admin.input label="Nama Depan" id="nama-depan" name="pegawai.nama_depan" :isDisabled="$isDisabled" />
@@ -59,8 +59,8 @@
                             </div>
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Data master</h5>
-                                    <p class="mb-6">form untuk mengisi data master</p>
+                                    <h5 class="font-semibold text-lg">Data Master</h5>
+                                    <p class="mb-6">Form untuk melengkapi datar administrasi lainnya</p>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
                                             <x-admin.select label="Bidang Kerja" id="bidang" optionName="bidang" :options="$bidang" name="pegawai.bidang_id"  :isDisabled="$isDisabled" />

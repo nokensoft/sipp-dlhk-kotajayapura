@@ -15,12 +15,12 @@
     <p>{{$subtitle}}</p>
     @if($img != '')
         @if($isDisabled)
-            <button class="bg-[#4F46E5] text-white py-1 px-2 rounded-lg text-xs" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
+            <button class="text-[#4F46E5] hover:text-[#6f67ff]  py-1 px-2 rounded-lg text-xs" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
                 <i class="fa-solid fa-download"></i>
                 Download
             </button>
         @else
-            <a href="{{asset('storage/'.$img)}}" class="bg-[#4F46E5] text-white py-1 px-2 rounded-lg text-xs" target="_blank">
+            <a href="{{asset('storage/'.$img)}}" class="text-[#4F46E5] hover:text-[#6f67ff] py-1 px-2 rounded-lg text-xs" target="_blank">
                 <i class="fa-solid fa-file"></i>
                 Preview
             </a>
@@ -99,7 +99,7 @@
                             <span class="text-blue-500">pilih</span>
                         </p>
                         <p class="mt-1 opacity-60">Support: jpeg, png, pdf</p>
-                        <button x-show="file != ''" class="bg-red-500 text-white py-1.5 px-2 rounded-lg absolute -translate-x-1/2 z-50 text-xs" type="button" @click="deleteFile()" wire:click.prevent="$dispatch('delete-file', { name: id })">
+                        <button x-show="file != ''" class="text-red-600 hover:text-red-500 py-1.5 px-2 rounded-lg absolute -translate-x-1/2 z-50 text-xs" type="button" @click="deleteFile()" wire:click.prevent="$dispatch('delete-file', { name: id })">
                             <i class="fa-solid fa-trash"></i>
                             Hapus
                         </button>
