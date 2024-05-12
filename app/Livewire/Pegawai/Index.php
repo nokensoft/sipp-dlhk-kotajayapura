@@ -110,7 +110,7 @@ class Index extends Component
 
             $record = Pegawai::query()->find($id);
             $record->delete();
-            session()->flash('success', 'Data berhasil dihapus sementara');
+            session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
             $this->redirectRoute($this->title === 'Non ASN' ? 'nonAsn' : 'asn', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
