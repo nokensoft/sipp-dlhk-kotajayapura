@@ -41,10 +41,18 @@
                                     </div>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.upload-file title="Gambar" subtitle="Upload Gambar" id="gambar" label="Gambar" name="pegawai.gambar" :img="isset($pegawai['gambar']) && !empty($pegawai) ? $pegawai['gambar'] : ''" :isDisabled="$isDisabled" />
+                                            <x-admin.upload-file title="Transkip Nilai" subtitle="Upload Transkip Nilai" id="transkip-nilai" label="Transkip Nilai" name="pegawai.transkip_nilai"  :img="isset($pegawai['transkip_nilai']) && !empty($pegawai) ? $pegawai['transkip_nilai'] : ''"  :isDisabled="$isDisabled" />
                                         </div>
                                         <div class="w-1/2">
                                             <x-admin.upload-file title="Ijazah" subtitle="Upload Ijazah" id="ijazah" label="Ijazah" name="pegawai.ijazah" :img="isset($pegawai['ijazah']) && !empty($pegawai) ? $pegawai['ijazah'] : ''" :isDisabled="$isDisabled" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="Akte Kelahiran" subtitle="Upload Akte Kelahiran" id="akte-kelahiran" label="Akte Kelahiran" name="pegawai.akte_kelahiran" :img="isset($pegawai['akte_kelahiran']) && !empty($pegawai) ? $pegawai['akte_kelahiran'] : ''" :isDisabled="$isDisabled" />
+                                        </div>
+                                        <div class="w-1/2">
+                                            <x-admin.upload-file title="Akte Pernikahan" subtitle="Upload Akte Pernikahan" id="akte-pernikahan" label="Akte Pernikahan" name="pegawai.akte_pernikahan" :img="isset($pegawai['akte_pernikahan']) && !empty($pegawai) ? $pegawai['akte_pernikahan'] : ''" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
                                 </div>
@@ -109,16 +117,11 @@
                                             <x-admin.select label="Jenjang Pendidikan" id="jenjang-pendidikan" optionName="jenjang_pendidikan" :options="$jenjangPendidikan" name="pegawai.jenjang_pendidikan_id"  :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.textarea label="Keterangan" id="keterangan" name="pegawai.keterangan"  :isDisabled="$isDisabled" />
-                                        </div>
+                                    <div class="form-item">
+                                        <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id"  :isDisabled="$isDisabled" />
                                     </div>
                                     <div class="form-item">
-                                        <x-admin.textarea label="Catatan" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
+                                        <x-admin.textarea label="{{$isAsn ? 'Catatan' : 'Keterangan'}}" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
                                     </div>
                                 </div>
                             </div>
@@ -126,9 +129,7 @@
                         <div class="lg:col-span-1">
                             <div class="card adaptable-card mb-4">
                                 <div class="card-body">
-                                    <x-admin.upload-file title="Transkip Nilai" subtitle="Upload Transkip Nilai" id="transkip-nilai" label="Transkip Nilai" name="pegawai.transkip_nilai"  :img="isset($pegawai['transkip_nilai']) && !empty($pegawai) ? $pegawai['transkip_nilai'] : ''"  :isDisabled="$isDisabled" />
-                                    <x-admin.upload-file title="Akte Kelahiran" subtitle="Upload Akte Kelahiran" id="akte-kelahiran" label="Akte Kelahiran" name="pegawai.akte_kelahiran" :img="isset($pegawai['akte_kelahiran']) && !empty($pegawai) ? $pegawai['akte_kelahiran'] : ''" :isDisabled="$isDisabled" />
-                                    <x-admin.upload-file title="Akte Pernikahan" subtitle="Upload Akte Pernikahan" id="akte-pernikahan" label="Akte Pernikahan" name="pegawai.akte_pernikahan" :img="isset($pegawai['akte_pernikahan']) && !empty($pegawai) ? $pegawai['akte_pernikahan'] : ''" :isDisabled="$isDisabled" />
+                                    <x-admin.upload-file title="Gambar" subtitle="Upload Gambar" id="gambar" label="Gambar" name="pegawai.gambar" :img="isset($pegawai['gambar']) && !empty($pegawai) ? $pegawai['gambar'] : ''" :isDisabled="$isDisabled" />
                                 </div>
                             </div>
                         </div>

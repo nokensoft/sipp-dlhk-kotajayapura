@@ -74,7 +74,6 @@ class Form extends Component
         'pegawai.gelar_akademis_id' => 'nullable',
         'pegawai.jenjang_pendidikan_id' => 'nullable',
         'pegawai.status_perkawinan_id' => 'nullable',
-        'pegawai.keterangan' => 'nullable',
         'pegawai.catatan' => 'nullable',
     ];
 

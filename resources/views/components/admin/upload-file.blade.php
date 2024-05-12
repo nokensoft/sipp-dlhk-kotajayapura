@@ -1,12 +1,33 @@
 @props(['title' => '', 'subtitle'=>'', 'id' => '', 'label' => '', 'name' => '', 'img' => '', 'isDisabled' => false])
 @php
-    $path = explode('.', $img);
-    $extension = end($path);
+    $filePath = storage_path('app/public/' . $img ?? '');
     $isPdf = false;
-    if ($extension === 'pdf') $isPdf = true;
+    if (file_exists($filePath)){
+        $path = explode('.', $img);
+        $extension = end($path);
+        if ($extension === 'pdf') $isPdf = true;
+    } else{
+        $img = '';
+    }
 @endphp
 <h5>{{$title}}</h5>
-<p class="mb-2">{{$subtitle}}</p>
+<div class="flex items-center gap-2 mb-2">
+    <p>{{$subtitle}}</p>
+    @if($img != '')
+        @if($isDisabled)
+            <button class="bg-[#4F46E5] text-white py-1 px-2 rounded-lg text-xs" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
+                <i class="fa-solid fa-download"></i>
+                Download
+            </button>
+        @else
+            <a href="{{asset('storage/'.$img)}}" class="bg-[#4F46E5] text-white py-1 px-2 rounded-lg text-xs" target="_blank">
+                <i class="fa-solid fa-file"></i>
+                Preview
+            </a>
+        @endif
+    @endif
+
+</div>
 @if($isDisabled)
     <div class="border-2 border-gray-400 rounded-xl h-[300px] cursor-default flex p-2 justify-center items-center">
         @if($isPdf)
@@ -15,12 +36,6 @@
             <div class="flex flex-col">
                 <img src="{{ $img != '' ? asset('storage/'.$img) : asset('assets/img/others/upload.png')}}" alt="" class="mx-auto max-h-52" id="img-{{$id}}">
                 <p class="mt-1 opacity-60">Support: jpeg, png, pdf</p>
-                @if($img != '')
-                    <button class="bg-[#4F46E5] text-white py-2 px-4 rounded-xl mt-2" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
-                        <i class="fa-solid fa-arrow-down"></i>
-                        Download
-                    </button>
-                @endif
             </div>
         @endif
     </div>
@@ -64,11 +79,10 @@
                         const extension = inputElement.value.split('.')[1];
                         if (extension === 'pdf'){
                            document.getElementById(`iframe-${this.id}`).src = url+'/assets/img/others/upload.png';
-                           this.isPdf = true;
                         }else{
                            document.getElementById(`img-${this.id}`).src = url+'/assets/img/others/upload.png';
-                           this.isPdf = false;
                         }
+                        this.isPdf = false;
                         this.file = '';
                     }
                  }"
@@ -85,7 +99,7 @@
                             <span class="text-blue-500">pilih</span>
                         </p>
                         <p class="mt-1 opacity-60">Support: jpeg, png, pdf</p>
-                        <button x-show="file != ''" class="bg-red-500 text-white py-2 px-4 rounded-xl left-0 right-0 absolute  z-50" type="button" @click="deleteFile()" wire:click.prevent="$dispatch('delete-file', { name: id })">
+                        <button x-show="file != ''" class="bg-red-500 text-white py-1.5 px-2 rounded-lg absolute -translate-x-1/2 z-50 text-xs" type="button" @click="deleteFile()" wire:click.prevent="$dispatch('delete-file', { name: id })">
                             <i class="fa-solid fa-trash"></i>
                             Hapus
                         </button>
