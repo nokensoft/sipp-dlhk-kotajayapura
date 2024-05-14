@@ -3,10 +3,12 @@
 namespace App\Livewire\Bidang;
 
 use App\Models\Bidang;
-
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Exception;
@@ -14,9 +16,13 @@ use Exception;
 class Form extends Component
 {
     public $bidang = [];
+    public bool $isDisabled = false;
 
     #[Url(history: true)]
     public string $id = '';
+
+    #[Url(history: true)]
+    public string $menu = '';
 
     protected $rules = [
         'bidang.bidang' => 'required',
@@ -29,9 +35,10 @@ class Form extends Component
 
     public function mount(): void 
     {
-        if ($this->id != ''){
-            $this->bidang = Bidang::query()->find($this->id)?->toArray();
-        }        
+        $this->loadBidang($this->id, $this->menu);
+        // if ($this->id != ''){
+        //     $this->bidang = Bidang::query()->find($this->id)?->toArray();
+        // }        
     }
     
     public function save(): void 
@@ -63,6 +70,20 @@ class Form extends Component
         
         session()->flash('success', $message);
         $this->redirectRoute('bidang');
+    }
+    
+    #[On('load-bidang')]
+    public function loadBidang($id, $menu = 'view'):void
+    {
+        $this->menu = $menu;
+        if ($this->id != ''){
+            $this->bidang = Bidang::query()->withTrashed()->find($id)?->toArray();
+        }
+        if($this->menu == 'view') {
+            $this->isDisabled = true;
+        } else{
+            $this->isDisabled = false;
+        }
     }
     
     public function render(): View

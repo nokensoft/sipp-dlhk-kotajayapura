@@ -41,13 +41,24 @@ class Record extends Component
     public function publishOrDraft($id): void
     {
         $record = Bidang::query()->withTrashed()->find($id);
+        $type = 'publik';
         if($record->published_at == null){
             $record->published_at = Carbon::now();
         }else{
             $record->published_at = null;
+            $type = 'konsep';
         }
         $record->deleted_at = null;
         $record->save();
+        session()->flash('success', 'Data diubah menjadi '.$type);
+    }
+
+    public function undo($id): void
+    {
+        $record = Bidang::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record->deleted_at = null;
+        $record->save();
+        session()->flash('success', 'Data berhasil dikembalikan!');
     }
 
     public function delete($id): void

@@ -3,6 +3,7 @@
 namespace App\Livewire\Bidang;
 
 use App\Models\Bidang;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -43,15 +44,72 @@ class Index extends Component
         }
     }
 
+    // #[On('edit')]
+    // public function edit($id): void
+    // {
+    //     $this->menu = 'edit';
+    //     $this->id = $id;
+    // }
+    
+
     #[On('edit')]
-    public function edit($id): void
+    public function edit($id):void
     {
-        $this->menu = 'edit';
+        if($this->menu === 'view'){
+            $this->dispatch('load-bidang', id:$id, menu: 'edit');
+        }
+        $this->menu='edit';
         $this->id = $id;
+        $this->buttonMenu();
+    }
+    
+    #[On('view')]
+    public function view($id):void
+    {
+        $this->menu='view';
+        $this->id = $id;
+        $this->buttonMenu();
+    }
+
+    private function buttonMenu():void{
+        if ($this->menu === 'create') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Tambah Data $this->title";
+        }else if ($this->menu === 'edit') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Edit Data $this->title";
+        }
+    }
+
+    public function delete($id): void
+    {
+        try {
+            $record = Bidang::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+
+            // jika hapus permanen
+            if(isset($record->deleted_at)){
+                $record->user?->forceDelete();
+                $record->forceDelete();
+                session()->flash('success', 'Data berhasil dihapus permanen');
+                $this->redirectRoute('bidang');
+            }
+
+            $record = Bidang::query()->find($id);
+            $record->delete();
+            session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
+            $this->redirectRoute($this->title === 'Bidang', ['menu' => 'tempat_sampah']);
+        }catch (\Exception $e){
+            Log::info('Error : '. $e->getMessage());
+            session()->flash('error', 'Error: '.$e->getMessage());
+        }
     }
 
     public function render(): View
     {
         return view('livewire.bidang.index');
     }
+
+
 }

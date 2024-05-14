@@ -57,6 +57,7 @@ class Index extends Component
         $this->id = $id;
         $this->buttonMenu();
     }
+    
     #[On('view')]
     public function view($id):void
     {
