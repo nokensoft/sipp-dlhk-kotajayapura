@@ -14,22 +14,22 @@ class PegawaiSeeder extends Seeder
     public function run(): void
     {
         Pegawai::factory()->count(15)->create();
-        
+
         collect([
             [
-                'nama_depan' => fake()->firstName, 
-                'nama_tengah' => '', 
-                'nama_belakang' => fake()->lastName, 
-                'email' => '', 
-                'no_hp' => '', 
+                'nama_depan' => fake()->firstName,
+                'nama_tengah' => '',
+                'nama_belakang' => fake()->lastName,
+                'email' => '',
+                'no_hp' => '',
                 'gambar' => fake()->randomElement(
                     [
-                        'avatars/man.png', 
-                        'avatars/girl.png', 
+                        'avatars/man.png',
+                        'avatars/girl.png',
                         'avatars/man1.png',
                         'avatars/girl-2.png'
                     ]
-                ), 
+                ),
                 'ktp' => 'ktp.png',
                 'kk' => 'kk.png',
                 'ijazah' => 'ijazah.png',
@@ -51,25 +51,25 @@ class PegawaiSeeder extends Seeder
                 'jenjang_pendidikan_id' => fake()->numberBetween(1, 5),
                 'status_perkawinan_id' => fake()->numberBetween(1, 5),
                 'jabatan_id' => fake()->numberBetween(1, 5),
-                'keterangan' => '', 
-                'catatan' => '', 
-                'user_id' => 2, 
+                'keterangan' => '',
+                'catatan' => '',
+                'user_id' => null,
                 'published_at' => now(),
             ],
             [
-                'nama_depan' => fake()->firstName, 
-                'nama_tengah' => '', 
-                'nama_belakang' => fake()->lastName, 
-                'email' => '', 
-                'no_hp' => '',  
+                'nama_depan' => fake()->firstName,
+                'nama_tengah' => '',
+                'nama_belakang' => fake()->lastName,
+                'email' => '',
+                'no_hp' => '',
                 'gambar' => fake()->randomElement(
                     [
-                        'avatars/man.png', 
-                        'avatars/girl.png', 
+                        'avatars/man.png',
+                        'avatars/girl.png',
                         'avatars/man1.png',
                         'avatars/girl-2.png'
                     ]
-                ), 
+                ),
                 'ktp' => 'ktp.png',
                 'kk' => 'kk.png',
                 'ijazah' => 'ijazah.png',
@@ -91,9 +91,9 @@ class PegawaiSeeder extends Seeder
                 'jenjang_pendidikan_id' => fake()->numberBetween(1, 5),
                 'status_perkawinan_id' => fake()->numberBetween(1, 5),
                 'jabatan_id' => fake()->numberBetween(1, 5),
-                'keterangan' => '', 
-                'catatan' => '', 
-                'user_id' => 2, 
+                'keterangan' => '',
+                'catatan' => '',
+                'user_id' => null,
                 'deleted_at' => now(),
             ],
         ])->each(function ($items) {

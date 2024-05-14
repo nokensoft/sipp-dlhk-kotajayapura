@@ -3,6 +3,7 @@
 namespace App\Livewire\Bidang;
 
 use App\Models\Bidang;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -23,6 +24,7 @@ class Form extends Component
 
     #[Url(history: true)]
     public string $menu = '';
+    public $user;
 
     protected $rules = [
         'bidang.bidang' => 'required',
@@ -35,14 +37,29 @@ class Form extends Component
 
     public function mount(): void
     {
+        $this->user = Auth::user();
         $this->loadBidang($this->id, $this->menu);
+        if(!$this->user->hasAnyPermission(['edit'])){
+            $this->isDisabled = true;
+        }
         // if ($this->id != ''){
         //     $this->bidang = Bidang::query()->find($this->id)?->toArray();
         // }
     }
 
+    #[On('refresh')]
+    public function refreshIsDisabled($isDisabled):void
+    {
+        $this->isDisabled = $isDisabled;
+    }
+
     public function save(): void
     {
+        if (!$this->user->hasAnyPermission(['edit'])){
+            session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
+            $this->redirectRoute('bidang');
+            return;
+        }
         $this->validate();
 
         try {
@@ -79,6 +96,8 @@ class Form extends Component
         if ($this->id != ''){
             $this->bidang = Bidang::query()->withTrashed()->find($id)?->toArray();
         }
+
+        if($this->menu === 'view') $this->isDisabled = true;
     }
 
     public function render(): View
