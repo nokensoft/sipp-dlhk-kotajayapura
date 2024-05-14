@@ -18,6 +18,7 @@ class Index extends Component
     public string $subtitle = "Data pegawai yang berstatus Aparatur Sipil Negara (ASN)";
     public string $title = "ASN";
     public bool $isAsn = true;
+    public bool $isDisabled = false;
 
     #[Url(history: true)]
     public string $id = '';
@@ -57,13 +58,14 @@ class Index extends Component
         $this->id = $id;
         $this->buttonMenu();
     }
-    
+
     #[On('view')]
     public function view($id):void
     {
         $this->menu='view';
         $this->id = $id;
         $this->buttonMenu();
+        $this->isDisabled = true;
     }
 
     private function buttonMenu():void{

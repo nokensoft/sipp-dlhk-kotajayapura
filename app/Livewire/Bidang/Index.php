@@ -17,6 +17,7 @@ class Index extends Component
     public ?string $buttonIcon = "fa-solid fa-plus";
     public string $subtitle = "Data bidang kerja di untuks setiap petugas lapangan";
     public string $title = "Bidang";
+    public bool $isDisabled = false;
 
     #[Url(history: true)]
     public string $id = '';
@@ -52,7 +53,7 @@ class Index extends Component
     //     $this->menu = 'edit';
     //     $this->id = $id;
     // }
-    
+
 
     #[On('edit')]
     public function edit($id):void
@@ -64,13 +65,14 @@ class Index extends Component
         $this->id = $id;
         $this->buttonMenu();
     }
-    
+
     #[On('view')]
     public function view($id):void
     {
         $this->menu='view';
         $this->id = $id;
         $this->buttonMenu();
+        $this->isDisabled = true;
     }
 
     private function buttonMenu():void{

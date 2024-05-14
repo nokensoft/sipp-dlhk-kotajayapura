@@ -33,21 +33,21 @@ class Form extends Component
         'bidang.bidang.required' => 'Nama bidang tidak boleh kosong',
     ];
 
-    public function mount(): void 
+    public function mount(): void
     {
         $this->loadBidang($this->id, $this->menu);
         // if ($this->id != ''){
         //     $this->bidang = Bidang::query()->find($this->id)?->toArray();
-        // }        
+        // }
     }
-    
-    public function save(): void 
+
+    public function save(): void
     {
         $this->validate();
 
         try {
             DB::beginTransaction();
-            
+
             Bidang::updateOrCreate(
                 [
                     'id' => $this->bidang['id'] ?? null
@@ -62,16 +62,16 @@ class Form extends Component
             Log::info('Error: '. $e->getMessage());
             return;
         }
-        
+
         $message = 'tambahkan data baru!';
         if (isset($this->pegawai['id'])) {
             $message = 'ubah data!';
         }
-        
+
         session()->flash('success', $message);
         $this->redirectRoute('bidang');
     }
-    
+
     #[On('load-bidang')]
     public function loadBidang($id, $menu = 'view'):void
     {
@@ -79,13 +79,8 @@ class Form extends Component
         if ($this->id != ''){
             $this->bidang = Bidang::query()->withTrashed()->find($id)?->toArray();
         }
-        if($this->menu == 'view') {
-            $this->isDisabled = true;
-        } else{
-            $this->isDisabled = false;
-        }
     }
-    
+
     public function render(): View
     {
         return view('livewire.bidang.form');

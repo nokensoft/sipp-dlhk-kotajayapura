@@ -37,7 +37,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
-                        <livewire:bidang.form :id="$id" :menu="$menu"/>
+                        <livewire:bidang.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:bidang.record />
                     @endif
