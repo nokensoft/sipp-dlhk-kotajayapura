@@ -37,7 +37,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
-                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn" :menu="$menu"/>
+                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:pegawai.record />
                     @endif

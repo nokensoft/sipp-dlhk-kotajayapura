@@ -228,11 +228,6 @@ class Form extends Component
             $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
             $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
         }
-        if($this->menu == 'view') {
-            $this->isDisabled = true;
-        } else{
-            $this->isDisabled = false;
-        }
     }
 
     #[On('delete-file')]
