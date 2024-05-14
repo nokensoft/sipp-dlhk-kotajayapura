@@ -145,7 +145,7 @@
                                             </span>
                                             <script>
                                                 tippy('#undo'+@js($record->id), {
-                                                    content: 'RESTORE',
+                                                    content: 'Restore',
                                                     theme: 'primary'
                                                 });
                                             </script>
@@ -158,13 +158,13 @@
                                             </span>
                                             <script>
                                                 tippy('#view'+@js($record->id), {
-                                                    content: 'VIEW',
+                                                    content: 'View',
                                                     theme: 'primary'
                                                 });
                                             </script>
                                             <script>
                                                 tippy('#edit'+@js($record->id), {
-                                                    content: 'EDIT',
+                                                    content: 'Edit',
                                                     theme: 'primary'
                                                 });
                                             </script>
@@ -174,7 +174,7 @@
                                         </span>
                                         <script>
                                             tippy('#delete'+@js($record->id), {
-                                                content: 'HAPUS',
+                                                content: 'Hapus',
                                                 theme: 'primary'
                                             });
                                         </script>
