@@ -76,8 +76,7 @@
                         <th>Gelar Akademis</th>
                         <th>Jenjang Pendidikan</th>
                         <th>Status Perkawinan</th>
-                        <th>Keterangan</th>
-                        <th>Catatan</th>
+                        <th>{{$isAsn ? 'Catatan' : 'Keterangan'}}</th>
                         @if($menu != 'tempat_sampah')
                             <th>Toggle</th>
                         @endif
@@ -125,7 +124,6 @@
                                 <td>{{$record->gelarAkademis?->gelar_akademis}}</td>
                                 <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
                                 <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
-                                <td>{{$record->keterangan}}</td>
                                 <td>{{$record->catatan}}</td>
                                 @if(!isset($record->deleted_at))
                                     <td>
@@ -147,7 +145,7 @@
                                             </span>
                                             <script>
                                                 tippy('#undo'+@js($record->id), {
-                                                    content: 'restore',
+                                                    content: 'Restore',
                                                     theme: 'primary'
                                                 });
                                             </script>
@@ -160,13 +158,13 @@
                                             </span>
                                             <script>
                                                 tippy('#view'+@js($record->id), {
-                                                    content: 'view',
+                                                    content: 'View',
                                                     theme: 'primary'
                                                 });
                                             </script>
                                             <script>
                                                 tippy('#edit'+@js($record->id), {
-                                                    content: 'edit',
+                                                    content: 'Edit',
                                                     theme: 'primary'
                                                 });
                                             </script>
@@ -176,7 +174,7 @@
                                         </span>
                                         <script>
                                             tippy('#delete'+@js($record->id), {
-                                                content: 'hapus',
+                                                content: 'Hapus',
                                                 theme: 'primary'
                                             });
                                         </script>

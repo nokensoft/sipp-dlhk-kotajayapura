@@ -21,12 +21,12 @@
                             @endif
                             <div class="ml-auto" x-show="menu === 'view'">
                                 <div class="flex gap-2">
-                                    <x-button-custom id="edit-button" tooltip="edit data!" action="edit({{$id}})" class="btn btn-xs btn-solid">
+                                    <x-button-custom id="edit-button" tooltip="EDIT DATA!" action="edit({{$id}})" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
                                             <i class="fa-solid fa-edit text-sm"></i>
                                         </x-slot>
                                     </x-button-custom>
-                                    <x-button-custom id="delete-button" tooltip="hapus data!" @click="openModalDelete = true" class="btn btn-xs btn-solid">
+                                    <x-button-custom id="delete-button" tooltip="HAPUS DATA!" @click="openModalDelete = true" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
                                             <i class="fa-solid fa-trash text-sm"></i>
                                         </x-slot>

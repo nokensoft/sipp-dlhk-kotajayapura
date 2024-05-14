@@ -74,7 +74,6 @@ class Form extends Component
         'pegawai.gelar_akademis_id' => 'nullable',
         'pegawai.jenjang_pendidikan_id' => 'nullable',
         'pegawai.status_perkawinan_id' => 'nullable',
-        'pegawai.keterangan' => 'nullable',
         'pegawai.catatan' => 'nullable',
     ];
 
@@ -239,7 +238,15 @@ class Form extends Component
     #[On('delete-file')]
     public function deleteFile($name):void
     {
+        $pathFile = storage_path('app/public/' . $this->pegawai[$name] ?? '');
+        if (file_exists($pathFile)) unlink($pathFile);
         $this->pegawai[$name] = '';
+        Pegawai::updateOrCreate(
+            [
+                'id' => $this->pegawai['id'] ?? null
+            ],
+            $this->pegawai
+        );
     }
 
     public function render(): View
