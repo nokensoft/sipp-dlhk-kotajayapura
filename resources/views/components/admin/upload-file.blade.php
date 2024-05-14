@@ -96,7 +96,7 @@
                     <img x-show="!isPdf" src="{{ $img != '' ? asset('storage/'.$img) : asset('assets/img/others/upload.png')}}" alt="" class="mx-auto max-h-36" id="img-{{$id}}">
                     @if(!$isDisabled)
                         <p class="font-semibold">
-                            <span class="text-gray-800">drop file {{$label}} anda disini, atau</span>
+                            <span class="text-gray-800">Drop file {{$label}} anda disini, atau</span>
                             <span class="text-blue-500">pilih</span>
                         </p>
                         <p class="mt-1 opacity-60">Support: jpeg, png, pdf</p>
