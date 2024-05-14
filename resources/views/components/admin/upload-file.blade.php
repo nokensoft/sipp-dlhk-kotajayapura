@@ -10,17 +10,17 @@
         $img = '';
     }
 @endphp
-<h5>{{$title}}</h5>
+<h5 class="text-sm font-medium text-gray-900">{{$title}}</h5>
 <div class="flex items-center gap-2 mb-2">
     <p>{{$subtitle}}</p>
     @if($img != '')
         @if($isDisabled)
-            <button class="text-[#4F46E5] hover:text-[#6f67ff]  py-1 px-2 rounded-lg text-xs" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
+            <button id="download{{$id}}" class="text-[#4F46E5] hover:text-[#6f67ff]  py-1 px-2 rounded-lg text-xs" type="button" wire:click.prevent="$dispatch('download', { img: {{json_encode($img)}} })">
                 <i class="fa-solid fa-download"></i>
                 Download
             </button>
         @else
-            <a href="{{asset('storage/'.$img)}}" class="text-[#4F46E5] hover:text-[#6f67ff] py-1 px-2 rounded-lg text-xs" target="_blank">
+            <a id="preview{{$id}}" href="{{asset('storage/'.$img)}}" class="text-[#4F46E5] hover:text-[#6f67ff] py-1 px-2 rounded-lg text-xs" target="_blank">
                 <i class="fa-solid fa-file"></i>
                 Preview
             </a>
@@ -47,6 +47,7 @@
                     id: @js($id),
                     isPdf: @js($isPdf),
                     file: @js($img),
+                    openModalDelete: false,
                     handleImageChange() {
                         const inputElement = document.getElementById(this.id);
                         const file = inputElement.files[0]; // Ambil file dari input
@@ -99,17 +100,47 @@
                             <span class="text-blue-500">pilih</span>
                         </p>
                         <p class="mt-1 opacity-60">Support: jpeg, png, pdf</p>
-                        <button x-show="file != ''" class="text-red-600 hover:text-red-500 py-1.5 px-2 rounded-lg absolute -translate-x-1/2 z-50 text-xs" type="button" @click="deleteFile()" wire:click.prevent="$dispatch('delete-file', { name: id })">
+                        <button x-show="file != ''" class="text-red-600 hover:text-red-500 py-1.5 px-2 rounded-lg absolute -translate-x-1/2 z-50 text-xs" type="button" x-on:click="openModalDelete=true" id="hapus{{$id}}">
                             <i class="fa-solid fa-trash"></i>
                             Hapus
                         </button>
                     @endif
                 </div>
             </div>
+            <!-- Modal Delete -->
+            <x-modal-alpine modalName="openModalDelete" title="Peringatan!">
+                <div class="p-4 py-6 text-center">
+                    <i class="fa-solid fa-info-circle text-6xl text-rose-400"></i>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-600">Apakah anda yakin ingin menghapus file ini?</h3>
+                    <div class="my-3 flex gap-2 justify-center items-center">
+                        <button @click="deleteFile(); openModalDelete=false;" wire:click.prevent="$dispatch('delete-file', { name: id })" data-modal-hide="popup-modal" type="button" class="text-rose-400">
+                            Ya, saya yakin
+                        </button>
+
+                        <button @click="openModalDelete=false" data-modal-hide="popup-modal" type="button" class="btn btn-xs btn-solid">Tidak, batalkan</button>
+                    </div>
+                </div>
+            </x-modal-alpine>
         </div>
     </div>
     <div class="mb-6 mt-1">
         @error($name) <span class="text-red-400">{{ $message }}</span> @enderror
     </div>
 @endif
+
+<script>
+    tippy('#hapus'+@js($id), {
+        content: 'HAPUS',
+        theme: 'primary',
+        zIndex: 99999
+    });
+    tippy('#download'+@js($id), {
+        content: 'DOWNLOAD',
+        theme: 'primary'
+    });
+    tippy('#preview'+@js($id), {
+        content: 'PREVIEW',
+        theme: 'primary'
+    });
+</script>
 
