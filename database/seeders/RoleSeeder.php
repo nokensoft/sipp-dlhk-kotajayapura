@@ -14,23 +14,39 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::create([
+            'id' => 1,
             'name' => 'adminmaster',
-            'keterangan' => ''
+            'keterangan' => 'hak akses sebagai Admin Master'
         ]);
 
         Role::create([
+            'id' => 2,
             'name' => 'operator',
-            'keterangan' => ''
+            'keterangan' => 'hak akses sebagai Operator'
         ]);
 
         Role::create([
+            'id' => 3,
+            'name' => 'kepaladinas',
+            'keterangan' => 'hak akses sebagai Kepala Bidang'
+        ]);
+
+        Role::create([
+            'id' => 4,
+            'name' => 'kepalabidang',
+            'keterangan' => 'Hak akses sebagai Kepala Bidang'
+        ]);
+
+        Role::create([
+            'id' => 5,
+            'name' => 'kepalaseksi',
+            'keterangan' => 'Hak akses sebagai Kepala Seksi'
+        ]);
+
+        Role::create([
+            'id' => 6,
             'name' => 'pegawai',
-            'keterangan' => ''
-        ]);
-
-        Role::create([
-            'name' => 'tamu',
-            'keterangan' => ''
+            'keterangan' => 'Hak akses sebagai Pegawai PNS/Non PNS'
         ]);
 
 
