@@ -10,11 +10,23 @@
                                     <h5>Informasi Lokasi</h5>
                                     <p class="mb-6">Masukan data lokasi baru</p>
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/3">
+                                        <div class="w-1/2">
                                             <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi"  />
                                         </div>
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Keterangan" id="keterangan" name="lokasi.keterangan"  />
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.input label="Latitude" id="latitude" name="lokasi.latitude"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.input label="Longitude" id="longitude" name="lokasi.longitude"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-1/2">
+                                            <x-admin.textarea label="Keterangan" id="keterangan" name="lokasi.keterangan"  />
                                         </div>
                                     </div>
                                 </div>
