@@ -15,7 +15,7 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data ASN";
+    public string $subtitle = "Data pegawai yang berstatus Aparatur Sipil Negara (ASN)";
     public string $title = "ASN";
     public bool $isAsn = true;
 
@@ -26,7 +26,7 @@ class Index extends Component
     {
         if (request()->segment(1) === 'non-asn'){
             $this->title = 'Non ASN';
-            $this->subtitle = 'Data Non ASN';
+            $this->subtitle = 'Data pegawai yang berstatus bukan Aparatur Sipil Negara (ASN)';
             $this->isAsn = false;
         }
 
