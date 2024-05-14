@@ -28,6 +28,8 @@ class Index extends Component
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah data bidang kerja untuk setiap petugas lapangan";
         }
+
+        $this->buttonMenu();
     }
 
     #[On('action')]
