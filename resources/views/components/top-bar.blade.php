@@ -37,10 +37,10 @@
                 <div class="dropdown-toggle" id="user-dropdown" data-bs-toggle="dropdown">
                     <div class="header-action-item flex items-center gap-2">
                         <span class="avatar avatar-circle" data-avatar-size="32" style="width: 32px">
-                        <img class="avatar-img avatar-circle" src="{{ asset('assets/img/avatars/thumb-2.jpg') }}" loading="lazy" alt=""></span>
+                        <img class="avatar-img avatar-circle" src="{{ isset(Auth::user()->pegawai->gambar) && !empty(Auth::user()->pegawai->gambar) ? asset('storage/'.Auth::user()->pegawai->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy" alt=""></span>
                         <div class="hidden md:block">
-                            <div class="text-xs capitalize">Admin Master</div>
-                            <div class="font-bold">@adminmaster</div>
+                            <div class="text-xs capitalize">{{ Auth::user()->pegawai->nama_depan ?? '' }}  </div>
+                            <div class="font-bold">{{ '@'.Auth::user()->username }} </div>
                         </div>
                     </div>
                 </div>
@@ -48,11 +48,11 @@
                     <li class="menu-item-header">
                         <div class="py-2 px-3 flex items-center gap-2">
                             <span class="avatar avatar-circle avatar-md">
-                                <img class="avatar-img avatar-circle" src="{{asset('assets/img/avatars/thumb-1.jpg')}}" loading="lazy" alt="">
+                                <img class="avatar-img avatar-circle" src="{{ isset(Auth::user()->pegawai->gambar) && !empty(Auth::user()->pegawai->gambar) ? asset('storage/'.Auth::user()->pegawai->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy" alt="">
                             </span>
                             <div>
-                                <div class="font-bold text-gray-900">Admin Master</div>
-                                <div class="text-xs">admin.master@dlhk.jayapurakota.go.id</div>
+                                <div class="font-bold text-gray-900">{{ Auth::user()->pegawai->nama_depan ?? '' }} {{ Auth::user()->pegawai->nama_tengah ?? '' }} {{ Auth::user()->pegawai->nama_belakang ?? '' }} </div>
+                                <div class="text-xs">{{ '@'.Auth::user()->username }}</div>
                             </div>
                         </div>
                     </li>

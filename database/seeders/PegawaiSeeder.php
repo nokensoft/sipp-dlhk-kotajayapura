@@ -53,7 +53,7 @@ class PegawaiSeeder extends Seeder
                 'jabatan_id' => fake()->numberBetween(1, 5),
                 'keterangan' => '', 
                 'catatan' => '', 
-                'user_id' => 2, 
+                'user_id' => 6, // role = pegawai 
                 'published_at' => now(),
             ],
             [
@@ -93,8 +93,15 @@ class PegawaiSeeder extends Seeder
                 'jabatan_id' => fake()->numberBetween(1, 5),
                 'keterangan' => '', 
                 'catatan' => '', 
-                'user_id' => 2, 
+                'user_id' => 6, // role = pegawai 
                 'deleted_at' => now(),
+            ],,
+            [
+                'nama_depan' => "Admin Master", 
+                'nama_tengah' => '', 
+                'nama_belakang' => fake()->lastName, 
+                'created_at' => now(),
+                'user_id' => 6, // role = pegawai 
             ],
         ])->each(function ($items) {
             for ($i = 0; $i < 5; $i++) {

@@ -9,9 +9,6 @@ use App\Models\User;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         // adminmaster
@@ -73,6 +70,5 @@ class UserSeeder extends Seeder
     3 = kepaladinas
     4 = kepalabidang
     5 = kepalaseksi
-    6 = petugaslapangan
-    7 = pegawai
+    6 = pegawai
 */

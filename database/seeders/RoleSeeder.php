@@ -8,9 +8,6 @@ use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Role::create([
@@ -48,8 +45,6 @@ class RoleSeeder extends Seeder
             'name' => 'pegawai',
             'keterangan' => 'Hak akses sebagai Pegawai PNS/Non PNS'
         ]);
-
-
 
     }
 }
