@@ -51,8 +51,8 @@
                                 <img class="avatar-img avatar-circle" src="{{ isset(Auth::user()->pegawai->gambar) && !empty(Auth::user()->pegawai->gambar) ? asset('storage/'.Auth::user()->pegawai->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy" alt="">
                             </span>
                             <div>
-                                <div class="font-bold text-gray-900">{{ Auth::user()->pegawai->nama_depan ?? '' }} {{ Auth::user()->pegawai->nama_tengah ?? '' }} {{ Auth::user()->pegawai->nama_belakang ?? '' }} </div>
-                                <div class="text-xs">{{ '@'.Auth::user()->username }}</div>
+                                <div class="font-bold text-gray-900">{{ 'Depan' }} {{ 'Tengah' }} {{ 'Belakang' }} </div>
+                                <div class="text-xs capitalize">{{ Auth::user()->roles->pluck('name')[0] ?? '' }}</div>
                             </div>
                         </div>
                     </li>

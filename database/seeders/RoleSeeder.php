@@ -66,6 +66,8 @@ class RoleSeeder extends Seeder
             'name' => 'pegawai',
             'keterangan' => 'Hak akses sebagai Pegawai PNS/Non PNS'
         ]);
+        $role6->givePermissionTo($permission3);
+        $permission3->assignRole($role6);
 
     }
 }
