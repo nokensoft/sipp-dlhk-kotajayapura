@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             TugasSeeder::class,
             DiklatSeeder::class,
+            SertifikatKeahlianSeeder::class,
 
             //  Role
             RoleSeeder::class,

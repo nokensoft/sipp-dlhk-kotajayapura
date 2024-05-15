@@ -9,6 +9,7 @@ use App\Livewire\Admin\DataMaster\GelarBelakang\Index as GelarBelakang;
 use App\Livewire\Admin\DataMaster\GelarNonAkademis\Index as GelarNonAkademis;
 use App\Livewire\Admin\DataMaster\JenjangPendidikan\Index as JenjangPendidikan;
 use App\Livewire\Admin\DataMaster\Diklat\Index as Diklat;
+use App\Livewire\Admin\DataMaster\SertifikatKeahlian\Index as SertifikatKeahlian;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -56,5 +57,6 @@ Route::middleware([
         Route::get('gelar-non-akademis', GelarNonAkademis::class)->name('gelarNonAkademis');
         Route::get('jenjang-pendidikan', JenjangPendidikan::class)->name('jenjangPendidikan');
         Route::get('diklat', Diklat::class)->name('diklat');
+        Route::get('sertifikat-keahlian', SertifikatKeahlian::class)->name('sertifikatKeahlian');
     });
 });
