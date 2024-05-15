@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('status_perkawinan');
             $table->mediumText('keterangan')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

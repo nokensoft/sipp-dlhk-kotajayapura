@@ -16,56 +16,64 @@ class JenjangPendidikanSeeder extends Seeder
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'Tidak ada',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'SD',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'SMP',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'SMK',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'SMA',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'S1',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => now(),
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'S2',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'published_at' => null,
             ]
         );
 
         JenjangPendidikan::create(
             [
                 'jenjang_pendidikan' => 'S3',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait jenjang pendidikan...',
+                'deleted_at' => now(),
             ]
         );
     }

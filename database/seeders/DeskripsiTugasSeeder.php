@@ -16,21 +16,23 @@ class DeskripsiTugasSeeder extends Seeder
         DeskripsiTugas::create(
             [
                 'deskripsi_tugas' => 'Tugas Penyisiran Jalan',
-                'keterangan' => ''
+                'published_at' => now(),
             ]
         );
 
         DeskripsiTugas::create(
             [
                 'deskripsi_tugas' => 'Tugas Bank Sampah',
-                'keterangan' => ''
+                'keterangan' => '',
+                'published_at' => null,
             ]
         );
 
         DeskripsiTugas::create(
             [
                 'deskripsi_tugas' => 'Tugas penyapu pasar cigombong',
-                'keterangan' => ''
+                'keterangan' => '',
+                'deleted_at' => now(),
             ]
         );
     }

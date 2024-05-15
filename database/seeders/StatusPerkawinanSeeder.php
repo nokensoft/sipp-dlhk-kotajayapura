@@ -17,6 +17,7 @@ class StatusPerkawinanSeeder extends Seeder
             [
                 'status_perkawinan' => 'Sudah Kawin',
                 'keterangan' => '',
+                'published_at' => now(),
             ]
         );
 
@@ -24,6 +25,7 @@ class StatusPerkawinanSeeder extends Seeder
             [
                 'status_perkawinan' => 'Belum Kawin',
                 'keterangan' => '',
+                'published_at' => now(),
             ]
         );
     }

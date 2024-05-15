@@ -13,37 +13,36 @@ class GelarDepanSeeder extends Seeder
      */
     public function run(): void
     {
-        GelarDepan::create(
-            [
-                'gelar_depan' => 'Tidak Ada',
-                'keterangan' => ''
-            ]
-        );
 
         GelarDepan::create(
             [
                 'gelar_depan' => 'Dr.',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => now(),
             ]
         );
+        
         GelarDepan::create(
             [
                 'gelar_depan' => 'Drs.',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait gelar...',
+                'deleted_at' => now(),
             ]
         );
 
         GelarDepan::create(
             [
                 'gelar_depan' => 'dr.',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => null,
             ]
         );
 
         GelarDepan::create(
             [
                 'gelar_depan' => 'Prof.',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => null,
             ]
         );
     }

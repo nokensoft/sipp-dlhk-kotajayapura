@@ -16,14 +16,16 @@ class KontrakSeeder extends Seeder
         Kontrak::create(
             [
                 'kontrak' => 'Kontrak bulan Maret 2024',
-                'keterangan' => '',
+                'keterangan' => 'keterangan terkait kontrak...',
+                'published_at' => now(),
             ]
         );
 
         Kontrak::create(
             [
                 'kontrak' => 'Kontrak bulan April 2024',
-                'keterangan' => ' ',
+                'keterangan' => 'keterangan terkait kontrak...',
+                'published_at' => now(),
             ]
         );
     }

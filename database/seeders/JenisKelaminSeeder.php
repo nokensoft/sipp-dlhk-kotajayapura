@@ -15,15 +15,17 @@ class JenisKelaminSeeder extends Seeder
     {
         JenisKelamin::create(
             [
-                'jenis_kelamin' => 'Pria',
-                'keterangan' => 'Jenis kelamin pria/laki-laki'
+                'jenis_kelamin' => 'Laki-Laki',
+                'keterangan' => 'Jenis kelamin pria/laki-laki',
+                'published_at' => now(),
             ]
         );
 
         JenisKelamin::create(
             [
-                'jenis_kelamin' => 'Wanita',
-                'keterangan' => 'Jenis kelamin wanita/perempuan'
+                'jenis_kelamin' => 'Perempuan',
+                'keterangan' => 'Jenis kelamin wanita/perempuan',
+                'published_at' => now(),
             ]
         );
     }

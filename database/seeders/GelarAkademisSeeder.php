@@ -16,35 +16,40 @@ class GelarAkademisSeeder extends Seeder
         GelarAkademis::create(
             [
                 'gelar_akademis' => 'Sarjana',
-                'keterangan' => ''
+                'keterangan' => '',
+                'published_at' => now(),
             ]
         );
 
         GelarAkademis::create(
             [
                 'gelar_akademis' => 'Magister',
-                'keterangan' => ''
+                'keterangan' => '',
+                'published_at' => now(),
             ]
         );
 
         GelarAkademis::create(
             [
                 'gelar_akademis' => 'Doktor',
-                'keterangan' => ''
+                'keterangan' => '',
+                'published_at' => now(),
             ]
         );
 
         GelarAkademis::create(
             [
                 'gelar_akademis' => 'Profesor',
-                'keterangan' => ''
+                'keterangan' => '',
+                'published_at' => null,
             ]
         );
 
         GelarAkademis::create(
             [
                 'gelar_akademis' => 'Diplom',
-                'keterangan' => ''
+                'keterangan' => '',
+                'deleted_at' => now(),
             ]
         );
     }
