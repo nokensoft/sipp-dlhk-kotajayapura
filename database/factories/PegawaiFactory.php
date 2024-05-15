@@ -47,7 +47,7 @@ class PegawaiFactory extends Factory
             'deskripsi_tugas_id' => fake()->numberBetween(1, 5),
             'gelar_depan_id' => fake()->numberBetween(1, 5),
             'gelar_belakang_id' => fake()->numberBetween(1, 5),
-            'gelar_akademis_id' => fake()->numberBetween(1, 5),
+            'gelar_non_akademis_id' => fake()->numberBetween(1, 5),
             'jenjang_pendidikan_id' => fake()->numberBetween(1, 5),
             'status_perkawinan_id' => fake()->numberBetween(1, 5),
             'jabatan_id' => fake()->numberBetween(1, 5),
