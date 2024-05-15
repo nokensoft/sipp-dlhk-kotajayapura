@@ -15,8 +15,8 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data jabatan untuk setiap petugas PNS";
-    public string $title = "Jabatan";
+    public string $subtitle = "Data tugas untuk setiap pegawai/petugas lapangan";
+    public string $title = "Tugas";
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,7 +27,7 @@ class Index extends Component
         if ($this->menu === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah data jabatan untuk setiap petugas lapangan";
+            $this->subtitle = "Tambah data tugas untuk setiap pegawai/petugas lapangan";
         }
 
         $this->buttonMenu();
@@ -37,7 +37,7 @@ class Index extends Component
     public function action(): void
     {
         if ($this->menu === 'create') {
-            $this->redirect(route('jabatan'));
+            $this->redirect(route('tugas'));
         }
         if ($this->menu === '') {
             $this->menu = 'create';
@@ -51,7 +51,7 @@ class Index extends Component
     public function edit($id):void
     {
         if($this->menu === 'view'){
-            $this->dispatch('load-jabatan', id:$id, menu: 'edit');
+            $this->dispatch('load-tugas', id:$id, menu: 'edit');
         }
         $this->menu='edit';
         $this->id = $id;
@@ -83,20 +83,20 @@ class Index extends Component
     public function delete($id): void
     {
         try {
-            $record = Jabatan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+            $record = Tugas::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
 
             // jika hapus permanen
             if(isset($record->deleted_at)){
                 // $record->user?->forceDelete();
                 $record->forceDelete();
                 session()->flash('success', 'Data berhasil dihapus permanen');
-                $this->redirectRoute('jabatan');
+                $this->redirectRoute('tugas');
             }
 
-            $record = Jabatan::query()->find($id);
+            $record = Tugas::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Jabatan', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute($this->title === 'Tugas', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
@@ -105,7 +105,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.jabatan.index');
+        return view('livewire.admin.data-master.tugas.index');
     }
 
 

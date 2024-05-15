@@ -92,7 +92,7 @@
                                 </a>
                             </li>
                             <li data-menu-item="classic-activity-log" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('tugas') }}">
                                     <span>Tugas</span>
                                 </a>
                             </li>

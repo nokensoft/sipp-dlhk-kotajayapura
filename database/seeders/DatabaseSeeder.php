@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             JenjangPendidikanSeeder::class,
             StatusPerkawinanSeeder::class,
             BidangSeeder::class,
+            TugasSeeder::class,
 
             //  Role
             RoleSeeder::class,

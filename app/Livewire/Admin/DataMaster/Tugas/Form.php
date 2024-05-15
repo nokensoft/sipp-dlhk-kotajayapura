@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\Jabatan;
+namespace App\Livewire\Admin\DataMaster\Tugas;
 
-use App\Models\Jabatan;
+use App\Models\Tugas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ use Exception;
 
 class Form extends Component
 {
-    public $jabatan = [];
+    public $tugas = [];
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,18 +27,18 @@ class Form extends Component
     public $user;
 
     protected $rules = [
-        'jabatan.jabatan' => 'required',
-        'jabatan.keterangan' => 'nullable',
+        'tugas.tugas' => 'required',
+        'tugas.keterangan' => 'nullable',
     ];
 
     protected $messages = [
-        'jabatan.jabatan.required' => 'Nama bidang tidak boleh kosong',
+        'tugas.tugas.required' => 'Nama bidang tidak boleh kosong',
     ];
 
     public function mount(): void
     {
         $this->user = Auth::user();
-        $this->loadJabatan($this->id, $this->menu);
+        $this->loadTugas($this->id, $this->menu);
         if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
@@ -57,7 +57,7 @@ class Form extends Component
     {
         if (!$this->user->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute('jabatan');
+            $this->redirectRoute('tugas');
             return;
         }
         $this->validate();
@@ -65,11 +65,11 @@ class Form extends Component
         try {
             DB::beginTransaction();
 
-            Jabatan::updateOrCreate(
+            Tugas::updateOrCreate(
                 [
-                    'id' => $this->jabatan['id'] ?? null
+                    'id' => $this->tugas['id'] ?? null
                 ],
-                $this->jabatan
+                $this->tugas
             );
 
             DB::commit();
@@ -81,20 +81,20 @@ class Form extends Component
         }
 
         $message = 'tambahkan data baru!';
-        if (isset($this->jabatan['id'])) {
+        if (isset($this->tugas['id'])) {
             $message = 'ubah data!';
         }
 
         session()->flash('success', $message);
-        $this->redirectRoute('jabatan');
+        $this->redirectRoute('tugas');
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadJabatan($id, $menu = 'view'):void
+    public function loadTugas($id, $menu = 'view'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
-            $this->jabatan = Jabatan::query()->withTrashed()->find($id)?->toArray();
+            $this->tugas = Tugas::query()->withTrashed()->find($id)?->toArray();
         }
 
         if($this->menu === 'view') $this->isDisabled = true;
@@ -102,6 +102,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.jabatan.form');
+        return view('livewire.admin.data-master.tugas.form');
     }
 }
