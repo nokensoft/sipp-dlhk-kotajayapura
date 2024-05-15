@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\PangkatGolongan;
+namespace App\Livewire\Admin\DataMaster\GelarDepan;
 
-use App\Models\PangkatGolongan;
+use App\Models\GelarDepan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ use Exception;
 
 class Form extends Component
 {
-    public $pangkatGolongan = [];
+    public $gelarDepan = [];
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,24 +27,21 @@ class Form extends Component
     public $user;
 
     protected $rules = [
-        'pangkatGolongan.pangkat_golongan' => 'required',
-        'pangkatGolongan.keterangan' => 'nullable',
+        'gelarDepan.gelar_depan' => 'required',
+        'gelarDepan.keterangan' => 'nullable',
     ];
 
     protected $messages = [
-        'pangkatGolongan.pangkat_golongan.required' => 'Pangkat golongan tidak boleh kosong',
+        'gelarDepan.gelar_depan.required' => 'Gelar depan tidak boleh kosong',
     ];
 
     public function mount(): void
     {
         $this->user = Auth::user();
-        $this->loadPangkatGolongan($this->id, $this->menu);
+        $this->loadGelarDepan($this->id, $this->menu);
         if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
-        // if ($this->id != ''){
-        //     $this->bidang = PangkatGolongan::query()->find($this->id)?->toArray();
-        // }
     }
 
     #[On('refresh')]
@@ -57,7 +54,7 @@ class Form extends Component
     {
         if (!$this->user->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute('pangkatGolongan');
+            $this->redirectRoute('gelarDepan');
             return;
         }
         $this->validate();
@@ -65,11 +62,11 @@ class Form extends Component
         try {
             DB::beginTransaction();
 
-            PangkatGolongan::updateOrCreate(
+            GelarDepan::updateOrCreate(
                 [
-                    'id' => $this->pangkatGolongan['id'] ?? null
+                    'id' => $this->gelarDepan['id'] ?? null
                 ],
-                $this->pangkatGolongan
+                $this->gelarDepan
             );
 
             DB::commit();
@@ -81,20 +78,20 @@ class Form extends Component
         }
 
         $message = 'tambahkan data baru!';
-        if (isset($this->pangkatGolongan['id'])) {
+        if (isset($this->gelarDepan['id'])) {
             $message = 'ubah data!';
         }
 
         session()->flash('success', $message);
-        $this->redirectRoute('pangkatGolongan');
+        $this->redirectRoute('gelarDepan');
     }
 
-    #[On('load-pangkat-golongan')]
-    public function loadPangkatGolongan($id, $menu = 'view'):void
+    #[On('load-gelar-depan')]
+    public function loadGelarDepan($id, $menu = 'view'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
-            $this->pangkatGolongan = PangkatGolongan::query()->withTrashed()->find($id)?->toArray();
+            $this->gelarDepan = GelarDepan::query()->withTrashed()->find($id)?->toArray();
         }
 
         if($this->menu === 'view') $this->isDisabled = true;
@@ -102,6 +99,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.pangkat-golongan.form');
+        return view('livewire.admin.data-master.gelar-depan.form');
     }
 }
