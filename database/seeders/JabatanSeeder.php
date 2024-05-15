@@ -16,26 +16,26 @@ class JabatanSeeder extends Seeder
         Jabatan::create(
             [
                 'jabatan' => 'Kepala Dinas',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait jabatan...',
+                'published_at' => now(),
             ]
         );
 
         Jabatan::create(
             [
                 'jabatan' => 'Kepala Bidang',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait jabatan...',
+                'published_at' => null,
             ]
         );
 
         Jabatan::create(
             [
                 'jabatan' => 'Kepala Seksi',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait jabatan...',
+                'deleted_at' => now(),
             ]
         );
-
-
-
 
     }
 }

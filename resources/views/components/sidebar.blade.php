@@ -87,7 +87,7 @@
                                 </a>
                             </li>
                             <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('jabatan') }}">
                                     <span>Jabatan</span>
                                 </a>
                             </li>
