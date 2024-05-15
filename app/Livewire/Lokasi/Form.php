@@ -21,26 +21,28 @@ class Form extends Component
     protected $rules = [
         'lokasi.lokasi' => 'required',
         'lokasi.keterangan' => 'nullable',
+        'lokasi.latitude' => 'nullable',
+        'lokasi.longitude' => 'nullable',
     ];
 
     protected $messages = [
         'lokasi.lokasi.required' => 'Nama lokasi tidak boleh kosong',
     ];
 
-    public function mount(): void 
+    public function mount(): void
     {
         if ($this->id != ''){
             $this->lokasi = Lokasi::query()->find($this->id)?->toArray();
-        }        
+        }
     }
-    
-    public function save(): void 
+
+    public function save(): void
     {
         $this->validate();
 
         try {
             DB::beginTransaction();
-            
+
             Lokasi::updateOrCreate(
                 [
                     'id' => $this->lokasi['id'] ?? null
@@ -55,16 +57,16 @@ class Form extends Component
             Log::info('Error: '. $e->getMessage());
             return;
         }
-        
+
         $message = 'tambahkan data baru!';
         if (isset($this->pegawai['id'])) {
             $message = 'ubah data!';
         }
-        
+
         session()->flash('success', $message);
         $this->redirectRoute('lokasi');
     }
-    
+
     public function render(): View
     {
         return view('livewire.lokasi.form');
