@@ -19,6 +19,7 @@ use App\Models\Pegawai;
 use App\Models\StatusPerkawinan;
 use App\Models\Suku;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -38,6 +39,7 @@ class Form extends Component
     public $bidang, $lokasi, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
     public bool $isAsn = true;
     public bool $isDisabled = false;
+    public $userLogin;
 
     #[Url(history: true)]
     public string $id = '';
@@ -92,6 +94,7 @@ class Form extends Component
 
     public function mount(): void
     {
+        $this->userLogin = Auth::user();
         $this->loadPegawai($this->id, $this->menu);
         $this->bidang = Bidang::query()->get();
         $this->lokasi = Lokasi::query()->get();
@@ -108,10 +111,25 @@ class Form extends Component
         $this->gelarAkademis = GelarAkademis::query()->get();
         $this->jenjangPendidikan = JenjangPendidikan::query()->get();
         $this->statusPerkawinan = StatusPerkawinan::query()->get();
+
+        if(!$this->userLogin->hasAnyPermission(['edit'])){
+            $this->isDisabled = true;
+        }
+    }
+
+    #[On('refresh')]
+    public function refreshIsDisabled($isDisabled):void
+    {
+        $this->isDisabled = $isDisabled;
     }
 
     public function save(): void
     {
+        if (!$this->userLogin->hasAnyPermission(['edit'])){
+            session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
+            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+            return;
+        }
         if(isset($this->user['id'])){
             $this->rules['user.username'] = 'required|unique:users,username,'.$this->user['id'];
         }
@@ -228,6 +246,7 @@ class Form extends Component
             $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
             $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
         }
+        if($this->menu === 'view')  $this->isDisabled = true;
     }
 
     #[On('delete-file')]

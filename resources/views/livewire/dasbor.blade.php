@@ -6,7 +6,7 @@
             <!-- Start Page Content here -->
             <!-- ============================================================== -->
             <div>
-                <h4 class="mb-1">Hello, Admin Master!</h4>
+                <h4 class="mb-1">Hello, {{Auth::user()->username}}!</h4>
                 <p>Selamat datang di halaman utama.</p>
             </div>
 
