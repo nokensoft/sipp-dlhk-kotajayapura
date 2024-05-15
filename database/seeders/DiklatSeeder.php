@@ -2,31 +2,32 @@
 
 namespace Database\Seeders;
 
-use App\Models\DeskripsiTugas;
+use App\Models\Diklat;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DeskripsiTugasSeeder extends Seeder
+class DiklatSeeder extends Seeder
 {
     public function run(): void
     {
         collect([
             [
-                'deskripsi_tugas' => 'Tugas Penyisiran Jalan',
+                'diklat' => 'Diklat 1',
+                'keterangan' => 'keterangan tentang diklat...',
                 'published_at' => now(),
             ],
             [
-                'deskripsi_tugas' => 'Tugas Bank Sampah',
-                'keterangan' => '',
+                'diklat' => 'Diklat 2',
+                'keterangan' => 'keterangan tentang diklat...',
                 'published_at' => null,
             ],
             [
-                'deskripsi_tugas' => 'Tugas penyapu pasar cigombong',
-                'keterangan' => '',
+                'diklat' => 'Diklat 3',
+                'keterangan' => 'keterangan tentang diklat...',
                 'deleted_at' => now(),
-            ]
+            ],
         ])->each(function ($collection) {
-            DeskripsiTugas::create($collection);
+            Diklat::create($collection);
         });
     }
 }

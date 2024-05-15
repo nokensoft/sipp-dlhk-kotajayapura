@@ -13,29 +13,24 @@ class TugasSeeder extends Seeder
      */
     public function run(): void
     {
-        Tugas::create(
+        collect([
             [
                 'tugas' => 'Tugas 1',
                 'keterangan' => 'keterangan terkait tugas...',
                 'published_at' => now(),
-            ]
-        );
-
-        Tugas::create(
+            ],
             [
                 'tugas' => 'Tugas 2',
                 'keterangan' => 'keterangan terkait tugas...',
                 'published_at' => null,
-            ]
-        );
-
-        Tugas::create(
+            ],
             [
                 'tugas' => 'Tugas 3',
                 'keterangan' => 'keterangan terkait tugas...',
                 'deleted_at' => now(),
             ]
-        );
-
+        ])->each(function ($collection) {
+            Tugas::create($collection);
+        });
     }
 }

@@ -8,34 +8,26 @@ use Illuminate\Database\Seeder;
 
 class JabatanSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Jabatan::create(
-            [
-                'jabatan' => 'Kepala Dinas',
-                'keterangan' => 'keterangan terkait jabatan...',
-                'published_at' => now(),
-            ]
-        );
-
-        Jabatan::create(
+        collect([
             [
                 'jabatan' => 'Kepala Bidang',
                 'keterangan' => 'keterangan terkait jabatan...',
                 'published_at' => null,
-            ]
-        );
-
-        Jabatan::create(
+            ],
+            [
+                'jabatan' => 'Kepala Bidang',
+                'keterangan' => 'keterangan terkait jabatan...',
+                'published_at' => null,
+            ],
             [
                 'jabatan' => 'Kepala Seksi',
                 'keterangan' => 'keterangan terkait jabatan...',
                 'deleted_at' => now(),
-            ]
-        );
-
+            ],
+        ])->each(function ($collection) {
+            Jabatan::create($collection);
+        });
     }
 }
