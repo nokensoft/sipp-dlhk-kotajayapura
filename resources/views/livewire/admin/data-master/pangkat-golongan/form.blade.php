@@ -9,12 +9,12 @@
                                 <div class="card-body">
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.input label="Nama Bidang" id="nama-bidang" name="bidang.bidang"  :isDisabled="$isDisabled" />
+                                            <x-admin.input label="Judul Pangkat/Golongan" id="pangkatGolongan" name="pangkatGolongan.pangkat_golongan"  :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
                                         <div class="w-full">
-                                            <x-admin.textarea label="Keterangan" id="catatan" name="bidang.keterangan" :isDisabled="$isDisabled" />
+                                            <x-admin.textarea label="Keterangan" id="catatan" name="pangkatGolongan.keterangan" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
                                 </div>

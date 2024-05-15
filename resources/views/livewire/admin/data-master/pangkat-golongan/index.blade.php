@@ -41,9 +41,9 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
-                        <livewire:bidang.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
+                        <livewire:admin.data-master.pangkat-golongan.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
-                        <livewire:bidang.record />
+                        <livewire:admin.data-master.pangkat-golongan.record />
                     @endif
 
                 </div>

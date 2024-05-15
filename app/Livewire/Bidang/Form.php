@@ -81,7 +81,7 @@ class Form extends Component
         }
 
         $message = 'tambahkan data baru!';
-        if (isset($this->pegawai['id'])) {
+        if (isset($this->bidang['id'])) {
             $message = 'ubah data!';
         }
 

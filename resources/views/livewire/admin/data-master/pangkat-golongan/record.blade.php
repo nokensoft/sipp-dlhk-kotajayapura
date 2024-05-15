@@ -60,11 +60,11 @@
                 <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
                     <thead>
                     <tr>
-                        <th>Nama Bidang</th>
+                        <th>Judul Pangkat/Golongan</th>
                         <th>Keterangan</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
-                                <th>Toggle</th>
+                                <th>Aktif</th>
                             @endif
                         @endcan
                         <th></th>
@@ -81,7 +81,7 @@
                                 }
                             @endphp
                             <tr>
-                                <td>{{$record->bidang}}</td>
+                                <td>{{$record->pangkat_golongan}}</td>
                                 <td>{{$record->keterangan}}</td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))
