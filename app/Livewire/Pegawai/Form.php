@@ -30,6 +30,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Exception;
+use Spatie\Permission\Models\Role;
 
 class Form extends Component
 {
@@ -40,6 +41,8 @@ class Form extends Component
     public bool $isAsn = true;
     public bool $isDisabled = false;
     public $userLogin;
+    public $roles = [];
+    public $role;
 
     #[Url(history: true)]
     public string $id = '';
@@ -115,6 +118,8 @@ class Form extends Component
         if(!$this->userLogin->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
+
+//        dd($this->user);
     }
 
     #[On('refresh')]
@@ -144,6 +149,7 @@ class Form extends Component
                  ],
                  $this->user
              );
+            $user->assignRole($this->role);
              $this->pegawai['user_id'] = $user->id;
 
              if (isset($this->pegawai['ktp']) && $this->pegawai['ktp'] != '' && !is_string($this->pegawai['ktp'])) {
@@ -242,9 +248,11 @@ class Form extends Component
     public function loadPegawai($id, $menu = 'view'):void
     {
         $this->menu = $menu;
+        $this->roles = Role::query()->get();
         if ($this->id != ''){
             $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
-            $this->user = User::query()->find($this->pegawai['user_id'] ?? null)?->toArray();
+            $this->user = User::query()->with('roles')->find($this->pegawai['user_id'] ?? null)?->toArray();
+            $this->role = $this->user['roles'][0]['name'];
         }
         if($this->menu === 'view')  $this->isDisabled = true;
     }
