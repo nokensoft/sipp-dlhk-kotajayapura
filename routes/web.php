@@ -7,6 +7,7 @@ use App\Livewire\Admin\DataMaster\Tugas\Index as Tugas;
 use App\Livewire\Admin\DataMaster\GelarDepan\Index as GelarDepan;
 use App\Livewire\Admin\DataMaster\GelarBelakang\Index as GelarBelakang;
 use App\Livewire\Admin\DataMaster\GelarNonAkademis\Index as GelarNonAkademis;
+use App\Livewire\Admin\DataMaster\JenjangPendidikan\Index as JenjangPendidikan;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -52,5 +53,6 @@ Route::middleware([
         Route::get('gelar-depan', GelarDepan::class)->name('gelarDepan');
         Route::get('gelar-belakang', GelarBelakang::class)->name('gelarBelakang');
         Route::get('gelar-non-akademis', GelarNonAkademis::class)->name('gelarNonAkademis');
+        Route::get('jenjang-pendidikan', JenjangPendidikan::class)->name('jenjangPendidikan');
     });
 });
