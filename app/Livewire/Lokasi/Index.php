@@ -16,6 +16,8 @@ class Index extends Component
     public ?string $buttonIcon = "fa-solid fa-plus";
     public string $subtitle = "Data lokasi kerja di untuks setiap petugas lapangan";
     public string $title = "Lokasi";
+    public bool $isDisabled = false;
+
 
     #[Url(history: true)]
     public string $id = '';
@@ -28,28 +30,17 @@ class Index extends Component
             $this->subtitle = "Tambah data lokasi kerja untuk setiap petugas lapangan";
         }
 
-        if ($this->menu === 'edit') {
-            $this->buttonTitle = 'Kembali';
-            $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Ubah data lokasi kerja untuk setiap petugas lapangan";
-        }
-
-        if ($this->menu === 'view')
-        {
-            $this->buttonTitle = 'Kembali';
-            $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Informasi lokasi kerja untuk setiap petugas lapangan";
-        }
+        $this->buttonMenu();
 
     }
 
     #[On('action')]
     public function action(): void
     {
-        if ($this->menu === 'create') {
+        if (in_array($this->menu, ['create', 'edit'])) {
             $this->redirect(route('lokasi'));
         }
-        if ($this->menu === '') {
+        if($this->menu === ''){
             $this->menu = 'create';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
@@ -65,6 +56,7 @@ class Index extends Component
         }
         $this->menu = 'edit';
         $this->id = $id;
+        $this->buttonMenu();
     }
 
     #[On('view')]
@@ -79,12 +71,12 @@ class Index extends Component
         if ($this->menu === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data $this->title";
+            $this->subtitle = "Tambah data lokasi kerja untuk setiap petugas lapangan";
         }else if ($this->menu === 'edit') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Edit Data $this->title";
-        }else if ($this->menu == 'view')
+            $this->subtitle = "Ubah lokasi kerja untuk setiap petugas lapangan";
+        }else if ($this->menu === 'view')
         {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
@@ -92,6 +84,23 @@ class Index extends Component
         }
 
     }
+
+    public function delete($id): void
+    {
+        $record = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        if(isset($record->deleted_at)){
+            $record->user?->forceDelete();
+            $record->forceDelete();
+            session()->flash('success', 'Data berhasil dihapus permanen');
+            return;
+        }
+        $record = Lokasi::query()->find($id);
+        $record->published_at = null;
+        $record->save();
+        $record->delete();
+        session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
+    }
+
 
 
     public function render(): View

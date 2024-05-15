@@ -85,17 +85,57 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="flex justify-end items-center text-lg ">
-                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
-                                        <i class="fa-solid fa-eye text-sm"></i>
-                                    </span>
-                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })">
-                                        <i class="fa-solid fa-edit text-sm"></i>
-                                    </span>
-                                    <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})">
-                                        <i class="fa-solid fa-trash text-sm"></i>
-                                    </span>
-                                </div>
+                                @if(isset($record->deleted_at))
+                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="undo({{$record->id}})" id="undo{{$record->id}}">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </span>
+                                <script>
+                                    tippy('#undo'+@js($record->id), {
+                                        content: 'Restore',
+                                        theme: 'primary'
+                                    });
+                                </script>
+                                 <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
+                                    <i class="fa-solid fa-trash text-sm"></i>
+                                </span>
+                                <script>
+                                    tippy('#delete'+@js($record->id), {
+                                        content: 'Hapus',
+                                        theme: 'primary'
+                                    });
+                                </script>
+                            @else
+                            <div class="flex justify-end items-center text-lg ">
+                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
+                                    <i class="fa-solid fa-eye text-sm"></i>
+                                </span>
+                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })"  id="edit{{$record->id}}">
+                                    <i class="fa-solid fa-edit text-sm"></i>
+                                </span>
+                                <script>
+                                    tippy('#view'+@js($record->id), {
+                                        content: 'View',
+                                        theme: 'primary'
+                                    });
+                                </script>
+                                <script>
+                                    tippy('#edit'+@js($record->id), {
+                                        content: 'Edit',
+                                        theme: 'primary'
+                                    });
+                                </script>
+                                <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
+                                    <i class="fa-solid fa-trash text-sm"></i>
+                                </span>
+                                <script>
+                                    tippy('#delete'+@js($record->id), {
+                                        content: 'Hapus',
+                                        theme: 'primary'
+                                    });
+                                </script>
+                            </div>
+                            @endif
+
                             </td>
                         </tr>
                     @endforeach

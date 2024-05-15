@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Exception;
+use Livewire\Attributes\On;
 
 class Form extends Component
 {
@@ -17,6 +18,11 @@ class Form extends Component
 
     #[Url(history: true)]
     public string $id = '';
+
+    #[Url(history: true)]
+    public string $menu = '';
+
+    public bool $isDisabled = false;
 
     protected $rules = [
         'lokasi.lokasi' => 'required',
@@ -29,11 +35,30 @@ class Form extends Component
         'lokasi.lokasi.required' => 'Nama lokasi tidak boleh kosong',
     ];
 
+    #[On('load-lokasi')]
+    public function loadLokasi($id, $menu = 'view'):void
+    {
+
+        $this->menu = $menu;
+        if ($this->id != ''){
+            $this->lokasi = Lokasi::query()->withTrashed()->find($id)?->toArray();
+        }
+        if($this->menu == 'view') {
+            $this->isDisabled = true;
+        } else{
+            $this->isDisabled = false;
+        }
+    }
+
+
     public function mount(): void
     {
+        $this->loadLokasi($this->id, $this->menu);
         if ($this->id != ''){
             $this->lokasi = Lokasi::query()->find($this->id)?->toArray();
         }
+
+
     }
 
     public function save(): void
@@ -71,4 +96,5 @@ class Form extends Component
     {
         return view('livewire.lokasi.form');
     }
+
 }
