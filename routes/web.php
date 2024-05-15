@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\DataMaster\PangkatGolongan\Index as PangkatGolongan;
 use App\Livewire\Admin\DataMaster\Jabatan\Index as Jabatan;
+use App\Livewire\Admin\DataMaster\Tugas\Index as Tugas;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -44,5 +45,6 @@ Route::middleware([
     Route::prefix('data-master')->group(function () {
         Route::get('pangkat-golongan', PangkatGolongan::class)->name('pangkatGolongan');
         Route::get('jabatan', Jabatan::class)->name('jabatan');
+        Route::get('tugas', Tugas::class)->name('tugas');
     });
 });
