@@ -23,7 +23,6 @@
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/3">
                                             <x-admin.input label="Username" id="username" type="text"  name="user.username" :isDisabled="$isDisabled" />
-                                            <x-admin.input label="role_id" id="role_id" type="text" value="6"  name="user.role_id" :isDisabled="$isDisabled" />
                                         </div>
                                         <div class="w-1/3">
                                             <x-admin.input label="Alamat Email" id="email" type="email"  name="pegawai.email" :isDisabled="$isDisabled" />

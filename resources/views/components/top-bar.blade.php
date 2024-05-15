@@ -39,8 +39,8 @@
                         <span class="avatar avatar-circle" data-avatar-size="32" style="width: 32px">
                         <img class="avatar-img avatar-circle" src="{{ isset(Auth::user()->pegawai->gambar) && !empty(Auth::user()->pegawai->gambar) ? asset('storage/'.Auth::user()->pegawai->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy" alt=""></span>
                         <div class="hidden md:block">
-                            <div class="text-xs capitalize">{{ Auth::user()->pegawai->nama_depan ?? '' }}  </div>
-                            <div class="font-bold">{{ '@'.Auth::user()->username }} </div>
+                            <div class="text-lg">{{ '@'.Auth::user()->username }} </div>
+                            <div class="font-semibNold text-xs capitalize"> {{ Auth::user()->roles->pluck('name')[0] ?? '' }} </div>
                         </div>
                     </div>
                 </div>
