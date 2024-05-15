@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\Jabatan;
+namespace App\Livewire\Admin\DataMaster\Diklat;
 
 use Livewire\Component;
-use App\Models\Jabatan;
+use App\Models\Diklat;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
@@ -40,7 +40,7 @@ class Record extends Component
 
     public function publishOrDraft($id): void
     {
-        $record = Jabatan::query()->withTrashed()->find($id);
+        $record = Diklat::query()->withTrashed()->find($id);
         $type = 'publik';
         if($record->published_at == null){
             $record->published_at = Carbon::now();
@@ -55,7 +55,7 @@ class Record extends Component
 
     public function undo($id): void
     {
-        $record = Jabatan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Diklat::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         $record->deleted_at = null;
         $record->save();
         session()->flash('success', 'Data berhasil dikembalikan!');
@@ -63,14 +63,14 @@ class Record extends Component
 
     public function delete($id): void
     {
-        $record = Jabatan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Diklat::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         if(isset($record->deleted_at)){
             $record->user?->forceDelete();
             $record->forceDelete();
             session()->flash('success', 'Data berhasil dihapus permanen');
             return;
         }
-        $record = Jabatan::query()->find($id);
+        $record = Diklat::query()->find($id);
         $record->published_at = null;
         $record->save();
         $record->delete();
@@ -89,16 +89,16 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Jabatan::query()->count();
-        $this->totalPublik = Jabatan::query()->published()->count();
-        $this->totalKonsep = Jabatan::query()->draft()->count();
-        $this->totalTempatSampah = Jabatan::query()->withTrashed()->whereNotNull('deleted_at')->count();
-        $query = Jabatan::query()
+        $this->totalAll = Diklat::query()->count();
+        $this->totalPublik = Diklat::query()->published()->count();
+        $this->totalKonsep = Diklat::query()->draft()->count();
+        $this->totalTempatSampah = Diklat::query()->withTrashed()->whereNotNull('deleted_at')->count();
+        $query = Diklat::query()
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where(function ($query) {
                         $query
-                            ->where('jabatan', 'like', '%' . $this->search . '%')
+                            ->where('diklat', 'like', '%' . $this->search . '%')
                             ->orWhere('keterangan', 'like', '%' . $this->search . '%');
                     });
             });
@@ -113,7 +113,7 @@ class Record extends Component
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
         
-        return view('livewire.admin.data-master.jabatan.record', ['records' => $records]);
+        return view('livewire.admin.data-master.diklat.record', ['records' => $records]);
         
     }
 }
