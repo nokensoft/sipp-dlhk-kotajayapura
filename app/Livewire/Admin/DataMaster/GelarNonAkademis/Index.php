@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\GelarDepan;
+namespace App\Livewire\Admin\DataMaster\GelarNonAkademis;
 
-use App\Models\GelarDepan;
+use App\Models\GelarNonAkademis;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
@@ -15,8 +15,8 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data gelar depan untuk setiap petugas lapangan";
-    public string $title = "Gelar Depan";
+    public string $subtitle = "Data gelar non akademis untuk setiap petugas lapangan";
+    public string $title = "Gelar Non Akademis";
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,7 +27,7 @@ class Index extends Component
         if ($this->menu === 'create') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah data gelar depan untuk setiap petugas lapangan";
+            $this->subtitle = "Tambah data gelar non akademis untuk setiap petugas lapangan";
         }
 
         $this->buttonMenu();
@@ -37,7 +37,7 @@ class Index extends Component
     public function action(): void
     {
         if ($this->menu === 'create') {
-            $this->redirect(route('gelarDepan'));
+            $this->redirect(route('gelarNonAkademis'));
         }
         if ($this->menu === '') {
             $this->menu = 'create';
@@ -59,7 +59,7 @@ class Index extends Component
     public function edit($id):void
     {
         if($this->menu === 'view'){
-            $this->dispatch('load-gelar-depan', id:$id, menu: 'edit');
+            $this->dispatch('load-gelar-non-akademis', id:$id, menu: 'edit');
         }
         $this->menu='edit';
         $this->id = $id;
@@ -91,20 +91,20 @@ class Index extends Component
     public function delete($id): void
     {
         try {
-            $record = GelarDepan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+            $record = GelarNonAkademis::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
 
             // jika hapus permanen
             if(isset($record->deleted_at)){
                 $record->user?->forceDelete();
                 $record->forceDelete();
                 session()->flash('success', 'Data berhasil dihapus permanen');
-                $this->redirectRoute('gelarDepan');
+                $this->redirectRoute('gelarNonAkademis');
             }
 
-            $record = GelarDepan::query()->find($id);
+            $record = GelarNonAkademis::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Gelar Depan', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute($this->title === 'Gelar Non Akademis', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
@@ -113,7 +113,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.gelar-depan.index');
+        return view('livewire.admin.data-master.gelar-non-akademis.index');
     }
 
 

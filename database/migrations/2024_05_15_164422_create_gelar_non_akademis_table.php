@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gelar_akademis', function (Blueprint $table) {
+        Schema::create('gelar_non_akademis', function (Blueprint $table) {
             $table->id();
-            $table->string('gelar_akademis');
+            $table->string('gelar_non_akademis');
             $table->mediumText('keterangan')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gelar_akademis');
+        Schema::dropIfExists('gelar_non_akademis');
     }
 };
