@@ -27,6 +27,20 @@ class Index extends Component
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah data lokasi kerja untuk setiap petugas lapangan";
         }
+
+        if ($this->menu === 'edit') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Ubah data lokasi kerja untuk setiap petugas lapangan";
+        }
+
+        if ($this->menu === 'view')
+        {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Informasi lokasi kerja untuk setiap petugas lapangan";
+        }
+
     }
 
     #[On('action')]
@@ -46,9 +60,39 @@ class Index extends Component
     #[On('edit')]
     public function edit($id): void
     {
+        if($this->menu === 'view'){
+            $this->dispatch('load-lokasi', id:$id, menu: 'edit');
+        }
         $this->menu = 'edit';
         $this->id = $id;
     }
+
+    #[On('view')]
+    public function view($id):void
+    {
+        $this->menu='view';
+        $this->id = $id;
+        $this->buttonMenu();
+    }
+
+    private function buttonMenu():void{
+        if ($this->menu === 'create') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Tambah Data $this->title";
+        }else if ($this->menu === 'edit') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Edit Data $this->title";
+        }else if ($this->menu == 'view')
+        {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Informasi lokasi kerja untuk setiap petugas lapangan";
+        }
+
+    }
+
 
     public function render(): View
     {

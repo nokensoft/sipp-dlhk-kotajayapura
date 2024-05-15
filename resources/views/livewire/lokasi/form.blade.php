@@ -7,8 +7,8 @@
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Informasi Lokasi</h5>
-                                    <p class="mb-6">Masukan data lokasi baru</p>
+                                    {{-- <h5>Informasi Lokasi</h5>
+                                    <p class="mb-6">Masukan data lokasi baru </p> --}}
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
                                             <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi"  />

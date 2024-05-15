@@ -86,6 +86,9 @@
                             </td>
                             <td>
                                 <div class="flex justify-end items-center text-lg ">
+                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
+                                        <i class="fa-solid fa-eye text-sm"></i>
+                                    </span>
                                     <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })">
                                         <i class="fa-solid fa-edit text-sm"></i>
                                     </span>
