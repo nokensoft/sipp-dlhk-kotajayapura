@@ -1,9 +1,10 @@
-@props(['title' => '', 'data' => [], 'height' => '450'])
+@props(['title' => '', 'data' => [], 'height' => '450', 'fontSize' => '18'])
 <div
     x-data="{
         title: @js($title),
         data: @js($data),
         height: @js($height),
+        fontSize: @js($fontSize),
         init() {
             let chart = new ApexCharts(this.$refs.chart, this.options)
 
@@ -23,7 +24,7 @@
                     align: 'center',
                     style: {
                         color: undefined,
-                        fontSize: '18px',
+                        fontSize: this.fontSize+'px',
                         fontFamily: 'Helvetica, Arial, sans-serif',
                         fontWeight: 400,
                         cssClass: 'apexcharts-xaxis-title',

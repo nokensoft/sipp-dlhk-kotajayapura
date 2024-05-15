@@ -37,11 +37,11 @@ class PegawaiSeeder extends Seeder
                 'akte_kelahiran' => 'akte_kelahiran.png',
                 'akte_pernikahan' => 'akte_pernikahan.png',
                 'bidang_id' => fake()->numberBetween(1, 12),
-                'lokasi_id' => fake()->numberBetween(1, 5),
+                'lokasi_id' => fake()->numberBetween(1, 42),
                 'jenis_kelamin_id' => fake()->numberBetween(1, 2),
                 'agama_id' => fake()->numberBetween(1, 5),
                 'pangkat_golongan_id' => fake()->numberBetween(1, 5),
-                'suku_id' => fake()->numberBetween(1, 5),
+                'suku_id' => fake()->numberBetween(1, 2),
                 'distrik_id' => fake()->numberBetween(1, 5),
                 'kelurahan_id' => fake()->numberBetween(1, 5),
                 'deskripsi_tugas_id' => fake()->numberBetween(1, 5),
@@ -77,11 +77,11 @@ class PegawaiSeeder extends Seeder
                 'akte_kelahiran' => 'akte_kelahiran.png',
                 'akte_pernikahan' => 'akte_pernikahan.png',
                 'bidang_id' => fake()->numberBetween(1, 12),
-                'lokasi_id' => fake()->numberBetween(1, 5),
+                'lokasi_id' => fake()->numberBetween(1, 42),
                 'jenis_kelamin_id' => fake()->numberBetween(1, 2),
                 'agama_id' => fake()->numberBetween(1, 5),
                 'pangkat_golongan_id' => fake()->numberBetween(1, 5),
-                'suku_id' => fake()->numberBetween(1, 5),
+                'suku_id' => fake()->numberBetween(1, 2),
                 'distrik_id' => fake()->numberBetween(1, 5),
                 'kelurahan_id' => fake()->numberBetween(1, 5),
                 'deskripsi_tugas_id' => fake()->numberBetween(1, 5),
@@ -99,6 +99,8 @@ class PegawaiSeeder extends Seeder
         ])->each(function ($items) {
             for ($i = 0; $i < 5; $i++) {
                 $items['bidang_id'] = fake()->numberBetween(1, 12);
+                $items['lokasi_id'] = fake()->numberBetween(1, 42);
+                $items['suku_id'] = fake()->numberBetween(1, 2);
                 Pegawai::create($items);
             }
         });

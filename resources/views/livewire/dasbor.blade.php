@@ -32,7 +32,7 @@
                                     </span>
                                     <div>
                                         <div class="flex gap-1.5 items-end mb-2">
-                                            <h3 class="font-bold leading-none">63</h3>
+                                            <h3 class="font-bold leading-none">{{$totalAsn}}</h3>
                                             <p class="font-semibold">ASN</p>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     </span>
                                     <div>
                                         <div class="flex gap-1.5 items-end mb-2">
-                                            <h3 class="font-bold leading-none">25</h3>
+                                            <h3 class="font-bold leading-none">{{$totalNonAsn}}</h3>
                                             <p class="font-semibold">Non ASN</p>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                     </span>
                                     <div>
                                         <div class="flex gap-1.5 items-end mb-2">
-                                            <h3 class="font-bold leading-none">49</h3>
+                                            <h3 class="font-bold leading-none">{{$totalPria}}</h3>
                                             <p class="font-semibold">Laki-Laki</p>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                     </span>
                                     <div>
                                         <div class="flex gap-1.5 items-end mb-2">
-                                            <h3 class="font-bold leading-none">12</h3>
+                                            <h3 class="font-bold leading-none">{{$totalWanita}}</h3>
                                             <p class="font-semibold">Perempuan</p>
                                         </div>
                                     </div>
@@ -116,13 +116,16 @@
                         </div>
                     </div>
 
-                    <div class="flex gap-4">
+                    <div>
                         <x-chart class="w-full" title="Jumlah Petugas Berdasarkan Bidang Kerja" :data="$bidangs"/>
-
+                    </div>
+                    <div>
+                        <x-chart class="w-full" title="Jumlah Petugas Berdasarkan Lokasi Kerja" :data="$lokasi"/>
                     </div>
                     <div class="flex gap-4">
-                        <x-chart class="w-1/2" title="Jumlah Petugas Berdasarkan Status Pegawai" :data="$statusPegawai" height="400"/>
-                        <x-chart class="w-1/2" title="Jumlah Petugas Berdasarkan Jenis Kelamin" :data="$jenisKelamins" height="400"/>
+                        <x-chart class="w-1/3" title="Jumlah Petugas Berdasarkan Status Pegawai" :data="$statusPegawai" height="400" fontSize="12"/>
+                        <x-chart class="w-1/3" title="Jumlah Petugas Berdasarkan Suku" :data="$suku" height="400" fontSize="14"/>
+                        <x-chart class="w-1/3" title="Jumlah Petugas Berdasarkan Jenis Kelamin" :data="$jenisKelamins" height="400" fontSize="12"/>
                     </div>
 
                 </div>
