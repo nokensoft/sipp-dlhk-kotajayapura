@@ -116,15 +116,13 @@
                         </div>
                     </div>
 
-                    <div class="card card-layout-frame">
-                        <div class="card-body">
-                            <div class="flex sm:flex-row flex-col md:items-center justify-center mb-6 gap-4">
-                                <h4>Grafik Berdasarkan Pangkat/Golongan</h4>
-                            </div>
-                            <div>
-                                <div id="task-overview-chart"></div>
-                            </div>
-                        </div>
+                    <div class="flex gap-4">
+                        <x-chart class="w-full" title="Jumlah Petugas Berdasarkan Bidang Kerja" :data="$bidangs"/>
+
+                    </div>
+                    <div class="flex gap-4">
+                        <x-chart class="w-1/2" title="Jumlah Petugas Berdasarkan Status Pegawai" :data="$statusPegawai" height="400"/>
+                        <x-chart class="w-1/2" title="Jumlah Petugas Berdasarkan Jenis Kelamin" :data="$jenisKelamins" height="400"/>
                     </div>
 
                 </div>

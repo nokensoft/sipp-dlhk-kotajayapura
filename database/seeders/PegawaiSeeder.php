@@ -36,7 +36,7 @@ class PegawaiSeeder extends Seeder
                 'transkip_nilai' => 'transkip_nilai.png',
                 'akte_kelahiran' => 'akte_kelahiran.png',
                 'akte_pernikahan' => 'akte_pernikahan.png',
-                'bidang_id' => 1,
+                'bidang_id' => fake()->numberBetween(1, 12),
                 'lokasi_id' => fake()->numberBetween(1, 5),
                 'jenis_kelamin_id' => fake()->numberBetween(1, 2),
                 'agama_id' => fake()->numberBetween(1, 5),
@@ -76,7 +76,7 @@ class PegawaiSeeder extends Seeder
                 'transkip_nilai' => 'transkip_nilai.png',
                 'akte_kelahiran' => 'akte_kelahiran.png',
                 'akte_pernikahan' => 'akte_pernikahan.png',
-                'bidang_id' => 1,
+                'bidang_id' => fake()->numberBetween(1, 12),
                 'lokasi_id' => fake()->numberBetween(1, 5),
                 'jenis_kelamin_id' => fake()->numberBetween(1, 2),
                 'agama_id' => fake()->numberBetween(1, 5),
@@ -98,6 +98,7 @@ class PegawaiSeeder extends Seeder
             ],
         ])->each(function ($items) {
             for ($i = 0; $i < 5; $i++) {
+                $items['bidang_id'] = fake()->numberBetween(1, 12);
                 Pegawai::create($items);
             }
         });

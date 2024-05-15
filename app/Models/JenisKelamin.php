@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class JenisKelamin extends Model
 {
     use HasFactory,SoftDeletes;
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }

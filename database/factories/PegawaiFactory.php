@@ -24,8 +24,8 @@ class PegawaiFactory extends Factory
             'no_hp' => fake()->phoneNumber,
             'gambar' => fake()->randomElement(
                 [
-                    'avatars/man.png', 
-                    'avatars/girl.png', 
+                    'avatars/man.png',
+                    'avatars/girl.png',
                     'avatars/man1.png',
                     'avatars/girl-2.png'
                 ]
@@ -36,7 +36,7 @@ class PegawaiFactory extends Factory
             'transkip_nilai' => 'transkip_nilai.png',
             'akte_kelahiran' => 'akte_kelahiran.png',
             'akte_pernikahan' => 'akte_pernikahan.png',
-            'bidang_id' => 1,
+            'bidang_id' => fake()->numberBetween(1, 12),
             'lokasi_id' => fake()->numberBetween(1, 5),
             'jenis_kelamin_id' => fake()->numberBetween(1, 2),
             'agama_id' => fake()->numberBetween(1, 5),
