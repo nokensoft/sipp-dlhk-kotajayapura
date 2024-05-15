@@ -16,21 +16,24 @@ class PangkatGolonganSeeder extends Seeder
         PangkatGolongan::create(
             [
                 'pangkat_golongan' => 'Golongan Ib',
-                'keterangan' => 'Golongan Ib: juru muda tingkat I'
+                'keterangan' => 'Keterangan Golongan Ib',
+                'published_at' => now(),
             ]
         );
 
         PangkatGolongan::create(
             [
                 'pangkat_golongan' => 'Golongan Ic',
-                'keterangan' => 'Golongan Ic: juru'
+                'keterangan' => 'Keterangan Golongan Ic ',
+                'published_at' => null,
             ]
         );
 
         PangkatGolongan::create(
             [
                 'pangkat_golongan' => 'Golongan Id',
-                'keterangan' => 'Golongan Ic: juru tingkat I'
+                'keterangan' => 'Keterangan Golongan Id',
+                'deleted_at' => now(),
             ]
         );
     }

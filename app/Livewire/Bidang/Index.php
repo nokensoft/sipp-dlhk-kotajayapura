@@ -64,6 +64,7 @@ class Index extends Component
         $this->menu='edit';
         $this->id = $id;
         $this->buttonMenu();
+        $this->dispatch('refresh', false);
     }
 
     #[On('view')]

@@ -51,12 +51,14 @@ class Index extends Component
     #[On('edit')]
     public function edit($id):void
     {
+
         if($this->menu === 'view'){
             $this->dispatch('load-pegawai', id:$id, menu: 'edit');
         }
         $this->menu='edit';
         $this->id = $id;
         $this->buttonMenu();
+        $this->dispatch('refresh', false);
     }
 
     #[On('view')]

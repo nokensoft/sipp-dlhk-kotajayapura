@@ -72,7 +72,6 @@ class Record extends Component
         try {
             $this->search = '';
             $record = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
-
             // jika hapus permanen
             if(isset($record->deleted_at)){
                 $pathGambar = storage_path('app/public/' . $record->gambar ?? '');

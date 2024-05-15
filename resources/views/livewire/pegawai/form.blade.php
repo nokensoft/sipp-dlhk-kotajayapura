@@ -23,13 +23,22 @@
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/3">
                                             <x-admin.input label="Username" id="username" type="text"  name="user.username" :isDisabled="$isDisabled" />
-                                            <x-admin.input label="role_id" id="role_id" type="text" value="6"  name="user.role_id" :isDisabled="$isDisabled" />
                                         </div>
                                         <div class="w-1/3">
                                             <x-admin.input label="Alamat Email" id="email" type="email"  name="pegawai.email" :isDisabled="$isDisabled" />
                                         </div>
                                         <div class="w-1/3">
                                             <x-admin.input label="Nomor HP" id="no-hp" type="number" name="pegawai.no_hp" :isDisabled="$isDisabled" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <div class="w-1/3">
+                                            <x-admin.select label="Role" id="role-id" optionName="name" name="role"  :isDisabled="$isDisabled">
+                                                <option>Pilih Role</option>
+                                                @foreach($roles as $option)
+                                                    <option value="{{$option['name']}}">{{$option->name}}</option>
+                                                @endforeach
+                                            </x-admin.select>
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">

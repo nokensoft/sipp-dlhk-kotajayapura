@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         $adminmaster =  User::create([
             'username' => 'adminmaster',
             'password' => bcrypt('adminmaster'),
-            'role_id' => 1 //adminmaster
+            // 'role_id' => 1 //adminmaster
         ]);
         $adminmaster->assignRole('adminmaster');
 
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $operator =  User::create([
             'username' => 'operator',
             'password' => bcrypt('operator'),
-            'role_id' => 2 // operator
+            // 'role_id' => 2 // operator
         ]);
         $operator->assignRole('operator');
 
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         $kepaladinas =  User::create([
             'username' => 'kepaladinas',
             'password' => bcrypt('kepaladinas'),
-            'role_id' => 3 // kepaladinas
+            // 'role_id' => 3 // kepaladinas
         ]);
         $kepaladinas->assignRole('kepaladinas');
 
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         $kepalabidang =  User::create([
             'username' => 'kepalabidang',
             'password' => bcrypt('kepalabidang'),
-            'role_id' => 4 // kepalabidang
+            // 'role_id' => 4 // kepalabidang
         ]);
         $kepalabidang->assignRole('kepalabidang');
 
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
         $kepalaseksi =  User::create([
             'username' => 'kepalaseksi',
             'password' => bcrypt('kepalaseksi'),
-            'role_id' => 5 // kepalaseksi
+            // 'role_id' => 5 // kepalaseksi
         ]);
         $kepalaseksi->assignRole('kepalaseksi');
 
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
         $pegawai =  User::create([
             'username' => 'pegawai',
             'password' => bcrypt('pegawai'),
-            'role_id' => 6 // pegawai
+            // 'role_id' => 6 // pegawai
         ]);
         $pegawai->assignRole('pegawai');
 
