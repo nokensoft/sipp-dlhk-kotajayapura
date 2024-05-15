@@ -53,6 +53,14 @@ class Record extends Component
         session()->flash('success', 'Data diubah menjadi '.$type);
     }
 
+    public function undo($id): void
+    {
+        $record = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record->deleted_at = null;
+        $record->save();
+        session()->flash('success', 'Data berhasil dikembalikan!');
+    }
+
     public function delete($id): void
     {
         $record = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->find($id);

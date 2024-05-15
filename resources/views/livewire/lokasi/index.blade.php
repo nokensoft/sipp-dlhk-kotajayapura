@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / <span class="font-bold">{{$title}}</span></p>
-                            @if($menu === 'create')
+                            @if($menu === 'create' || $menu === 'edit')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -18,12 +18,29 @@
                                         </x-slot>
                                     </x-button-custom>
                                 </div>
-                            @endif
+                            @elseif ($menu === 'view')
+
+                            <div class="ml-auto">
+                                <div class="flex gap-2">
+                                    <x-button-custom id="edit-button" tooltip="EDIT DATA!" action="edit({{$id}})" class="btn btn-xs btn-solid">
+                                        <x-slot name="icon">
+                                            <i class="fa-solid fa-edit text-sm"></i>
+                                        </x-slot>
+                                    </x-button-custom>
+                                    <x-button-custom id="delete-button" tooltip="HAPUS DATA!" @click="openModalDelete = true" class="btn btn-xs btn-solid">
+                                        <x-slot name="icon">
+                                            <i class="fa-solid fa-trash text-sm"></i>
+                                        </x-slot>
+                                    </x-button-custom>
+                                </div>
+                            </div>
+                             @endif
+
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($menu === 'create' || ($menu === 'edit' && $id != ''))
-                        <livewire:lokasi.form :id="$id"/>
+                    @if($menu === 'create' || $menu === 'edit'  || $menu === 'view'  && $id != '')
+                        <livewire:lokasi.form :id="$id" :menu="$menu"/>
                     @else
                         <livewire:lokasi.record />
                     @endif
@@ -32,4 +49,21 @@
             </div>
         </div>
     </div>
+      <!-- Modal Delete -->
+      <x-modal-alpine modalName="openModalDelete" title="Peringatan!">
+        <div class="p-4 py-6 text-center">
+            <i class="fa-solid fa-info-circle text-6xl text-rose-400"></i>
+            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-600">Apakah anda yakin ingin menghapus data ini?</h3>
+            <div class="my-3 flex gap-2 justify-center items-center">
+                <button @click="openModalDelete=false" wire:click.prevent="delete({{$id}})" data-modal-hide="popup-modal" type="button" class="text-rose-400">
+                    Ya, saya yakin
+                </button>
+
+                <button @click="openModalDelete=false" data-modal-hide="popup-modal" type="button" class="btn btn-xs btn-solid">Tidak, batalkan</button>
+            </div>
+        </div>
+    </x-modal-alpine>
 </div>
+
+
+

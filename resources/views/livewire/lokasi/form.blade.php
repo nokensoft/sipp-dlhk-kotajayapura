@@ -7,32 +7,33 @@
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5>Informasi Lokasi</h5>
-                                    <p class="mb-6">Masukan data lokasi baru</p>
+                                    {{-- <h5>Informasi Lokasi</h5>
+                                    <p class="mb-6">Masukan data lokasi baru </p> --}}
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi"  />
+                                            <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.input label="Latitude" id="latitude" name="lokasi.latitude"  />
+                                            <x-admin.input label="Latitude" id="latitude" name="lokasi.latitude" :isDisabled="$isDisabled"   />
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.input label="Longitude" id="longitude" name="lokasi.longitude"  />
+                                            <x-admin.input label="Longitude" id="longitude" name="lokasi.longitude" :isDisabled="$isDisabled"  />
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
                                         <div class="w-1/2">
-                                            <x-admin.textarea label="Keterangan" id="keterangan" name="lokasi.keterangan"  />
+                                            <x-admin.textarea label="Keterangan" id="keterangan" name="lokasi.keterangan" :isDisabled="$isDisabled"  />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @if(!$isDisabled)
                     <div id="stickyFooter" class="sticky -bottom-1 -mx-8 px-8 flex items-center justify-end py-4">
                         <div class="md:flex items-center">
                             <button class="btn btn-default btn-sm ltr:mr-2 rtl:ml-2" type="button">Discard</button>
@@ -52,8 +53,13 @@
                             </button>
                         </div>
                     </div>
+                    @else
+
+                    @endif
+
                 </div>
             </form>
         </div>
     </div>
 </main>
+
