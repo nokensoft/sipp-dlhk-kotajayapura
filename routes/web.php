@@ -2,6 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\DataMaster\PangkatGolongan\Index as PangkatGolongan;
+use App\Livewire\Admin\DataMaster\Jabatan\Index as Jabatan;
+use App\Livewire\Admin\DataMaster\Tugas\Index as Tugas;
+use App\Livewire\Admin\DataMaster\GelarDepan\Index as GelarDepan;
+use App\Livewire\Admin\DataMaster\GelarBelakang\Index as GelarBelakang;
+use App\Livewire\Admin\DataMaster\GelarNonAkademis\Index as GelarNonAkademis;
+use App\Livewire\Admin\DataMaster\JenjangPendidikan\Index as JenjangPendidikan;
+use App\Livewire\Admin\DataMaster\Diklat\Index as Diklat;
+use App\Livewire\Admin\DataMaster\SertifikatKeahlian\Index as SertifikatKeahlian;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -42,5 +50,13 @@ Route::middleware([
     Route::get('/pengguna', Pengguna::class)->name('pengguna');
     Route::prefix('data-master')->group(function () {
         Route::get('pangkat-golongan', PangkatGolongan::class)->name('pangkatGolongan');
+        Route::get('jabatan', Jabatan::class)->name('jabatan');
+        Route::get('tugas', Tugas::class)->name('tugas');
+        Route::get('gelar-depan', GelarDepan::class)->name('gelarDepan');
+        Route::get('gelar-belakang', GelarBelakang::class)->name('gelarBelakang');
+        Route::get('gelar-non-akademis', GelarNonAkademis::class)->name('gelarNonAkademis');
+        Route::get('jenjang-pendidikan', JenjangPendidikan::class)->name('jenjangPendidikan');
+        Route::get('diklat', Diklat::class)->name('diklat');
+        Route::get('sertifikat-keahlian', SertifikatKeahlian::class)->name('sertifikatKeahlian');
     });
 });

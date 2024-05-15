@@ -32,7 +32,7 @@ class Form extends Component
     ];
 
     protected $messages = [
-        'pangkatGolongan.pangkat_golongan.required' => 'Nama bidang tidak boleh kosong',
+        'pangkatGolongan.pangkat_golongan.required' => 'Pangkat golongan tidak boleh kosong',
     ];
 
     public function mount(): void
@@ -42,9 +42,6 @@ class Form extends Component
         if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
-        // if ($this->id != ''){
-        //     $this->bidang = PangkatGolongan::query()->find($this->id)?->toArray();
-        // }
     }
 
     #[On('refresh')]

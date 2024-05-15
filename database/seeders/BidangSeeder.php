@@ -8,9 +8,6 @@ use Illuminate\Database\Seeder;
 
 class BidangSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $data = collect([
@@ -29,13 +26,8 @@ class BidangSeeder extends Seeder
             ['bidang' => 'Petugas Penyisiran Jalan', 'keterangan' => 'Keterangan tentang bidang...'],
             ['bidang' => 'Petugas Penyapuan', 'keterangan' => 'Keterangan tentang bidang...']
         ]);
-
-        $data->each(function ($item) {
-            // // membuat data dan melipatgandakan menjadi 20 kali
-            // for ($i = 0; $i < 20; $i++) {
-            //     Bidang::create($item);
-            // }
-            Bidang::create($item);
+        $data->each(function ($collection) {
+            Bidang::create($collection);
         });
     }
 }

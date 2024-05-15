@@ -8,23 +8,21 @@ use App\Models\JenisKelamin;
 
 class JenisKelaminSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
-    {
-        JenisKelamin::create(
+    {        
+        collect([
             [
-                'jenis_kelamin' => 'Pria',
-                'keterangan' => 'Jenis kelamin pria/laki-laki'
-            ]
-        );
-
-        JenisKelamin::create(
+                'jenis_kelamin' => 'Laki-Laki',
+                'keterangan' => 'Jenis kelamin pria/laki-laki',
+                'published_at' => now(),
+            ],
             [
-                'jenis_kelamin' => 'Wanita',
-                'keterangan' => 'Jenis kelamin wanita/perempuan'
+                'jenis_kelamin' => 'Perempuan',
+                'keterangan' => 'Jenis kelamin wanita/perempuan',
+                'published_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            JenisKelamin::create($collection);
+        });
     }
 }

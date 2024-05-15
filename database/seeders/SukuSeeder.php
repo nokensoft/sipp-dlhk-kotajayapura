@@ -8,44 +8,36 @@ use Illuminate\Database\Seeder;
 
 class SukuSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Suku::create(
+        collect([
             [
                 'suku' => 'Tobati',
-                'keterangan' => 'Suku tobati'
-            ]
-        );
-
-        Suku::create(
+                'keterangan' => 'Suku tobati',
+                'published_at' => now(),
+            ],
             [
                 'suku' => 'Maybrat',
-                'keterangan' => 'Suku maybrat'
-            ]
-        );
-
-        Suku::create(
+                'keterangan' => 'Suku maybrat',
+                'published_at' => now(),
+            ],
             [
                 'suku' => 'Enggros',
-                'keterangan' => 'Suku Enggros'
-            ]
-        );
-
-        Suku::create(
+                'keterangan' => 'Suku Enggros',
+                'published_at' => now(),
+            ],
             [
                 'suku' => 'Moi',
-                'keterangan' => 'Suku Moi'
-            ]
-        );
-
-        Suku::create(
+                'keterangan' => 'Suku Moi',
+                'published_at' => null,
+            ],
             [
                 'suku' => 'Toraja',
-                'keterangan' => 'Suku Toraja'
+                'keterangan' => 'Suku Toraja',
+                'deleted_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            Suku::create($collection);
+        });
     }
 }
