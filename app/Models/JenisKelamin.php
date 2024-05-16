@@ -22,4 +22,10 @@ class JenisKelamin extends Model
     {
         return $query->whereNotNull('published_at');
     }
+    use HasFactory,SoftDeletes;
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }

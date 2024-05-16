@@ -12,30 +12,15 @@ class SukuSeeder extends Seeder
     {
         collect([
             [
-                'suku' => 'Tobati',
-                'keterangan' => 'Suku tobati',
+                'suku' => 'OAP',
+                'keterangan' => 'Orang Asli Papua',
                 'published_at' => now(),
             ],
             [
-                'suku' => 'Maybrat',
-                'keterangan' => 'Suku maybrat',
+                'suku' => 'Non OAP',
+                'keterangan' => 'Non Orang Asli Papua',
                 'published_at' => now(),
             ],
-            [
-                'suku' => 'Enggros',
-                'keterangan' => 'Suku Enggros',
-                'published_at' => now(),
-            ],
-            [
-                'suku' => 'Moi',
-                'keterangan' => 'Suku Moi',
-                'published_at' => null,
-            ],
-            [
-                'suku' => 'Toraja',
-                'keterangan' => 'Suku Toraja',
-                'deleted_at' => now(),
-            ]
         ])->each(function ($collection) {
             Suku::create($collection);
         });

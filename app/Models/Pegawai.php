@@ -79,9 +79,9 @@ class Pegawai extends Model
         return $this->belongsTo(GelarBelakang::class, 'gelar_belakang_id');
     }
 
-    public function gelarAkademis(): BelongsTo
+    public function gelarNonAkademis(): BelongsTo
     {
-        return $this->belongsTo(GelarAkademis::class, 'gelar_akademis_id');
+        return $this->belongsTo(GelarNonAkademis::class, 'gelar_non_akademis_id');
     }
 
     public function jenjangPendidikan(): BelongsTo
