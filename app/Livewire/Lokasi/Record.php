@@ -114,7 +114,9 @@ class Record extends Component
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
 
-        return view('livewire.lokasi.record', ['records' => $records]);
+        $locations =Lokasi::published()->get();
+
+        return view('livewire.lokasi.record', ['records' => $records, 'locations' => $locations]);
 
     }
 }

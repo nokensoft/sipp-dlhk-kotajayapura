@@ -99,6 +99,7 @@ class Index extends Component
         $record->save();
         $record->delete();
         session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
+        $this->redirectRoute('lokasi');
     }
 
 

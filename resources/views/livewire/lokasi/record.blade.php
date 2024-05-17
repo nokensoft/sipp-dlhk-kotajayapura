@@ -1,9 +1,9 @@
 
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
 
-<div class="">
+<div class="mt-3">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <div class="border">
         <div id="map" class=""
         style=" width: 100%;
@@ -12,31 +12,21 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Inisialisasi peta
-    var map = L.map('map').setView([-2.53371, 140.71813], 13); // Koordinat Jayapura dan zoom level 13
+        var map = L.map('map').setView([-2.53371, 140.71813], 13);
 
-// Tambahkan tile layer dari OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-// Tambahkan marker untuk menandai kota Jayapura
-var marker = L.marker([-2.53371, 140.71813]).addTo(map)
-    .bindPopup('<b>Jayapura</b><br>Ibukota Provinsi Papua.')
-    .openPopup();
-
-// Tambahkan popup saat peta diklik
-var popup = L.popup();
-
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
-
-map.on('click', onMapClick);
+        var locations = @json($locations);
+        console.info(locations);
+        locations.forEach(function(location) {
+            L.marker([location.latitude, location.longitude])
+                .addTo(map)
+                .bindPopup('<b>' + location.lokasi + '</b>');
+        });
     </script>
+
 
 
 
