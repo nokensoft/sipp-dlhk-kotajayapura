@@ -15,6 +15,7 @@ use App\Livewire\Admin\DataMaster\Agama\Index as Agama;
 use App\Livewire\Admin\DataMaster\JenisKelamin\Index as JenisKelamin;
 use App\Livewire\Admin\DataMaster\Suku\Index as Suku;
 use App\Livewire\Admin\DataMaster\Distrik\Index as Distrik;
+use App\Livewire\Admin\DataMaster\Kelurahan\Index as Kelurahan;
 
 Route::get('/', function () {
     return view('AdminMaster.login');
@@ -68,5 +69,6 @@ Route::middleware([
         Route::get('jenis-kelamin', JenisKelamin::class)->name('jenisKelamin');
         Route::get('suku', Suku::class)->name('suku');
         Route::get('distrik', Distrik::class)->name('distrik');
+        Route::get('kelurahan', Kelurahan::class)->name('kelurahan');
     });
 });
