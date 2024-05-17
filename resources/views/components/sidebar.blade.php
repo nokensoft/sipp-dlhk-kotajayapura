@@ -147,7 +147,7 @@
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('distrik') }}">
                                     <span>Distrik</span>
                                 </a>
                             </li>
