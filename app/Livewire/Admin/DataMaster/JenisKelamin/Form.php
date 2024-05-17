@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\Agama;
+namespace App\Livewire\Admin\DataMaster\JenisKelamin;
 
-use App\Models\Agama;
+use App\Models\JenisKelamin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ use Exception;
 
 class Form extends Component
 {
-    public $agama = [];
+    public $jenisKelamin = [];
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,24 +27,21 @@ class Form extends Component
     public $user;
 
     protected $rules = [
-        'agama.agama' => 'required',
-        'agama.keterangan' => 'nullable',
+        'jenisKelamin.jenis_kelamin' => 'required',
+        'jenisKelamin.keterangan' => 'nullable',
     ];
 
     protected $messages = [
-        'agama.agama.required' => 'Agama tidak boleh kosong',
+        'jenisKelamin.jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
     ];
 
     public function mount(): void
     {
         $this->user = Auth::user();
-        $this->loadAgama($this->id, $this->menu);
+        $this->loadJenisKelamin($this->id, $this->menu);
         if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
-        // if ($this->id != ''){
-        //     $this->bidang = PangkatGolongan::query()->find($this->id)?->toArray();
-        // }
     }
 
     #[On('refresh')]
@@ -57,7 +54,7 @@ class Form extends Component
     {
         if (!$this->user->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute('agama');
+            $this->redirectRoute('jenisKelamin');
             return;
         }
         $this->validate();
@@ -65,11 +62,11 @@ class Form extends Component
         try {
             DB::beginTransaction();
 
-            Agama::updateOrCreate(
+            JenisKelamin::updateOrCreate(
                 [
-                    'id' => $this->agama['id'] ?? null
+                    'id' => $this->jenisKelamin['id'] ?? null
                 ],
-                $this->agama
+                $this->jenisKelamin
             );
 
             DB::commit();
@@ -81,20 +78,20 @@ class Form extends Component
         }
 
         $message = 'tambahkan data baru!';
-        if (isset($this->agama['id'])) {
+        if (isset($this->jenisKelamin['id'])) {
             $message = 'ubah data!';
         }
 
         session()->flash('success', $message);
-        $this->redirectRoute('agama');
+        $this->redirectRoute('jenisKelamin');
     }
 
-    #[On('load-agama')]
-    public function loadAgama($id, $menu = 'view'):void
+    #[On('load-jenis-kelamin')]
+    public function loadJenisKelamin($id, $menu = 'view'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
-            $this->agama = Agama::query()->withTrashed()->find($id)?->toArray();
+            $this->jenisKelamin = JenisKelamin::query()->withTrashed()->find($id)?->toArray();
         }
 
         if($this->menu === 'view') $this->isDisabled = true;
@@ -102,6 +99,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.agama.form');
+        return view('livewire.admin.data-master.jenis-kelamin.form');
     }
 }
