@@ -12,47 +12,143 @@ use Livewire\Component;
 
 class Dasbor extends Component
 {
+
     public $bidangs = [];
     public $jenisKelamins = [];
     public $statusPegawai = [];
     public $lokasi = [];
     public $suku = [];
-    public $totalAsn = 0;
-    public $totalNonAsn = 0;
-    public $totalPria = 0;
-    public $totalWanita = 0;
+
+    // total
+    public $totalASN = 0;
+    public $totalNonASN = 0;
+
+    public $totalOAP = 0;
+    public $totalNonOAP = 0;
+
+    public $totalLakiLaki = 0;
+    public $totalPerempuan = 0;
+
+    public $totalASN_OAP = 0;
+    public $totalNonASN_OAP = 0;
+
+    public $totalASN_NonOAP = 0;
+    public $totalNonASN_NonOAP = 0;
+
+    public $totalASN_LakiLaki = 0;
+    public $totalNonASN_LakiLaki = 0;
+
+    public $totalASN_Perempuan = 0;
+    public $totalNonASN_Perempuan = 0;
+
+    public $totalBidang = 0;
+    public $totalLokasi = 0;
 
 
     public function mount(): void
     {
-        $this->totalAsn = Pegawai::query()->where('is_asn', '=', true)->count();
-        $this->totalNonAsn = Pegawai::query()->where('is_asn', '=', false)->count();
-        $this->totalPria = Pegawai::with('jenisKelamin')
+        // Pegawai: ASN && Publik
+        $this->totalASN = Pegawai::query()
+                    ->where('is_asn', '=', true)
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: NON ASN && Publik
+        $this->totalNonASN = Pegawai::query()
+                    ->where('is_asn', '=', false)
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: OAP && Publik
+        $this->totalOAP = Pegawai::with('suku')
+                    ->whereHas('suku', function ($query){
+                        $query->where('id', 1); // id=1 > OAP
+                    })
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: Non OAP && Publik
+        $this->totalNonOAP = Pegawai::with('suku')
+                    ->whereHas('suku', function ($query){
+                        $query->where('id', 2); // id=2 > Non OAP
+                    })
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: Laki-Laki && Publik
+        $this->totalLakiLaki = Pegawai::with('jenisKelamin')
                     ->whereHas('jenisKelamin', function ($query){
-                        $query->where('jenis_kelamin', 'Laki-Laki');
-                    })->count();
-        $this->totalWanita = Pegawai::with('jenisKelamin')
+                        $query->where('id', 1); // id=1 > Laki-Laki
+                    })
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: Perempuan && Publik                  
+        $this->totalPerempuan = Pegawai::with('jenisKelamin')
                     ->whereHas('jenisKelamin', function ($query){
-                        $query->where('jenis_kelamin', 'Perempuan');
-                    })->count();
-         Bidang::with('pegawai')->each(function ($bidang) {
+                        $query->where('id', 2); // id=2 > Perempuan
+                    })
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: ASN && OAP && Publik   
+        $this->totalASN_OAP = Pegawai::with('suku')
+                    ->whereHas('suku', function ($query){
+                        $query->where('id', 1); // id=1 > OAP
+                    })
+                    ->where('is_asn', '=', true)
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: Non ASN && Non OAP && Publik
+        $this->totalNonASN_OAP = Pegawai::with('suku')
+                    ->whereHas('suku', function ($query){
+                        $query->where('id', 1); // id=1 > Non OAP
+                    })
+                    ->where('is_asn', '=', false)
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Pegawai: ASN && Non OAP && Publik
+        $this->totalASN_NonOAP = Pegawai::with('suku')
+                    ->whereHas('suku', function ($query){
+                        $query->where('id', 2); // id=2 > Non OAP
+                    })
+                    ->where('is_asn', '=', true)
+                    ->where('published_at', '!=', null)
+                    ->count();
+        
+        // Bidang: Publik
+        $this->totalBidang = Bidang::query()
+                    ->where('published_at', '!=', null)
+                    ->count();
+
+        // Lokasi: Publik
+        $this->totalLokasi = Lokasi::query()
+                    ->where('published_at', '!=', null)
+                    ->count();
+    
+        Bidang::with('pegawai')->each(function ($bidang) {
             $this->bidangs[] = [
                 'name' => $bidang->bidang,
                 'data' => [$bidang->pegawai->count()]
             ];
         });
-         Suku::with('pegawai')->each(function ($suku) {
+        
+        Suku::with('pegawai')->each(function ($suku) {
             $this->suku[] = [
                 'name' => $suku->suku,
                 'data' => [$suku->pegawai->count()]
             ];
         });
-         Lokasi::with('pegawai')->each(function ($lokasi) {
+        
+        Lokasi::with('pegawai')->each(function ($lokasi) {
             $this->lokasi[] = [
                 'name' => $lokasi->lokasi,
                 'data' => [$lokasi->pegawai->count()]
             ];
         });
+        
         JenisKelamin::with('pegawai')->each(function ($jenisKelamin){
             $this->jenisKelamins[] = ['name' => $jenisKelamin->jenis_kelamin, 'data' => [$jenisKelamin->pegawai->count()] ];
         });
@@ -60,6 +156,7 @@ class Dasbor extends Component
             ['name' => 'ASN', 'data' => [Pegawai::query()->where('is_asn', '=', true)->count()]],
             ['name' => 'NON ASN', 'data' => [Pegawai::query()->where('is_asn', '=', false)->count()]],
         ];
+        
         $this->bidangs = json_encode($this->bidangs);
         $this->jenisKelamins = json_encode($this->jenisKelamins);
         $this->statusPegawai = json_encode($this->statusPegawai);

@@ -12,11 +12,13 @@ class SukuSeeder extends Seeder
     {
         collect([
             [
+                'id' => 1,
                 'suku' => 'OAP',
                 'keterangan' => 'Orang Asli Papua',
                 'published_at' => now(),
             ],
             [
+                'id' => 2,
                 'suku' => 'Non OAP',
                 'keterangan' => 'Non Orang Asli Papua',
                 'published_at' => now(),
