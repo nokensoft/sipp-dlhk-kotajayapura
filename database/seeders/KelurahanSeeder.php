@@ -18,6 +18,7 @@ class KelurahanSeeder extends Seeder
                 'Kelurahan' => 'Vim',
                 'keterangan' => 'Distrik Abepura Kelurahan Vim ',
                 'distrik_id' => 1,
+                'published_at' => now(),
             ]
         );
 
@@ -26,6 +27,7 @@ class KelurahanSeeder extends Seeder
                 'Kelurahan' => 'Wahno',
                 'keterangan' => 'Distrik Abepura Kelurahan Wahno ',
                 'distrik_id' => 1,
+                'published_at' => null,
             ]
         );
 
@@ -34,6 +36,7 @@ class KelurahanSeeder extends Seeder
                 'Kelurahan' => 'Whai Mrock',
                 'keterangan' => 'Distrik Abepura Kelurahan Whai Mrock ',
                 'distrik_id' => 1,
+                'deleted_at' => now(),
             ]
         );
 

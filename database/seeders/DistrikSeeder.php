@@ -16,28 +16,32 @@ class DistrikSeeder extends Seeder
         Distrik::create(
             [
                 'distrik' => 'Abepura',
-                'keterangan' => 'Distrik Abepura'
+                'keterangan' => 'Distrik Abepura',
+                'published_at' => now(),
             ]
         );
 
         Distrik::create(
             [
                 'distrik' => 'Jayapura Utara',
-                'keterangan' => 'Distrik Jayapura Utara'
+                'keterangan' => 'Distrik Jayapura Utara',
+                'published_at' => now(),
             ]
         );
 
         Distrik::create(
             [
                 'distrik' => 'Jayapura Selatan',
-                'keterangan' => 'Distrik Jayapura Selatan'
+                'keterangan' => 'Distrik Jayapura Selatan',
+                'published_at' => null,
             ]
         );
 
         Distrik::create(
             [
                 'distrik' => 'Muara Tami',
-                'keterangan' => 'Distrik Muara Tami'
+                'keterangan' => 'Distrik Muara Tami',
+                'deleted_at' => now(),
             ]
         );
     }

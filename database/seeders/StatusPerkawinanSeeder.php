@@ -8,23 +8,21 @@ use Illuminate\Database\Seeder;
 
 class StatusPerkawinanSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        StatusPerkawinan::create(
+        collect([
             [
                 'status_perkawinan' => 'Sudah Kawin',
                 'keterangan' => '',
-            ]
-        );
-
-        StatusPerkawinan::create(
+                'published_at' => now(),
+            ],
             [
                 'status_perkawinan' => 'Belum Kawin',
                 'keterangan' => '',
+                'published_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            StatusPerkawinan::create($collection);
+        });
     }
 }

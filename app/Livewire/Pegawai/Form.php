@@ -9,6 +9,7 @@ use App\Models\Distrik;
 use App\Models\GelarAkademis;
 use App\Models\GelarBelakang;
 use App\Models\GelarDepan;
+use App\Models\GelarNonAkademis;
 use App\Models\Jabatan;
 use App\Models\JenisKelamin;
 use App\Models\JenjangPendidikan;
@@ -111,7 +112,7 @@ class Form extends Component
         $this->deskripsiTugas = DeskripsiTugas::query()->get();
         $this->gelarDepan = GelarDepan::query()->get();
         $this->gelarBelakang = GelarBelakang::query()->get();
-        $this->gelarAkademis = GelarAkademis::query()->get();
+        $this->gelarAkademis = GelarNonAkademis::query()->get();
         $this->jenjangPendidikan = JenjangPendidikan::query()->get();
         $this->statusPerkawinan = StatusPerkawinan::query()->get();
 

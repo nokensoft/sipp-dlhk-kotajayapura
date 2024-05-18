@@ -8,30 +8,25 @@ use Illuminate\Database\Seeder;
 
 class DeskripsiTugasSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        DeskripsiTugas::create(
+        collect([
             [
                 'deskripsi_tugas' => 'Tugas Penyisiran Jalan',
-                'keterangan' => ''
-            ]
-        );
-
-        DeskripsiTugas::create(
+                'published_at' => now(),
+            ],
             [
                 'deskripsi_tugas' => 'Tugas Bank Sampah',
-                'keterangan' => ''
-            ]
-        );
-
-        DeskripsiTugas::create(
+                'keterangan' => '',
+                'published_at' => null,
+            ],
             [
                 'deskripsi_tugas' => 'Tugas penyapu pasar cigombong',
-                'keterangan' => ''
+                'keterangan' => '',
+                'deleted_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            DeskripsiTugas::create($collection);
+        });
     }
 }

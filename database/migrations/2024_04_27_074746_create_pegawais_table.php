@@ -42,7 +42,7 @@ return new class extends Migration
             $table->bigInteger('deskripsi_tugas_id')->nullable();
             $table->bigInteger('gelar_depan_id')->nullable();
             $table->bigInteger('gelar_belakang_id')->nullable();
-            $table->bigInteger('gelar_akademis_id')->nullable();
+            $table->bigInteger('gelar_non_akademis_id')->nullable();
             $table->bigInteger('jenjang_pendidikan_id')->nullable();
             $table->bigInteger('status_perkawinan_id')->nullable();
             $table->mediumText('keterangan')->nullable();

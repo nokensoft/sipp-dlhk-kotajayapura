@@ -8,96 +8,71 @@ use Illuminate\Database\Seeder;
 
 class GelarBelakangSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        GelarBelakang::create(
+        collect([
             [
                 'gelar_belakang' => 'S1',
                 'keterangan' => 'S1 ',
-            ]
-        );
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SH',
                 'keterangan' => 'S1 HUKUM',
-            ]
-        );
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SPd',
                 'keterangan' => 'S1 PENDIDIKAN',
-            ]
-        );
-
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SIp',
                 'keterangan' => 'S1 ILMU POLITIK',
-            ]
-        );
-
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SE',
                 'keterangan' => 'S1 EKONOMI',
-            ]
-        );
-
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'S.Kom',
                 'keterangan' => 'S1 KOMPUTER',
-            ]
-        );
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SMK',
                 'keterangan' => 'SMK',
-            ]
-        );
-
-        GelarBelakang::create(
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SMA',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarBelakang::create(
+                'keterangan' => '',
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'Paket C',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarBelakang::create(
+                'keterangan' => '',
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SD',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarBelakang::create(
+                'keterangan' => '',
+                'published_at' => now(),
+            ],
             [
                 'gelar_belakang' => 'SMP',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarBelakang::create(
+                'keterangan' => '',
+                'published_at' => null,
+            ],
             [
                 'gelar_belakang' => 'Madrasah Aliyah',
-                'keterangan' => ''
+                'keterangan' => '',
+                'deleted_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            GelarBelakang::create($collection);
+        });
     }
 }

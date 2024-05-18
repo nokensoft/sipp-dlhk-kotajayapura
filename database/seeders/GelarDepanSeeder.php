@@ -8,43 +8,31 @@ use Illuminate\Database\Seeder;
 
 class GelarDepanSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        GelarDepan::create(
-            [
-                'gelar_depan' => 'Tidak Ada',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarDepan::create(
+        collect([
             [
                 'gelar_depan' => 'Dr.',
-                'keterangan' => ''
-            ]
-        );
-        GelarDepan::create(
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => now(),
+            ],
             [
                 'gelar_depan' => 'Drs.',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarDepan::create(
+                'keterangan' => 'keterangan terkait gelar...',
+                'deleted_at' => now(),
+            ],
             [
                 'gelar_depan' => 'dr.',
-                'keterangan' => ''
-            ]
-        );
-
-        GelarDepan::create(
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => null,
+            ],
             [
                 'gelar_depan' => 'Prof.',
-                'keterangan' => ''
+                'keterangan' => 'keterangan terkait gelar...',
+                'published_at' => null,
             ]
-        );
+        ])->each(function ($collection) {
+            GelarDepan::create($collection);
+        });
     }
 }

@@ -8,44 +8,36 @@ use App\Models\Agama;
 
 class AgamaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Agama::create(
+        collect([
             [
                 'agama' => 'Kristen Protestan',
-                'keterangan' => 'Agama Kristen Protestan'
-            ]
-        );
-
-        Agama::create(
+                'keterangan' => 'Agama Kristen Protestan',
+                'published_at' => now(),
+            ],
             [
                 'agama' => 'Islam',
-                'keterangan' => 'Agama Islam'
-            ]
-        );
-
-        Agama::create(
+                'keterangan' => 'Agama Islam',
+                'published_at' => now(),
+            ],
             [
                 'agama' => 'Katolik',
-                'keterangan' => 'Agama Katolik'
-            ]
-        );
-
-        Agama::create(
+                'keterangan' => 'Agama Katolik',
+                'published_at' => now(),
+            ],
             [
                 'agama' => 'Hindu',
-                'keterangan' => 'Agama Hindu'
-            ]
-        );
-
-        Agama::create(
+                'keterangan' => 'Agama Hindu',
+                'published_at' => now(),
+            ],
             [
                 'agama' => 'Budha',
-                'keterangan' => 'Agama Budha'
+                'keterangan' => 'Agama Budha',
+                'published_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            Agama::create($collection);
+        });
     }
 }

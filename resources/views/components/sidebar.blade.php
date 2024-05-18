@@ -87,72 +87,72 @@
                                 </a>
                             </li>
                             <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('jabatan') }}">
                                     <span>Jabatan</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-activity-log" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('tugas') }}">
                                     <span>Tugas</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('gelarDepan') }}">
                                     <span>Gelar Depan</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('gelarBelakang') }}">
                                     <span>Gelar Belakang</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('gelarNonAkademis') }}">
                                     <span>Gelar Non Akademis</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('jenjangPendidikan') }}">
                                     <span>Jenjang Pendidikan</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('diklat') }}">
                                     <span>Diklat</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('sertifikatKeahlian') }}">
                                     <span>Sertifikat Keahlian</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('statusPerkawinan') }}">
                                     <span>Status Perkawinan</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('agama') }}">
                                     <span>Agama</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('jenisKelamin') }}">
                                     <span>Jenis Kelamin</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('suku') }}">
                                     <span>Suku</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('distrik') }}">
                                     <span>Distrik</span>
                                 </a>
                             </li>
                             <li data-menu-item="classic-kyc-form" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('kelurahan') }}">
                                     <span>Kelurahan</span>
                                 </a>
                             </li>

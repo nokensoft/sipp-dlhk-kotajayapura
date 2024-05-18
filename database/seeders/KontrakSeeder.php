@@ -8,23 +8,21 @@ use Illuminate\Database\Seeder;
 
 class KontrakSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Kontrak::create(
+        collect([
             [
                 'kontrak' => 'Kontrak bulan Maret 2024',
-                'keterangan' => '',
-            ]
-        );
-
-        Kontrak::create(
+                'keterangan' => 'keterangan terkait kontrak...',
+                'published_at' => now(),
+            ],
             [
                 'kontrak' => 'Kontrak bulan April 2024',
-                'keterangan' => ' ',
+                'keterangan' => 'keterangan terkait kontrak...',
+                'published_at' => now(),
             ]
-        );
+        ])->each(function ($collection) {
+            Kontrak::create($collection);
+        });
     }
 }
