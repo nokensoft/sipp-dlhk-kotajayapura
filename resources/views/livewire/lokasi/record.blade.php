@@ -3,31 +3,7 @@
 
 
 <div class="mt-3">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <div class="border">
-        <div id="map" class=""
-        style=" width: 100%;
-        height: 600px; "></div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        var map = L.map('map').setView([-2.53371, 140.71813], 13);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var locations = @json($locations);
-        console.info(locations);
-        locations.forEach(function(location) {
-            L.marker([location.latitude, location.longitude])
-                .addTo(map)
-                .bindPopup('<b>' + location.lokasi + '</b>');
-        });
-    </script>
-
-
+    @livewire('lokasi.map')
 
 
 @if (session()->has('success'))

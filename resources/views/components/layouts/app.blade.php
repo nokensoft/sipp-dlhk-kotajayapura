@@ -24,6 +24,8 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
 
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" integrity="sha512-w7ozifyaPV5z7iYP1t1QupBme93n54u/vU25d2rP1ne+kxyW/C73JE5s1v8vZldCV7zIAqNF6iG2W/qIhlrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+
     @vite('resources/css/app.css')
 </head>
 
@@ -52,6 +54,8 @@
 		</div>
 	</div>
 
+    {{-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> --}}
+    {{-- <script src="https://unpkg.com/leaflet/dist/leaflet.js" integrity="sha512-cG6bE0rQhOLgR1i78v5zQkF441ztMy5v5A9HrP080g2l4n3Yd9Y81r6kYv49z0dN7z6awpEn+z6Q2vA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 	<!-- Core Vendors JS -->
 	<script src="{{asset('assets/js/vendors.min.js')}}"></script>
 
@@ -65,6 +69,8 @@
 
 	<!-- Core JS -->
 	<script src="{{asset('assets/js/app.min.js')}}"></script>
+
+
 
 
 

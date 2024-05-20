@@ -58,7 +58,6 @@ class Form extends Component
             $this->lokasi = Lokasi::query()->find($this->id)?->toArray();
         }
 
-
     }
 
     public function save(): void
