@@ -50,8 +50,15 @@ class Record extends Component
         }
         $record->deleted_at = null;
         $record->save();
+        // $this->dispatch('refreshMap');
         session()->flash('success', 'Data diubah menjadi '.$type);
     }
+
+    public function refreshMap()
+    {
+        $this->dispatch('Map', 'refreshMap');
+    }
+
 
     public function undo($id): void
     {
