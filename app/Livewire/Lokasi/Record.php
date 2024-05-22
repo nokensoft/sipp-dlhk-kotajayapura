@@ -50,8 +50,15 @@ class Record extends Component
         }
         $record->deleted_at = null;
         $record->save();
+        // $this->dispatch('refreshMap');
         session()->flash('success', 'Data diubah menjadi '.$type);
     }
+
+    public function refreshMap()
+    {
+        $this->dispatch('Map', 'refreshMap');
+    }
+
 
     public function undo($id): void
     {
@@ -114,7 +121,9 @@ class Record extends Component
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
 
-        return view('livewire.lokasi.record', ['records' => $records]);
+        $locations =Lokasi::published()->get();
+
+        return view('livewire.lokasi.record', ['records' => $records, 'locations' => $locations]);
 
     }
 }

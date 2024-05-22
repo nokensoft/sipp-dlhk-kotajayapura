@@ -10,9 +10,10 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" integrity="sha512-w7ozifyaPV5z7iYP1t1QupBme93n54u/vU25d2rP1ne+kxyW/C73JE5s1v8vZldCV7zIAqNF6iG2W/qIhlrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles -->
         @livewireStyles
@@ -39,7 +40,7 @@
         </div>
 
         @stack('modals')
-
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js" integrity="sha512-cG6bE0rQhOLgR1i78v5zQkF441ztMy5v5A9HrP080g2l4n3Yd9Y81r6kYv49z0dN7z6awpEn+z6Q2vA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         @livewireScripts
     </body>
 </html>
