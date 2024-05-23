@@ -16,22 +16,19 @@
         <span class="font-medium">Gagal </span> {{ session()->get('error') }}
     </div>
 @endif
+@can('edit')
 <div class="flex gap-4 mb-4  mt-4 items-center">
-    <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i
-            class="fa-solid fa-plus"></i> Tambah</a>
-    <a href="#" wire:click.prevent="action('')"
-        class="{{ $menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua
+    <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
+    <a href="#" wire:click.prevent="action('')" class="{{ $menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua
         ({{ $totalAll }})</a>
-    <a href="#" wire:click.prevent="action('publik')"
-        class="{{ $menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik
+    <a href="#" wire:click.prevent="action('publik')" class="{{ $menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik
         ({{ $totalPublik }})</a>
-    <a href="#" wire:click.prevent="action('konsep')"
-        class="{{ $menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep
+    <a href="#" wire:click.prevent="action('konsep')" class="{{ $menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep
         ({{ $totalKonsep }})</a>
-    <a href="#" wire:click.prevent="action('tempat_sampah')"
-        class="{{ $menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat
+    <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{ $menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat
         Sampah ({{ $totalTempatSampah }})</a>
 </div>
+@endcan
 
 <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{ openModalDelete: false }" x-cloak>
 

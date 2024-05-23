@@ -67,7 +67,11 @@
                 </ul>
             </div>
             {{-- menu-group end --}}
+            
+            
+            @role('adminmaster', 'web')
 
+            {{-- {{ Auth::user()->roles->pluck('name')[0] ?? 'adminmaster' }} --}}
 
             <div class="menu-group">
                 <div class="menu-title menu-title-transparent">
@@ -81,11 +85,18 @@
                             <span class="menu-item-text">Data Master</span>
                         </div>
                         <ul>
-                            <li data-menu-item="classic-settings" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('pangkatGolongan') }}">
-                                    <span>Pangkat/Golongan</span>
-                                </a>
-                            </li>
+                            
+                           
+                            
+                                <li data-menu-item="classic-settings" class="menu-item">
+                                    <a class="h-full w-full flex items-center" href="{{ route('pangkatGolongan') }}">
+                                        <span>Pangkat/Golongan</span>
+                                    </a>
+                                </li>
+
+                            
+                            
+
                             <li data-menu-item="classic-invoice" class="menu-item">
                                 <a class="h-full w-full flex items-center" href="{{ route('jabatan') }}">
                                     <span>Jabatan</span>
@@ -174,9 +185,53 @@
                         </a>
                     </li>
                 </ul>
+
             </div>
             {{-- menu-group end --}}
+            
+            @endrole
 
+            @role('kepaladinas', 'web')
+
+            <div class="menu-group">
+                <div class="menu-title menu-title-transparent">
+                    Laporan
+                </div>
+
+                <ul>
+                    <li class="menu-collapse">
+                        <div class="menu-collapse-item">
+                            <i class="fa-solid fa-box text-lg"></i>
+                            <span class="menu-item-text">Laporan</span>
+                        </div>
+                        <ul>
+                            
+                            <li data-menu-item="classic-settings" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Dinas</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Bidang</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Seksi</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            {{-- menu-group end --}}
+            
+            @endrole
 
         </nav>
     </div>
