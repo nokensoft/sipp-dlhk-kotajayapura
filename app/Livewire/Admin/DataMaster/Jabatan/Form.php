@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\DataMaster\Diklat;
+namespace App\Livewire\Admin\DataMaster\Jabatan;
 
 use App\Models\Diklat;
 use Illuminate\Support\Facades\Auth;
@@ -102,6 +102,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.diklat.form');
+        return view('livewire.admin.data-master.jabatan.form');
     }
 }

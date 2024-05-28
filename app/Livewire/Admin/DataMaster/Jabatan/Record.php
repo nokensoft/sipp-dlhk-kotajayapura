@@ -89,7 +89,7 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Jabatan::query()->count();
+        $this->totalAll = Jabatan::query()->withTrashed()->count();
         $this->totalPublik = Jabatan::query()->published()->count();
         $this->totalKonsep = Jabatan::query()->draft()->count();
         $this->totalTempatSampah = Jabatan::query()->withTrashed()->whereNotNull('deleted_at')->count();
@@ -102,7 +102,7 @@ class Record extends Component
                             ->orWhere('keterangan', 'like', '%' . $this->search . '%');
                     });
             });
-        
+
         if ($this->menu === '') {
             $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
         } elseif($this->menu === 'publik'){
@@ -112,8 +112,8 @@ class Record extends Component
         } elseif($this->menu === 'tempat_sampah'){
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
-        
+
         return view('livewire.admin.data-master.jabatan.record', ['records' => $records]);
-        
+
     }
 }

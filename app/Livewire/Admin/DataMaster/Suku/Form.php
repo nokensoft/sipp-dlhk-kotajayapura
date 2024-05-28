@@ -102,6 +102,6 @@ class Form extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.Suku.form');
+        return view('livewire.admin.data-master.suku.form');
     }
 }

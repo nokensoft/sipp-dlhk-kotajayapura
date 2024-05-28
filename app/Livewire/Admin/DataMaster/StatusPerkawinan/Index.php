@@ -104,7 +104,7 @@ class Index extends Component
             $record = StatusPerkawinan::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Gelar Depan', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute('statusPerkawinan', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
