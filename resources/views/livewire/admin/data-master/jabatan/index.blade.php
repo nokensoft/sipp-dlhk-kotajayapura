@@ -41,7 +41,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
-                        <livewire:admin.data-master.jabatan.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
+                        <livewire:admin.data-master.jabatan.form :id="$id" :menu="$menu" :isDisabled="$isDisabled" />
                     @else
                         <livewire:admin.data-master.jabatan.record />
                     @endif

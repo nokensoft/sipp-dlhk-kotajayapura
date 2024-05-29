@@ -1,4 +1,4 @@
-<header class="header border-b border-gray-200">
+<header class="header border-b border-gray-200 z-10">
     <div class="header-wrapper h-16">
         <!-- Header Nav Start start-->
         <div class="header-action header-action-start">

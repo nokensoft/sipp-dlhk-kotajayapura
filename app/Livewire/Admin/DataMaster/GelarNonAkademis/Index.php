@@ -104,7 +104,7 @@ class Index extends Component
             $record = GelarNonAkademis::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Gelar Non Akademis', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute('gelarNonAkademis', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());

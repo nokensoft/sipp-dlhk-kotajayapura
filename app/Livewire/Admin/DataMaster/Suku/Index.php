@@ -96,7 +96,7 @@ class Index extends Component
             $record = Suku::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Suku', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute('suku', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());

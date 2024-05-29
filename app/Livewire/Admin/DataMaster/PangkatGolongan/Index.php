@@ -104,7 +104,7 @@ class Index extends Component
             $record = PangkatGolongan::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Pangkat/Golongan', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute('pangkatGolongan', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
