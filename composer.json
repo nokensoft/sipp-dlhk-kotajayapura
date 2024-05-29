@@ -10,7 +10,6 @@
         "laravel/jetstream": "^5.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "leaflet/leaflet": "*",
         "livewire/livewire": "^3.0",
         "spatie/laravel-permission": "^6.7"
     },
