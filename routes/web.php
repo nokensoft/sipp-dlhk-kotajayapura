@@ -17,6 +17,8 @@ use App\Livewire\Admin\DataMaster\Suku\Index as Suku;
 use App\Livewire\Admin\DataMaster\Distrik\Index as Distrik;
 use App\Livewire\Admin\DataMaster\Kelurahan\Index as Kelurahan;
 
+use App\Livewire\Laporan\Index as Laporan;
+
 Route::get('/', function () {
     return view('AdminMaster.login');
 });
@@ -50,7 +52,7 @@ Route::middleware([
 
     Route::get('/asn', Asn::class)->name('asn');
     Route::get('/non-asn', Asn::class)->name('nonAsn');
-//    Route::get('/non-asn', NonAsn::class)->name('nonAsn');
+    // Route::get('/non-asn', NonAsn::class)->name('nonAsn');
     Route::get('/bidang', Bidang::class)->name('bidang');
     Route::get('/lokasi', Lokasi::class)->name('lokasi');
     Route::get('/pengguna', Pengguna::class)->name('pengguna');
@@ -70,5 +72,11 @@ Route::middleware([
         Route::get('suku', Suku::class)->name('suku');
         Route::get('distrik', Distrik::class)->name('distrik');
         Route::get('kelurahan', Kelurahan::class)->name('kelurahan');
+
     });
+
+    Route::get('laporan/kepaladinas', Laporan::class)->name('laporanKepalaDinas');
+    Route::get('laporan/kepalabidang', Laporan::class)->name('laporanKepalaBidang');
+    Route::get('laporan/kepalaseksi', Laporan::class)->name('laporanKepalaSeksi');
+
 });

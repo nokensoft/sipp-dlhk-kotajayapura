@@ -84,19 +84,19 @@
                         <ul>
                             
                             <li data-menu-item="classic-settings" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('laporanKepalaDinas') }}">
                                     <span>Kepala Dinas</span>
                                 </a>
                             </li>
 
                             <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('laporanKepalaBidang') }}">
                                     <span>Kepala Bidang</span>
                                 </a>
                             </li>
 
                             <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                <a class="h-full w-full flex items-center" href="{{ route('laporanKepalaSeksi') }}">
                                     <span>Kepala Seksi</span>
                                 </a>
                             </li>
