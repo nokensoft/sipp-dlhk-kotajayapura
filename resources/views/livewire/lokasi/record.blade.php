@@ -18,7 +18,9 @@
 @endif
 @can('edit')
 <div class="flex gap-4 mb-4  mt-4 items-center">
+    
     <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
+
     <a href="#" wire:click.prevent="action('')" class="{{ $menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua
         ({{ $totalAll }})</a>
     <a href="#" wire:click.prevent="action('publik')" class="{{ $menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500' }}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik

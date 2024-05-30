@@ -67,9 +67,51 @@
                 </ul>
             </div>
             {{-- menu-group end --}}
+
+            @hasanyrole('kepaladinas|kepalabidang|kepalaseksi|adminmaster')
+
+            <div class="menu-group">
+                <div class="menu-title menu-title-transparent">
+                    Laporan
+                </div>
+
+                <ul>
+                    <li class="menu-collapse">
+                        <div class="menu-collapse-item">
+                            <i class="fa-solid fa-box text-lg"></i>
+                            <span class="menu-item-text">Laporan</span>
+                        </div>
+                        <ul>
+                            
+                            <li data-menu-item="classic-settings" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Dinas</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Bidang</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
+                                    <span>Kepala Seksi</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            {{-- menu-group end --}}
+            
+            @endhasanyrole
             
             
-            @role('adminmaster', 'web')
+            @hasanyrole('adminmaster')
 
             {{-- {{ Auth::user()->roles->pluck('name')[0] ?? 'adminmaster' }} --}}
 
@@ -189,49 +231,7 @@
             </div>
             {{-- menu-group end --}}
             
-            @endrole
-
-            @role('kepaladinas', 'web')
-
-            <div class="menu-group">
-                <div class="menu-title menu-title-transparent">
-                    Laporan
-                </div>
-
-                <ul>
-                    <li class="menu-collapse">
-                        <div class="menu-collapse-item">
-                            <i class="fa-solid fa-box text-lg"></i>
-                            <span class="menu-item-text">Laporan</span>
-                        </div>
-                        <ul>
-                            
-                            <li data-menu-item="classic-settings" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
-                                    <span>Kepala Dinas</span>
-                                </a>
-                            </li>
-
-                            <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
-                                    <span>Kepala Bidang</span>
-                                </a>
-                            </li>
-
-                            <li data-menu-item="classic-invoice" class="menu-item">
-                                <a class="h-full w-full flex items-center" href="{{ route('dasbor') }}">
-                                    <span>Kepala Seksi</span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </li>
-                </ul>
-
-            </div>
-            {{-- menu-group end --}}
-            
-            @endrole
+            @endhasanyrole
 
         </nav>
     </div>
