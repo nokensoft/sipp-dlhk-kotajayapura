@@ -116,6 +116,8 @@ class Form extends Component
         $this->jenjangPendidikan = JenjangPendidikan::query()->get();
         $this->statusPerkawinan = StatusPerkawinan::query()->get();
 
+        
+
         if(!$this->userLogin->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }

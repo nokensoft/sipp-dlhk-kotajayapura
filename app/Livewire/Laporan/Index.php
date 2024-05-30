@@ -25,22 +25,22 @@ class Index extends Component
 
     public function mount(): void
     {
-        if (request()->segment(1) === 'laporan-kepala-dinas'){
+        if (request()->segment(2) === 'kepaladinas'){
             $this->title = 'Laporan Kepala Dinas';
             $this->subtitle = 'Data laporan Kepala Dinas...';
-            $this->isAsn = false;
+            $this->kategori = 'kepaladinas';
         }
 
-        if (request()->segment(1) === 'laporan-kepala-bidang'){
+        if (request()->segment(2) === 'kepalabidang'){
             $this->title = 'Laporan Kepala Bidang';
             $this->subtitle = 'Data laporan Kepala Bidang...';
-            $this->isAsn = false;
+            $this->kategori = 'kepalabidang';
         }
         
-        if (request()->segment(1) === 'laporan-kepala-seksi'){
+        if (request()->segment(2) === 'kepalaseksi'){
             $this->title = 'Laporan Kepala Seksi';
             $this->subtitle = 'Data laporan Kepala Seksi...';
-            $this->isAsn = false;
+            $this->kategori = 'kepalaseksi';
         }
 
         $this->buttonMenu();
@@ -50,7 +50,7 @@ class Index extends Component
     public function action():void
     {
         if (in_array($this->menu, ['create', 'edit'])) {
-            $this->redirect(route('asn'));
+            $this->redirect(url('laporan', 'kepaladinas'));
         }
         if($this->menu === ''){
             $this->menu = 'create';

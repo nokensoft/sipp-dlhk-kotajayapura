@@ -83,21 +83,6 @@
                                 }
                             @endphp
                             <tr>
-                                <td>
-                                    <div class="flex items-center">
-                                        <span class="avatar avatar-rounded avatar-md">
-                                            <img class="avatar-img avatar-rounded"
-                                                 src="{{ isset($record->gambar) && !empty($record->gambar) ? asset('storage/'.$record->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy">
-                                        </span>
-                                        <span class="ml-2 rtl:mr-2 font-semibold">
-                                            {{$record->nama_depan}} {{$record->nama_tengah}} {{$record->nama_belakang}}
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="capitalize">{{$record->email}}</span>
-                                </td>
-                                <td>{{$record->no_hp}}</td>
                                 <td>{{$record->laporan}}</td>
                                 <td>{{$record->keterangan}}</td>
                                 <td>{{$record->kategori}}</td>

@@ -1,25 +1,10 @@
 <?php
 
-namespace App\Livewire\Pegawai;
+namespace App\Livewire\Laporan;
 
-use App\Models\Agama;
-use App\Models\Bidang;
-use App\Models\DeskripsiTugas;
-use App\Models\Distrik;
-use App\Models\GelarAkademis;
-use App\Models\GelarBelakang;
-use App\Models\GelarDepan;
-use App\Models\GelarNonAkademis;
-use App\Models\Jabatan;
-use App\Models\JenisKelamin;
-use App\Models\JenjangPendidikan;
-use App\Models\Kelurahan;
-use App\Models\Lokasi;
-use App\Models\PangkatGolongan;
-use App\Models\Pegawai;
-use App\Models\StatusPerkawinan;
-use App\Models\Suku;
+use App\Models\Laporan;
 use App\Models\User;
+use App\Models\StatusPerkawinan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -36,10 +21,10 @@ use Spatie\Permission\Models\Role;
 class Form extends Component
 {
     use WithFileUploads;
-    public $pegawai = [];
+    public $laporan = [];
     public $user = [];
-    public $bidang, $lokasi, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
-    public bool $isAsn = true;
+    public $statusPerkawinan = [];
+    // public $kategori = 'kepaladinas';
     public bool $isDisabled = false;
     public $userLogin;
     public $roles = [];
@@ -52,75 +37,27 @@ class Form extends Component
     public string $menu = '';
 
     protected $rules = [
-        'pegawai.nama_depan' => 'required',
-        'pegawai.nama_tengah' => 'nullable',
-        'pegawai.nama_belakang' => 'nullable',
-        'user.username' => 'required|unique:users,username',
-        'pegawai.email' => 'nullable',
-        'pegawai.no_hp' => 'nullable',
-        'pegawai.gambar' => 'nullable|mimes:jpeg,png,jpg',
-        'pegawai.ktp' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.kk' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.transkip_nilai' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.ijazah' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.akte_kelahiran' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.akte_pernikahan' => 'nullable|mimes:jpeg,png,jpg,pdf',
-        'pegawai.bidang_id' => 'nullable',
-        'pegawai.lokasi_id' => 'nullable',
-        'pegawai.jenis_kelamin_id' => 'nullable',
-        'pegawai.agama_id' => 'nullable',
-        'pegawai.pangkat_golongan_id' => 'nullable',
-        'pegawai.suku_id' => 'nullable',
-        'pegawai.distrik_id' => 'nullable',
-        'pegawai.kelurahan_id' => 'nullable',
-        'pegawai.jabatan_id' => 'nullable',
-        'pegawai.deskripsi_tugas_id' => 'nullable',
-        'pegawai.gelar_depan_id' => 'nullable',
-        'pegawai.gelar_belakang_id' => 'nullable',
-        'pegawai.gelar_akademis_id' => 'nullable',
-        'pegawai.jenjang_pendidikan_id' => 'nullable',
+        'laporan.laporan' => 'required',
+        'laporan.keterangan' => 'nullable',
+        'laporan.kategori' => 'nullable',
+        'laporan.file' => 'nullable',
         'pegawai.status_perkawinan_id' => 'nullable',
-        'pegawai.catatan' => 'nullable',
     ];
 
     protected $messages = [
-        'pegawai.nama_depan.required' => 'Nama Depan tidak boleh kosong',
-        'user.username.required' => 'Username tidak boleh kosong',
-        'user.username.unique' => 'Username sudah digunakan!',
-        'pegawai.gambar.mimes' => 'Gambar harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.ktp.mimes' => 'KTP harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.kk.mimes' => 'Kartu Keluarga harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.transkip_nilai.mimes' => 'Kartu Keluarga harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.ijazah.mimes' => 'Ijazah harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.akte_kelahiran.mimes' => 'Akte Kelahiran harus berupa format JPG, JPEG, atau PNG',
-        'pegawai.akte_pernikahan.mimes' => 'Akte Pernikahan harus berupa format JPG, JPEG, atau PNG',
+        'laporan.laporan.required' => 'Judul laporan tidak boleh kosong',
     ];
 
     public function mount(): void
     {
-        $this->userLogin = Auth::user();
-        $this->loadPegawai($this->id, $this->menu);
-        $this->bidang = Bidang::query()->get();
-        $this->lokasi = Lokasi::query()->get();
-        $this->jenisKelamin = JenisKelamin::query()->get();
-        $this->agama = Agama::query()->get();
-        $this->pangkatGolongan = PangkatGolongan::query()->get();
-        $this->suku = Suku::query()->get();
-        $this->distrik = Distrik::query()->get();
-        $this->kelurahan = Kelurahan::query()->get();
-        $this->jabatan = Jabatan::query()->get();
-        $this->deskripsiTugas = DeskripsiTugas::query()->get();
-        $this->gelarDepan = GelarDepan::query()->get();
-        $this->gelarBelakang = GelarBelakang::query()->get();
-        $this->gelarAkademis = GelarNonAkademis::query()->get();
-        $this->jenjangPendidikan = JenjangPendidikan::query()->get();
-        $this->statusPerkawinan = StatusPerkawinan::query()->get();
+        $this->user = Auth::user();
+        $this->loadLaporan($this->id, $this->menu);
+        
+        
 
-        if(!$this->userLogin->hasAnyPermission(['edit'])){
+        if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
-
-//        dd($this->user);
     }
 
     #[On('refresh')]
@@ -133,7 +70,7 @@ class Form extends Component
     {
         if (!$this->userLogin->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+            $this->redirectRoute( request()->segment(2) );
             return;
         }
         if(isset($this->user['id'])){
@@ -151,37 +88,19 @@ class Form extends Component
                  $this->user
              );
             $user->assignRole($this->role);
-             $this->pegawai['user_id'] = $user->id;
+             $this->laporan['user_id'] = $user->id;
 
-             if (isset($this->pegawai['ktp']) && $this->pegawai['ktp'] != '' && !is_string($this->pegawai['ktp'])) {
-                 $this->pegawai['ktp'] =  $this->uploadFile($this->pegawai['nama_depan'].'_ktp_',$this->pegawai['ktp']);
-             }
-             if (isset($this->pegawai['kk']) && $this->pegawai['kk'] != '' && !is_string($this->pegawai['kk'])) {
-                 $this->pegawai['kk'] = $this->uploadFile($this->pegawai['nama_depan'].'_kk_',$this->pegawai['kk']);
-             }
-             if (isset($this->pegawai['gambar']) && $this->pegawai['gambar'] != '' && !is_string($this->pegawai['gambar'])) {
-                 $this->pegawai['gambar'] =  $this->uploadFile($this->pegawai['nama_depan'].'_gambar_',$this->pegawai['gambar']);
-             }
-             if (isset($this->pegawai['ijazah']) && $this->pegawai['ijazah'] != '' && !is_string($this->pegawai['ijazah'])) {
-                 $this->pegawai['ijazah'] = $this->uploadFile($this->pegawai['nama_depan'].'_ijazah_',$this->pegawai['ijazah']);
-             }
-             if (isset($this->pegawai['transkip_nilai']) && $this->pegawai['transkip_nilai'] != '' && !is_string($this->pegawai['transkip_nilai'])) {
-                 $this->pegawai['transkip_nilai'] = $this->uploadFile($this->pegawai['nama_depan'].'_transkip_nilai_',$this->pegawai['transkip_nilai']);
-             }
-             if (isset($this->pegawai['akte_kelahiran']) && $this->pegawai['akte_kelahiran'] != '' && !is_string($this->pegawai['akte_kelahiran'])) {
-                 $this->pegawai['akte_kelahiran'] = $this->uploadFile($this->pegawai['nama_depan'].'_akte_kelahiran_',$this->pegawai['akte_kelahiran']);
-             }
-             if (isset($this->pegawai['akte_pernikahan']) && $this->pegawai['akte_pernikahan'] != '' && !is_string($this->pegawai['akte_pernikahan'])) {
-                 $this->pegawai['akte_pernikahan'] = $this->uploadFile($this->pegawai['nama_depan'].'_akte_pernikahan_',$this->pegawai['akte_pernikahan']);
+             if (isset($this->laporan['file']) && $this->laporan['file'] != '' && !is_string($this->laporan['file'])) {
+                 $this->laporan['file'] =  $this->uploadFile($this->laporan['nama_depan'].'_laporan_',$this->laporan['file']);
              }
 
-            $this->pegawai['is_asn'] = $this->isAsn;
+            $this->laporan['is_asn'] = $this->isAsn;
 
-             Pegawai::updateOrCreate(
+             Laporan::updateOrCreate(
                  [
-                     'id' => $this->pegawai['id'] ?? null
+                     'id' => $this->laporan['id'] ?? null
                  ],
-                 $this->pegawai
+                 $this->laporan
              );
              DB::commit();
         }catch (Exception $e){
@@ -190,12 +109,12 @@ class Form extends Component
             return;
         }
         $message = 'tambahkan data baru!';
-        if (isset($this->pegawai['id'])){
+        if (isset($this->laporan['id'])){
             $message = 'ubah data!';
         }
         session()->flash('success', $message);
-        if (isset($this->pegawai['id'])){
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'view', 'id' => $this->pegawai['id'] ?? '']);
+        if (isset($this->laporan['id'])){
+            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'view', 'id' => $this->laporan['id'] ?? '']);
         }else{
             $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
         }
@@ -203,26 +122,8 @@ class Form extends Component
 
     private function fileChecking(): void
     {
-        if(isset($this->pegawai['ktp']) && is_string($this->pegawai['ktp'])){
-            $this->rules['pegawai.ktp'] = 'nullable';
-        }
-        if(isset($this->pegawai['kk']) && is_string($this->pegawai['kk'])){
-            $this->rules['pegawai.kk'] = 'nullable';
-        }
-        if(isset($this->pegawai['gambar']) && is_string($this->pegawai['gambar'])){
-            $this->rules['pegawai.gambar'] = 'nullable';
-        }
-        if(isset($this->pegawai['ijazah']) && is_string($this->pegawai['ijazah'])){
-            $this->rules['pegawai.ijazah'] = 'nullable';
-        }
-        if(isset($this->pegawai['transkip_nilai']) && is_string($this->pegawai['transkip_nilai'])){
-            $this->rules['pegawai.transkip_nilai'] = 'nullable';
-        }
-        if(isset($this->pegawai['akte_kelahiran']) && is_string($this->pegawai['akte_kelahiran'])){
-            $this->rules['pegawai.akte_kelahiran'] = 'nullable';
-        }
-        if(isset($this->pegawai['akte_pernikahan']) && is_string($this->pegawai['akte_pernikahan'])){
-            $this->rules['pegawai.akte_pernikahan'] = 'nullable';
+        if(isset($this->laporan['file']) && is_string($this->laporan['file'])){
+            $this->rules['laporan.file'] = 'nullable';
         }
     }
 
@@ -235,7 +136,7 @@ class Form extends Component
     private function uploadFile($fileName, $file): string
     {
         $fileName = $fileName. '_'.$this->microtime_float().'.'.$file->extension();
-        $file->storeAs('public/files', $fileName);
+        $file->storeAs('public/files/laporan', $fileName);
         return 'files/'.$fileName;
     }
 
@@ -245,14 +146,14 @@ class Form extends Component
         return Response::download($filepath);
     }
 
-    #[On('load-pegawai')]
-    public function loadPegawai($id, $menu = 'view'):void
+    #[On('load-laporan')]
+    public function loadLaporan($id, $menu = 'view'):void
     {
         $this->menu = $menu;
         $this->roles = Role::query()->get();
         if ($this->id != ''){
-            $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
-            $this->user = User::query()->with('roles')->find($this->pegawai['user_id'] ?? null)?->toArray();
+            $this->laporan = Laporan::query()->withTrashed()->find($id)?->toArray();
+            $this->user = User::query()->with('roles')->find($this->laporan['user_id'] ?? null)?->toArray();
             $this->role = $this->user['roles'][0]['name'];
         }
         if($this->menu === 'view')  $this->isDisabled = true;
@@ -261,14 +162,14 @@ class Form extends Component
     #[On('delete-file')]
     public function deleteFile($name):void
     {
-        $pathFile = storage_path('app/public/' . $this->pegawai[$name] ?? '');
+        $pathFile = storage_path('app/public/' . $this->laporan[$name] ?? '');
         if (file_exists($pathFile)) unlink($pathFile);
-        $this->pegawai[$name] = '';
-        Pegawai::updateOrCreate(
+        $this->laporan[$name] = '';
+        Laporan::updateOrCreate(
             [
-                'id' => $this->pegawai['id'] ?? null
+                'id' => $this->laporan['id'] ?? null
             ],
-            $this->pegawai
+            $this->laporan
         );
     }
 

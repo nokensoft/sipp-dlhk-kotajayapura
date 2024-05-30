@@ -17,6 +17,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepaladinas',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'published_at' => null,
             ],
             [
@@ -24,6 +25,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepaladinas',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'deleted_at' => now(),
             ],
             [
@@ -31,6 +33,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepalabidang',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'published_at' => now(),
             ],
             [
@@ -38,6 +41,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepalabidang',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'deleted_at' => now(),
             ],
             [
@@ -45,6 +49,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepalaseksi',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'published_at' => now(),
             ],
             [
@@ -52,6 +57,7 @@ class LaporanSeeder extends Seeder
                 'keterangan' => 'keterangan singkat',
                 'kategori' => 'kepalaseksi',
                 'file' => 'laporan.pdf',
+                'tanggal' => now(),
                 'deleted_at' => now(),
             ]
         ])->each(function ($item) {

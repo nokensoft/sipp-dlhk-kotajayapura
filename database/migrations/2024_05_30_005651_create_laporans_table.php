@@ -17,6 +17,7 @@ return new class extends Migration
             $table->mediumText('keterangan')->nullable();
             $table->enum('kategori', ['kepaladinas', 'kepalabidang', 'kepalaseksi'])->nullable();
             $table->string('file')->nullable();
+            $table->timestamp('tanggal')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
