@@ -15,6 +15,10 @@ class RoleSeeder extends Seeder
         $permission1 = Permission::create(['name' => 'edit']);
         $permission2 = Permission::create(['name' => 'delete']);
         $permission3 = Permission::create(['name' => 'view']);
+        $permission4 = Permission::create(['name' => 'akses_kepaladinas']);
+        $permission5 = Permission::create(['name' => 'akses_kepalabidang']);
+        $permission6 = Permission::create(['name' => 'akses_kepalaseksi']);
+
         $role1 = Role::create([
             'id' => 1,
             'name' => 'adminmaster',
@@ -43,6 +47,7 @@ class RoleSeeder extends Seeder
             'keterangan' => 'hak akses sebagai Kepala Bidang'
         ]);
         $role3->givePermissionTo($permission3);
+        $role3->givePermissionTo($permission5);
         $permission3->assignRole($role3);
 
         $role4 = Role::create([
@@ -51,6 +56,7 @@ class RoleSeeder extends Seeder
             'keterangan' => 'Hak akses sebagai Kepala Bidang'
         ]);
         $role4->givePermissionTo($permission3);
+        $role4->givePermissionTo($permission5);
         $permission3->assignRole($role4);
 
         $role5 = Role::create([
@@ -59,6 +65,7 @@ class RoleSeeder extends Seeder
             'keterangan' => 'Hak akses sebagai Kepala Seksi'
         ]);
         $role5->givePermissionTo($permission3);
+        $role5->givePermissionTo($permission6);
         $permission3->assignRole($role5);
 
         $role6 = Role::create([
