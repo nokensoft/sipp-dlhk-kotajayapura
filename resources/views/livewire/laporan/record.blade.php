@@ -9,7 +9,7 @@
             <span class="font-medium">Gagal </span> {{session()->get('error')}}
         </div>
     @endif
-    @can('edit')
+    @hasanyrole('adminmaster|'.$kategori)
         <div class="flex gap-4 mb-4 items-center">
             <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
             <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
@@ -17,7 +17,7 @@
             <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
             <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
         </div>
-    @endcan
+    @endhasanyrole
     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex justify-between">
             <div class="flex gap-1 items-center">
@@ -60,9 +60,9 @@
                 <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
                     <thead>
                     <tr>
+                        <th>Tanggal</th>
                         <th>Laporan</th>
                         <th>Keterangan</th>
-                        <th>Kategori</th>
                         <th>File</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
@@ -83,10 +83,10 @@
                                 }
                             @endphp
                             <tr>
+                                <td>{{$record->tanggal}}</td>
                                 <td>{{$record->laporan}}</td>
                                 <td>{{$record->keterangan}}</td>
-                                <td>{{$record->kategori}}</td>
-                                <td>{{$record->file}}</td>
+                                <td><a href="{{asset('storage/'.$record->file)}}">File</a></td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))
                                         <td>
@@ -104,7 +104,7 @@
                                 <td>
                                     <div class="flex justify-end items-center text-lg">
                                         @if(isset($record->deleted_at))
-                                            @can('edit')
+                                            @hasanyrole('adminmaster|'.$kategori)
                                                 <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="undo({{$record->id}})" id="undo{{$record->id}}">
                                                     <i class="fa-solid fa-rotate-left"></i>
                                                 </span>
@@ -114,7 +114,7 @@
                                                         theme: 'primary'
                                                     });
                                                 </script>
-                                            @endcan
+                                            @endhasanyrole
                                         @else
                                             @can('view')
                                                 <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
@@ -127,7 +127,7 @@
                                                     });
                                                 </script>
                                             @endcan
-                                            @can('edit')
+                                            @hasanyrole('adminmaster|'.$kategori)
                                                 <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })" id="edit{{$record->id}}">
                                                     <i class="fa-solid fa-edit text-sm"></i>
                                                 </span>
@@ -137,9 +137,9 @@
                                                         theme: 'primary'
                                                     });
                                                 </script>
-                                            @endcan
+                                            @endhasanyrole
                                         @endif
-                                        @can('delete')
+                                        @hasanyrole('adminmaster|'.$kategori)
                                             <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
                                                 <i class="fa-solid fa-trash text-sm"></i>
                                             </span>
@@ -149,7 +149,7 @@
                                                     theme: 'primary'
                                                 });
                                             </script>
-                                        @endcan
+                                        @endhasanyrole
                                     </div>
                                 </td>
                             </tr>

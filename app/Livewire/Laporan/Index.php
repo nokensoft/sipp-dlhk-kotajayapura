@@ -19,28 +19,34 @@ class Index extends Component
     public string $title = "Laporan";
     public bool $isAsn = true;
     public bool $isDisabled = false;
+    public string $route = '';
+    public string $segment = '';
 
     #[Url(history: true)]
     public string $id = '';
 
     public function mount(): void
     {
-        if (request()->segment(2) === 'kepaladinas'){
+        $this->segment = request()->segment(2);
+        if ($this->segment === 'kepaladinas'){
             $this->title = 'Laporan Kepala Dinas';
             $this->subtitle = 'Data laporan Kepala Dinas...';
             $this->kategori = 'kepaladinas';
+            $this->route = 'laporanKepalaDinas';
         }
 
-        if (request()->segment(2) === 'kepalabidang'){
+        if ($this->segment === 'kepalabidang'){
             $this->title = 'Laporan Kepala Bidang';
             $this->subtitle = 'Data laporan Kepala Bidang...';
             $this->kategori = 'kepalabidang';
+            $this->route = 'laporanKepalaBidang';
         }
-        
-        if (request()->segment(2) === 'kepalaseksi'){
+
+        if ($this->segment === 'kepalaseksi'){
             $this->title = 'Laporan Kepala Seksi';
             $this->subtitle = 'Data laporan Kepala Seksi...';
             $this->kategori = 'kepalaseksi';
+            $this->route = 'laporanKepalaSeksi';
         }
 
         $this->buttonMenu();
@@ -107,19 +113,14 @@ class Index extends Component
                 $record->forceDelete();
                 session()->flash('success', 'Data berhasil dihapus permanen');
 
-                if (request()->segment(1) === 'laporan-kepala-dinas'){
-                    $this->redirectRoute('laporanKepalaDinas');
-                } elseif (request()->segment(1) === 'laporan-kepala-bidang'){
-                    $this->redirectRoute('laporanKepalaBidang');
-                } else{
-                    $this->redirectRoute('laporan-kepala-seksi');
-                }
+
+                $this->redirectRoute(request()->segment(2));
             }
 
             $record = Laporan::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Laporan' ? 'laporan-kepala-dinas' : 'laporan-kepala-bidang', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute($this->route, ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());

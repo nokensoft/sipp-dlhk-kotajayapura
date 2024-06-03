@@ -13,33 +13,37 @@
                                         <x-admin.input label="Judul Laporan" id="laporan" name="laporan.laporan" :isDisabled="$isDisabled" />
                                     </div>
 
-                                    <div class="form-item flex gap-2">
-
-                                        <div class="w-1/2">
-                                            <x-admin.input label="Kategori" id="kategori" name="laporan.kategori" :isDisabled="$isDisabled"/>
-                                        </div>
-                                    
-                                        <div class="w-1/2">
-                                            <x-admin.input label="Tanggal" id="tanggal" name="laporan.tanggal" :isDisabled="$isDisabled"/>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="form-item">                                        
-                                        <x-admin.input label="Ditujukan kepada" id="tanggal" name="laporan.ditujukan" :isDisabled="$isDisabled"/>
-                                    </div>
-                                    
                                     <div class="form-item">
-                                        <x-admin.textarea label="Keterangan" id="keterangan" name="laporan.keterangan" :isDisabled="$isDisabled" />
+                                        <x-admin.input label="Tanggal" id="tanggal" name="laporan.tanggal" type="date" :isDisabled="$isDisabled"/>
                                     </div>
-                                    
+
+                                    <div class="form-item">
+                                        <x-admin.textarea label="Catatan" id="keterangan" name="laporan.catatan" :isDisabled="$isDisabled" />
+                                    </div>
+
+
+                                    <h3 class="mb-2 text-sm font-medium text-gray-900">Ditujukan Kepada</h3>
+                                    <ul class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg">
+                                        @foreach($listOption as $list)
+                                            @if(auth()->user()->hasRole($segment) != auth()->user()->hasRole($list))
+                                                <li class="w-full">
+                                                    <div class="flex items-center">
+                                                        <input id="{{$list}}" type="checkbox" value="{{$list}}" wire:model="laporanDetail" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" @disabled($isDisabled)>
+                                                        <label for="{{$list}}" class="w-full py-1 ms-2 text-sm font-medium text-gray-900">{{$list}}</label>
+                                                    </div>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+
+
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-1">
                             <div class="card adaptable-card mb-4">
                                 <div class="card-body">
-                                    <x-admin.upload-file title="Gambar" subtitle="Unggah file laporan" id="gambar" label="Gambar" name="laporan.file" :img="isset($laporan['file']) && !empty($laporan) ? $laporan['file'] : ''" :isDisabled="$isDisabled" />
+                                    <x-admin.upload-file title="File" subtitle="Unggah file laporan" id="gambar" label="Gambar" name="laporan.file" :img="isset($laporan['file']) && !empty($laporan) ? $laporan['file'] : ''" :isDisabled="$isDisabled" />
                                 </div>
                             </div>
                         </div>

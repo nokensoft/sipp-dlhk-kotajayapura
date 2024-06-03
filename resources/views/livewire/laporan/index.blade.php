@@ -41,7 +41,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
-                        <livewire:laporan.form :id="$id" :isAsn="$isAsn" :menu="$menu" :isDisabled="$isDisabled"/>
+                        <livewire:laporan.form :id="$id" :segment="$segment" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:laporan.record />
                     @endif

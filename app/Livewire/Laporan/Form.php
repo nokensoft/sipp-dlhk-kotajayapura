@@ -3,6 +3,7 @@
 namespace App\Livewire\Laporan;
 
 use App\Models\Laporan;
+use App\Models\LaporanDetail;
 use App\Models\User;
 use App\Models\StatusPerkawinan;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,10 @@ class Form extends Component
     public $userLogin;
     public $roles = [];
     public $role;
+    public $laporanDetail = [];
+    public string $segment = '';
+    public string $route = 'laporanKepalaDinas';
+    public $listOption = [];
 
     #[Url(history: true)]
     public string $id = '';
@@ -38,10 +43,9 @@ class Form extends Component
 
     protected $rules = [
         'laporan.laporan' => 'required',
-        'laporan.keterangan' => 'nullable',
-        'laporan.kategori' => 'nullable',
+        'laporan.catatan' => 'nullable',
         'laporan.file' => 'nullable',
-        'pegawai.status_perkawinan_id' => 'nullable',
+        'laporan.tanggal' => 'nullable',
     ];
 
     protected $messages = [
@@ -50,14 +54,9 @@ class Form extends Component
 
     public function mount(): void
     {
-        $this->user = Auth::user();
+        $this->user = auth()->user();
         $this->loadLaporan($this->id, $this->menu);
-        
-        
-
-        if(!$this->user->hasAnyPermission(['edit'])){
-            $this->isDisabled = true;
-        }
+        $this->listOption = ['kepaladinas', 'kepalabidang', 'kepalaseksi'];
     }
 
     #[On('refresh')]
@@ -68,41 +67,53 @@ class Form extends Component
 
     public function save(): void
     {
-        if (!$this->userLogin->hasAnyPermission(['edit'])){
-            session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute( request()->segment(2) );
-            return;
+        $user = auth()->user();
+        if ($this->segment === 'kepalabidang'){
+            $this->route = 'laporanKepalaBidang';
+        }elseif($this->segment === 'kepalaSeksi'){
+            $this->route = 'laporanKepalaSeksi';
         }
-        if(isset($this->user['id'])){
-            $this->rules['user.username'] = 'required|unique:users,username,'.$this->user['id'];
+        if (!$user->hasRole([$this->segment,'adminmaster'])){
+            session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
+            $this->redirectRoute( $this->route );
+            return;
         }
         $this->fileChecking();
         $this->validate();
         try {
             DB::beginTransaction();
-            $this->user['password'] = Hash::make($this->user['username']);
-             $user = User::updateOrCreate(
-                 [
-                     'id' => $this->user['id'] ?? null
-                 ],
-                 $this->user
-             );
-            $user->assignRole($this->role);
-             $this->laporan['user_id'] = $user->id;
+            if (isset($this->laporan['file']) && $this->laporan['file'] != '' && !is_string($this->laporan['file'])) {
+                $this->laporan['file'] =  $this->uploadFile($this->laporan['file'].'_file_',$this->laporan['file']);
+            }
+            $this->laporan['user_id'] = $this->user['id'];
+            $laporan = Laporan::updateOrCreate(
+                [
+                    'id' => $this->laporan['id'] ?? null
+                ],
+                $this->laporan
+            );
 
-             if (isset($this->laporan['file']) && $this->laporan['file'] != '' && !is_string($this->laporan['file'])) {
-                 $this->laporan['file'] =  $this->uploadFile($this->laporan['nama_depan'].'_laporan_',$this->laporan['file']);
-             }
+            if(isset($this->laporan['id'])){
+                LaporanDetail::query()->where(['laporan_id' => $this->laporan['id'] ?? null])->whereNotIn('kepada', $this->laporanDetail)->each(function ($data){
+                    $data->delete();
+                });
+            }
 
-            $this->laporan['is_asn'] = $this->isAsn;
+            $laporanDetail = LaporanDetail::query()->where(['laporan_id' => $this->laporan['id'] ?? null])->pluck('kepada')->toArray();
 
-             Laporan::updateOrCreate(
-                 [
-                     'id' => $this->laporan['id'] ?? null
-                 ],
-                 $this->laporan
-             );
-             DB::commit();
+            $difference = array_filter($this->laporanDetail, function($value) use ($laporanDetail) {
+                return !in_array($value, $laporanDetail);
+            });
+
+            foreach ($difference as $detail) {
+                LaporanDetail::create(
+                    [
+                        'laporan_id' => $laporan->id ?? $this->laporan['id'] ?? null,
+                        'kepada' => $detail
+                    ]
+                );
+            }
+            DB::commit();
         }catch (Exception $e){
             DB::rollBack();
             Log::info('Error: '. $e->getMessage());
@@ -113,11 +124,13 @@ class Form extends Component
             $message = 'ubah data!';
         }
         session()->flash('success', $message);
-        if (isset($this->laporan['id'])){
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'view', 'id' => $this->laporan['id'] ?? '']);
-        }else{
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+        $route = 'laporanKepalaDinas';
+        if($this->segment === 'kepalabidang'){
+            $route = 'laporanKepalaBidang';
+        }elseif ($this->segment === 'kepalaseksi'){
+            $route = 'laporanKepalaSeksi';
         }
+        $this->redirectRoute($route);
     }
 
     private function fileChecking(): void
@@ -136,8 +149,8 @@ class Form extends Component
     private function uploadFile($fileName, $file): string
     {
         $fileName = $fileName. '_'.$this->microtime_float().'.'.$file->extension();
-        $file->storeAs('public/files/laporan', $fileName);
-        return 'files/'.$fileName;
+        $file->storeAs('public/files/laporan/', $fileName);
+        return 'files/laporan'.$fileName;
     }
 
     #[On('download')]
@@ -155,6 +168,7 @@ class Form extends Component
             $this->laporan = Laporan::query()->withTrashed()->find($id)?->toArray();
             $this->user = User::query()->with('roles')->find($this->laporan['user_id'] ?? null)?->toArray();
             $this->role = $this->user['roles'][0]['name'];
+            $this->laporanDetail = Laporan::query()->withTrashed()->find($id)->laporanDetail->pluck('kepada')->toArray();
         }
         if($this->menu === 'view')  $this->isDisabled = true;
     }

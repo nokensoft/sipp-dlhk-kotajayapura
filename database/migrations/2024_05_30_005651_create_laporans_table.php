@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
             $table->string('laporan');
-            $table->mediumText('keterangan')->nullable();
-            $table->enum('kategori', ['kepaladinas', 'kepalabidang', 'kepalaseksi'])->default('kepaladinas');
+            $table->mediumText('catatan')->nullable();
             $table->string('file')->nullable();
-            $table->timestamp('tanggal')->nullable();
+            $table->date('tanggal')->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

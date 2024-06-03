@@ -31,11 +31,12 @@ class Record extends Component
     public $paginate = 5;
     public $listPaginate = [5,10,25,50,100];
     public $kategori = 'kepala-dinas';
+    public $user;
 
     public function mount(): void
     {
         $this->kategori = request()->segment(2);
-        // $this->kategori = 'kepaladinas';
+        $this->user = auth()->user();
     }
 
     public function action($menu): void
@@ -109,29 +110,67 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Laporan::query()->withTrashed()->where('kategori',$this->kategori)->count();
-        $this->totalPublik = Laporan::query()->where('kategori',$this->kategori)->published()->count();
-        $this->totalKonsep = Laporan::query()->where('kategori',$this->kategori)->draft()->count();
-        $this->totalTempatSampah = Laporan::query()->where('kategori',$this->kategori)->withTrashed()->whereNotNull('deleted_at')->count();
+        $this->totalAll = Laporan::query()->withTrashed()
+                    ->whereHas('laporanDetail', function($query){
+                        $query->where('kepada', $this->kategori);
+                    })
+                    ->count();
+        $this->totalPublik = Laporan::query()->whereHas('laporanDetail', function($query){
+                                $query->where('kepada', $this->kategori);
+                            })
+                            ->published()
+                            ->count();
+        $this->totalKonsep = Laporan::query()->whereHas('laporanDetail', function($query){
+                                $query->where('kepada', $this->kategori);
+                            })
+                            ->draft()
+                            ->count();
+        $this->totalTempatSampah = Laporan::query()->whereHas('laporanDetail', function($query){
+                                $query->where('kepada', $this->kategori);
+                            })
+                            ->withTrashed()
+                            ->whereNotNull('deleted_at')
+                            ->count();
         $query = Laporan::query()
-            ->when(strlen($this->search) > 2, function ($query) {
-                $query
-                    ->where('laporan', 'like', '%' . $this->search . '%')
-                    ->orWhere('keterangan', 'like', '%' . $this->search . '%')
-                    ->orWhere('kategori', 'like', '%' . $this->search . '%');
-            })
+                ->when(strlen($this->search) > 2, function ($query) {
+                    $query
+                        ->where('laporan', 'like', '%' . $this->search . '%')
+                        ->orWhere('keterangan', 'like', '%' . $this->search . '%');
+                })
         ;
-        if (in_array($this->menu, ['','semua'])) {
-            $records = $query->where('kategori',$this->kategori)->withTrashed()->paginate($this->paginate)->withQueryString();
-        }
-        if($this->menu === 'publik'){
-            $records = $query->where('kategori',$this->kategori)->published()->paginate($this->paginate)->withQueryString();
-        }
-        if($this->menu === 'konsep'){
-            $records = $query->where('kategori',$this->kategori)->draft()->paginate($this->paginate)->withQueryString();
-        }
-        if($this->menu === 'tempat_sampah'){
-            $records = $query->where('kategori',$this->kategori)->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
+
+        $query = $this->user->hasAnyRole($this->kategori.'|adminmaster') ? $query->withTrashed() : $query;
+        $records = $query->whereHas('laporanDetail', function($query){
+                    $query->where('kepada', $this->kategori);
+                })
+                ->paginate($this->paginate)
+                ->withQueryString();
+
+        if($this->user->hasRole($this->kategori)){
+            if($this->menu === 'publik'){
+                $records = $query->whereHas('laporanDetail', function($query){
+                            $query->where('kepada', $this->kategori);
+                        })->published()
+                        ->paginate($this->paginate)
+                        ->withQueryString();
+            }
+            if($this->menu === 'konsep'){
+                $records = $query->whereHas('laporanDetail', function($query){
+                            $query->where('kepada', $this->kategori);
+                        })
+                        ->draft()
+                        ->paginate($this->paginate)
+                        ->withQueryString();
+            }
+            if($this->menu === 'tempat_sampah'){
+                $records = $query->whereHas('laporanDetail', function($query){
+                            $query->where('kepada', $this->kategori);
+                        })
+                        ->withTrashed()
+                        ->whereNotNull('deleted_at')
+                        ->paginate($this->paginate)
+                        ->withQueryString();
+            }
         }
         return view('livewire.laporan.record', ['records' => $records]);
     }

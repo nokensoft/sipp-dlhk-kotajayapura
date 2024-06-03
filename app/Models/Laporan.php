@@ -13,6 +13,10 @@ class Laporan extends Model
 
     protected $guarded = ['id'];
 
+    public function LaporanDetail(){
+        return $this->hasMany(LaporanDetail::class, 'laporan_id', 'id');
+    }
+
     public function scopeDraft(Builder $query): void
     {
         $query->whereNull('published_at');
