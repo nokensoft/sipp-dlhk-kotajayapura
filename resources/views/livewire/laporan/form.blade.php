@@ -43,7 +43,7 @@
                         <div class="lg:col-span-1">
                             <div class="card adaptable-card mb-4">
                                 <div class="card-body">
-                                    <x-admin.upload-file title="File" subtitle="Unggah file laporan" id="gambar" label="Gambar" name="laporan.file" :img="isset($laporan['file']) && !empty($laporan) ? $laporan['file'] : ''" :isDisabled="$isDisabled" />
+                                    <x-admin.upload-file title="File" subtitle="Unggah file laporan" id="file" label="File" name="laporan.file" :img="isset($laporan['file']) && !empty($laporan) ? $laporan['file'] : ''" :isDisabled="$isDisabled" />
                                 </div>
                             </div>
                         </div>

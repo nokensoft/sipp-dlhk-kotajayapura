@@ -179,12 +179,14 @@ class Form extends Component
         $pathFile = storage_path('app/public/' . $this->laporan[$name] ?? '');
         if (file_exists($pathFile)) unlink($pathFile);
         $this->laporan[$name] = '';
-        Laporan::updateOrCreate(
-            [
-                'id' => $this->laporan['id'] ?? null
-            ],
-            $this->laporan
-        );
+        if(isset($this->laporan['id'])){
+            Laporan::updateOrCreate(
+                [
+                    'id' => $this->laporan['id'] ?? null
+                ],
+                $this->laporan
+            );
+        }
     }
 
     public function render(): View
