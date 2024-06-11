@@ -31,21 +31,18 @@ class Index extends Component
         if ($this->segment === 'kepaladinas'){
             $this->title = 'Laporan Kepala Dinas';
             $this->subtitle = 'Data laporan Kepala Dinas...';
-            $this->kategori = 'kepaladinas';
             $this->route = 'laporanKepalaDinas';
         }
 
         if ($this->segment === 'kepalabidang'){
             $this->title = 'Laporan Kepala Bidang';
             $this->subtitle = 'Data laporan Kepala Bidang...';
-            $this->kategori = 'kepalabidang';
             $this->route = 'laporanKepalaBidang';
         }
 
         if ($this->segment === 'kepalaseksi'){
             $this->title = 'Laporan Kepala Seksi';
             $this->subtitle = 'Data laporan Kepala Seksi...';
-            $this->kategori = 'kepalaseksi';
             $this->route = 'laporanKepalaSeksi';
         }
 

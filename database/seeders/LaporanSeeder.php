@@ -12,7 +12,6 @@ class LaporanSeeder extends Seeder
 
     public function run(): void
     {
-        $kepada = ['kepaladinas', 'kepaladinas', 'kepalabidang', 'kepalabidang', 'kepalaseksi', 'kepalaseksi'];
         collect([
             [
                 'Laporan' => 'laporan 1 kepala dinas',
@@ -20,7 +19,7 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'published_at' => null,
-                'user_id' => 1,
+                'user_id' => 3,
             ],
             [
                 'Laporan' => 'laporan 1 kepala dinas',
@@ -28,7 +27,7 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'deleted_at' => now(),
-                'user_id' => 1,
+                'user_id' => 3,
             ],
             [
                 'Laporan' => 'laporan 2 kepala bidang',
@@ -36,7 +35,7 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'published_at' => now(),
-                'user_id' => 1,
+                'user_id' => 4,
             ],
             [
                 'Laporan' => 'laporan 1 kepala bidang',
@@ -44,7 +43,7 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'deleted_at' => now(),
-                'user_id' => 1,
+                'user_id' => 4,
             ],
             [
                 'Laporan' => 'laporan 3 kepala seksi',
@@ -52,7 +51,7 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'published_at' => now(),
-                'user_id' => 1,
+                'user_id' => 5,
             ],
             [
                 'Laporan' => 'laporan 1 kepala seksi',
@@ -60,16 +59,10 @@ class LaporanSeeder extends Seeder
                 'file' => 'laporan.pdf',
                 'tanggal' => now(),
                 'deleted_at' => now(),
-                'user_id' => 1,
+                'user_id' => 5,
             ]
-        ])->each(function ($item, $i) use ($kepada) {
+        ])->each(function ($item){
             Laporan::create($item);
-            LaporanDetail::create(
-                [
-                    'laporan_id' => $i+1,
-                    'kepada' => $kepada[$i]
-                ]
-            );
         });
     }
 }

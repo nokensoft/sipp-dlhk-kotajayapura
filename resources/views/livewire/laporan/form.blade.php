@@ -18,7 +18,7 @@
                                     </div>
 
                                     <div class="form-item">
-                                        <x-admin.textarea label="Catatan" id="keterangan" name="laporan.catatan" :isDisabled="$isDisabled" />
+                                        <x-admin.textarea label="Catatan" id="catatan" name="laporan.catatan" :isDisabled="$isDisabled" />
                                     </div>
 
 

@@ -27,10 +27,11 @@ class Record extends Component
     public int $totalPublik = 0;
     public int $totalKonsep = 0;
     public int $totalTempatSampah = 0;
+    public int $totalKotakMasuk = 0;
     public $id;
     public $paginate = 5;
     public $listPaginate = [5,10,25,50,100];
-    public $kategori = 'kepala-dinas';
+    public $kategori = 'kepaladinas';
     public $user;
 
     public function mount(): void
@@ -111,26 +112,26 @@ class Record extends Component
     public function render(): View
     {
         $this->totalAll = Laporan::query()->withTrashed()
-                    ->whereHas('laporanDetail', function($query){
-                        $query->where('kepada', $this->kategori);
-                    })
-                    ->count();
-        $this->totalPublik = Laporan::query()->whereHas('laporanDetail', function($query){
-                                $query->where('kepada', $this->kategori);
-                            })
+                        ->where('user_id', $this->user->id)
+                        ->count();
+        $this->totalPublik = Laporan::query()
+                            ->where('user_id', $this->user->id)
                             ->published()
                             ->count();
-        $this->totalKonsep = Laporan::query()->whereHas('laporanDetail', function($query){
-                                $query->where('kepada', $this->kategori);
-                            })
+        $this->totalKonsep = Laporan::query()
+                            ->where('user_id', $this->user->id)
                             ->draft()
                             ->count();
-        $this->totalTempatSampah = Laporan::query()->whereHas('laporanDetail', function($query){
-                                $query->where('kepada', $this->kategori);
-                            })
+        $this->totalTempatSampah = Laporan::query()
+                            ->where('user_id', $this->user->id)
                             ->withTrashed()
                             ->whereNotNull('deleted_at')
                             ->count();
+        $this->totalKotakMasuk = Laporan::query()
+                                ->whereHas('laporanDetail', function($query){
+                                    $query->where('kepada', $this->kategori);
+                                })
+                                ->count();
         $query = Laporan::query()
                 ->when(strlen($this->search) > 2, function ($query) {
                     $query
@@ -140,34 +141,37 @@ class Record extends Component
         ;
 
         $query = $this->user->hasAnyRole($this->kategori.'|adminmaster') ? $query->withTrashed() : $query;
-        $records = $query->whereHas('laporanDetail', function($query){
-                    $query->where('kepada', $this->kategori);
-                })
-                ->paginate($this->paginate)
-                ->withQueryString();
+
+        if($this->menu !== 'kotak_masuk') $query =  $query->whereHas('user', fn($q) => $q->whereHas('roles', fn($q) => $q->where('name', $this->kategori)));
+
+        $records = $query
+                    ->paginate($this->paginate)
+                    ->withQueryString();
 
         if($this->user->hasRole($this->kategori)){
             if($this->menu === 'publik'){
-                $records = $query->whereHas('laporanDetail', function($query){
-                            $query->where('kepada', $this->kategori);
-                        })->published()
+                $records = $query
+                        ->published()
                         ->paginate($this->paginate)
                         ->withQueryString();
             }
             if($this->menu === 'konsep'){
-                $records = $query->whereHas('laporanDetail', function($query){
-                            $query->where('kepada', $this->kategori);
-                        })
+                $records = $query
                         ->draft()
                         ->paginate($this->paginate)
                         ->withQueryString();
             }
             if($this->menu === 'tempat_sampah'){
+                $records = $query
+                        ->withTrashed()
+                        ->whereNotNull('deleted_at')
+                        ->paginate($this->paginate)
+                        ->withQueryString();
+            }
+            if($this->menu === 'kotak_masuk'){
                 $records = $query->whereHas('laporanDetail', function($query){
                             $query->where('kepada', $this->kategori);
                         })
-                        ->withTrashed()
-                        ->whereNotNull('deleted_at')
                         ->paginate($this->paginate)
                         ->withQueryString();
             }

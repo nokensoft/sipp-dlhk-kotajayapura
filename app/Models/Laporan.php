@@ -17,6 +17,10 @@ class Laporan extends Model
         return $this->hasMany(LaporanDetail::class, 'laporan_id', 'id');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function scopeDraft(Builder $query): void
     {
         $query->whereNull('published_at');
