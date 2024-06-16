@@ -111,70 +111,87 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Laporan::query()->withTrashed()
-                        ->where('user_id', $this->user->id)
-                        ->count();
-        $this->totalPublik = Laporan::query()
-                            ->where('user_id', $this->user->id)
-                            ->published()
-                            ->count();
-        $this->totalKonsep = Laporan::query()
-                            ->where('user_id', $this->user->id)
-                            ->draft()
-                            ->count();
-        $this->totalTempatSampah = Laporan::query()
-                            ->where('user_id', $this->user->id)
-                            ->withTrashed()
-                            ->whereNotNull('deleted_at')
-                            ->count();
-        $this->totalKotakMasuk = Laporan::query()
-                                ->whereHas('laporanDetail', function($query){
-                                    $query->where('kepada', $this->kategori);
-                                })
-                                ->count();
-        $query = Laporan::query()
-                ->when(strlen($this->search) > 2, function ($query) {
-                    $query
-                        ->where('laporan', 'like', '%' . $this->search . '%')
-                        ->orWhere('keterangan', 'like', '%' . $this->search . '%');
-                })
-        ;
+        $baseQuery = Laporan::query();
 
-        $query = $this->user->hasAnyRole($this->kategori.'|adminmaster') ? $query->withTrashed() : $query;
+        if ($this->user->hasRole('adminmaster')) {
+            $baseQuery->whereHas('user', function($query) {
+                $query->whereHas('roles', function($query) {
+                    $query->where('name', $this->kategori);
+                });
+            });
+        } else {
+            $baseQuery->where('user_id', $this->user->id);
+        }
+        
+        $totalAllQuery = clone $baseQuery;
+        $totalPublikQuery = clone $baseQuery;
+        $totalKonsepQuery = clone $baseQuery;
+        $totalTempatSampahQuery = clone $baseQuery;
+        
+        // Perform the counts
+        $this->totalAll = $totalAllQuery->withTrashed()->count();
+        $this->totalPublik = $totalPublikQuery->published()->count();
+        $this->totalKonsep = $totalKonsepQuery->draft()->whereNull('deleted_at')->count();
+        $this->totalTempatSampah = $totalTempatSampahQuery->withTrashed()->whereNotNull('deleted_at')->count();
+        
+        $query = Laporan::query();
 
-        if($this->menu !== 'kotak_masuk') $query =  $query->whereHas('user', fn($q) => $q->whereHas('roles', fn($q) => $q->where('name', $this->kategori)));
+        $role = $this->user->roles->first()?->name;
+        $query = $query->whereHas('user', fn($q) => $q->whereHas('roles', fn($q) => $q->where('name', $this->kategori)));
+        if(in_array($role, ['adminmaster', $this->kategori])){
+            $query =  $query->withTrashed();
+        }else{
+            $query = $query->published()->whereHas('laporanDetail', fn($query) => $query->where('kepada', $role));
+        }
 
-        $records = $query
+        $allQuery = clone $query;
+        $publikQuery = clone $query;
+        $konsepQuery = clone $query;
+        $tempatSampahQuery = clone $query;
+
+        $records = $allQuery
+                    ->when(strlen($this->search) > 2, function ($query) {
+                        $query
+                            ->where('laporan', 'like', '%' . $this->search . '%')
+                            ->orWhere('catatan', 'like', '%' . $this->search . '%');
+                    })
                     ->paginate($this->paginate)
                     ->withQueryString();
 
-        if($this->user->hasRole($this->kategori)){
-            if($this->menu === 'publik'){
-                $records = $query
-                        ->published()
-                        ->paginate($this->paginate)
-                        ->withQueryString();
-            }
-            if($this->menu === 'konsep'){
-                $records = $query
-                        ->draft()
-                        ->paginate($this->paginate)
-                        ->withQueryString();
-            }
-            if($this->menu === 'tempat_sampah'){
-                $records = $query
-                        ->withTrashed()
-                        ->whereNotNull('deleted_at')
-                        ->paginate($this->paginate)
-                        ->withQueryString();
-            }
-            if($this->menu === 'kotak_masuk'){
-                $records = $query->whereHas('laporanDetail', function($query){
-                            $query->where('kepada', $this->kategori);
-                        })
-                        ->paginate($this->paginate)
-                        ->withQueryString();
-            }
+        if($this->menu === 'publik'){
+            $records = $publikQuery
+                    ->when(strlen($this->search) > 2, function ($query) {
+                        $query
+                            ->where('laporan', 'like', '%' . $this->search . '%')
+                            ->orWhere('catatan', 'like', '%' . $this->search . '%');
+                    })
+                    ->published()
+                    ->paginate($this->paginate)
+                    ->withQueryString();
+        }
+        if($this->menu === 'konsep'){
+            $records = $konsepQuery
+                    ->when(strlen($this->search) > 2, function ($query) {
+                        $query
+                            ->where('laporan', 'like', '%' . $this->search . '%')
+                            ->orWhere('catatan', 'like', '%' . $this->search . '%');
+                    })
+                    ->draft()
+                    ->whereNull('deleted_at')
+                    ->paginate($this->paginate)
+                    ->withQueryString();
+        }
+        if($this->menu === 'tempat_sampah'){
+            $records = $tempatSampahQuery
+                    ->when(strlen($this->search) > 2, function ($query) {
+                        $query
+                            ->whereNotNull('deleted_at')
+                            ->where('laporan', 'like', '%' . $this->search . '%')
+                            ->orWhere('catatan', 'like', '%' . $this->search . '%');
+                    })
+                    ->whereNotNull('deleted_at')
+                    ->paginate($this->paginate)
+                    ->withQueryString();
         }
         return view('livewire.laporan.record', ['records' => $records]);
     }

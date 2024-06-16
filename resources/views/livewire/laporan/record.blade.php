@@ -9,16 +9,17 @@
             <span class="font-medium">Gagal </span> {{session()->get('error')}}
         </div>
     @endif
-    @hasanyrole('adminmaster|'.$kategori)
-        <div class="flex gap-4 mb-4 items-center">
+    <div class="flex gap-4 mb-4 items-center">
+        @hasanyrole($kategori)
             <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
+        @endhasanyrole
+        @hasanyrole('adminmaster|'.$kategori)
             <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
             <a href="#" wire:click.prevent="action('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
             <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
             <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
-            <a href="#" wire:click.prevent="action('kotak_masuk')" class="{{$menu === 'kotak_masuk' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Kotak Masuk ({{$totalKotakMasuk}})</a>
-        </div>
-    @endhasanyrole
+        @endhasanyrole
+    </div>
     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex justify-between">
             <div class="flex gap-1 items-center">
@@ -66,7 +67,7 @@
                         <th>Keterangan</th>
                         <th>File</th>
                         @hasanyrole('adminmaster|'.$kategori)
-                            @if(!in_array($menu, ['tempat_sampah', 'kotak_masuk']))
+                            @if($menu !== 'tempat_sampah')
                                 <th>Toggle</th>
                             @endif
                         @endhasanyrole
@@ -89,11 +90,11 @@
                                 <td>{{$record->catatan}}</td>
                                 <td><a href="{{asset('storage/'.$record->file)}}" class="underline text-blue-500">File</a></td>
                                 @hasanyrole('adminmaster|'.$kategori)
-                                    @if(!isset($record->deleted_at) && $menu != 'kotak_masuk')
+                                    @if(!isset($record->deleted_at))
                                         <td>
                                             <div class="relative">
                                                 <label class="inline-flex items-center cursor-pointer" wire:key="toggle-{{$record->id}}">
-                                                    <input type="checkbox" value="" class="sr-only peer" @checked(isset($record->published_at)) wire:change.prevent="publishOrDraft({{$record->id}})">
+                                                    <input type="checkbox" value="" class="sr-only peer" @checked(isset($record->published_at)) wire:change.prevent="publishOrDraft({{$record->id}})" @hasanyrole('adminmaster') disabled @endhasanyrole>
                                                     <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                                                 </label>
                                             </div>
@@ -103,57 +104,55 @@
                                     @endif
                                 @endhasanyrole
                                 <td>
-                                    @if ($menu !== 'kotak_masuk')
-                                        <div class="flex justify-end items-center text-lg">
-                                            @if(isset($record->deleted_at))
-                                                @hasanyrole('adminmaster|'.$kategori)
-                                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="undo({{$record->id}})" id="undo{{$record->id}}">
-                                                        <i class="fa-solid fa-rotate-left"></i>
-                                                    </span>
-                                                    <script>
-                                                        tippy('#undo'+@js($record->id), {
-                                                            content: 'Restore',
-                                                            theme: 'primary'
-                                                        });
-                                                    </script>
-                                                @endhasanyrole
-                                            @else
-                                                @can('view')
-                                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
-                                                        <i class="fa-solid fa-eye text-sm"></i>
-                                                    </span>
-                                                    <script>
-                                                        tippy('#view'+@js($record->id), {
-                                                            content: 'View',
-                                                            theme: 'primary'
-                                                        });
-                                                    </script>
-                                                @endcan
-                                                @hasanyrole('adminmaster|'.$kategori)
-                                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })" id="edit{{$record->id}}">
-                                                        <i class="fa-solid fa-edit text-sm"></i>
-                                                    </span>
-                                                    <script>
-                                                        tippy('#edit'+@js($record->id), {
-                                                            content: 'Edit',
-                                                            theme: 'primary'
-                                                        });
-                                                    </script>
-                                                @endhasanyrole
-                                            @endif
-                                            @hasanyrole('adminmaster|'.$kategori)
-                                                <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
-                                                    <i class="fa-solid fa-trash text-sm"></i>
+                                    <div class="flex justify-end items-center text-lg">
+                                        @if(isset($record->deleted_at))
+                                            @hasanyrole($kategori)
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="undo({{$record->id}})" id="undo{{$record->id}}">
+                                                    <i class="fa-solid fa-rotate-left"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#delete'+@js($record->id), {
-                                                        content: 'Hapus',
+                                                    tippy('#undo'+@js($record->id), {
+                                                        content: 'Restore',
                                                         theme: 'primary'
                                                     });
                                                 </script>
                                             @endhasanyrole
-                                        </div>
-                                    @endif
+                                        @else
+                                            @can('view')
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
+                                                    <i class="fa-solid fa-eye text-sm"></i>
+                                                </span>
+                                                <script>
+                                                    tippy('#view'+@js($record->id), {
+                                                        content: 'View',
+                                                        theme: 'primary'
+                                                    });
+                                                </script>
+                                            @endcan
+                                            @hasanyrole($kategori)
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })" id="edit{{$record->id}}">
+                                                    <i class="fa-solid fa-edit text-sm"></i>
+                                                </span>
+                                                <script>
+                                                    tippy('#edit'+@js($record->id), {
+                                                        content: 'Edit',
+                                                        theme: 'primary'
+                                                    });
+                                                </script>
+                                            @endhasanyrole
+                                        @endif
+                                        @hasanyrole($kategori)
+                                            <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
+                                                <i class="fa-solid fa-trash text-sm"></i>
+                                            </span>
+                                            <script>
+                                                tippy('#delete'+@js($record->id), {
+                                                    content: 'Hapus',
+                                                    theme: 'primary'
+                                                });
+                                            </script>
+                                        @endhasanyrole
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
