@@ -29,6 +29,7 @@ class Form extends Component
     protected $rules = [
         'distrik.distrik' => 'required',
         'distrik.keterangan' => 'nullable',
+        'distrik.geojson' => 'nullable'
     ];
 
     protected $messages = [
@@ -60,6 +61,7 @@ class Form extends Component
             $this->redirectRoute('distrik');
             return;
         }
+        if(isset($this->distrik['geojson'])) $this->distrik['geojson'] = json_encode($this->distrik['geojson']);
         $this->validate();
 
         try {
@@ -95,6 +97,7 @@ class Form extends Component
         $this->menu = $menu;
         if ($this->id != ''){
             $this->distrik = Distrik::query()->withTrashed()->find($id)?->toArray();
+            $this->distrik['geojson'] = json_decode($this->distrik['geojson']);
         }
 
         if($this->menu === 'view') $this->isDisabled = true;

@@ -17,6 +17,11 @@
                                             <x-admin.textarea label="Keterangan" id="catatan" name="distrik.keterangan" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-full">
+                                            <x-admin.textarea label="Geojson" id="geojson" name="distrik.geojson" :isDisabled="$isDisabled" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

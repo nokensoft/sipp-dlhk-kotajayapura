@@ -24,6 +24,10 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
 
+		<!--- Leaflet --->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
     {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" integrity="sha512-w7ozifyaPV5z7iYP1t1QupBme93n54u/vU25d2rP1ne+kxyW/C73JE5s1v8vZldCV7zIAqNF6iG2W/qIhlrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
     @vite('resources/css/app.css')

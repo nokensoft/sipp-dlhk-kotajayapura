@@ -61,6 +61,7 @@
                     <thead>
                     <tr>
                         <th>Nama Bidang</th>
+                        <th>Icon</th>
                         <th>Keterangan</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
@@ -82,6 +83,9 @@
                             @endphp
                             <tr>
                                 <td>{{$record->bidang}}</td>
+                                <td>
+                                    <img class="w-20" src="{{ isset($record->icon) && !empty($record->icon) ? asset('storage/'.$record->icon) : asset('assets/img/no-img.jpeg') }}" loading="lazy">
+                                </td>
                                 <td>{{$record->keterangan}}</td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))

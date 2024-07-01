@@ -17,6 +17,13 @@
                                             <x-admin.textarea label="Keterangan" id="catatan" name="bidang.keterangan" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
+                                    <div class="lg:col-span-1">
+                                        <div class="card adaptable-card mb-4">
+                                            <div class="card-body">
+                                                <x-admin.upload-file title="Icon" subtitle="Unggah foto icon" id="icon" label="Icon" name="bidang.icon" :img="isset($bidang['icon']) && !empty($bidang) ? $bidang['icon'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

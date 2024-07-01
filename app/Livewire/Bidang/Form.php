@@ -13,9 +13,11 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Exception;
+use Livewire\WithFileUploads;
 
 class Form extends Component
 {
+    use WithFileUploads;
     public $bidang = [];
     public bool $isDisabled = false;
 
@@ -29,6 +31,7 @@ class Form extends Component
     protected $rules = [
         'bidang.bidang' => 'required',
         'bidang.keterangan' => 'nullable',
+        'bidang.icon' => 'nullable'
     ];
 
     protected $messages = [
@@ -60,10 +63,15 @@ class Form extends Component
             $this->redirectRoute('bidang');
             return;
         }
+        $this->fileChecking();
         $this->validate();
 
         try {
             DB::beginTransaction();
+
+            if (isset($this->bidang['icon']) && $this->bidang['icon'] != '' && !is_string($this->bidang['icon'])) {
+                $this->bidang['icon'] =  $this->uploadFile('icon_',$this->bidang['icon']);
+            }
 
             Bidang::updateOrCreate(
                 [
@@ -98,6 +106,27 @@ class Form extends Component
         }
 
         if($this->menu === 'view') $this->isDisabled = true;
+    }
+
+    private function fileChecking(): void
+    {
+        if(isset($this->bidang['icon']) && is_string($this->bidang['icon'])){
+            $this->rules['bidang.icon'] = 'nullable';
+        }
+    }
+
+
+    private function microtime_float(): float
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
+
+    private function uploadFile($fileName, $file): string
+    {
+        $fileName = $fileName. '_'.$this->microtime_float().'.'.$file->extension();
+        $file->storeAs('public/files', $fileName);
+        return 'files/'.$fileName;
     }
 
     public function render(): View

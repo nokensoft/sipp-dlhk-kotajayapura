@@ -3,7 +3,8 @@
 
 
 <div class="mt-3">
-    @livewire('lokasi.map')
+    
+    <livewire:lokasi.map/>
 
 
 @if (session()->has('success'))

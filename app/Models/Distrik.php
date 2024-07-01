@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Distrik extends Model
@@ -12,6 +13,11 @@ class Distrik extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
+
+    public function pegawais():HasMany
+    {
+       return $this->hasMany(Pegawai::class, 'distrik_id');
+    }
 
     public function scopeDraft(Builder $query): void
     {
