@@ -52,6 +52,12 @@
                     Manajemen Kerja
                 </div>
                 <ul>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'kontrak' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'kontrak' ? 'text-white' : ''}}" href="{{ route('kontrak') }}">
+                            <i class="fa-solid fa-file text-lg"></i>
+                            <span class="menu-item-text">Kontrak</span>
+                        </a>
+                    </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'bidang' ? $active : ''}}">
                         <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}">
                             <i class="fa-solid fa-tags text-lg"></i>
@@ -130,11 +136,11 @@
                             
                            
                             
-                                <li data-menu-item="classic-settings" class="menu-item">
-                                    <a class="h-full w-full flex items-center" href="{{ route('pangkatGolongan') }}">
-                                        <span>Pangkat/Golongan</span>
-                                    </a>
-                                </li>
+                            <li data-menu-item="classic-settings" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('pangkatGolongan') }}">
+                                    <span>Pangkat/Golongan</span>
+                                </a>
+                            </li>
 
                             
                             

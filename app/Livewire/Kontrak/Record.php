@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Lokasi;
+namespace App\Livewire\Kontrak;
 
 use Livewire\Component;
-use App\Models\Lokasi;
+use App\Models\Kontrak;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
@@ -40,7 +40,7 @@ class Record extends Component
 
     public function publishOrDraft($id): void
     {
-        $record = Lokasi::query()->withTrashed()->find($id);
+        $record = Kontrak::query()->withTrashed()->find($id);
         $type = 'publik';
         if($record->published_at == null){
             $record->published_at = Carbon::now();
@@ -50,19 +50,12 @@ class Record extends Component
         }
         $record->deleted_at = null;
         $record->save();
-        // $this->dispatch('refreshMap');
         session()->flash('success', 'Data diubah menjadi '.$type);
     }
 
-    public function refreshMap()
-    {
-        $this->dispatch('Map', 'refreshMap');
-    }
-
-
     public function undo($id): void
     {
-        $record = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Kontrak::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         $record->deleted_at = null;
         $record->save();
         session()->flash('success', 'Data berhasil dikembalikan!');
@@ -70,18 +63,18 @@ class Record extends Component
 
     public function delete($id): void
     {
-        $record = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Kontrak::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         if(isset($record->deleted_at)){
             $record->user?->forceDelete();
             $record->forceDelete();
             session()->flash('success', 'Data berhasil dihapus permanen');
             return;
         }
-        $record = Lokasi::query()->find($id);
+        $record = Kontrak::query()->find($id);
         $record->published_at = null;
         $record->save();
         $record->delete();
-        session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
+        session()->flash('success', 'Data berhasil dihapus sementara');
     }
 
     public function modal($id): void
@@ -96,21 +89,23 @@ class Record extends Component
 
     public function render(): View
     {
-        $this->totalAll = Lokasi::query()->count();
-        $this->totalPublik = Lokasi::query()->published()->count();
-        $this->totalKonsep = Lokasi::query()->draft()->count();
-        $this->totalTempatSampah = Lokasi::query()->withTrashed()->whereNotNull('deleted_at')->count();
-        $query = Lokasi::query()
+        $this->totalAll = Kontrak::query()->count();
+        $this->totalPublik = Kontrak::query()->published()->count();
+        $this->totalKonsep = Kontrak::query()->draft()->count();
+        $this->totalTempatSampah = Kontrak::query()->withTrashed()->whereNotNull('deleted_at')->count();
+        $query = Kontrak::query()
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where(function ($query) {
                         $query
-                            ->where('lokasi', 'like', '%' . $this->search . '%')
-                            ->orWhere('keterangan', 'like', '%' . $this->search . '%');
+                            ->where('nomor_kontrak', 'like', '%' . $this->search . '%')
+                            ->orWhere('tanggal_mulai', 'like', '%' . $this->search . '%')
+                            ->orWhere('tanggal_selesai', 'like', '%' . $this->search . '%')
+                            ->orWhere('status_kontrak', 'like', '%' . $this->search . '%')
+                            ->orWhere('tahun_kontrak', 'like', '%' . $this->search . '%');
                     });
             });
-
-        // if ($this->menu === '' || $this->menu === 'semua') {
+        
         if ($this->menu === '' || $this->menu === 'view') {
             $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
         } elseif($this->menu === 'publik'){
@@ -120,10 +115,8 @@ class Record extends Component
         } elseif($this->menu === 'tempat_sampah'){
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
-
-        $locations =Lokasi::published()->get();
-
-        return view('livewire.lokasi.record', ['records' => $records, 'locations' => $locations]);
-
+        
+        return view('livewire.kontrak.record', ['records' => $records]);
+        
     }
 }

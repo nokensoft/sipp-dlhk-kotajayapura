@@ -12,15 +12,23 @@ class KontrakSeeder extends Seeder
     {
         collect([
             [
-                'kontrak' => 'Kontrak bulan Maret 2024',
-                'keterangan' => 'keterangan terkait kontrak...',
+                'nomor_kontrak' => '123',
+                'tahun_kontrak' => 2024,
+                'tanggal_mulai' => now(),
+                'tanggal_selesai' => null,
+                'status_kontrak' => 'Berjalan',
+                'keterangan' => '',
                 'published_at' => now(),
             ],
             [
-                'kontrak' => 'Kontrak bulan April 2024',
-                'keterangan' => 'keterangan terkait kontrak...',
+                'nomor_kontrak' => '234',
+                'tahun_kontrak' => 2023,
+                'tanggal_mulai' => now(),
+                'tanggal_selesai' => null,
+                'status_kontrak' => 'Penggantian',
+                'keterangan' => '',
                 'published_at' => now(),
-            ]
+            ],
         ])->each(function ($collection) {
             Kontrak::create($collection);
         });
