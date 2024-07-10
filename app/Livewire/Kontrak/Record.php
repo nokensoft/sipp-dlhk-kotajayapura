@@ -8,6 +8,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
+use App\Models\Bidang;
+use App\Models\Lokasi;
 
 class Record extends Component
 {
@@ -33,7 +35,19 @@ class Record extends Component
     public $yearNow = 2024;
     public $years = [2020,2021,2022,2023,2024];
 
+
+    public $bidang;
+    public $lokasi;
+    public $status = ['Berjalan','Penggantian','Berjalan','Penggantian'];
+
     public bool $isAsn = true;
+
+
+    public function mount(): void
+    {
+        $this->bidang = Bidang::query()->get();
+        $this->lokasi = Lokasi::query()->get();
+    }
 
     public function action($menu): void
     {
@@ -84,6 +98,7 @@ class Record extends Component
     public function modal($id): void
     {
         $this->id = $id;
+
     }
 
     public function changePaginate($value):void
@@ -109,7 +124,7 @@ class Record extends Component
                             ->orWhere('tahun_kontrak', 'like', '%' . $this->search . '%');
                     });
             });
-        
+
         if ($this->menu === '' || $this->menu === 'view') {
             $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
         } elseif($this->menu === 'publik'){
@@ -119,8 +134,8 @@ class Record extends Component
         } elseif($this->menu === 'tempat_sampah'){
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
-        
+
         return view('livewire.kontrak.record', ['records' => $records]);
-        
+
     }
 }

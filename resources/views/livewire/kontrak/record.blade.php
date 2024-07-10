@@ -20,7 +20,7 @@
     @endcan
     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex justify-between">
-            
+
             <div class="flex gap-1 items-center">
                 <span>Tampilkan</span>
                 <div
@@ -57,11 +57,85 @@
                     }"
                 >
                     <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                        <span class="mr-1">{{$yearNow}}</span> <i class="fa-solid fa-chevron-down"></i>
+                        <span class="mr-1"> Semua </span> <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
                         @foreach($years as $year)
                             <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$year}})">{{$year}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- filter end -->
+
+
+            <div class="flex gap-1 items-center">
+                <span>Bidang</span>
+                <div
+                    class="relative"
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">Semua</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="border absolute bg-white top-10 left-0 w-60 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($bidang as $b)
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$b->id}})">{{$b->bidang}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- filter end -->
+
+
+            <div class="flex gap-1 items-center">
+                <span>Lokasi</span>
+                <div
+                    class="relative "
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">Semua</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="border absolute bg-white top-10 left-0 w-40 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($lokasi as $l)
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$l->id}})">{{$l->lokasi}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- filter end -->
+
+
+
+            <div class="flex gap-1 items-center">
+                <span>Status</span>
+                <div
+                    class="relative"
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">Semua</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="border absolute bg-white top-10 left-0 w-30 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($status as $s)
+
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$s}})">{{$s}}</a>
                         @endforeach
                     </div>
                 </div>
@@ -86,11 +160,11 @@
                 <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
                     <thead>
                     <tr>
+                        <th>Nama Lengkap</th>
                         <th>Nomor Kontrak</th>
                         <th>Tahun Kontrak</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
-                        <th>Nama Lengkap</th>
                         <th>Bidang Kerja</th>
                         <th>Lokasi Kerja</th>
                         <th>Status Kontrak</th>
@@ -113,11 +187,12 @@
                                 }
                             @endphp
                             <tr>
+                                <td>{{ 'nama lengkap' }}</td>
                                 <td>{{$record->nomor_kontrak}}</td>
                                 <td>{{$record->tahun_kontrak}}</td>
                                 <td>{{$record->tanggal_mulai}}</td>
                                 <td>{{$record->tanggal_selesai}}</td>
-                                <td>{{ 'nama lengkap' }}</td>
+
                                 <td>{{ 'bidang kerja' }}</td>
                                 <td>{{ 'lokasi kerja' }}</td>
                                 <td>{{$record->status_kontrak}}</td>
