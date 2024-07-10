@@ -20,6 +20,7 @@
     @endcan
     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex justify-between">
+            
             <div class="flex gap-1 items-center">
                 <span>Tampilkan</span>
                 <div
@@ -36,12 +37,37 @@
                     </div>
                     <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
                         @foreach($listPaginate as $list)
-                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="changePaginate({{$list}})">{{$list}}</a>
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$list}})">{{$list}}</a>
                         @endforeach
                     </div>
                 </div>
                 <span>data</span>
             </div>
+            <!-- filter end -->
+
+            <div class="flex gap-1 items-center">
+                <span>Tahun</span>
+                <div
+                    class="relative text-center"
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">{{$yearNow}}</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($years as $year)
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$year}})">{{$year}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- filter end -->
+
             <div class="relative w-1/3">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

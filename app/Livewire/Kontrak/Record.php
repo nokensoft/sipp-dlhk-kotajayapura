@@ -29,6 +29,10 @@ class Record extends Component
     public $id;
     public $paginate = 5;
     public $listPaginate = [5,10,25,50,100];
+
+    public $yearNow = 2024;
+    public $years = [2020,2021,2022,2023,2024];
+
     public bool $isAsn = true;
 
     public function action($menu): void
