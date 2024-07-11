@@ -30,14 +30,14 @@
         </div>
 
         <div>
-            <button class="btn btn-sm" type="submit">
+            <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="submit" >
                 <span class="flex items-center justify-center">
                     <i class="fa-solid fa-file-pdf"></i>
                     <span class="ltr:ml-1 rtl:mr-1">PDF</span>
                 </span>
             </button>
 
-            <button class="btn btn-sm" type="submit">
+            <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="submit">
                 <span class="flex items-center justify-center">
                     <i class="fa-solid fa-print"></i>
                     <span class="ltr:ml-1 rtl:mr-1">Print</span>
