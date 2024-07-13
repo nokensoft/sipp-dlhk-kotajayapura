@@ -73,7 +73,6 @@
                     @if(!$isDisabled)
                     <div id="stickyFooter" class="sticky -bottom-1 -mx-8 px-8 flex items-center justify-end py-4">
                         <div class="md:flex items-center">
-                            <button class="btn btn-default btn-sm ltr:mr-2 rtl:ml-2" type="button">Discard</button>
                             <button class="btn btn-solid btn-sm" type="submit">
                                 <span class="flex items-center justify-center">
                                     <span class="text-lg">
@@ -85,7 +84,7 @@
                                             </path>
                                         </svg>
                                     </span>
-                                    <span class="ltr:ml-1 rtl:mr-1">Save</span>
+                                    <span class="ltr:ml-1 rtl:mr-1">Simpan</span>
                                 </span>
                             </button>
                         </div>
