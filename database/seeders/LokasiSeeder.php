@@ -37,7 +37,7 @@ class LokasiSeeder extends Seeder
       }
         ';
 
-        $jayapuraUtara3 = '
+        $jayapuraUtara3 = json_encode('
         {
         "coordinates": [
           [
@@ -67,14 +67,14 @@ class LokasiSeeder extends Seeder
         ],
         "type": "LineString"
       }
-        ';
+        ');
 
 
 
         $data = collect([
             // Jayapura Utara
-            ['lokasi' => 'Jayapura Utara 2', 'distrik_id' => '2',  'geojson' => json_encode($jayapuraUtara2), 'keterangan' => 'keterangan lokasi...', 'published_at' => now()],
-            ['lokasi' => 'Jayapura Utara 3', 'distrik_id' => '2', 'geojson' => json_encode($jayapuraUtara3), 'keterangan' => 'keterangan lokasi...', 'published_at' => now()],
+            ['lokasi' => 'Jayapura Utara 2', 'distrik_id' => '2', 'keterangan' => 'keterangan lokasi...', 'published_at' => now()],
+            ['lokasi' => 'Jayapura Utara 3', 'distrik_id' => '2', 'keterangan' => 'keterangan lokasi...', 'published_at' => now()],
 
             // Jayapura Sekatan
             ['lokasi' => 'Jayapura Selatan 1', 'distrik_id' => '3', 'keterangan' => 'keterangan lokasi...', 'deleted_at' => now()],
