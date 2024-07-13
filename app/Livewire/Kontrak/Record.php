@@ -38,7 +38,7 @@ class Record extends Component
 
     public $bidang;
     public $lokasi;
-    public $status = ['Berjalan','Penggantian','Berjalan','Penggantian'];
+    public $status = ['Berjalan','Penggantian'];
 
     public bool $isAsn = true;
 
