@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             AgamaSeeder::class,
             PangkatGolonganSeeder::class,
             SukuSeeder::class,
-            // DistrikSeeder::class,
+            DistrikSeeder::class,
             KelurahanSeeder::class,
             JabatanSeeder::class,
             DeskripsiTugasSeeder::class,

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id();
             $table->string('lokasi');
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
+            $table->bigInteger('distrik_id');
+            $table->json('geojson')->nullable();
             $table->mediumText('keterangan')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

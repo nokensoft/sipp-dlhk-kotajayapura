@@ -11,10 +11,12 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Exception;
 use Livewire\Attributes\On;
+use App\Models\Distrik;
 
 class Form extends Component
 {
     public $lokasi = [];
+    public $distrik;
 
     #[Url(history: true)]
     public string $id = '';
@@ -26,12 +28,14 @@ class Form extends Component
 
     protected $rules = [
         'lokasi.lokasi' => 'required',
+        'lokasi.distrik_id' => 'required',
         'lokasi.keterangan' => 'nullable',
-        'lokasi.latitude' => 'nullable',
-        'lokasi.longitude' => 'nullable',
+        'lokasi.geojson' => 'nullable',
+        'lokasi.published_at' => 'nullable',
     ];
 
     protected $messages = [
+        'lokasi.distrik_id.required' => 'Distrik tidak boleh kosong',
         'lokasi.lokasi.required' => 'Nama lokasi tidak boleh kosong',
     ];
 
@@ -58,6 +62,7 @@ class Form extends Component
             $this->lokasi = Lokasi::query()->find($this->id)?->toArray();
         }
 
+        $this->distrik = Distrik::query()->get();
     }
 
     public function save(): void

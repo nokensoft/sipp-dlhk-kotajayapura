@@ -9,26 +9,37 @@
                                 <div class="card-body">
 
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
+                                        <div class="w-full">
+                                            <x-admin.select label="Distrik" id="distrik" optionName="distrik" :options="$distrik" name="lokasi.distrik_id"  :isDisabled="$isDisabled" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-full">
                                             <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi" :isDisabled="$isDisabled" />
                                         </div>
-                                        {{-- <div class="w-1/2">
-                                            <livewire:lokasi.map :locations="$id"/>
-                                        </div> --}}
                                     </div>
+
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.input label="Latitude" id="latitude" name="lokasi.latitude" :isDisabled="$isDisabled"   />
+                                        <div class="w-full">
+                                            <div class="w-full">
+                                                <x-admin.textarea label="Geojson" id="geojson" name="lokasi.geojson" :isDisabled="$isDisabled" />
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.input label="Longitude" id="longitude" name="lokasi.longitude" :isDisabled="$isDisabled"  />
+                                        <div class="w-full">
+                                            <x-admin.textarea label="Keterangan" id="keterangan" name="lokasi.keterangan" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
+
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.textarea label="Keterangan" id="keterangan" name="lokasi.keterangan" :isDisabled="$isDisabled"  />
+                                        <div class="w-full">
+                                            <x-admin.select label="Publik" id="published_at" optionName="published_at" name="lokasi.published_at"  :isDisabled="$isDisabled">
+                                                <option value="{{ now()}}">Publik</option>
+                                                <option> Konsep</option>
+                                            </x-admin.select>
                                         </div>
                                     </div>
                                 </div>
