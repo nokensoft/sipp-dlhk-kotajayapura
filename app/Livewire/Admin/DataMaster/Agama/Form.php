@@ -90,14 +90,14 @@ class Form extends Component
     }
 
     #[On('load-agama')]
-    public function loadAgama($id, $menu = 'view'):void
+    public function loadAgama($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->agama = Agama::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

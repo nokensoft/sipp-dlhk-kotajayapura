@@ -94,7 +94,7 @@ class Form extends Component
             $this->gelarBelakang = GelarBelakang::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

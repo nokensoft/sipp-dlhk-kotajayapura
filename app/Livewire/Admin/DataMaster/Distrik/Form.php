@@ -92,7 +92,7 @@ class Form extends Component
     }
 
     #[On('load-distrik')]
-    public function loadDistrik($id, $menu = 'view'):void
+    public function loadDistrik($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
@@ -100,7 +100,7 @@ class Form extends Component
             $this->distrik['geojson'] = json_decode($this->distrik['geojson']);
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

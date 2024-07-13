@@ -90,14 +90,14 @@ class Form extends Component
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadDiklat($id, $menu = 'view'):void
+    public function loadDiklat($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->diklat = Diklat::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View
