@@ -3,27 +3,24 @@
         <div class="container mx-auto">
             <form wire:submit.prevent="save">
                 <div class="form-container vertical">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                        
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
 
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-full">
-                                            <x-admin.select label="Distrik" id="distrik" optionName="distrik" :options="$distrik" name="lokasi.distrik_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-full">
-                                            <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-full">
+                                    <div class="lg:col-span-2">
+                                        <div class="form-item flex gap-2">
                                             <div class="w-full">
-                                                <x-admin.textarea label="Geojson" id="geojson" name="lokasi.geojson" :isDisabled="$isDisabled" />
+                                                <x-admin.select label="Distrik" id="distrik" optionName="distrik" :options="$distrik" name="lokasi.distrik_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                    </div>  
+
+                                    <div class="lg:col-span-2">
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-full">
+                                                <x-admin.input label="Nama Lokasi" id="nama-lokasi" name="lokasi.lokasi" :isDisabled="$isDisabled" />
                                             </div>
                                         </div>
                                     </div>
@@ -34,14 +31,38 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-item flex gap-2">
+                                    {{-- <div class="form-item flex gap-2">
                                         <div class="w-full">
                                             <x-admin.select label="Publik" id="published_at" optionName="published_at" name="lokasi.published_at"  :isDisabled="$isDisabled">
                                                 <option value="{{ now()}}">Publik</option>
                                                 <option> Konsep</option>
                                             </x-admin.select>
                                         </div>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="card adaptable-card pb-6 py-4 rounded-br-none rounded-bl-none">
+                                <div class="card-body">
+
+                                    <div class="form-item flex gap-2">
+                                        <div class="w-full">
+                                            <div class="w-full">
+                                                <x-admin.textarea label="Geojson" id="geojson" name="lokasi.geojson" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    {{-- <div class="form-item flex gap-2">
+                                        <div class="w-full">
+                                            <x-admin.select label="Publik" id="published_at" optionName="published_at" name="lokasi.published_at"  :isDisabled="$isDisabled">
+                                                <option value="{{ now()}}">Publik</option>
+                                                <option> Konsep</option>
+                                            </x-admin.select>
+                                        </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

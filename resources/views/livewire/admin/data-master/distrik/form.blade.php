@@ -3,12 +3,13 @@
         <div class="container mx-auto">
             <form wire:submit.prevent="save">
                 <div class="form-container vertical">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                        
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
                                     <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
+                                        <div class="w-full">
                                             <x-admin.input label="Distrik" id="distrik" name="distrik.distrik"  :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
@@ -17,6 +18,13 @@
                                             <x-admin.textarea label="Keterangan" id="catatan" name="distrik.keterangan" :isDisabled="$isDisabled" />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-2">
+                            <div class="card adaptable-card pb-6 py-4 rounded-br-none rounded-bl-none">
+                                <div class="card-body">
                                     <div class="form-item flex gap-2">
                                         <div class="w-full">
                                             <x-admin.textarea label="Geojson" id="geojson" name="distrik.geojson" :isDisabled="$isDisabled" />
@@ -25,6 +33,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     @if(!$isDisabled)
                         <div id="stickyFooter" class="sticky -bottom-1 -mx-8 px-8 flex items-center justify-end py-4">
