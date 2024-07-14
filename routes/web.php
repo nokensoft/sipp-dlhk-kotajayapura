@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\DataMaster\PangkatGolongan\Index as PangkatGolongan;
 use App\Livewire\Admin\DataMaster\Jabatan\Index as Jabatan;
@@ -50,6 +51,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/preview', [PdfController::class, 'printPdf'])->name('preview-pdf');
+    Route::get('/download', [PdfController::class, 'downloadPdf'])->name('download-pdf');
 
     Route::get('/asn', Asn::class)->name('asn');
     Route::get('/non-asn', Asn::class)->name('nonAsn');

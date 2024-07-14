@@ -33,15 +33,15 @@
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'asn' ? $active : ''}}">
                         <a class="menu-item-link hover:text-black/70 {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
-                            <span class="menu-item-text">ASN</span>
+                            <span class="menu-item-text">Pegawai</span>
                         </a>
                     </li>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
+                    {{-- <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
                         <a class="menu-item-link hover:text-black/70 {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Non ASN</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             {{-- menu-group end --}}
