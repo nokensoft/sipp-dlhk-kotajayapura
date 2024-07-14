@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\DataMaster\Jabatan;
 
-use App\Models\Diklat;
+use App\Models\Jabatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +16,7 @@ use Exception;
 
 class Form extends Component
 {
-    public $diklat = [];
+    public $jabatan = [];
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -27,18 +27,18 @@ class Form extends Component
     public $user;
 
     protected $rules = [
-        'diklat.diklat' => 'required',
-        'diklat.keterangan' => 'nullable',
+        'jabatan.jabatan' => 'required',
+        'jabatan.keterangan' => 'nullable',
     ];
 
     protected $messages = [
-        'diklat.diklat.required' => 'Nama bidang tidak boleh kosong',
+        'jabatan.jabatan.required' => 'Nama jabatan tidak boleh kosong',
     ];
 
     public function mount(): void
     {
         $this->user = Auth::user();
-        $this->loadDiklat($this->id, $this->menu);
+        $this->loadJabatan($this->id, $this->menu);
         if(!$this->user->hasAnyPermission(['edit'])){
             $this->isDisabled = true;
         }
@@ -57,7 +57,7 @@ class Form extends Component
     {
         if (!$this->user->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute('diklat');
+            $this->redirectRoute('jabatan');
             return;
         }
         $this->validate();
@@ -65,11 +65,11 @@ class Form extends Component
         try {
             DB::beginTransaction();
 
-            Diklat::updateOrCreate(
+            Jabatan::updateOrCreate(
                 [
-                    'id' => $this->diklat['id'] ?? null
+                    'id' => $this->jabatan['id'] ?? null
                 ],
-                $this->diklat
+                $this->jabatan
             );
 
             DB::commit();
@@ -81,23 +81,23 @@ class Form extends Component
         }
 
         $message = 'tambahkan data baru!';
-        if (isset($this->diklat['id'])) {
+        if (isset($this->jabatan['id'])) {
             $message = 'ubah data!';
         }
 
         session()->flash('success', $message);
-        $this->redirectRoute('diklat');
+        $this->redirectRoute('jabatan');
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadDiklat($id, $menu = 'view'):void
+    public function loadJabatan($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
-            $this->diklat = Diklat::query()->withTrashed()->find($id)?->toArray();
+            $this->jabatan = Jabatan::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

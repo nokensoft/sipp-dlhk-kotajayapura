@@ -41,7 +41,7 @@ class Index extends Component
             $this->redirect(route('asn'));
         }
         if($this->menu === ''){
-            $this->menu = 'create';
+            $this->menu = 'tambah';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
@@ -71,7 +71,7 @@ class Index extends Component
     }
 
     private function buttonMenu():void{
-        if ($this->menu === 'create') {
+        if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";

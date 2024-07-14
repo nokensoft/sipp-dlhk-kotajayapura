@@ -87,14 +87,14 @@ class Form extends Component
     }
 
     #[On('load-gelar-non-akademis')]
-    public function loadJenjangPendidikan($id, $menu = 'view'):void
+    public function loadJenjangPendidikan($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->jenjangPendidikan = JenjangPendidikan::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

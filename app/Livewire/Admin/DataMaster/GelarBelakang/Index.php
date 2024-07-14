@@ -36,7 +36,7 @@ class Index extends Component
     #[On('action')]
     public function action(): void
     {
-        if ($this->menu === 'tambah') {
+        if (in_array($this->menu, ['tambah', 'ubah'])) {
             $this->redirect(route('gelarBelakang'));
         }
         if ($this->menu === '') {
@@ -45,6 +45,7 @@ class Index extends Component
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
         }
+
     }
 
     // #[On('edit')]
@@ -56,7 +57,7 @@ class Index extends Component
 
 
     #[On('ubah')]
-    public function edit($id):void
+    public function ubah($id):void
     {
         if($this->menu === 'detail'){
             $this->dispatch('load-gelar-belakang', id:$id, menu: 'ubah');
@@ -84,7 +85,7 @@ class Index extends Component
         }else if ($this->menu === 'ubah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Edit Data $this->title";
+            $this->subtitle = "Ubah Data $this->title";
         }
     }
 
@@ -113,7 +114,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.data-master.gelar-belakang..index');
+        return view('livewire.admin.data-master.gelar-belakang.index');
     }
 
 

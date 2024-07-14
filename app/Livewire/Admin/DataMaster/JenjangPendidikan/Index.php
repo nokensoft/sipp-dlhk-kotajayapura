@@ -24,7 +24,7 @@ class Index extends Component
 
     public function mount(): void
     {
-        if ($this->menu === 'create') {
+        if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah data jenjang pendidikan untuk setiap petugas lapangan";
@@ -36,11 +36,11 @@ class Index extends Component
     #[On('action')]
     public function action(): void
     {
-        if ($this->menu === 'create') {
+        if (in_array($this->menu, ['tambah', 'ubah'])) {
             $this->redirect(route('jenjangPendidikan'));
         }
         if ($this->menu === '') {
-            $this->menu = 'create';
+            $this->menu = 'tambah';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
@@ -55,36 +55,36 @@ class Index extends Component
     // }
 
 
-    #[On('edit')]
-    public function edit($id):void
+    #[On('ubah')]
+    public function ubah($id):void
     {
-        if($this->menu === 'view'){
-            $this->dispatch('load-jenjang-pendidikan', id:$id, menu: 'edit');
+        if($this->menu === 'detail'){
+            $this->dispatch('load-jenjang-pendidikan', id:$id, menu: 'ubah');
         }
-        $this->menu='edit';
+        $this->menu='ubah';
         $this->id = $id;
         $this->buttonMenu();
         $this->dispatch('refresh', false);
     }
 
-    #[On('view')]
-    public function view($id):void
+    #[On('detail')]
+    public function detail($id):void
     {
-        $this->menu='view';
+        $this->menu='detail';
         $this->id = $id;
         $this->buttonMenu();
         $this->isDisabled = true;
     }
 
     private function buttonMenu():void{
-        if ($this->menu === 'create') {
+        if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
-        }else if ($this->menu === 'edit') {
+        }else if ($this->menu === 'ubah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Edit Data $this->title";
+            $this->subtitle = "Ubah Data $this->title";
         }
     }
 

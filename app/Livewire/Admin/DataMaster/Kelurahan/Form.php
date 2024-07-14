@@ -55,16 +55,15 @@ class Form extends Component
 
     public function save(): void
     {
+
         if (!$this->user->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
             $this->redirectRoute('kelurahan');
             return;
         }
         $this->validate();
-
         try {
             DB::beginTransaction();
-
             Kelurahan::updateOrCreate(
                 [
                     'id' => $this->kelurahan['id'] ?? null
@@ -90,14 +89,14 @@ class Form extends Component
     }
 
     #[On('load-kelurahan')]
-    public function loadKelurahan($id, $menu = 'view'):void
+    public function loadKelurahan($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->kelurahan = Kelurahan::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

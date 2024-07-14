@@ -41,7 +41,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'tambah' || ($menu === 'ubah' && $id != '') || ($menu === 'detail' && $id != ''))
-                        <livewire:admin.data-master.gelar-belakang.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
+                    <livewire:admin.data-master.gelar-belakang.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:admin.data-master.gelar-belakang.record />
                     @endif

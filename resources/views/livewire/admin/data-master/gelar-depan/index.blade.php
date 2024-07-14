@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / <span class="font-bold">{{$title}}</span></p>
-                            @if(in_array($menu, ['create', 'edit']))
+                            @if(in_array($menu, ['tambah', 'ubah']))
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -19,14 +19,14 @@
                                     </x-button-custom>
                                 </div>
                             @endif
-                            <div class="ml-auto" x-show="menu === 'view'">
+                            <div class="ml-auto" x-show="menu === 'detail'">
                                 <div class="flex gap-2">
                                     @can('edit')
-                                        <x-button-custom id="edit-button" tooltip="EDIT DATA!" action="edit({{$id}})" class="btn btn-xs btn-solid">
-                                            <x-slot name="icon">
-                                                <i class="fa-solid fa-edit text-sm"></i>
-                                            </x-slot>
-                                        </x-button-custom>
+                                    <x-button-custom id="edit-button" tooltip="UBAH DATA!" action="ubah({{$id}})" class="btn btn-xs btn-solid">
+                                        <x-slot name="icon">
+                                            <i class="fa-solid fa-edit text-sm"></i>
+                                        </x-slot>
+                                    </x-button-custom>
                                     @endcan
                                     @can('delete')
                                         <x-button-custom id="delete-button" tooltip="HAPUS DATA!" @click="openModalDelete = true" class="btn btn-xs btn-solid">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($menu === 'create' || ($menu === 'edit' && $id != '') || ($menu === 'view' && $id != ''))
+                    @if($menu === 'tambah' || ($menu === 'ubah' && $id != '') || ($menu === 'detail' && $id != ''))
                         <livewire:admin.data-master.gelar-depan.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:admin.data-master.gelar-depan.record />
