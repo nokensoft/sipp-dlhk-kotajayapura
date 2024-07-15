@@ -12,16 +12,16 @@
     border-collapse: collapse;
     width: 100%;
   }
-  
+
   #records td, #records th {
     border: 1px solid #ddd;
     padding: 8px;
   }
-  
+
   #records tr:nth-child(even){background-color: #f2f2f2;}
-  
+
   #records tr:hover {background-color: #ddd;}
-  
+
   #records th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -29,9 +29,17 @@
     background-color: #04AA6D;
     color: white;
   }
+
+  .img{
+    border-radius: 5%;
+    width : 80px;
+  }
+  h1{
+    text-align : center;
+  }
 </style>
 <body>
-    <h1 style="text-align: center">Data Pegawai</h1>
+    <h1 >Data Pegawai</h1>
     <table id="records">
       <thead>
       <tr>
@@ -61,7 +69,8 @@
           @foreach($data as $record)
               <tr>
                   <td>
-                    <img src="{{ isset($record->gambar) && !empty($record->gambar) && Storage::exists('public/'.$record->gambar) ? asset('storage/'.$record->gambar) : asset('assets/img/avatars/man.png') }}" width="80" style="border-radius: 5%">
+
+                    <img class="img" src="{{ file_exists('storage/'.$record->gambar) ? 'storage/'.$record->gambar : 'assets/img/avatars/man.png'}}" alt="" srcset="">
                   </td>
                   <td>
                     {{$record->nama_depan}} {{$record->nama_tengah}} {{$record->nama_belakang}}
