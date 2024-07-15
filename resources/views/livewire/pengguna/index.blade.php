@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($page === 'create')
+                    @if($page === 'tambah')
                         <livewire:pengguna.form />
                     @else
                         <div class="flex gap-4 mt-8">
