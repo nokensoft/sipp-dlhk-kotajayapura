@@ -2,8 +2,12 @@
 
 namespace App\Livewire\Pegawai;
 
+use App\Models\JenisKelamin;
+use App\Models\JenjangPendidikan;
 use Livewire\Component;
 use App\Models\Pegawai;
+use App\Models\StatusPerkawinan;
+use App\Models\Suku;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
@@ -32,9 +36,23 @@ class Record extends Component
     public $listPaginate = [5,10,25,50,100];
     public bool $isAsn = true;
 
+    public array $suku = [];
+    public ?string $selectedSuku;
+    public array $jenisKelamin = [];
+    public ?string $selectedJenisKelamin;
+    public array $jenjangPendidikan = [];
+    public ?string $selectedJenjangPendidikan;
+    public array $statusPernikahan = [];
+    public ?string $selectedStatusPernikahan;
+    public array $filters = [];
+
     public function mount(): void
     {
         $this->isAsn = request()->segment(1) === 'asn';
+        $this->suku = Suku::get()->toArray();
+        $this->jenisKelamin = JenisKelamin::get()->toArray();
+        $this->jenjangPendidikan = JenjangPendidikan::get()->toArray();
+        $this->statusPernikahan = StatusPerkawinan::get()->toArray();
     }
 
     public function action($menu): void
@@ -118,13 +136,61 @@ class Record extends Component
         return 'customPagination.custom-pagination-view';
     }
 
+    public function previewPdf()
+    {
+        redirect()->route('preview-pdf', [
+            'pdfPage' => 'pegawai',
+            'filter' => $this->filters
+        ]);
+    }
+
+    public function downloadPdf()
+    {
+        redirect()->route('download-pdf', [
+            'pdfPage' => 'pegawai',
+            'filter' => $this->filters
+        ]);
+    }
+
+    public function selectSuku($suku = null){
+        $this->selectedSuku = $suku;
+        $this->filters['suku'] = $suku;
+    }
+
+    public function selectJenisKelamin($jenisKelamin = null){
+        $this->selectedJenisKelamin = $jenisKelamin;
+        $this->filters['jenis_kelamin'] = $jenisKelamin;
+    }
+
+    public function selectJenjangPendidikan($jenjangPendidikan = null){
+        $this->selectedJenjangPendidikan = $jenjangPendidikan;
+        $this->filters['jenjang_pendidikan'] = $jenjangPendidikan;
+    }
+
+    public function selectStatusPernikahan($statusPernikahan = null){
+        $this->selectedStatusPernikahan = $statusPernikahan;
+        $this->filters['status_pernikahan'] = $statusPernikahan;
+    }
+
     public function render(): View
     {
-        $this->totalAll = Pegawai::query()->withTrashed()->where('is_asn',$this->isAsn)->count();
-        $this->totalPublik = Pegawai::query()->where('is_asn',$this->isAsn)->published()->count();
-        $this->totalKonsep = Pegawai::query()->where('is_asn',$this->isAsn)->draft()->count();
-        $this->totalTempatSampah = Pegawai::query()->where('is_asn',$this->isAsn)->withTrashed()->whereNotNull('deleted_at')->count();
+        $this->totalAll = Pegawai::query()->withTrashed()->count();
+        $this->totalPublik = Pegawai::query()->published()->count();
+        $this->totalKonsep = Pegawai::query()->draft()->count();
+        $this->totalTempatSampah = Pegawai::query()->withTrashed()->whereNotNull('deleted_at')->count();
         $query = Pegawai::query()
+            ->when(isset($this->selectedSuku), function($query){
+                $query->whereHas('suku', fn ($query) => $query->where('suku', $this->selectedSuku));
+            })
+            ->when(isset($this->selectedJenisKelamin), function($query){
+                $query->whereHas('jenisKelamin', fn ($query) => $query->where('jenis_kelamin', $this->selectedJenisKelamin));
+            })
+            ->when(isset($this->selectedJenjangPendidikan), function($query){
+                $query->whereHas('jenjangPendidikan', fn ($query) => $query->where('jenjang_pendidikan', $this->selectedJenjangPendidikan));
+            })
+            ->when(isset($this->selectedStatusPernikahan), function($query){
+                $query->whereHas('statusPerkawinan', fn ($query) => $query->where('status_perkawinan', $this->selectedStatusPernikahan));
+            })
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where('nama_depan', 'like', '%' . $this->search . '%')
@@ -146,22 +212,21 @@ class Record extends Component
                     ->orWhereHas('deskripsiTugas', fn ($query) => $query->where('deskripsi_tugas', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('gelarDepan', fn ($query) => $query->where('gelar_depan', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('gelarBelakang', fn ($query) => $query->where('gelar_belakang', 'like', '%' . $this->search . '%'))
-                    ->orWhereHas('gelarAkademis', fn ($query) => $query->where('gelar_akademis', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('jenjangPendidikan', fn ($query) => $query->where('jenjang_pendidikan', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('statusPerkawinan', fn ($query) => $query->where('status_perkawinan', 'like', '%' . $this->search . '%'));
             })
         ;
         if (in_array($this->menu, ['','semua'])) {
-            $records = $query->where('is_asn',$this->isAsn)->withTrashed()->paginate($this->paginate)->withQueryString();
+            $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'publik'){
-            $records = $query->where('is_asn',$this->isAsn)->published()->paginate($this->paginate)->withQueryString();
+            $records = $query->published()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'konsep'){
-            $records = $query->where('is_asn',$this->isAsn)->draft()->paginate($this->paginate)->withQueryString();
+            $records = $query->draft()->paginate($this->paginate)->withQueryString();
         }
         if($this->menu === 'tempat_sampah'){
-            $records = $query->where('is_asn',$this->isAsn)->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
+            $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
         return view('livewire.pegawai.record', ['records' => $records]);
     }

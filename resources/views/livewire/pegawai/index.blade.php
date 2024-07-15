@@ -5,11 +5,11 @@
                 <div class="card-body">
                     <div class="lg:flex items-center justify-between mb-2">
                         <div class="space-y-2">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900">{{$title}}</h3>
-                            <p>{{$subtitle}}</p>
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900">Pegawai</h3>
+                            <p>Data pegawai</p>
                         </div>
                         <div class="flex flex-col justify-end gap-2">
-                            <p class="italic">Dasbor / Pegawai / <span class="font-bold">{{$title}}</span></p>
+                            <p class="italic">Dasbor / <span class="font-bold">Pegawai</span></p>
                             @if(in_array($menu, ['create', 'edit']))
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
