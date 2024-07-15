@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / <span class="font-bold">Pengguna</span></p>
-                            @if($page === 'create')
+                            @if($page === 'tambah')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">

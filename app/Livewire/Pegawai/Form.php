@@ -197,7 +197,7 @@ class Form extends Component
         }
         session()->flash('success', $message);
         if (isset($this->pegawai['id'])){
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'view', 'id' => $this->pegawai['id'] ?? '']);
+            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'detail', 'id' => $this->pegawai['id'] ?? '']);
         }else{
             $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
         }
@@ -248,7 +248,7 @@ class Form extends Component
     }
 
     #[On('load-pegawai')]
-    public function loadPegawai($id, $menu = 'view'):void
+    public function loadPegawai($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         $this->roles = Role::query()->get();
@@ -257,7 +257,7 @@ class Form extends Component
             $this->user = User::query()->with('roles')->find($this->pegawai['user_id'] ?? null)?->toArray();
             $this->role = $this->user['roles'][0]['name'];
         }
-        if($this->menu === 'view')  $this->isDisabled = true;
+        if($this->menu === 'detail')  $this->isDisabled = true;
     }
 
     #[On('delete-file')]

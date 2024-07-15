@@ -46,7 +46,7 @@
                 type="submit">
                 <span class="flex items-center justify-center">
                     <i class="fa-solid fa-print"></i>
-                    <span class="ltr:ml-1 rtl:mr-1">Print</span>
+                    <span class="ltr:ml-1 rtl:mr-1">Cetak</span>
                 </span>
             </button>
         </div>
@@ -158,7 +158,7 @@
                                                 </span>
                                                 <script>
                                                     tippy('#undo' + @js($record->id), {
-                                                        content: 'Restore',
+                                                        content: 'Memulihkan',
                                                         theme: 'primary'
                                                     });
                                                 </script>
@@ -166,26 +166,26 @@
                                         @else
                                             @can('view')
                                                 <span class="cursor-pointer p-2 hover:text-indigo-600"
-                                                    wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })"
-                                                    id="view{{ $record->id }}">
+                                                    wire:click.prevent="$dispatch('detail', { id: {{ $record->id }} })"
+                                                    id="detail{{ $record->id }}">
                                                     <i class="fa-solid fa-eye text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#view' + @js($record->id), {
-                                                        content: 'View',
+                                                    tippy('#detail' + @js($record->id), {
+                                                        content: 'Detail',
                                                         theme: 'primary'
                                                     });
                                                 </script>
                                             @endcan
                                             @hasanyrole($kategori)
                                                 <span class="cursor-pointer p-2 hover:text-indigo-600"
-                                                    wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })"
-                                                    id="edit{{ $record->id }}">
+                                                    wire:click.prevent="$dispatch('ubah', { id: {{ $record->id }} })"
+                                                    id="ubah{{ $record->id }}">
                                                     <i class="fa-solid fa-edit text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#edit' + @js($record->id), {
-                                                        content: 'Edit',
+                                                    tippy('#ubah' + @js($record->id), {
+                                                        content: 'Ubah',
                                                         theme: 'primary'
                                                     });
                                                 </script>

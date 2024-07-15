@@ -87,14 +87,14 @@ class Form extends Component
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadPangkatGolongan($id, $menu = 'view'):void
+    public function loadPangkatGolongan($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->pangkatGolongan = PangkatGolongan::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

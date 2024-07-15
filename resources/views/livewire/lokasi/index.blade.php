@@ -10,7 +10,7 @@
                         </div>
                         <div class="flex flex-col justify-end gap-2">
                             <p class="italic">Dasbor / <span class="font-bold">{{$title}}</span></p>
-                            @if($menu === 'create' || $menu === 'edit')
+                            @if($menu === 'tambah' || $menu === 'ubah')
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -18,11 +18,11 @@
                                         </x-slot>
                                     </x-button-custom>
                                 </div>
-                            @elseif ($menu === 'view')
+                            @elseif ($menu === 'detail')
 
                             <div class="ml-auto">
                                 <div class="flex gap-2">
-                                    <x-button-custom id="edit-button" tooltip="EDIT DATA!" action="edit({{$id}})" class="btn btn-xs btn-solid">
+                                    <x-button-custom id="edit-button" tooltip="UBAH DATA!" action="ubah({{$id}})" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
                                             <i class="fa-solid fa-edit text-sm"></i>
                                         </x-slot>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <hr class="border-[1px]">
-                    @if($menu === 'create' || $menu === 'edit'  || $menu === 'view'  && $id != '')
+                    @if($menu === 'tambah' || $menu === 'ubah'  || $menu === 'detail'  && $id != '')
                         <livewire:lokasi.form :id="$id" :menu="$menu"/>
                     @else
                         <livewire:lokasi.record />

@@ -15,7 +15,7 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data jabatan untuk setiap petugas PNS";
+    public string $subtitle = "Data jabatan untuk setiap petugas lapangan";
     public string $title = "Jabatan";
     public bool $isDisabled = false;
 

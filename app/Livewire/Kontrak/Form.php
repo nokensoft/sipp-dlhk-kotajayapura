@@ -98,14 +98,14 @@ class Form extends Component
     }
 
     #[On('load-kontrak')]
-    public function loadKontrak($id, $menu = 'view'):void
+    public function loadKontrak($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->kontrak = Kontrak::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     private function fileChecking(): void

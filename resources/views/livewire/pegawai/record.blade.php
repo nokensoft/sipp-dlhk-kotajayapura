@@ -268,23 +268,23 @@
                                             @endcan
                                         @else
                                             @can('view')
-                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })" id="view{{$record->id}}">
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('detail', { id: {{ $record->id }} })" id="detail{{$record->id}}">
                                                     <i class="fa-solid fa-eye text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#view'+@js($record->id), {
-                                                        content: 'View',
+                                                    tippy('#detail'+@js($record->id), {
+                                                        content: 'Detail',
                                                         theme: 'primary'
                                                     });
                                                 </script>
                                             @endcan
                                             @can('edit')
-                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })" id="edit{{$record->id}}">
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('iubah', { id: {{ $record->id }} })" id="iubah{{$record->id}}">
                                                     <i class="fa-solid fa-edit text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#edit'+@js($record->id), {
-                                                        content: 'Edit',
+                                                    tippy('#ubah'+@js($record->id), {
+                                                        content: 'Ubah',
                                                         theme: 'primary'
                                                     });
                                                 </script>

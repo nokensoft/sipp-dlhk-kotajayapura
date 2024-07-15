@@ -15,7 +15,7 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data status perkawinan untuk setiap pegawai/petugas lapangan";
+    public string $subtitle = "Data status perkawinan untuk setiap petugas lapangan";
     public string $title = "Status Perkawinan";
     public bool $isDisabled = false;
 
@@ -24,10 +24,10 @@ class Index extends Component
 
     public function mount(): void
     {
-        if ($this->menu === 'create') {
+        if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah data status perkawinan untuk setiap pegawai/petugas lapangan";
+            $this->subtitle = "Tambah data status perkawinan untuk setiap petugas lapangan";
         }
 
         $this->buttonMenu();
@@ -36,11 +36,11 @@ class Index extends Component
     #[On('action')]
     public function action(): void
     {
-        if ($this->menu === 'create') {
+        if (in_array($this->menu, ['tambah', 'ubah'])) {
             $this->redirect(route('statusPerkawinan'));
         }
         if ($this->menu === '') {
-            $this->menu = 'create';
+            $this->menu = 'tambah';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
@@ -55,36 +55,36 @@ class Index extends Component
     // }
 
 
-    #[On('edit')]
-    public function edit($id):void
+    #[On('ubah')]
+    public function ubah($id):void
     {
         if($this->menu === 'view'){
-            $this->dispatch('load-status-perkawinan', id:$id, menu: 'edit');
+            $this->dispatch('load-status-perkawinan', id:$id, menu: 'ubah');
         }
-        $this->menu='edit';
+        $this->menu='ubah';
         $this->id = $id;
         $this->buttonMenu();
         $this->dispatch('refresh', false);
     }
 
-    #[On('view')]
-    public function view($id):void
+    #[On('detail')]
+    public function detail($id):void
     {
-        $this->menu='view';
+        $this->menu='detail';
         $this->id = $id;
         $this->buttonMenu();
         $this->isDisabled = true;
     }
 
     private function buttonMenu():void{
-        if ($this->menu === 'create') {
+        if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Tambah Data $this->title";
-        }else if ($this->menu === 'edit') {
+        }else if ($this->menu === 'ubah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Edit Data $this->title";
+            $this->subtitle = "Ubah Data $this->title";
         }
     }
 

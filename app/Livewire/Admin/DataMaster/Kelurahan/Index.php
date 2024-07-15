@@ -15,7 +15,7 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data kelurahan untuk setiap petugas PNS";
+    public string $subtitle = "Data kelurahan untuk setiap petugas lapangan";
     public string $title = "Kelurahan";
     public bool $isDisabled = false;
 
@@ -36,7 +36,7 @@ class Index extends Component
     #[On('action')]
     public function action(): void
     {
-        if ($this->menu === 'tambah') {
+        if (in_array($this->menu, ['tambah', 'ubah'])) {
             $this->redirect(route('kelurahan'));
         }
         if ($this->menu === '') {

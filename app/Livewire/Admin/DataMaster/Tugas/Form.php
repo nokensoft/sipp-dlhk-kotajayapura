@@ -32,7 +32,7 @@ class Form extends Component
     ];
 
     protected $messages = [
-        'tugas.tugas.required' => 'Nama bidang tidak boleh kosong',
+        'tugas.tugas.required' => 'Tugas tidak boleh kosong',
     ];
 
     public function mount(): void
@@ -90,14 +90,14 @@ class Form extends Component
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadTugas($id, $menu = 'view'):void
+    public function loadTugas($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->tugas = Tugas::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View

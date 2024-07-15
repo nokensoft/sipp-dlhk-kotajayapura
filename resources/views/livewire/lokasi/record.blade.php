@@ -118,7 +118,7 @@
                                 </span>
                                 <script>
                                     tippy('#undo' + @js($record->id), {
-                                        content: 'Restore',
+                                        content: 'Memulihkan',
                                         theme: 'primary'
                                     });
                                 </script>
@@ -135,24 +135,24 @@
                             @else
                                 <div class="flex justify-end items-center text-lg ">
                                     <span class="cursor-pointer p-2 hover:text-indigo-600"
-                                        wire:click.prevent="$dispatch('view', { id: {{ $record->id }} })"
-                                        id="view{{ $record->id }}">
+                                        wire:click.prevent="$dispatch('detail', { id: {{ $record->id }} })"
+                                        id="detail{{ $record->id }}">
                                         <i class="fa-solid fa-eye text-sm"></i>
                                     </span>
                                     <span class="cursor-pointer p-2 hover:text-indigo-600"
-                                        wire:click.prevent="$dispatch('edit', { id: {{ $record->id }} })"
-                                        id="edit{{ $record->id }}">
+                                        wire:click.prevent="$dispatch('ubah', { id: {{ $record->id }} })"
+                                        id="ubah{{ $record->id }}">
                                         <i class="fa-solid fa-edit text-sm"></i>
                                     </span>
                                     <script>
-                                        tippy('#view' + @js($record->id), {
-                                            content: 'View',
+                                        tippy('#detail' + @js($record->id), {
+                                            content: 'Detail',
                                             theme: 'primary'
                                         });
                                     </script>
                                     <script>
-                                        tippy('#edit' + @js($record->id), {
-                                            content: 'Edit',
+                                        tippy('#ubah' + @js($record->id), {
+                                            content: 'Ubah',
                                             theme: 'primary'
                                         });
                                     </script>

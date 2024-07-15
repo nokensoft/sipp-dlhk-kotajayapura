@@ -160,7 +160,7 @@ class Form extends Component
     }
 
     #[On('load-laporan')]
-    public function loadLaporan($id, $menu = 'view'):void
+    public function loadLaporan($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         $this->roles = Role::query()->get();
@@ -170,7 +170,7 @@ class Form extends Component
             $this->role = $this->user['roles'][0]['name'];
             $this->laporanDetail = Laporan::query()->withTrashed()->find($id)->laporanDetail->pluck('kepada')->toArray();
         }
-        if($this->menu === 'view')  $this->isDisabled = true;
+        if($this->menu === 'detail')  $this->isDisabled = true;
     }
 
     #[On('delete-file')]

@@ -32,7 +32,7 @@ class Form extends Component
     ];
 
     protected $messages = [
-        'sertifikatKeahlian.sertifikat_keahlian.required' => 'Nama bidang tidak boleh kosong',
+        'sertifikatKeahlian.sertifikat_keahlian.required' => 'Sertifikat keahlian tidak boleh kosong',
     ];
 
     public function mount(): void
@@ -90,14 +90,14 @@ class Form extends Component
     }
 
     #[On('load-pangkat-golongan')]
-    public function loadSertifikatKeahlian($id, $menu = 'view'):void
+    public function loadSertifikatKeahlian($id, $menu = 'detail'):void
     {
         $this->menu = $menu;
         if ($this->id != ''){
             $this->sertifikatKeahlian = SertifikatKeahlian::query()->withTrashed()->find($id)?->toArray();
         }
 
-        if($this->menu === 'view') $this->isDisabled = true;
+        if($this->menu === 'detail') $this->isDisabled = true;
     }
 
     public function render(): View
