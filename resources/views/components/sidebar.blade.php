@@ -30,18 +30,18 @@
                     Pegawai
                 </div>
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'asn' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'asn' ? 'text-white' : ''}}" href="{{ route('asn') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'pegawai' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'pegawai' ? 'text-white' : ''}}" href="{{ route('pegawai') }}">
                             <i class="fa-solid fa-users text-lg"></i>
                             <span class="menu-item-text">Pegawai</span>
                         </a>
                     </li>
-                    {{-- <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'non-asn' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'non-asn' ? 'text-white' : ''}}" href="{{ route('nonAsn') }}">
-                            <i class="fa-solid fa-users text-lg"></i>
-                            <span class="menu-item-text">Non ASN</span>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'kontrak' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'kontrak' ? 'text-white' : ''}}" href="{{ route('kontrak') }}">
+                            <i class="fa-solid fa-file text-lg"></i>
+                            <span class="menu-item-text">Kontrak</span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
             {{-- menu-group end --}}
@@ -49,25 +49,19 @@
 
             <div class="menu-group">
                 <div class="menu-title menu-title-transparent">
-                    Manajemen Kerja
+                    Pemetaan
                 </div>
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'kontrak' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'kontrak' ? 'text-white' : ''}}" href="{{ route('kontrak') }}">
-                            <i class="fa-solid fa-file text-lg"></i>
-                            <span class="menu-item-text">Kontrak</span>
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'lokasi' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'lokasi' ? 'text-white' : ''}}" href="{{ route('lokasi') }}">
+                            <i class="fa-solid fa-map text-lg"></i>
+                            <span class="menu-item-text">Wilayah</span>
                         </a>
                     </li>
                     <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'bidang' ? $active : ''}}">
                         <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}">
                             <i class="fa-solid fa-tags text-lg"></i>
-                            <span class="menu-item-text">Bidang</span>
-                        </a>
-                    </li>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'lokasi' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'lokasi' ? 'text-white' : ''}}" href="{{ route('lokasi') }}">
-                            <i class="fa-solid fa-map text-lg"></i>
-                            <span class="menu-item-text">Lokasi</span>
+                            <span class="menu-item-text">Lapangan</span>
                         </a>
                     </li>
                 </ul>

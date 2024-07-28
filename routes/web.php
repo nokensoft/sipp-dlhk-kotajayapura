@@ -55,8 +55,7 @@ Route::middleware([
     Route::get('/preview', [PdfController::class, 'printPdf'])->name('preview-pdf');
     Route::get('/download', [PdfController::class, 'downloadPdf'])->name('download-pdf');
 
-    Route::get('/asn', Asn::class)->name('asn');
-    Route::get('/non-asn', Asn::class)->name('nonAsn');
+    Route::get('/pegawai', Asn::class)->name('pegawai');
     // Route::get('/non-asn', NonAsn::class)->name('nonAsn');
     Route::get('/kontrak', Kontrak::class)->name('kontrak');
     Route::get('/bidang', Bidang::class)->name('bidang');
