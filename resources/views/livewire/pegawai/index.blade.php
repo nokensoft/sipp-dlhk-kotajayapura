@@ -41,7 +41,7 @@
                     </div>
                     <hr class="border-[1px]">
                     @if($menu === 'tambah' || ($menu === 'ubah' && $id != '') || ($menu === 'detail' && $id != ''))
-                        <livewire:pegawai.form :id="$id" :isAsn="$isAsn" :menu="$menu" :isDisabled="$isDisabled"/>
+                        <livewire:pegawai.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:pegawai.record />
                     @endif

@@ -279,7 +279,7 @@
                                                 </script>
                                             @endcan
                                             @can('edit')
-                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('iubah', { id: {{ $record->id }} })" id="iubah{{$record->id}}">
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('ubah', { id: {{ $record->id }} })" id="ubah{{$record->id}}">
                                                     <i class="fa-solid fa-edit text-sm"></i>
                                                 </span>
                                                 <script>

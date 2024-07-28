@@ -31,6 +31,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class Form extends Component
@@ -39,7 +40,6 @@ class Form extends Component
     public $pegawai = [];
     public $user = [];
     public $bidang, $lokasi, $jenisKelamin, $agama, $pangkatGolongan, $suku, $distrik, $kelurahan, $jabatan, $deskripsiTugas, $gelarDepan, $gelarBelakang, $gelarAkademis, $jenjangPendidikan, $statusPerkawinan = [];
-    public bool $isAsn = true;
     public bool $isDisabled = false;
     public $userLogin;
     public $roles = [];
@@ -81,6 +81,8 @@ class Form extends Component
         'pegawai.jenjang_pendidikan_id' => 'nullable',
         'pegawai.status_perkawinan_id' => 'nullable',
         'pegawai.catatan' => 'nullable',
+        'pegawai.is_asn' => 'nullable',
+        'role' => 'required'
     ];
 
     protected $messages = [
@@ -94,6 +96,7 @@ class Form extends Component
         'pegawai.ijazah.mimes' => 'Ijazah harus berupa format JPG, JPEG, atau PNG',
         'pegawai.akte_kelahiran.mimes' => 'Akte Kelahiran harus berupa format JPG, JPEG, atau PNG',
         'pegawai.akte_pernikahan.mimes' => 'Akte Pernikahan harus berupa format JPG, JPEG, atau PNG',
+        'role' => 'Wajib memilih role.'
     ];
 
     public function mount(): void
@@ -135,7 +138,7 @@ class Form extends Component
     {
         if (!$this->userLogin->hasAnyPermission(['edit'])){
             session()->flash('error', 'Maaf anda tidak memiliki hak akses!');
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+            $this->redirectRoute('pegawai');
             return;
         }
         if(isset($this->user['id'])){
@@ -177,8 +180,6 @@ class Form extends Component
                  $this->pegawai['akte_pernikahan'] = $this->uploadFile($this->pegawai['nama_depan'].'_akte_pernikahan_',$this->pegawai['akte_pernikahan']);
              }
 
-            $this->pegawai['is_asn'] = $this->isAsn;
-
              Pegawai::updateOrCreate(
                  [
                      'id' => $this->pegawai['id'] ?? null
@@ -197,9 +198,9 @@ class Form extends Component
         }
         session()->flash('success', $message);
         if (isset($this->pegawai['id'])){
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn',['menu' => 'detail', 'id' => $this->pegawai['id'] ?? '']);
+            $this->redirectRoute('pegawai',['menu' => 'detail', 'id' => $this->pegawai['id'] ?? '']);
         }else{
-            $this->redirectRoute( $this->isAsn ? 'asn' : 'nonAsn');
+            $this->redirectRoute('pegawai');
         }
     }
 
@@ -255,7 +256,7 @@ class Form extends Component
         if ($this->id != ''){
             $this->pegawai = Pegawai::query()->withTrashed()->find($id)?->toArray();
             $this->user = User::query()->with('roles')->find($this->pegawai['user_id'] ?? null)?->toArray();
-            $this->role = $this->user['roles'][0]['name'];
+            $this->role = $this->user['roles'][0]['name'] ?? null;
         }
         if($this->menu === 'detail')  $this->isDisabled = true;
     }
@@ -264,7 +265,7 @@ class Form extends Component
     public function deleteFile($name):void
     {
         $pathFile = storage_path('app/public/' . $this->pegawai[$name] ?? '');
-        if (file_exists($pathFile)) unlink($pathFile);
+        if (Storage::exists($pathFile)) unlink($pathFile);
         $this->pegawai[$name] = '';
         Pegawai::updateOrCreate(
             [

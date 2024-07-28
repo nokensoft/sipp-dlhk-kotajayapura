@@ -39,6 +39,7 @@
                                                     <option value="{{$option['name']}}">{{$option->name}}</option>
                                                 @endforeach
                                             </x-admin.select>
+                                            @error('role') <span class="text-red-400">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
                                     <div class="form-item flex gap-2">
@@ -131,7 +132,19 @@
                                         <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id"  :isDisabled="$isDisabled" />
                                     </div>
                                     <div class="form-item">
-                                        <x-admin.textarea label="{{$isAsn ? 'Catatan' : 'Keterangan'}}" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
+                                        <div class="flex gap-4">
+                                            <div class="flex items-center">
+                                                <input id="asn" type="radio" value="1" name="isAsn" wire:model="pegawai.is_asn" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                                <label for="asn" class="ms-2 text-sm font-medium text-gray-900">ASN</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input checked id="Non ASN" type="radio" value="0" name="isAsn" wire:model="pegawai.is_asn" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                                <label for="Non ASN" class="ms-2 text-sm font-medium text-gray-900">Non ASN</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <x-admin.textarea label="Keterangan" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
                                     </div>
                                 </div>
                             </div>

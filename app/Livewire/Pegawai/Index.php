@@ -4,6 +4,7 @@ namespace App\Livewire\Pegawai;
 
 use App\Models\Pegawai;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -15,9 +16,6 @@ class Index extends Component
     public ?string $menu = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
-    public string $subtitle = "Data pegawai yang berstatus Aparatur Sipil Negara (ASN)";
-    public string $title = "ASN";
-    public bool $isAsn = true;
     public bool $isDisabled = false;
 
     #[Url(history: true)]
@@ -25,12 +23,6 @@ class Index extends Component
 
     public function mount(): void
     {
-        if (request()->segment(1) === 'non-asn'){
-            $this->title = 'Non ASN';
-            $this->subtitle = 'Data pegawai yang berstatus bukan Aparatur Sipil Negara (ASN)';
-            $this->isAsn = false;
-        }
-
         $this->buttonMenu();
     }
 
@@ -38,13 +30,13 @@ class Index extends Component
     public function action():void
     {
         if (in_array($this->menu, ['tambah', 'ubah'])) {
-            $this->redirect(route('asn'));
+            $this->redirect(route('pegawai'));
         }
         if($this->menu === ''){
             $this->menu = 'tambah';
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data $this->title";
+            $this->subtitle = "Tambah Data ";
         }
     }
 
@@ -74,11 +66,11 @@ class Index extends Component
         if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data $this->title";
+            $this->subtitle = "Tambah Data Pegawai";
         }else if ($this->menu === 'ubah') {
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Ubah Data $this->title";
+            $this->subtitle = "Ubah Data Pegawai";
         }
     }
 
@@ -96,27 +88,23 @@ class Index extends Component
                 $pathTranskipNilai= storage_path('app/public/' . $record->transkip_nilai ?? '');
                 $pathAkteKelahiran= storage_path('app/public/' . $record->akte_kelahiran ?? '');
                 $pathAktePernikahan= storage_path('app/public/' . $record->akte_pernikahan ?? '');
-                if (file_exists($pathGambar)) unlink($pathGambar);
-                if (file_exists($pathKtp)) unlink($pathKtp);
-                if (file_exists($pathKk)) unlink($pathKk);
-                if (file_exists($pathIjazah)) unlink($pathIjazah);
-                if (file_exists($pathTranskipNilai)) unlink($pathTranskipNilai);
-                if (file_exists($pathAkteKelahiran)) unlink($pathAkteKelahiran);
-                if (file_exists($pathAktePernikahan)) unlink($pathAktePernikahan);
+                if (Storage::exists($pathGambar)) unlink($pathGambar);
+                if (Storage::exists($pathKtp)) unlink($pathKtp);
+                if (Storage::exists($pathKk)) unlink($pathKk);
+                if (Storage::exists($pathIjazah)) unlink($pathIjazah);
+                if (Storage::exists($pathTranskipNilai)) unlink($pathTranskipNilai);
+                if (Storage::exists($pathAkteKelahiran)) unlink($pathAkteKelahiran);
+                if (Storage::exists($pathAktePernikahan)) unlink($pathAktePernikahan);
                 $record->user?->forceDelete();
                 $record->forceDelete();
                 session()->flash('success', 'Data berhasil dihapus permanen');
-                if (request()->segment(1) === 'non-asn'){
-                    $this->redirectRoute('nonAsn');
-                }else{
-                    $this->redirectRoute('asn');
-                }
+                $this->redirectRoute('pegawai');
             }
 
             $record = Pegawai::query()->find($id);
             $record->delete();
             session()->flash('success', 'Data berhasil dihapus sementara/dipindahkan ke tempat sampah');
-            $this->redirectRoute($this->title === 'Non ASN' ? 'nonAsn' : 'asn', ['menu' => 'tempat_sampah']);
+            $this->redirectRoute('pegawai', ['menu' => 'tempat_sampah']);
         }catch (\Exception $e){
             Log::info('Error : '. $e->getMessage());
             session()->flash('error', 'Error: '.$e->getMessage());
