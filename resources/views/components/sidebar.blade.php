@@ -52,8 +52,8 @@
                     Pemetaan
                 </div>
                 <ul>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'lokasi' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'lokasi' ? 'text-white' : ''}}" href="{{ route('lokasi') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'wilayah' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'wilayah' ? 'text-white' : ''}}" href="{{ route('wilayah') }}">
                             <i class="fa-solid fa-map text-lg"></i>
                             <span class="menu-item-text">Wilayah</span>
                         </a>
