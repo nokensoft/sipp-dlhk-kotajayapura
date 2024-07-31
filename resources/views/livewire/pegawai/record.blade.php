@@ -188,6 +188,7 @@
                         <th>Jenjang Pendidikan</th>
                         <th>Status Perkawinan</th>
                         <th>{{$isAsn ? 'Catatan' : 'Keterangan'}}</th>
+                        <th>Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
                                 <th>Toggle</th>
@@ -238,6 +239,11 @@
                                 <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
                                 <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
                                 <td>{{$record->catatan}}</td>
+                                <td>
+                                    <a href="#" class="cursor-pointer p-2 text-indigo-600 hover:text-indigo-500">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </a>
+                                </td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))
                                         <td>

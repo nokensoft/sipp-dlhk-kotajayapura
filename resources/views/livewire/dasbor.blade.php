@@ -362,51 +362,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="xl:w-[380px]">
-
-                        <div class="card card-layout-frame">
-                            <div class="card-body">
-                                <div class="flex items-center justify-between mb-6">
-                                    <h4>Operator Online</h4>
-                                </div>
-                                <div class="overflow-x-auto">
-                                    <table class="table-default table-hover">
-                                        <tbody>
-                                            <tr>
-                                                <td class="flex gap-2 items-center">
-                                                    <img class="avatar-img avatar-circle w-10"
-                                                        src="{{asset('assets/img/avatars/thumb-3.jpg')}}"
-                                                        loading="lazy">
-                                                    Samuel Bosawer
-                                                </td>
-                                                <td>
-                                                    <div
-                                                        class="tag text-green-600 bg-green-100 rounded border-0">
-                                                        Online
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="flex gap-2 items-center">
-                                                    <img class="avatar-img avatar-circle w-10"
-                                                        src="{{asset('assets/img/avatars/thumb-8.jpg')}}"
-                                                        loading="lazy">
-                                                    Obi Pranata
-                                                </td>
-                                                <td>
-                                                    <div
-                                                        class="tag text-green-600 bg-green-100 rounded border-0">
-                                                        Online
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- ============================================================== -->
