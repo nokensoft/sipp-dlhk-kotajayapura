@@ -13,8 +13,8 @@ class UserSeeder extends Seeder
     {
         // adminmaster
         $adminmaster =  User::create([
-            'username' => 'adminmaster',
-            'password' => bcrypt('adminmaster'),
+            'username' => 'dlhk@adminmaster',
+            'password' => bcrypt('dlhk@adminmaster'),
             // 'role_id' => 1 //adminmaster
         ]);
         $adminmaster->assignRole('adminmaster');
@@ -22,39 +22,39 @@ class UserSeeder extends Seeder
         // operator
         $operator =  User::create([
             'username' => 'operator',
-            'password' => bcrypt('operator'),
+            'password' => bcrypt('dlhk@operator'),
             // 'role_id' => 2 // operator
         ]);
-        $operator->assignRole('operator');
+        $operator->assignRole('dlhk@operator');
 
         // kepaladinas
         $kepaladinas =  User::create([
-            'username' => 'kepaladinas',
-            'password' => bcrypt('kepaladinas'),
+            'username' => 'dlhk@kepaladinas',
+            'password' => bcrypt('dlhk@kepaladinas'),
             // 'role_id' => 3 // kepaladinas
         ]);
         $kepaladinas->assignRole('kepaladinas');
 
         // kepalabidang
         $kepalabidang =  User::create([
-            'username' => 'kepalabidang',
-            'password' => bcrypt('kepalabidang'),
+            'username' => 'dlhk@kepalabidang',
+            'password' => bcrypt('dlhk@kepalabidang'),
             // 'role_id' => 4 // kepalabidang
         ]);
         $kepalabidang->assignRole('kepalabidang');
 
         // kepalaseksi
         $kepalaseksi =  User::create([
-            'username' => 'kepalaseksi',
-            'password' => bcrypt('kepalaseksi'),
+            'username' => 'dlhk@kepalaseksi',
+            'password' => bcrypt('dlhk@kepalaseksi'),
             // 'role_id' => 5 // kepalaseksi
         ]);
         $kepalaseksi->assignRole('kepalaseksi');
 
         // pegawai
         $pegawai =  User::create([
-            'username' => 'pegawai',
-            'password' => bcrypt('pegawai'),
+            'username' => 'dlhk@pegawai',
+            'password' => bcrypt('dlhk@pegawai'),
             // 'role_id' => 6 // pegawai
         ]);
         $pegawai->assignRole('pegawai');
