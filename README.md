@@ -1,6 +1,9 @@
 # SIPP DLHK Kota Jayapura
 Sistem Informasi Pelayanan Persampahan  Dinas Lingkungan Hidup dan Kebersihan Kota Jayapura
 
+🏷️ Buat Geojson
+https://geojson.io/
+
 🏷️ Whimsical - Perancangan Sistem
 https://whimsical.com/dlhk-sistem-informasi-kepegawaian-PS5hGnE818nxEAxdEyk44n
 
