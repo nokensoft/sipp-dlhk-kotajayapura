@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('dlhk@operator'),
             // 'role_id' => 2 // operator
         ]);
-        $operator->assignRole('dlhk@operator');
+        $operator->assignRole('operator');
 
         // kepaladinas
         $kepaladinas =  User::create([
