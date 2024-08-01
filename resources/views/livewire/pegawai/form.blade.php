@@ -5,160 +5,281 @@
                 <div class="form-container vertical">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         <div class="lg:col-span-2">
-                            <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
+                            <div class="card adaptable-card pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
-                                    <h5 class="font-semibold text-lg">Informasi Pribadi</h5>
-                                    <p class="mb-6">Informasi biodata pegawai</p>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Nama Depan" id="nama-depan" name="pegawai.nama_depan" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Nama Tengah" id="nama-tengah" name="pegawai.nama_tengah" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Nama Belakang" id="nama-belakang" name="pegawai.nama_belakang" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Username" id="username" type="text"  name="user.username" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Alamat Email" id="email" type="email"  name="pegawai.email" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/3">
-                                            <x-admin.input label="Nomor HP" id="no-hp" type="number" name="pegawai.no_hp" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item">
-                                        <div class="w-1/3">
-                                            <x-admin.select label="Role" id="role-id" optionName="name" name="role"  :isDisabled="$isDisabled">
-                                                <option>Pilih Role</option>
-                                                @foreach($roles as $option)
-                                                    <option value="{{$option['name']}}">{{$option->name}}</option>
-                                                @endforeach
-                                            </x-admin.select>
-                                            @error('role') <span class="text-red-400">{{ $message }}</span> @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="KTP" subtitle="Unggah file Kartu Tanda Penduduk" id="ktp" label="KTP" name="pegawai.ktp" :img="isset($pegawai['ktp']) && !empty($pegawai) ? $pegawai['ktp'] : ''" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="Unggah file Kartu Keluarga" subtitle="Upload Kartu Keluarga" id="kk" label="Kartu Keluarga" name="pegawai.kk" :img="isset($pegawai['kk']) && !empty($pegawai) ? $pegawai['kk'] : ''" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="Transkip Nilai" subtitle="Unggah file Transkip Nilai" id="transkip-nilai" label="Transkip Nilai" name="pegawai.transkip_nilai"  :img="isset($pegawai['transkip_nilai']) && !empty($pegawai) ? $pegawai['transkip_nilai'] : ''"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="Ijazah" subtitle="Ungah file Ijazah" id="ijazah" label="Ijazah" name="pegawai.ijazah" :img="isset($pegawai['ijazah']) && !empty($pegawai) ? $pegawai['ijazah'] : ''" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="Akte Kelahiran" subtitle="Unggah file Akte Kelahiran" id="akte-kelahiran" label="Akte Kelahiran" name="pegawai.akte_kelahiran" :img="isset($pegawai['akte_kelahiran']) && !empty($pegawai) ? $pegawai['akte_kelahiran'] : ''" :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.upload-file title="Akte Pernikahan" subtitle="Unggah file Akte Pernikahan" id="akte-pernikahan" label="Akte Pernikahan" name="pegawai.akte_pernikahan" :img="isset($pegawai['akte_pernikahan']) && !empty($pegawai) ? $pegawai['akte_pernikahan'] : ''" :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card adaptable-card !border-b pb-6 py-4 rounded-br-none rounded-bl-none">
-                                <div class="card-body">
-                                    <h5 class="font-semibold text-lg">Data Master</h5>
-                                    <p class="mb-6">Form untuk melengkapi datar administrasi lainnya</p>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Bidang Kerja" id="bidang" optionName="bidang" :options="$bidang" name="pegawai.bidang_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Lokasi Kerja" id="lokasi" optionName="lokasi" :options="$lokasi" name="pegawai.lokasi_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Jenis Kelamin" id="jenis-kelamin" optionName="jenis_kelamin" :options="$jenisKelamin" name="pegawai.jenis_kelamin_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Agama" id="agama" optionName="agama" :options="$agama" name="pegawai.agama_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Pangkat Golongan" id="pangkat-golongan" optionName="pangkat_golongan" :options="$pangkatGolongan" name="pegawai.pangkat_golongan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Suku" id="suku" optionName="suku" :options="$suku" name="pegawai.suku_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Distrik" id="distrik" optionName="distrik" :options="$distrik" name="pegawai.distrik_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Kelurahan" id="kelurahan" optionName="kelurahan" :options="$kelurahan" name="pegawai.kelurahan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Jabatan" id="jabatan" optionName="jabatan" :options="$jabatan" name="pegawai.jabatan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Deskripsi Tugas" id="deskripsi-tugas" optionName="deskripsi_tugas" :options="$deskripsiTugas" name="pegawai.deskripsi_tugas_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Gelar Depan" id="gelar-depan" optionName="gelar_depan" :options="$gelarDepan" name="pegawai.gelar_depan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Gelar Belakang" id="gelar-belakang" optionName="gelar_belakang" :options="$gelarBelakang" name="pegawai.gelar_belakang_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item flex gap-2">
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Gelar Akademis" id="gelar-akademis" optionName="gelar_akademis" :options="$gelarAkademis" name="pegawai.gelar_akademis_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                        <div class="w-1/2">
-                                            <x-admin.select label="Jenjang Pendidikan" id="jenjang-pendidikan" optionName="jenjang_pendidikan" :options="$jenjangPendidikan" name="pegawai.jenjang_pendidikan_id"  :isDisabled="$isDisabled" />
-                                        </div>
-                                    </div>
-                                    <div class="form-item">
-                                        <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id"  :isDisabled="$isDisabled" />
-                                    </div>
-                                    <div class="form-item">
-                                        <div class="flex gap-4">
-                                            <div class="flex items-center">
-                                                <input id="asn" type="radio" value="1" name="isAsn" wire:model="pegawai.is_asn" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                                <label for="asn" class="ms-2 text-sm font-medium text-gray-900">ASN</label>
+
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+
+                                        <h5 class="font-semibold text-lg">Status Pegawai</h5>
+                                        <p class="mb-6">Informasi status pegawai</p>
+
+                                        <div class="form-item flex gap-2 items-center">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Status Pegawai" id="status_pegawai" optionName="name" name="status_pegawai"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Status</option>
+                                                    <option value="ASN">ASN</option>
+                                                    <option value="Kontrak">Kontrak</option>
+                                                    <option value="Honorer">Honorer</option>
+                                                </x-admin.select>
+                                                @error('status_pegawai') <span class="text-red-400">{{ $message }}</span> @enderror
                                             </div>
-                                            <div class="flex items-center">
-                                                <input checked id="Non ASN" type="radio" value="0" name="isAsn" wire:model="pegawai.is_asn" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                                <label for="Non ASN" class="ms-2 text-sm font-medium text-gray-900">Non ASN</label>
+                                            
+                                            {{-- show this if ASN or Kontrak --}}
+                                            <div class="w-1/3">
+                                                <input checked id="Non ASN" type="checkbox" value="0" name="isAsn" wire:model="pegawai.is_asn" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                                <label for="Non ASN" class="ms-2 text-sm font-medium text-gray-900">Petugas Lapangan</label>
+                                            </div>
+                                            {{-- end show this if ASN or Kontrak --}}
+
+                                        </div>
+
+                                    </div>
+
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">Informasi Pribadi</h5>
+                                        <p class="mb-6">Informasi biodata pegawai</p>
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Nama Depan" id="nama-depan" name="pegawai.nama_depan" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Nama Tengah" id="nama-tengah" name="pegawai.nama_tengah" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Nama Belakang" id="nama-belakang" name="pegawai.nama_belakang" :isDisabled="$isDisabled" />
                                             </div>
                                         </div>
+                                        
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Jenis Kelamin" id="jenis-kelamin" optionName="jenis_kelamin" :options="$jenisKelamin" name="pegawai.jenis_kelamin_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Suku" id="suku" optionName="suku" :options="$suku" name="pegawai.suku_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Agama" id="agama" optionName="agama" :options="$agama" name="pegawai.agama_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Jenjang Pendidikan Terakhir" id="jenjang-pendidikan" optionName="jenjang_pendidikan" :options="$jenjangPendidikan" name="pegawai.jenjang_pendidikan_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Status Perkawinan" id="status-perkawinan" optionName="status_perkawinan" :options="$statusPerkawinan" name="pegawai.status_perkawinan_id"  :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="form-item">
-                                        <x-admin.textarea label="Keterangan" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">Foto Profil</h5>
+                                        <p class="mb-6">Unggah foto profil pegawai</p>
+                                        
+                                        <div class="form-item flex gap-2 ">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Pilih foto profil" subtitle="Foto profil pegawai ukuran persegi" id="gambar" label="Gambar" name="pegawai.gambar" :img="isset($pegawai['gambar']) && !empty($pegawai) ? $pegawai['gambar'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                    
                                     </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">Informasi Kontak</h5>
+                                        <p class="mb-6">Informasi kontak pegawai</p>
+                                        
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Alamat Email" id="email" type="email"  name="pegawai.email" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Nomor HP" id="no-hp" type="number" name="pegawai.no_hp" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>  
+                                        <div class="form-item w-1/2">
+                                            <x-admin.textarea label="Alamat" id="alamat" name="pegawai.alamat" :isDisabled="$isDisabled" />
+                                        </div>
+                                    </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">Informasi Pengguna</h5>
+                                        <p class="mb-6">Informasi pengguna bagi pegawai</p>
+
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Nama Pengguna (Username)" id="username" type="text"  name="user.username" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Kata Sandi (Password)" id="kata_sandi" type="password"  name="pegawai.kata_sandi" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/3">
+                                                <x-admin.input label="Ulangi Kata Sandi (Password)" id="ulangi_kata_sandi" type="password"  name="pegawai.ulangi_kata_sandi" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>   
+
+                                        {{-- hidding this set default role=pegawai --}}
+                                        <div class="form-item">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Role" id="role-id" optionName="name" name="role"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Role</option>
+                                                    @foreach($roles as $option)
+                                                        <option value="{{$option['name']}}">{{$option->name}}</option>
+                                                    @endforeach
+                                                </x-admin.select>
+                                                @error('role') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            </div>
+                                        </div>
+                                        {{-- end hidding this set default role=pegawai --}}                                 
+                                    </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">Dokumen Pendukung</h5>
+                                        <p class="mb-6">Unggah dokumen-dokumen pendukung lainnya</p>
+
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="KTP" subtitle="Unggah dokumen Kartu Tanda Penduduk (KTP)" id="ktp" label="KTP" name="pegawai.ktp" :img="isset($pegawai['ktp']) && !empty($pegawai) ? $pegawai['ktp'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Kartu Keluarga" subtitle="Unggah dokumen Kartu Keluarga (KK)" id="kk" label="Kartu Keluarga" name="pegawai.kk" :img="isset($pegawai['kk']) && !empty($pegawai) ? $pegawai['kk'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Transkip Nilai" subtitle="Unggah dokumen Transkip Nilai" id="transkip-nilai" label="Transkip Nilai" name="pegawai.transkip_nilai"  :img="isset($pegawai['transkip_nilai']) && !empty($pegawai) ? $pegawai['transkip_nilai'] : ''"  :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Ijazah" subtitle="Ungah dokumen Ijazah" id="ijazah" label="Ijazah" name="pegawai.ijazah" :img="isset($pegawai['ijazah']) && !empty($pegawai) ? $pegawai['ijazah'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Akte Kelahiran" subtitle="Unggah dokumen Akte Kelahiran" id="akte-kelahiran" label="Akte Kelahiran" name="pegawai.akte_kelahiran" :img="isset($pegawai['akte_kelahiran']) && !empty($pegawai) ? $pegawai['akte_kelahiran'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Akte Pernikahan" subtitle="Unggah dokumen Akte Pernikahan" id="akte-pernikahan" label="Akte Pernikahan" name="pegawai.akte_pernikahan" :img="isset($pegawai['akte_pernikahan']) && !empty($pegawai) ? $pegawai['akte_pernikahan'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">SK Berkala Terakhir</h5>
+                                        
+                                        <p class="mb-6">Surat Berkala Terakhir bagi PNS</p>
+
+                                        <div class="form-item flex gap-2 items-center">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Tahun SK" id="pns_tahun_sk" optionName="name" name="pns_tahun_sk"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Tahun</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </x-admin.select>
+                                                @error('pns_tahun_sk') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            </div>
+
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Bulan SK" id="pns_bulan_sk" optionName="name" name="pns_bulan_sk"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Bulan</option>
+                                                    <option value="Januari">Januari</option>
+                                                    <option value="Februari">Februari</option>
+                                                    <option value="Maret">Maret</option>
+                                                    <option value="April">April</option>
+                                                    <option value="Mei">Mei</option>
+                                                    <option value="Juni">Juni</option>
+                                                    <option value="Juli">Juli</option>
+                                                    <option value="Agustus">Agustus</option>
+                                                    <option value="September">September</option>
+                                                    <option value="Oktober">Oktober</option>
+                                                    <option value="November">November</option>
+                                                    <option value="Desember">Desember</option>
+                                                </x-admin.select>
+                                                @error('pns_bulan_sk') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Dokumen SK Berkala Terakhir" subtitle="Unggah dokumen SK berkala terakhir" id="pns_sk_berkala_terakhir" label="SK Berkala Terakhir" name="pegawai.pns_sk_berkala_terakhir" :img="isset($pegawai['pns_sk_berkala_terakhir']) && !empty($pegawai) ? $pegawai['pns_sk_berkala_terakhir'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <h5 class="font-semibold text-lg">SK Pangkat Terakhir</h5>
+                                        
+                                        <p class="mb-6">Surat Pangkat Terakhir bagi PNS</p>
+
+                                        <div class="form-item flex gap-2 items-center">
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Tahun SK" id="pns_tahun_sk" optionName="name" name="pns_tahun_sk"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Tahun</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                </x-admin.select>
+                                                @error('pns_tahun_sk') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            </div>
+
+                                            <div class="w-1/3">
+                                                <x-admin.select label="Bulan SK" id="pns_bulan_sk" optionName="name" name="pns_bulan_sk"  :isDisabled="$isDisabled">
+                                                    <option>Pilih Bulan</option>
+                                                    <option value="Januari">Januari</option>
+                                                    <option value="Februari">Februari</option>
+                                                    <option value="Maret">Maret</option>
+                                                    <option value="April">April</option>
+                                                    <option value="Mei">Mei</option>
+                                                    <option value="Juni">Juni</option>
+                                                    <option value="Juli">Juli</option>
+                                                    <option value="Agustus">Agustus</option>
+                                                    <option value="September">September</option>
+                                                    <option value="Oktober">Oktober</option>
+                                                    <option value="November">November</option>
+                                                    <option value="Desember">Desember</option>
+                                                </x-admin.select>
+                                                @error('pns_bulan_sk') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-item flex gap-2">
+                                            <div class="w-1/2">
+                                                <x-admin.upload-file title="Dokumen SK Pangkat Terakhir" subtitle="Unggah dokumen SK pangkat terakhir" id="pns_sk_pangkat_terakhir" label="SK pangkat Terakhir" name="pegawai.pns_sk_pangkat_terakhir" :img="isset($pegawai['pns_sk_pangkat_terakhir']) && !empty($pegawai) ? $pegawai['pns_sk_pangkat_terakhir'] : ''" :isDisabled="$isDisabled" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    {{-- new section ----------------------------------------}}
+                                    <div class="!border-b my-6">
+                                        <div class="form-item">
+                                            <x-admin.textarea label="Keterangan" id="catatan" name="pegawai.catatan" :isDisabled="$isDisabled" />
+                                        </div>
+                                    
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="lg:col-span-1">
-                            <div class="card adaptable-card mb-4">
-                                <div class="card-body">
-                                    <x-admin.upload-file title="Gambar" subtitle="Unggah foto pegawai ukuran persegi" id="gambar" label="Gambar" name="pegawai.gambar" :img="isset($pegawai['gambar']) && !empty($pegawai) ? $pegawai['gambar'] : ''" :isDisabled="$isDisabled" />
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     @if(!$isDisabled)
-                        <div id="stickyFooter" class="sticky -bottom-1 -mx-8 px-8 flex items-center justify-end py-4">
+                        <div id="stickyFooter" class="sticky-bottom-1 -mx-8 px-8 flex items-center justify-end py-4">
                             <div class="md:flex items-center">
                                 <button class="btn btn-solid btn-sm" type="submit">
                                     <span class="flex items-center justify-center">
