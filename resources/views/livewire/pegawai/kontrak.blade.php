@@ -30,11 +30,11 @@
 
         <div class="flex justify-between mt-5">
             <div class="flex gap-4 mb-4 items-center">
-                <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
-                <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
-                <a href="#" wire:click.prevent="action('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
-                <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
-                <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
+                <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('actionKontrak')"><i class="fa-solid fa-plus"></i> Tambah</a>
+                <a href="#" wire:click.prevent="actionKontrak('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
+                <a href="#" wire:click.prevent="actionKontrak('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
+                <a href="#" wire:click.prevent="actionKontrak('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
+                <a href="#" wire:click.prevent="actionKontrak('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
             </div>
             <div>
                 <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="button" wire:click="downloadPdf">
@@ -119,14 +119,6 @@
                     </thead>
                     <tbody>
                         @foreach($records as $record)
-                            @php
-                                $status = '';
-                                if($record->published_at == null){
-                                    $status = 'konsep';
-                                }else{
-                                    $status = 'publik';
-                                }
-                            @endphp
                             <tr>
                                 <td>
                                     <div class="flex items-center">
@@ -135,51 +127,19 @@
                                                  src="{{ isset($record->gambar) && !empty($record->gambar) && Storage::exists('public/'.$record->gambar) ? asset('storage/'.$record->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy">
                                         </span>
                                         <span class="ml-2 rtl:mr-2 font-semibold">
-                                            {{$record->nama_depan}} {{$record->nama_tengah}} {{$record->nama_belakang}}
+                                            {{'Jhon'}} {{$record->nama_tengah}} {{$record->nama_belakang}}
                                         </span>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="capitalize">{{$record->email}}</span>
+                                    <span class="capitalize">{{'1234'}}</span>
                                 </td>
-                                <td>{{$record->no_hp}}</td>
-                                <td>{{$record->bidang?->bidang}}</td>
-                                <td>{{$record->lokasi?->lokasi}}</td>
-                                <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
-                                <td>{{$record->agama?->agama}}</td>
-                                <td>{{$record->pangkatGolongan?->pangkat_golongan}}</td>
-                                <td>{{$record->suku?->suku}}</td>
-                                <td>{{$record->distrik?->distrik}}</td>
-                                <td>{{$record->kelurahan?->kelurahan}}</td>
-                                <td>{{$record->jabatan?->jabatan}}</td>
-                                <td>{{$record->deskripsiTugas?->deskripsi_tugas}}</td>
-                                <td>{{$record->gelarDepan?->gelar_depan}}</td>
-                                <td>{{$record->gelarBelakang?->gelar_belakang}}</td>
-                                <td>{{$record->gelarAkademis?->gelar_akademis}}</td>
-                                <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
-                                <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
-                                <td>{{$record->catatan}}</td>
-                                <td>
-                                    @if ($record->is_asn == 0)
-                                    <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('kontrak', { id: {{ $record->id }} })" id="kontrak{{$record->id}}">
-                                        <i class="fa-solid fa-layer-group"></i>
-                                    </span>
-                                    <script>
-                                        tippy('#kontrak'+@js($record->id), {
-                                            content: 'Kontrak',
-                                            theme: 'primary'
-                                        });
-                                    </script>
-                                    </script>
-
-
-                                    {{-- <a href="#" class="cursor-pointer p-2 text-indigo-600 hover:text-indigo-500">
-
-                                    </a> --}}
-
-                                    @endif
-
-                                </td>
+                                <td>{{'2024'}}</td>
+                                <td>{{'12-12-2022'}}</td>
+                                <td>{{'12-12-2024'}}</td>
+                                <td>{{'Abepura'}}</td>
+                                <td>{{'Lapangan 1'}}</td>
+                                <td>{{'Aktif'}}</td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))
                                         <td>

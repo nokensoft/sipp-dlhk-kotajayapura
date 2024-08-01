@@ -250,7 +250,6 @@
                                             theme: 'primary'
                                         });
                                     </script>
-                                    </script>
 
 
                                     {{-- <a href="#" class="cursor-pointer p-2 text-indigo-600 hover:text-indigo-500">

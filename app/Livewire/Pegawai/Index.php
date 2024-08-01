@@ -42,6 +42,22 @@ class Index extends Component
         }
     }
 
+    #[On('actionKontrak')]
+    public function actionKontrak():void
+    {
+        dump('tes');
+        die;
+        // if (in_array($this->menu, ['tambah', 'ubah'])) {
+        //     $this->redirect(route('pegawai'));
+        // }
+        // if($this->menu === ''){
+        //     $this->menu = 'tambah';
+        //     $this->buttonTitle = 'Kembali';
+        //     $this->buttonIcon = 'fa-solid fa-arrow-left';
+        //     $this->subtitle = "Tambah Data ";
+        // }
+    }
+
     #[On('ubah')]
     public function ubah($id):void
     {
