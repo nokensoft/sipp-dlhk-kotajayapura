@@ -103,4 +103,9 @@ class Pegawai extends Model
     {
         $query->whereNotNull('published_at');
     }
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
 }

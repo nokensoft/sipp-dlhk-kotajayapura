@@ -9,145 +9,77 @@
             <span class="font-medium">Gagal </span> {{session()->get('error')}}
         </div>
     @endif
-    @can('edit')
-
-    <div class="flex justify-between">
-        <div class="flex gap-4 mb-4 items-center">
-            <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
-            <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
-            <a href="#" wire:click.prevent="action('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
-            <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
-            <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
+        <div class="gap-4 flex-wrap p-3">
+            <h1 class="font-bold text-xl">Petugas</h1>
+            <p class="">Informasi biodata petugas lapangan</p>
         </div>
-        <div>
-            <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="button" wire:click="downloadPdf">
-                <span class="flex items-center justify-center">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    <span class="ltr:ml-1 rtl:mr-1">PDF</span>
-                </span>
-            </button>
-
-            <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200 inline-block" type="button" wire:click="previewPdf">
-                <span class="flex items-center justify-center">
-                    <i class="fa-solid fa-print"></i>
-                    <span class="ltr:ml-1 rtl:mr-1">Cetak</span>
-                </span>
-            </button>
+        <div class="p-3">
+            <div class="form-item flex gap-2 ">
+                <div class="w-1/5">
+                        <img width="200" src="{{ asset('assets/img/others/upload.png')}}" alt="" class="" >
+                </div>
+                <div class="w-1/5 content-center">
+                     <p class="font-bold text-xl text-black"> Nama Lengkap : <span></span></p>
+                     <p class="font-bold text-xl text-black"> NIK : <span></span></p>
+                </div>
+            </div>
         </div>
-    </div>
+        <hr class="border-[1px]">
 
-    @endcan
-    <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
+        @can('edit')
+
+        <div class="flex justify-between mt-5">
+            <div class="flex gap-4 mb-4 items-center">
+                <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('action')"><i class="fa-solid fa-plus"></i> Tambah</a>
+                <a href="#" wire:click.prevent="action('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
+                <a href="#" wire:click.prevent="action('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
+                <a href="#" wire:click.prevent="action('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
+                <a href="#" wire:click.prevent="action('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
+            </div>
+            <div>
+                <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="button" wire:click="downloadPdf">
+                    <span class="flex items-center justify-center">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span class="ltr:ml-1 rtl:mr-1">PDF</span>
+                    </span>
+                </button>
+
+                <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200 inline-block" type="button" wire:click="previewPdf">
+                    <span class="flex items-center justify-center">
+                        <i class="fa-solid fa-print"></i>
+                        <span class="ltr:ml-1 rtl:mr-1">Cetak</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="flex gap-1 items-center">
+
+        </div>
+        <!-- filter end -->
+     @endcan
+     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex gap-4 flex-wrap">
             <div class="flex gap-4 z-50">
-                <div class="flex gap-1 items-center">
-                    <span>Tampilkan</span>
-                    <div
-                        class="relative text-center"
-                        x-data="{
-                            isSelectOpen:false,
-                            select(){
-                                this.isSelectOpen = false;
-                            }
-                        }"
-                    >
-                        <div class="border p-2 w-16 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                            <span class="mr-1">{{$paginate}}</span> <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="border absolute bg-white top-10 left-0 w-16 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
-                            @foreach($listPaginate as $list)
-                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="changePaginate({{$list}})">{{$list}}</a>
-                            @endforeach
-                        </div>
+                <span>Status</span>
+                <div
+                    class="relative"
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">Semua</span> <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <span>data</span>
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span>Suku</span>
-                    <div
-                        class="relative text-center"
-                        x-data="{
-                            isSelectOpen:false,
-                            select(){
-                                this.isSelectOpen = false;
-                            }
-                        }"
-                    >
-                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                            <span class="mr-1">{{$selectedSuku ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="border absolute bg-white top-10 left-0 w-20 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
-                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectSuku">Semua</a>
-                            @foreach($suku as $list)
-                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectSuku({{json_encode($list['suku'])}})">{{$list['suku']}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span>Jenis Kelamin</span>
-                    <div
-                        class="relative text-center"
-                        x-data="{
-                            isSelectOpen:false,
-                            select(){
-                                this.isSelectOpen = false;
-                            }
-                        }"
-                    >
-                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                            <span class="mr-1">{{$selectedJenisKelamin ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="border absolute bg-white top-10 left-0 w-20 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
-                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectJenisKelamin">Semua</a>
-                            @foreach($jenisKelamin as $list)
-                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectJenisKelamin({{json_encode($list['jenis_kelamin'])}})">{{$list['jenis_kelamin']}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span>Jenjang Pendidikan</span>
-                    <div
-                        class="relative text-center"
-                        x-data="{
-                            isSelectOpen:false,
-                            select(){
-                                this.isSelectOpen = false;
-                            }
-                        }"
-                    >
-                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                            <span class="mr-1">{{$selectedJenjangPendidikan ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="border absolute bg-white top-10 left-0 w-20 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
-                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectJenjangPendidikan">Semua</a>
-                            @foreach($jenjangPendidikan as $list)
-                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectJenjangPendidikan({{json_encode($list['jenjang_pendidikan'])}})">{{$list['jenjang_pendidikan']}}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span>Status Pernikahan</span>
-                    <div
-                        class="relative text-center"
-                        x-data="{
-                            isSelectOpen:false,
-                            select(){
-                                this.isSelectOpen = false;
-                            }
-                        }"
-                    >
-                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
-                            <span class="mr-1">{{$selectedStatusPernikahan ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="border absolute bg-white top-10 left-0 w-32 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
-                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectStatusPernikahan">Semua</a>
-                            @foreach($statusPernikahan as $list)
-                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectStatusPernikahan({{json_encode($list['status_perkawinan'])}})">{{$list['status_perkawinan']}}</a>
-                            @endforeach
-                        </div>
+                    <div class="border absolute bg-white top-10 left-0 w-30 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($status as $s)
+
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$s}})">{{$s}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -169,29 +101,17 @@
                 <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
                     <thead>
                     <tr>
-                        <th>Nama Lengkap</th>
-                        <th>Email</th>
-                        <th>No Hp</th>
-                        <th>Bidang</th>
-                        <th>Lokasi</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Agama</th>
-                        <th>Pangkat Golongan</th>
-                        <th>Suku</th>
-                        <th>Distrik</th>
-                        <th>Kelurahan</th>
-                        <th>Jabatan</th>
-                        <th>Deskripsi Tugas</th>
-                        <th>Gelar Depan</th>
-                        <th>Gelar Belakang</th>
-                        <th>Gelar Akademis</th>
-                        <th>Jenjang Pendidikan</th>
-                        <th>Status Perkawinan</th>
-                        <th>{{$isAsn ? 'Catatan' : 'Keterangan'}}</th>
-                        <th>Kontrak</th>
+                        <th>Nama Lengkap </th>
+                        <th>Nomor</th>
+                        <th>Tahun</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
+                        <th>Wilayah</th>
+                        <th>Lapangan</th>
+                        <th>Status Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
-                                <th>Toggle</th>
+                                <th>Publik</th>
                             @endif
                         @endcan
                         <th></th>
@@ -350,6 +270,11 @@
 
     <div class="mt-6">
         {{ $records->links('customPagination.custom-pagination') }}
+    </div>
+
+
+    <div class="mt-6">
+        {{-- {{ $records->links('customPagination.custom-pagination') }} --}}
     </div>
 {{--    <x-pagination/>--}}
 </div>

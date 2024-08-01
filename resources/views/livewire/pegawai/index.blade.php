@@ -5,12 +5,23 @@
                 <div class="card-body">
                     <div class="lg:flex items-center justify-between mb-2">
                         <div class="space-y-2">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900">Pegawai</h3>
-                            <p>Data pegawai</p>
+                            @if ($menu === 'kontrak')
+                                <h3 class="text-xl font-bold tracking-tight text-gray-900"> Kontrak </h3>
+                                <p>Daftar Kontrak</p>
+                            @else
+                                <h3 class="text-xl font-bold tracking-tight text-gray-900"> Pegawai </h3>
+                                <p>Data pegawai</p>
+                            @endif
                         </div>
                         <div class="flex flex-col justify-end gap-2">
+                            @if ($menu === 'kontrak')
+                            <p class="italic">Dasbor / Pegawai / Nama Lengkap / <span class="font-bold">Kontrak</span></p>
+
+                            @else
                             <p class="italic">Dasbor / <span class="font-bold">Pegawai</span></p>
-                            @if(in_array($menu, ['tambah', 'ubah']))
+
+                            @endif
+                            @if(in_array($menu, ['tambah', 'ubah','kontrak']))
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -42,6 +53,8 @@
                     <hr class="border-[1px]">
                     @if($menu === 'tambah' || ($menu === 'ubah' && $id != '') || ($menu === 'detail' && $id != ''))
                         <livewire:pegawai.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
+                    @elseif ($menu === 'kontrak' && $id != '')
+                        <livewire:pegawai.kontrak :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:pegawai.record />
                     @endif

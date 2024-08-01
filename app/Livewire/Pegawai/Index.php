@@ -14,6 +14,8 @@ class Index extends Component
 {
     #[Url(history: true)]
     public ?string $menu = '';
+    public ?string $title = '';
+    public ?string $subtitle = '';
     public ?string $buttonTitle = 'Tambah';
     public ?string $buttonIcon = "fa-solid fa-plus";
     public bool $isDisabled = false;
@@ -62,6 +64,16 @@ class Index extends Component
         $this->isDisabled = true;
     }
 
+    #[On('kontrak')]
+    public function kontrak($id):void
+    {
+        $this->menu='kontrak';
+        $this->id = $id;
+        $this->title = 'Kontrak';
+        $this->buttonMenu();
+        $this->subtitle = 'Subtitle';
+    }
+
     private function buttonMenu():void{
         if ($this->menu === 'tambah') {
             $this->buttonTitle = 'Kembali';
@@ -71,6 +83,11 @@ class Index extends Component
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Ubah Data Pegawai";
+        }
+        else if ($this->menu === 'kontrak') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Data Kontrak Pegawai";
         }
     }
 

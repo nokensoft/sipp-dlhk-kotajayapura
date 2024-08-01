@@ -16,6 +16,9 @@ return new class extends Migration
             $table->bigInteger('kontrak_id');
             $table->bigInteger('user_id');
             $table->string('tanggal');
+            $table->timestamp('published_at')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
