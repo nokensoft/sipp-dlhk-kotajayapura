@@ -115,7 +115,7 @@
 
             {{-- {{ Auth::user()->roles->pluck('name')[0] ?? 'adminmaster' }} --}}
 
-            <div class="menu-group">
+            {{-- <div class="menu-group">
                 <div class="menu-title menu-title-transparent">
                     Pengaturan
                 </div>
@@ -229,7 +229,7 @@
                 </ul>
 
             </div>
-            {{-- menu-group end --}}
+            menu-group end --}}
             
             @endhasanyrole
 
