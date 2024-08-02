@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('wilayah', function (Blueprint $table) {
             $table->id();
             $table->string('nama_wilayah');
-            $table->bigInteger('pegawai_id');
+            $table->bigInteger('pegawai_id'); // PNS yang menjadi koordinator
             $table->text('keterangan')->nullable();
             $table->json('geojson')->nullable();
             $table->timestamp('published_at')->nullable();
