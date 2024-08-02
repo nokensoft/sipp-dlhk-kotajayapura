@@ -56,28 +56,19 @@ class LapanganSeeder extends Seeder
 
             // pembabatan
             [
-                'id' => 105,
+                'id' => 111,
                 'nama_lapangan' => 'Pembabatan Jayapura Utara I',
                 'wilayah_id' => 1, // Jayapura Utara | wilayah_id=1
-                'pegawai_id' => 105, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'pegawai_id' => 111, // ID Pegawai PNS yang menjadi koordinator lapangan
                 'keterangan' => 'Wilayah kerja petugas lapangan',
                 'geojson' => null,
                 'published_at' => now(),
             ],
             [
-                'id' => 106,
+                'id' => 112,
                 'nama_lapangan' => 'Pembabatan Jayapura Utara II',
                 'wilayah_id' => 1, // Jayapura Utara | wilayah_id=1
-                'pegawai_id' => 106, // ID Pegawai PNS yang menjadi koordinator lapangan
-                'keterangan' => 'Wilayah kerja petugas lapangan',
-                'geojson' => null,
-                'published_at' => now(),
-            ],
-            [
-                'id' => 107,
-                'nama_lapangan' => 'Pembabatan Jayapura Utara III',
-                'wilayah_id' => 1, // Jayapura Utara | wilayah_id=1
-                'pegawai_id' => 107, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'pegawai_id' => 112, // ID Pegawai PNS yang menjadi koordinator lapangan
                 'keterangan' => 'Wilayah kerja petugas lapangan',
                 'geojson' => null,
                 'published_at' => now(),
@@ -85,10 +76,10 @@ class LapanganSeeder extends Seeder
 
             // saluran tebing
             [
-                'id' => 108,
+                'id' => 121,
                 'nama_lapangan' => 'Saluran Tebing Jayapura Utara I',
                 'wilayah_id' => 1, // Jayapura Utara | wilayah_id=1
-                'pegawai_id' => 108, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'pegawai_id' => 121, // ID Pegawai PNS yang menjadi koordinator lapangan
                 'keterangan' => 'Wilayah kerja petugas lapangan',
                 'geojson' => null,
                 'published_at' => now(),
@@ -98,15 +89,79 @@ class LapanganSeeder extends Seeder
 
             // Jayapura Selatan | wilayah_id=2
 
-            // pembabatan
-
             // penyapuan
+            [
+                'id' => 301,
+                'nama_lapangan' => 'Penyapuan Abepura I',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 301, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+            [
+                'id' => 302,
+                'nama_lapangan' => 'Penyapuan Abepura II',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 302, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+            [
+                'id' => 303,
+                'nama_lapangan' => 'Penyapuan Abepura III',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 303, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+            [
+                'id' => 304,
+                'nama_lapangan' => 'Penyapuan Abepura IV',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 304, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+
+            // pembabatan
+            [
+                'id' => 311,
+                'nama_lapangan' => 'Pembabatan dan Penyisiran Abe I',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 311, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+            [
+                'id' => 312,
+                'nama_lapangan' => 'Pembabatan dan Penyisiran Abe II',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 312, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
+            [
+                'id' => 313,
+                'nama_lapangan' => 'Pembabatan dan Penyisiran Abe III',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 313, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'keterangan' => 'Wilayah kerja petugas lapangan',
+                'geojson' => null,
+                'published_at' => now(),
+            ],
 
             // saluran tebing
             [
-                'nama_lapangan' => 'Jayapura Selatan',
-                'wilayah_id' => 2, // Jayapura Selatan | wilayah_id=2
-                'pegawai_id' => 2, // ID Pegawai PNS yang menjadi koordinator lapangan
+                'id' => 321,
+                'nama_lapangan' => 'Saluran Tebing Abe I',
+                'wilayah_id' => 2, // Jayapura Utara | wilayah_id=1
+                'pegawai_id' => 321, // ID Pegawai PNS yang menjadi koordinator lapangan
                 'keterangan' => 'Wilayah kerja petugas lapangan',
                 'geojson' => null,
                 'published_at' => now(),
@@ -116,9 +171,9 @@ class LapanganSeeder extends Seeder
 
             // Abepura | wilayah_id=3
 
-            // pembabatan
-
             // penyapuan
+
+            // pembabatan
 
             // saluran tebing
             [
@@ -134,9 +189,9 @@ class LapanganSeeder extends Seeder
 
             // Muara Tami | wilayah_id=4
 
-            // pembabatan
-
             // penyapuan
+
+            // pembabatan
 
             // saluran tebing
             [
@@ -152,9 +207,9 @@ class LapanganSeeder extends Seeder
 
             // Heram | wilayah_id=5
 
-            // pembabatan
-
             // penyapuan
+
+            // pembabatan
 
             // saluran tebing
             [
