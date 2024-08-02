@@ -101,7 +101,7 @@ class PegawaiSeeder extends Seeder
                 'published_at' => now(),
             ],
             [
-                'id' => 106,
+                'id' => 111,
                 'nama_depan' => 'Jhon',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Doom',
@@ -109,7 +109,7 @@ class PegawaiSeeder extends Seeder
                 'published_at' => now(),
             ],
             [
-                'id' => 107,
+                'id' => 112,
                 'nama_depan' => 'Jefry',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Wondiwoy',
@@ -117,7 +117,7 @@ class PegawaiSeeder extends Seeder
                 'published_at' => now(),
             ],
             [
-                'id' => 108,
+                'id' => 121,
                 'nama_depan' => 'Yehezkiel',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Wanimbo',
