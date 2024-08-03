@@ -1,5 +1,9 @@
 <div>
     <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
     <script type="text/javascript">
         window.addEventListener('load', function() {
             const colors = ['#ff0000', '#eed959' ,'#00ff00',  '#ffff00', '#0000ff'];
@@ -87,6 +91,10 @@
             }
             L.control.layers(null, districtLayers, {collapsed: false}).addTo(map);
             L.control.layers(null, bidangLayout, {collapsed: false}).addTo(map);
+
+            map.addControl(new L.Control.Fullscreen());
+            // map.toggleFullscreen()
+
         });
     </script>
 
