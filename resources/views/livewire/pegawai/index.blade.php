@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <div class="lg:flex items-center justify-between mb-2">
                         <div class="space-y-2">
-                            @if ($menu === 'kontrak')
+                            @if(in_array($menu, ['kontrak','tambahkontrak','ubahkontrak','detailkontrak']))
                                 <h3 class="text-xl font-bold tracking-tight text-gray-900"> Kontrak </h3>
                                 <p>Daftar Kontrak</p>
                             @else
@@ -14,14 +14,14 @@
                             @endif
                         </div>
                         <div class="flex flex-col justify-end gap-2">
-                            @if ($menu === 'kontrak')
+                            @if(in_array($menu, ['kontrak','tambahkontrak','ubahkontrak','detailkontrak']))
                             <p class="italic">Dasbor / Pegawai / Nama Lengkap / <span class="font-bold">Kontrak</span></p>
 
                             @else
                             <p class="italic">Dasbor / <span class="font-bold">Pegawai</span></p>
 
                             @endif
-                            @if(in_array($menu, ['tambah', 'ubah','kontrak']))
+                            @if(in_array($menu, ['tambah', 'ubah','kontrak','tambahkontrak','ubahkontrak']))
                                 <div class="ml-auto">
                                     <x-button-custom title="{{$buttonTitle}}" action="action" class="btn btn-xs btn-solid">
                                         <x-slot name="icon">
@@ -48,6 +48,25 @@
                                     @endcan
                                 </div>
                             </div>
+
+                            <div class="ml-auto" x-show="menu === 'detailkontrak'">
+                                <div class="flex gap-2">
+                                    @can('edit')
+                                        <x-button-custom id="edit-button" tooltip="UBAH DATA!" action="ubahkontrak({{$id}})" class="btn btn-xs btn-solid">
+                                            <x-slot name="icon">
+                                                <i class="fa-solid fa-edit text-sm"></i>
+                                            </x-slot>
+                                        </x-button-custom>
+                                    @endcan
+                                    @can('delete')
+                                        <x-button-custom id="delete-button" tooltip="HAPUS DATA!" @click="openModalDelete = true" class="btn btn-xs btn-solid">
+                                            <x-slot name="icon">
+                                                <i class="fa-solid fa-trash text-sm"></i>
+                                            </x-slot>
+                                        </x-button-custom>
+                                    @endcan
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <hr class="border-[1px]">
@@ -55,6 +74,8 @@
                         <livewire:pegawai.form :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @elseif ($menu === 'kontrak' && $id != '')
                         <livewire:pegawai.kontrak :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
+                    @elseif($menu === 'tambahkontrak' || ($menu === 'ubahkontrak' && $id != '') || ($menu === 'detailkontrak' && $id != ''))
+                    <livewire:pegawai.form-kontrak :id="$id" :menu="$menu" :isDisabled="$isDisabled"/>
                     @else
                         <livewire:pegawai.record />
                     @endif

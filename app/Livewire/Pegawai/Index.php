@@ -31,7 +31,11 @@ class Index extends Component
     #[On('action')]
     public function action():void
     {
-        if (in_array($this->menu, ['tambah', 'ubah'])) {
+        if (in_array($this->menu, ['tambah', 'ubah','kontrak'])) {
+            $this->redirect(route('pegawai'));
+        }
+
+        if (in_array($this->menu, ['tambahkontrak', 'ubahkontrak'])) {
             $this->redirect(route('pegawai'));
         }
         if($this->menu === ''){
@@ -42,20 +46,20 @@ class Index extends Component
         }
     }
 
-    #[On('actionKontrak')]
-    public function actionKontrak():void
+    #[On('actionkontrak')]
+    public function actionkontrak():void
     {
-        dump('tes');
-        die;
-        // if (in_array($this->menu, ['tambah', 'ubah'])) {
-        //     $this->redirect(route('pegawai'));
-        // }
-        // if($this->menu === ''){
-        //     $this->menu = 'tambah';
-        //     $this->buttonTitle = 'Kembali';
-        //     $this->buttonIcon = 'fa-solid fa-arrow-left';
-        //     $this->subtitle = "Tambah Data ";
-        // }
+
+
+        if (in_array($this->menu, ['tambahkontrak', 'ubahkontrak'])) {
+            $this->redirect(route('pegawai'));
+        }
+        if($this->menu === 'kontrak'){
+            $this->menu = 'tambahkontrak';
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Tambah Data ";
+        }
     }
 
     #[On('ubah')]
@@ -71,10 +75,32 @@ class Index extends Component
         $this->dispatch('refresh', false);
     }
 
+    #[On('ubahkontrak')]
+    public function ubahkontrak($id):void
+    {
+
+        if($this->menu === 'detail'){
+            $this->dispatch('load-kontrak', id:$id, menu: 'ubahkontrak');
+        }
+        $this->menu='ubahkontrak';
+        $this->id = $id;
+        $this->buttonMenu();
+        $this->dispatch('refresh', false);
+    }
+
     #[On('detail')]
     public function detail($id):void
     {
         $this->menu='detail';
+        $this->id = $id;
+        $this->buttonMenu();
+        $this->isDisabled = true;
+    }
+
+    #[On('detailkontrak')]
+    public function detailkontrak($id):void
+    {
+        $this->menu='detailkontrak';
         $this->id = $id;
         $this->buttonMenu();
         $this->isDisabled = true;
@@ -104,6 +130,10 @@ class Index extends Component
             $this->buttonTitle = 'Kembali';
             $this->buttonIcon = 'fa-solid fa-arrow-left';
             $this->subtitle = "Data Kontrak Pegawai";
+        }else if ($this->menu === 'tambahkontrak') {
+            $this->buttonTitle = 'Kembali';
+            $this->buttonIcon = 'fa-solid fa-arrow-left';
+            $this->subtitle = "Tambah Data Pegawai";
         }
     }
 

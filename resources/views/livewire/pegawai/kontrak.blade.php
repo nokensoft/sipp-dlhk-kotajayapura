@@ -30,11 +30,11 @@
 
         <div class="flex justify-between mt-5">
             <div class="flex gap-4 mb-4 items-center">
-                <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('actionKontrak')"><i class="fa-solid fa-plus"></i> Tambah</a>
-                <a href="#" wire:click.prevent="actionKontrak('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
-                <a href="#" wire:click.prevent="actionKontrak('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
-                <a href="#" wire:click.prevent="actionKontrak('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
-                <a href="#" wire:click.prevent="actionKontrak('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
+                <a href="#" class="btn btn-xs btn-solid" wire:click.prevent="$dispatch('actionkontrak')"><i class="fa-solid fa-plus"></i> Tambah</a>
+                <a href="#" wire:click.prevent="actionkontrak('')" class="{{$menu === '' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Semua ({{$totalAll}})</a>
+                <a href="#" wire:click.prevent="actionkontrak('publik')" class="{{$menu === 'publik' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Publik ({{$totalPublik}})</a>
+                <a href="#" wire:click.prevent="actionkontrak('konsep')" class="{{$menu === 'konsep' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Konsep ({{$totalKonsep}})</a>
+                <a href="#" wire:click.prevent="actionkontrak('tempat_sampah')" class="{{$menu === 'tempat_sampah' ? 'text-[#4F46E5] font-bold' : 'text-gray-500'}}  hover:border-b-2 hover:border-[#4F46E5] hover:text-[#4F46E5] pb-2 hover:pb-0 transition duration:200 h-6">Tempat Sampah ({{$totalTempatSampah}})</a>
             </div>
             <div>
                 <button class="btn btn-sm hover:border-[#4F46E5] hover:text-[#4F46E5] hover: transition duration:200" type="button" wire:click="downloadPdf">
@@ -61,7 +61,29 @@
      @endcan
      <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex gap-4 flex-wrap">
-            <div class="flex gap-4 z-50">
+            <div class="flex gap-4 z-50 items-center">
+                <span>Tahun</span>
+                <div
+                    class="relative"
+                    x-data="{
+                        isSelectOpen:false,
+                        select(){
+                            this.isSelectOpen = false;
+                        }
+                    }"
+                >
+                    <div class="border p-2 w-26 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                        <span class="mr-1">Semua</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="border absolute bg-white top-10 left-0 w-30 rounded-lg" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                        @foreach($status as $s)
+
+                            <a href="#" class="block px-2 hover:bg-gray-200" @click="select()" wire:click.prevent="changePaginate({{$s}})">{{$s}}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-4 z-50 items-center">
                 <span>Status</span>
                 <div
                     class="relative"
@@ -170,22 +192,22 @@
                                             @endcan
                                         @else
                                             @can('view')
-                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('detail', { id: {{ $record->id }} })" id="detail{{$record->id}}">
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('detailkontrak', { id: {{ $record->id }} })" id="detailkontrak{{$record->id}}">
                                                     <i class="fa-solid fa-eye text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#detail'+@js($record->id), {
+                                                    tippy('#detailkontrak'+@js($record->id), {
                                                         content: 'Detail',
                                                         theme: 'primary'
                                                     });
                                                 </script>
                                             @endcan
                                             @can('edit')
-                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('ubah', { id: {{ $record->id }} })" id="ubah{{$record->id}}">
+                                                <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('ubahkontrak', { id: {{ $record->id }} })" id="ubahkontrak{{$record->id}}">
                                                     <i class="fa-solid fa-edit text-sm"></i>
                                                 </span>
                                                 <script>
-                                                    tippy('#ubah'+@js($record->id), {
+                                                    tippy('#ubahkontrak'+@js($record->id), {
                                                         content: 'Ubah',
                                                         theme: 'primary'
                                                     });
@@ -193,11 +215,11 @@
                                             @endcan
                                         @endif
                                         @can('delete')
-                                            <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="delete{{$record->id}}">
+                                            <span class="cursor-pointer p-2 hover:text-red-500" @click="openModalDelete = true" wire:click.prevent="modal({{$record->id}})" id="deletekontrak{{$record->id}}">
                                                 <i class="fa-solid fa-trash text-sm"></i>
                                             </span>
                                             <script>
-                                                tippy('#delete'+@js($record->id), {
+                                                tippy('#deletekontrak'+@js($record->id), {
                                                     content: 'Hapus',
                                                     theme: 'primary'
                                                 });
