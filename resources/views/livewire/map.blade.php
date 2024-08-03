@@ -58,6 +58,10 @@
                         }
                     ]
                 }
+
+                /*
+                | wilayah -----------------
+                */
                 wilayahLayers[wilayahs[i]['distrik']] = L.geoJson(getGeoJson, {
                     style: {color: color, fillColor: color},
                     onEachFeature: (feature, layer) => {

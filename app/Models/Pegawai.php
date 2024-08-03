@@ -19,14 +19,19 @@ class Pegawai extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function lapangan(): BelongsTo
-    {
-        return $this->belongsTo(Lapangan::class, 'lapangan_id');
-    }
+    // public function pegawai()
+    // {
+    //     return $this->belongsTo(Pegawai::class);
+    // }
 
     public function wilayah()
     {
         return $this->hasManyThrough(Lapangan::class, Wilayah::class);
+    }
+
+    public function lapangan(): BelongsTo
+    {
+        return $this->belongsTo(Lapangan::class, 'lapangan_id');
     }
 
     public function bidang(): BelongsTo
@@ -112,10 +117,5 @@ class Pegawai extends Model
     public function scopePublished(Builder $query): void
     {
         $query->whereNotNull('published_at');
-    }
-
-    public function pegawai()
-    {
-        return $this->belongsTo(Pegawai::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Bidang;
 use App\Models\Distrik;
+use App\Models\Wilayah;
 use Livewire\Component;
 use App\Models\Lokasi;
 use Illuminate\View\View;
@@ -21,7 +22,8 @@ class Map extends Component
     public function mount(): void
     {
         $this->districts = Distrik::with(['pegawais.bidang', 'pegawais.lokasi'])->get()->toArray();
-        $this->wilayahs = Distrik::with(['pegawais.lapangan', 'pegawais.lokasi'])->get()->toArray();
+        // $this->wilayahs = Distrik::with(['pegawais.lapangan', 'pegawais.lokasi'])->get()->toArray();
+        $this->wilayahs = Wilayah::with(['pegawai.lapangan', 'pegawais.lokasi'])->get()->toArray();
         $this->bidangs = Bidang::query()->get()->toArray();
 
         $this->resetMap();
