@@ -54,6 +54,10 @@
                             </div>
                         </div>
                         
+                        {{-- 
+                            * bagian ini sementara disembunyikan, 
+                            * bisa digunakan dikemudian waktu jika diperlukan
+                        
                         <div class="lg:col-span-2">
                             <div class="card adaptable-card pb-6 py-4 rounded-br-none rounded-bl-none">
                                 <div class="card-body">
@@ -68,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
 
