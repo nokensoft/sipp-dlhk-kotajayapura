@@ -185,8 +185,8 @@
                         <th>Tahun Kontrak</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
-                        <th>Bidang Kerja</th>
-                        <th>Lokasi Kerja</th>
+                        <th>Wilayah</th>
+                        <th>Lokasi</th>
                         <th>Status Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
@@ -207,13 +207,13 @@
                                 }
                             @endphp
                             <tr>
-                                <td>{{ 'nama lengkap' }}</td>
+                                <td>{{'nama lengkap'}}</td>
                                 <td>{{$record->nomor_kontrak}}</td>
                                 <td>{{$record->tahun_kontrak}}</td>
                                 <td>{{$record->tanggal_mulai}}</td>
                                 <td>{{$record->tanggal_selesai}}</td>
 
-                                <td>{{ 'bidang kerja' }}</td>
+                                <td>{{ 'wilayah kerja' }}</td>
                                 <td>{{ 'lokasi kerja' }}</td>
                                 <td>{{$record->status_kontrak}}</td>
                                 @can('edit')

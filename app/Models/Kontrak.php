@@ -22,4 +22,9 @@ class Kontrak extends Model
     {
         return $query->whereNotNull('published_at');
     }
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }

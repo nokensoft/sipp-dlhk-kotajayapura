@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('tahun_kontrak')->nullable();
             $table->date('tanggal_mulai')->nullable();
             $table->date('tanggal_selesai')->nullable();
-            $table->bigInteger('wilayah_id')->nullable();
             $table->bigInteger('lapangan_id')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();

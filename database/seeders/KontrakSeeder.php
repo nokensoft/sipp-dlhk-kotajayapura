@@ -21,8 +21,8 @@ class KontrakSeeder extends Seeder
                 'tanggal_mulai' => now(),
                 'tanggal_selesai' => null,
 
-                'latitude' => '',
-                'longitude' => '',
+                'latitude' => '-2.514329',
+                'longitude' => '140.664125',
 
                 'status' => 'Baru',
 
@@ -42,17 +42,66 @@ class KontrakSeeder extends Seeder
                 'tanggal_mulai' => now(),
                 'tanggal_selesai' => null,
 
-                'latitude' => '',
-                'longitude' => '',
+                'latitude' => '-2.527705',
+                'longitude' => '140.690904',
 
                 'status' => 'Penggantian',
-                
+
                 'dokumen' => '',
 
                 'keterangan' => '',
 
                 'published_at' => now(),
             ],
+
+            [
+                'pegawai_id' => 2001,
+                'lapangan_id' => 201, // Lapangan: Penyapuan Jayapura Selatan I
+
+                'nomor' => '234',
+                'tahun' => 2022,
+
+                'tanggal_mulai' => now(),
+                'tanggal_selesai' => null,
+
+                'latitude' => '-2.527705',
+                'longitude' => '140.690904',
+
+                'status' => 'Penggantian',
+
+                'dokumen' => '',
+
+                'keterangan' => '',
+
+                'published_at' => now(),
+            ],
+
+            [
+                'pegawai_id' => 2002,
+                'lapangan_id' => 201, // Lapangan: Penyapuan Jayapura Selatan I
+
+                'nomor' => '234',
+                'tahun' => 2022,
+
+                'tanggal_mulai' => now(),
+                'tanggal_selesai' => null,
+
+                'latitude' => '-2.566141',
+                'longitude' => '140.667867',
+
+
+                'status' => 'Penggantian',
+
+                'dokumen' => '',
+
+                'keterangan' => '',
+
+                'published_at' => now(),
+            ],
+
+
+
+
         ])->each(function ($collection) {
             Kontrak::create($collection);
         });
