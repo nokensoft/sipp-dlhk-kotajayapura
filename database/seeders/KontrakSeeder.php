@@ -12,21 +12,45 @@ class KontrakSeeder extends Seeder
     {
         collect([
             [
-                'nomor_kontrak' => '123',
-                'tahun_kontrak' => 2024,
+                'pegawai_id' => 2000,
+                'lapangan_id' => 101, // Lapangan: Penyapuan Jayapura Utara I
+
+                'nomor' => '123',
+                'tahun' => 2024,
+
                 'tanggal_mulai' => now(),
                 'tanggal_selesai' => null,
-                'status_kontrak' => 'Berjalan',
+
+                'latitude' => '',
+                'longitude' => '',
+
+                'status' => 'Baru',
+
+                'dokumen' => '',
+
                 'keterangan' => '',
+
                 'published_at' => now(),
             ],
             [
-                'nomor_kontrak' => '234',
-                'tahun_kontrak' => 2023,
+                'pegawai_id' => 2001,
+                'lapangan_id' => 101, // Lapangan: Penyapuan Jayapura Utara I
+
+                'nomor' => '234',
+                'tahun' => 2023,
+
                 'tanggal_mulai' => now(),
                 'tanggal_selesai' => null,
-                'status_kontrak' => 'Penggantian',
+
+                'latitude' => '',
+                'longitude' => '',
+
+                'status' => 'Penggantian',
+                
+                'dokumen' => '',
+
                 'keterangan' => '',
+
                 'published_at' => now(),
             ],
         ])->each(function ($collection) {
