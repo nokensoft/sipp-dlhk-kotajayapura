@@ -240,7 +240,7 @@
                                 <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
                                 <td>{{$record->catatan}}</td>
                                 <td>
-                                    @if ($record->is_asn == 0)
+                                    @if ($record->is_asn == false)
                                     <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('kontrak', { id: {{ $record->id }} })" id="kontrak{{$record->id}}">
                                         <i class="fa-solid fa-layer-group"></i>
                                     </span>
