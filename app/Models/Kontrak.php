@@ -26,6 +26,11 @@ class Kontrak extends Model
 
     public function pegawai()
     {
-        return $this->hasMany(Pegawai::class);
+        return $this->belongsTo(Pegawai::class);
+    }
+
+    public function lapangan()
+    {
+        return $this->belongsTo(Lapangan::class);
     }
 }

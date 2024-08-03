@@ -186,7 +186,7 @@
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Selesai</th>
                         <th>Wilayah</th>
-                        <th>Lokasi</th>
+                        <th>Lapangan</th>
                         <th>Status Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
@@ -199,7 +199,7 @@
                     <tbody>
                         @foreach($records as $record)
                             @php
-                                $status = '';
+                            $status = '';
                                 if($record->published_at == null){
                                     $status = 'konsep';
                                 }else{
@@ -207,14 +207,14 @@
                                 }
                             @endphp
                             <tr>
-                                <td>{{'nama lengkap'}}</td>
+                                {{-- @dd($record->pegawai) --}}
+                                <td>{{$record->pegawai->nama_depan .' '.$record->pegawai->nama_tengah.' '.$record->pegawai->nama_belakang}}</td>
                                 <td>{{$record->nomor_kontrak}}</td>
                                 <td>{{$record->tahun_kontrak}}</td>
                                 <td>{{$record->tanggal_mulai}}</td>
                                 <td>{{$record->tanggal_selesai}}</td>
-
-                                <td>{{ 'wilayah kerja' }}</td>
-                                <td>{{ 'lokasi kerja' }}</td>
+                                <td>{{ $record->lapangan->wilayah->nama_wilayah }}</td>
+                                <td>{{ $record->lapangan->nama_lapangan }}</td>
                                 <td>{{$record->status_kontrak}}</td>
                                 @can('edit')
                                     @if(!isset($record->deleted_at))
