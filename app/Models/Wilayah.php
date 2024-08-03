@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Wilayah extends Model
 {
@@ -16,6 +17,11 @@ class Wilayah extends Model
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class);
+    }
+
+    public function lapangan()
+    {
+        return $this->hasMany(Lapangan::class, 'wilayah_id');
     }
 
     public function scopeDraft(Builder $query): void

@@ -14,11 +14,6 @@ class Kontrak extends Model
 
     protected $guarded = ['id'];
 
-    public function pegawai(): BelongsTo
-    {
-        return $this->belongsTo(Pegawai::class, 'pegawai_id');
-    }
-
     public function scopeDraft(Builder $query): void
     {
         $query->whereNull('published_at');

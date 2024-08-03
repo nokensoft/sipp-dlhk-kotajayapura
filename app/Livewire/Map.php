@@ -21,9 +21,9 @@ class Map extends Component
 
     public function mount(): void
     {
-        $this->districts = Distrik::with(['pegawais.bidang', 'pegawais.lokasi'])->get()->toArray();
-        // $this->wilayahs = Distrik::with(['pegawais.lapangan', 'pegawais.lokasi'])->get()->toArray();
-        $this->wilayahs = Wilayah::with(['pegawai.lapangan', 'pegawais.lokasi'])->get()->toArray();
+        // $this->districts = Distrik::with(['pegawais.bidang', 'pegawais.lokasi'])->get()->toArray();
+        $this->wilayahs = Wilayah::with(['lapangan.wilayah', 'lapangan.kontrak'])->get()->toArray();
+        // $this->wilayahs = Wilayah::with(['pegawai.lapangan', 'pegawais.lokasi'])->get()->toArray();
         $this->bidangs = Bidang::query()->get()->toArray();
 
         $this->resetMap();
