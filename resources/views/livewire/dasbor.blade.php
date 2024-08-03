@@ -33,6 +33,11 @@
                                     </x-admin.select>
                                 </div>
                             </div>
+
+                            
+
+                            <livewire:map/>
+
                         </div>
                     </div>
 

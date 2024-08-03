@@ -47,8 +47,8 @@
                                     <div class="form-item flex gap-2">
                                         <div class="w-full">
                                             <div class="w-full">
-                                                <x-admin.textarea label="Geojson" id="geojson" name="wilayah.geojson" :isDisabled="$isDisabled" />
-                                                @error('wilayah.geojson') <span class="text-red-400">{{ $message }}</span> @enderror
+                                            <x-admin.textarea label="Geojson" id="geojson" name="wilayah.geojson" :isDisabled="$isDisabled" />
+
                                             </div>
                                         </div>
                                     </div>

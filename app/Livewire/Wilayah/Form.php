@@ -67,6 +67,9 @@ class Form extends Component
     {
         $this->validate();
 
+        if(isset($this->wilayah['geojson'])) $this->wilayah['geojson'] = json_encode($this->wilayah['geojson']);
+        $this->validate();
+
         try {
             DB::beginTransaction();
 
