@@ -13,13 +13,26 @@ return new class extends Migration
     {
         Schema::create('kontraks', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_kontrak');
-            $table->string('tahun_kontrak');
+
+            $table->bigInteger('pegawai_id')->nullable();
+            $table->bigInteger('lapangan_id')->nullable();
+
+            $table->string('nomor');
+            $table->string('tahun');
+            
             $table->string('tanggal_mulai')->nullable();
             $table->string('tanggal_selesai')->nullable();
-            $table->mediumText('keterangan')->nullable();
+            
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+
+            $table->enum('status', ['Baru', 'Penggantian'])->default('Baru');
+            
+            $table->string('dokumen')->nullable();
+            
+            $table->text('keterangan')->nullable();
+
             $table->timestamp('published_at')->nullable();
-            $table->enum('status_kontrak', ['Berjalan', 'Penggantian'])->default('Berjalan');
             $table->timestamps();
             $table->softDeletes();
         });

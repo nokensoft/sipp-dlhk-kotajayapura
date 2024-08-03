@@ -49,6 +49,7 @@ return new class extends Migration
             $table->mediumText('keterangan')->nullable();
             $table->mediumText('catatan')->nullable();
             $table->string('user_id')->nullable();
+            
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

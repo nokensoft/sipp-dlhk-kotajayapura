@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_lapangan');
             $table->bigInteger('wilayah_id')->nullable();
-            $table->bigInteger('pegawai_id');
-            $table->text('keterangan')->nullable();
+            $table->bigInteger('pegawai_id'); // PNS yang menjadi koordinator
             $table->json('geojson')->nullable();
+            $table->text('keterangan')->nullable();
+            
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

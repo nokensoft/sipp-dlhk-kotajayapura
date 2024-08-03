@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_wilayah');
             $table->bigInteger('pegawai_id'); // PNS yang menjadi koordinator
-            $table->text('keterangan')->nullable();
             $table->json('geojson')->nullable();
+            $table->text('keterangan')->nullable();
+            
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
