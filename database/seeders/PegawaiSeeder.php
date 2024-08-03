@@ -17,7 +17,7 @@ class PegawaiSeeder extends Seeder
 
         collect([
             /*
-                Koordinator Wilayah
+                Koordinator Wilayah | PNS
             */ 
             [
                 'id' => 1,
@@ -318,6 +318,30 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Sato',
                 'is_asn' => true,
+                'published_at' => now(),
+            ],
+
+            /*
+                Pegawai Honorer
+            */ 
+            [
+                'id' => 1000,
+                'nama_depan' => 'Honorer',
+                'nama_tengah' => '',
+                'nama_belakang' => 'Pegawai',
+                'is_asn' => false,
+                'published_at' => now(),
+            ],
+
+            /*
+                Pegawai Kontrak
+            */ 
+            [
+                'id' => 2000,
+                'nama_depan' => 'Kontrak',
+                'nama_tengah' => '',
+                'nama_belakang' => 'Pegawai',
+                'is_asn' => false,
                 'published_at' => now(),
             ],
 
