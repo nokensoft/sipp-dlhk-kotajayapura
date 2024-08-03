@@ -19,6 +19,16 @@ class Pegawai extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function lapangan(): BelongsTo
+    {
+        return $this->belongsTo(Lapangan::class, 'lapangan_id');
+    }
+
+    public function wilayah()
+    {
+        return $this->hasManyThrough(Lapangan::class, Wilayah::class);
+    }
+
     public function bidang(): BelongsTo
     {
         return $this->belongsTo(Bidang::class, 'bidang_id');

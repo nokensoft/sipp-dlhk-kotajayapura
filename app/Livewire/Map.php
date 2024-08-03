@@ -16,10 +16,12 @@ class Map extends Component
     public $geoJson;
     public $districts = [];
     public $bidangs = [];
+    public $wilayahs = [];
 
     public function mount(): void
     {
         $this->districts = Distrik::with(['pegawais.bidang', 'pegawais.lokasi'])->get()->toArray();
+        $this->wilayahs = Distrik::with(['pegawais.lapangan', 'pegawais.lokasi'])->get()->toArray();
         $this->bidangs = Bidang::query()->get()->toArray();
 
         $this->resetMap();

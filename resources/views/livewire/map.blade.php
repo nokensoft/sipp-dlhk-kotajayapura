@@ -7,7 +7,7 @@
     <script type="text/javascript">
         window.addEventListener('load', function() {
             const colors = ['#ff0000', '#eed959' ,'#00ff00',  '#ffff00', '#0000ff'];
-            const districts = @js($districts);
+            const wilayahs = @js($wilayahs);
             const bidangs = @js($bidangs);
             const map = L.map('map').setView({lat: -2.53371, lng: 140.71813}, 12);
             const getUrl = window.location;
@@ -28,14 +28,22 @@
                 pane: 'labels'
             }).addTo(map);
 
+            /*
+            | bidang -----------------
+            */
+
             bidangLayout = {};
             for(let i=0; i<bidangs.length; i++){
                 bidangLayout[bidangs[i]['bidang']] = L.layerGroup();
             }
-            let districtLayers = {};
-            for(let i = 0; i<districts.length; i++){
-                geoJsonData = JSON.parse(districts[i]['geojson']);
-                pegawais = districts[i]['pegawais'];
+
+            /*
+            | distrik -----------------
+            */
+            let wilayahLayers = {};
+            for(let i = 0; i<wilayahs.length; i++){
+                geoJsonData = JSON.parse(wilayahs[i]['geojson']);
+                pegawais = wilayahs[i]['pegawais'];
                 color = colors[Math.floor(Math.random() * colors.length)];
                 console.log(pegawais)
                 var getGeoJson = { 
@@ -50,7 +58,7 @@
                         }
                     ]
                 }
-                districtLayers[districts[i]['distrik']] = L.geoJson(getGeoJson, {
+                wilayahLayers[wilayahs[i]['distrik']] = L.geoJson(getGeoJson, {
                     style: {color: color, fillColor: color},
                     onEachFeature: (feature, layer) => {
                         layer.bindPopup(feature.properties.nama);
@@ -89,7 +97,7 @@
                 }).addTo(map);
                 
             }
-            L.control.layers(null, districtLayers, {collapsed: false}).addTo(map);
+            L.control.layers(null, wilayahLayers, {collapsed: false}).addTo(map);
             L.control.layers(null, bidangLayout, {collapsed: false}).addTo(map);
 
             map.addControl(new L.Control.Fullscreen());

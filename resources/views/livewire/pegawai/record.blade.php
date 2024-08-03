@@ -170,6 +170,8 @@
                     <thead>
                     <tr>
                         <th>Nama Lengkap</th>
+                        <th>Wilayah</th>
+                        <th>Lapangan</th>
                         <th>Email</th>
                         <th>No Hp</th>
                         <th>Bidang</th>
@@ -219,6 +221,8 @@
                                         </span>
                                     </div>
                                 </td>
+                                <td>{{$record->lapangan?->wilayah?->nama_wilayah}}</td>
+                                <td>{{$record->lapangan?->nama_lapangan}}</td>
                                 <td>
                                     <span class="capitalize">{{$record->email}}</span>
                                 </td>
