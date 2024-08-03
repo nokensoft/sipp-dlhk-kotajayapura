@@ -75,8 +75,9 @@
         <table id="product-list-data-table" class="table-default table-hover data-table mt-4">
             <thead>
                 <tr>
-                    <th>Nama Wilayah</th>
-                    <th>Koordinator Wilayah</th>
+                    <th>Wilayah</th>
+                    <th>Nama Lapangan</th>
+                    <th>Koordinator Lapangan</th>
                     <th>Keterangan</th>
                     <th>Publik</th>
                     <th></th>
@@ -85,7 +86,8 @@
             <tbody>
                 @foreach ($records as $record)
                     <tr>
-                        <td>{{ $record->nama_wilayah }}</td>
+                        <td>{{ $record->wilayah->nama_wilayah }}</td>
+                        <td>{{ $record->nama_lapangan }}</td>
                         <td>{{ $record->pegawai->nama_depan ?? '' }} {{ $record->pegawai->nama_belakang ?? '' }}</td>
                         <td>{{ $record->keterangan ?? '' }}</td>
                         <td>

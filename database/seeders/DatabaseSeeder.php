@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
-            // Datamaster
+            // Datamaster --------------
             LokasiSeeder::class,
             JenisKelaminSeeder::class,
             AgamaSeeder::class,
@@ -36,12 +36,18 @@ class DatabaseSeeder extends Seeder
             BidangSeeder::class,
             TugasSeeder::class,
             DiklatSeeder::class,
+
+            // ------------------------
             SertifikatKeahlianSeeder::class,
             LaporanSeeder::class,
 
-            //  Role
+            WilayahSeeder::class,
+            LapanganSeeder::class,
+
+            //  Role -------------------
             RoleSeeder::class,
-            // User
+
+            // User --------------------
             UserSeeder::class,
             PegawaiSeeder::class,
 

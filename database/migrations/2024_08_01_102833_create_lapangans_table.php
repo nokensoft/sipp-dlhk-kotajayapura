@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wilayah', function (Blueprint $table) {
+        Schema::create('lapangans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_wilayah');
-            $table->bigInteger('pegawai_id'); // PNS yang menjadi koordinator
+            $table->string('nama_lapangan');
+            $table->bigInteger('wilayah_id')->nullable();
+            $table->bigInteger('pegawai_id');
             $table->text('keterangan')->nullable();
             $table->json('geojson')->nullable();
             $table->timestamp('published_at')->nullable();
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wilayah');
+        Schema::dropIfExists('lapangans');
     }
 };

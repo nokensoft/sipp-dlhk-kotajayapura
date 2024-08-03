@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Wilayah;
+namespace App\Livewire\Lapangan;
 
 use Livewire\Component;
-use App\Models\Wilayah;
+use App\Models\Lapangan;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
@@ -39,7 +39,7 @@ class Record extends Component
 
     public function publishOrDraft($id): void
     {
-        $record = Wilayah::query()->withTrashed()->find($id);
+        $record = Lapangan::query()->withTrashed()->find($id);
         $type = 'publik';
         if($record->published_at == null){
             $record->published_at = Carbon::now();
@@ -60,7 +60,7 @@ class Record extends Component
 
     public function undo($id): void
     {
-        $record = Wilayah::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Lapangan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         $record->deleted_at = null;
         $record->save();
         session()->flash('success', 'Data berhasil dikembalikan!');
@@ -68,14 +68,14 @@ class Record extends Component
 
     public function delete($id): void
     {
-        $record = Wilayah::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
+        $record = Lapangan::query()->withTrashed()->whereNotNull('deleted_at')->find($id);
         if(isset($record->deleted_at)){
             $record->user?->forceDelete();
             $record->forceDelete();
             session()->flash('success', 'Data berhasil dihapus permanen');
             return;
         }
-        $record = Wilayah::query()->find($id);
+        $record = Lapangan::query()->find($id);
         $record->published_at = null;
         $record->save();
         $record->delete();
@@ -93,16 +93,16 @@ class Record extends Component
     }
     public function render()
     {
-        $this->totalAll = Wilayah::query()->count();
-        $this->totalPublik = Wilayah::query()->published()->count();
-        $this->totalKonsep = Wilayah::query()->draft()->count();
-        $this->totalTempatSampah = Wilayah::query()->withTrashed()->whereNotNull('deleted_at')->count();
-        $query = Wilayah::query()
+        $this->totalAll = Lapangan::query()->count();
+        $this->totalPublik = Lapangan::query()->published()->count();
+        $this->totalKonsep = Lapangan::query()->draft()->count();
+        $this->totalTempatSampah = Lapangan::query()->withTrashed()->whereNotNull('deleted_at')->count();
+        $query = Lapangan::query()
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where(function ($query) {
                         $query
-                            ->where('nama_wilayah', 'like', '%' . $this->search . '%')
+                            ->where('nama_lapangan', 'like', '%' . $this->search . '%')
                             ->orWhere('keterangan', 'like', '%' . $this->search . '%');
                     });
             });
@@ -118,7 +118,7 @@ class Record extends Component
             $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
         }
 
-        $locations =Wilayah::published()->get();
-        return view('livewire.wilayah.record', ['records' => $records, 'locations' => $locations]);
+        $locations =Lapangan::published()->get();
+        return view('livewire.lapangan.record', ['records' => $records, 'locations' => $locations]);
     }
 }

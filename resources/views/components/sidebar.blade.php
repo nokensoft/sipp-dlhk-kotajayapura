@@ -58,8 +58,8 @@
                             <span class="menu-item-text">Wilayah</span>
                         </a>
                     </li>
-                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'bidang' ? $active : ''}}">
-                        <a class="menu-item-link hover:text-black/70 {{$segment == 'bidang' ? 'text-white' : ''}}" href="{{ route('bidang') }}">
+                    <li data-menu-item="classic-welcome" class="menu-item menu-item-single mb-2 {{$segment == 'lapangan' ? $active : ''}}">
+                        <a class="menu-item-link hover:text-black/70 {{$segment == 'lapangan' ? 'text-white' : ''}}" href="{{ route('lapangan') }}">
                             <i class="fa-solid fa-tags text-lg"></i>
                             <span class="menu-item-text">Lapangan</span>
                         </a>
@@ -115,7 +115,7 @@
 
             {{-- {{ Auth::user()->roles->pluck('name')[0] ?? 'adminmaster' }} --}}
 
-            <div class="menu-group">
+            {{-- <div class="menu-group">
                 <div class="menu-title menu-title-transparent">
                     Pengaturan
                 </div>
@@ -229,7 +229,7 @@
                 </ul>
 
             </div>
-            {{-- menu-group end --}}
+            menu-group end --}}
             
             @endhasanyrole
 

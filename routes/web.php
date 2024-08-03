@@ -38,6 +38,7 @@ use App\Livewire\Kontrak\Index as Kontrak;
 use App\Livewire\Bidang\Index as Bidang;
 use App\Livewire\Lokasi\Index as Lokasi;
 use App\Livewire\Wilayah\Index as Wilayah;
+use App\Livewire\Lapangan\Index as Lapangan;
 use App\Livewire\Pengguna\Index as Pengguna;
 
 Route::get('/profil', Profil::class)->name('adminmaster.profil');
@@ -62,6 +63,7 @@ Route::middleware([
     Route::get('/bidang', Bidang::class)->name('bidang');
     Route::get('/lokasi', Lokasi::class)->name('lokasi');
     Route::get('/wilayah', Wilayah::class)->name('wilayah');
+    Route::get('/lapangan', Lapangan::class)->name('lapangan');
     Route::get('/pengguna', Pengguna::class)->name('pengguna');
     Route::prefix('data-master')->group(function () {
         Route::get('pangkat-golongan', PangkatGolongan::class)->name('pangkatGolongan');
