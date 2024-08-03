@@ -14,7 +14,26 @@
                 <div class="flex flex-col gap-4 flex-auto">
 
                     <div>
-                        <x-chart class="w-full card card-layout-frame" />
+                        <div class="rounded-lg bg-white p-8 w-full card card-layout-frame">
+                            <div class="form-item flex gap-4">
+                                <div class="w-1/4">
+                                    <x-admin.select label="Wilayah" id="wilayah-id" optionName="name" name="wilayah">
+                                        <option>Semua</option>
+                                        @foreach($wilayahs as $wilayah)
+                                            <option value="{{$wilayah['nama_wilayah']}}">{{$wilayah->nama_wilayah}}</option>
+                                        @endforeach
+                                    </x-admin.select>
+                                </div>
+                                <div class="w-1/4">
+                                    <x-admin.select label="Lapangan" id="lapangan-id" optionName="name" name="lapangan">
+                                        <option>Semua</option>
+                                        @foreach($lapangans as $lapangan)
+                                            <option value="{{$lapangan['nama_lapangan']}}">{{$lapangan->nama_lapangan}}</option>
+                                        @endforeach
+                                    </x-admin.select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-4">

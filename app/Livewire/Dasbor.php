@@ -9,6 +9,8 @@ use App\Models\Pegawai;
 use App\Models\Suku;
 use Illuminate\View\View;
 use Livewire\Component;
+use App\Models\Wilayah;
+use App\Models\Lapangan;
 
 class Dasbor extends Component
 {
@@ -18,6 +20,9 @@ class Dasbor extends Component
     public $statusPegawai = [];
     public $lokasi = [];
     public $suku = [];
+
+    public $wilayahs = [];
+    public $lapangans = [];
 
     // total
     public $totalASN = 0;
@@ -47,6 +52,12 @@ class Dasbor extends Component
 
     public function mount(): void
     {
+        // map data
+        
+
+        $this->wilayahs = Wilayah::query()->get();
+        $this->lapangans = Lapangan::query()->get();
+
         // Pegawai: ASN && Publik
         $this->totalASN = Pegawai::query()
                     ->where('is_asn', '=', true)
