@@ -63,16 +63,16 @@ class Kontrak extends Component
                 ->orWhere('pegawai_id', 'like', '%' . $this->search . '%');
         })
     ;
-    if (in_array($this->menu, ['kontrak','semua'])) {
+    if (in_array($this->menu, ['kontrak','semuakontrak',''])) {
         $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
     }
-    if($this->menu === 'publik'){
+    if($this->menu === 'publikkontrak'){
         $records = $query->published()->paginate($this->paginate)->withQueryString();
     }
-    if($this->menu === 'konsep'){
+    if($this->menu === 'konsepkontrak'){
         $records = $query->draft()->paginate($this->paginate)->withQueryString();
     }
-    if($this->menu === 'tempat_sampah'){
+    if($this->menu === 'tempat_sampahkontrak'){
         $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
     }
 
