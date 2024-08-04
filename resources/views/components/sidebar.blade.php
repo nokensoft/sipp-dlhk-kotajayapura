@@ -25,6 +25,7 @@
                 
 
                 <ul>
+
                     <li class="menu-collapse">
                         <div class="menu-collapse-item">
                             <i class="fa-solid fa-line-chart text-lg"></i>

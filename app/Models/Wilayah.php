@@ -14,11 +14,6 @@ class Wilayah extends Model
     protected $table = 'wilayah';
     protected $guarded = ['id'];
 
-    public function pegawai()
-    {
-        return $this->belongsTo(Pegawai::class);
-    }
-
     public function lapangans()
     {
         return $this->hasMany(Lapangan::class, 'wilayah_id');

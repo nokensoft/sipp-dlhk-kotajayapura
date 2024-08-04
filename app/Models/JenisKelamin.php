@@ -13,6 +13,11 @@ class JenisKelamin extends Model
 
     protected $guarded = ['id'];
 
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
+
     public function scopeDraft(Builder $query): void
     {
         $query->whereNull('published_at');
@@ -21,10 +26,5 @@ class JenisKelamin extends Model
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
-    }
-
-    public function pegawai()
-    {
-        return $this->hasMany(Pegawai::class);
     }
 }

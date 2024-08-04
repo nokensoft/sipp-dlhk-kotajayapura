@@ -13,6 +13,11 @@ class PangkatGolongan extends Model
 
     protected $guarded = ['id'];
 
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
+
     public function scopeDraft(Builder $query): void
     {
         $query->whereNull('published_at');

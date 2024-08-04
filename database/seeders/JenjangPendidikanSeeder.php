@@ -12,41 +12,49 @@ class JenjangPendidikanSeeder extends Seeder
     {
         collect([
             [
-                'jenjang_pendidikan' => 'Tidak ada',
+                'id' => 1,
+                'jenjang_pendidikan' => 'Tanpa keterangan',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 2,
                 'jenjang_pendidikan' => 'SD',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 3,
                 'jenjang_pendidikan' => 'SMP',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 4,
                 'jenjang_pendidikan' => 'SMK',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 5,
                 'jenjang_pendidikan' => 'SMA',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 6,
                 'jenjang_pendidikan' => 'S1',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 7,
                 'jenjang_pendidikan' => 'S2',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),
             ],
             [
+                'id' => 8,
                 'jenjang_pendidikan' => 'S3',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
                 'published_at' => now(),

@@ -12,9 +12,16 @@
                     <h3 class="text-xl font-bold tracking-tight text-gray-900"> Rekapan </h3>
                     <p>Rekap Data Pegawai Kontrak</p>
 
-                    <div>
-                        <x-chart class="w-full card card-layout-frame" title="Pegawai Keseluruhan Berdasarkan Suku" :data="$sukus"/>
+                    <div class="xl:flex gap-4">
+                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai Kontrak Berdasarkan Suku" :data="$sukus"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai Kontrak Berdasarkan Jenis Kelamin" :data="$jenisKelamins"/>
                     </div>
+
+                    <div class="xl:flex gap-4">
+                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai Kontrak Berdasarkan Jenjang Pendidikan" :data="$jenjangPendidikans"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai Kontrak Berdasarkan Status Perkawinan" :data="$statusPerkawinans"/>
+                    </div>
+                    
 
                 </div>
             </div>

@@ -14,6 +14,11 @@ class Lapangan extends Model
     protected $table = 'lapangans';
     protected $guarded = ['id'];
 
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
+
     public function wilayah(): BelongsTo
     {
         return $this->belongsTo(Wilayah::class, 'wilayah_id');
