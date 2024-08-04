@@ -16,11 +16,12 @@
         <div class="p-3">
             <div class="form-item flex gap-2 ">
                 <div class="w-1/5">
-                        <img width="200" src="{{ asset('assets/img/others/upload.png')}}" alt="" class="" >
+                        <img width="200" src="{{ isset($pegawai->gambar) && !empty($pegawai->gambar) && Storage::exists('public/'.$pegawai->gambar) ? asset('storage/'.$pegawai->gambar) : asset('assets/img/avatars/man.png') }}" loading="lazy">
+
                 </div>
-                <div class="w-1/5 content-center">
-                     <p class="font-bold text-xl text-black"> Nama Lengkap : <span></span></p>
-                     <p class="font-bold text-xl text-black"> NIK : <span></span></p>
+                <div class="max-w-2xl content-center">
+                     <p class="font-bold text-xl text-black"> Nama Lengkap : {{ $pegawai['nama_depan'].' '.$pegawai['nama_tengah'].' '.$pegawai['nama_belakang'] }} <span></span></p>
+                     <p class="font-bold text-xl text-black"> NIK : {{$pegawai['nik'] ?? ''}} <span></span></p>
                 </div>
             </div>
         </div>

@@ -8,10 +8,11 @@ use Livewire\Attributes\Url;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Livewire\Attributes\On;
 
 use App\Models\Wilayah;
 use App\Models\Lapangan;
-use App\Models\KontrakPegawai;
+use App\Models\Kontrak as KontrakPegawai;
 use App\Models\User;
 
 class FormKontrak extends Component
@@ -19,6 +20,7 @@ class FormKontrak extends Component
 
     use WithFileUploads;
     public $kontrak = [];
+    public $pegawai = [];
     public $user = [];
     public $tanggal, $dokumen, $nomorKontrak, $tahunKontrak, $tanggalMulai, $tanggalSelesai, $wilayah, $lapangan, $latitude, $longitude, $statusKontrak;
     public bool $isDisabled = false;

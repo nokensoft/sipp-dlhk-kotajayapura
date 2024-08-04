@@ -4,7 +4,9 @@ namespace App\Livewire\Pegawai;
 
 use Livewire\Component;
 
-use App\Models\KontrakPegawai;
+use App\Models\Kontrak as KontrakPegawai;
+use Livewire\Attributes\Url;
+use App\Models\Pegawai;
 
 class Kontrak extends Component
 {
@@ -25,16 +27,22 @@ class Kontrak extends Component
     public $paginate = 5;
     public $listPaginate = [5,10,25,50,100];
     public bool $isAsn = true;
-
+    public $pegawai = [];
     public $status = ['Berjalan','Penggantian'];
+
+
+    public function mount(): void
+    {
+        $this->pegawai = Pegawai::where('id',$this->id)->first()->toArray();
+    }
 
 
     public function render()
     {
-        $this->totalAll =  KontrakPegawai::query()->where('user_id',$this->id)->withTrashed()->count();
-        $this->totalPublik =  KontrakPegawai::query()->where('user_id',$this->id)->published()->count();
-        $this->totalKonsep =  KontrakPegawai::query()->where('user_id',$this->id)->draft()->count();
-        $this->totalTempatSampah = KontrakPegawai::query()->where('user_id',$this->id)->withTrashed()->whereNotNull('deleted_at')->count();
+        $this->totalAll =  KontrakPegawai::query()->where('pegawai_id',$this->id)->withTrashed()->count();
+        $this->totalPublik =  KontrakPegawai::query()->where('pegawai_id',$this->id)->published()->count();
+        $this->totalKonsep =  KontrakPegawai::query()->where('pegawai_id',$this->id)->draft()->count();
+        $this->totalTempatSampah = KontrakPegawai::query()->where('pegawai_id',$this->id)->withTrashed()->whereNotNull('deleted_at')->count();
 
         $query = KontrakPegawai::query()
         // ->when(isset($this->selectedSuku), function($query){
@@ -49,10 +57,10 @@ class Kontrak extends Component
         // ->when(isset($this->selectedStatusPernikahan), function($query){
         //     $query->whereHas('statusPerkawinan', fn ($query) => $query->where('status_perkawinan', $this->selectedStatusPernikahan));
         // })
+        ->where('pegawai_id',$this->id)
         ->when(strlen($this->search) > 2, function ($query) {
             $query
-                ->where('kontrak_id', 'like', '%' . $this->search . '%')
-                ->orWhere('user_id', 'like', '%' . $this->search . '%');
+                ->orWhere('pegawai_id', 'like', '%' . $this->search . '%');
         })
     ;
     if (in_array($this->menu, ['kontrak','semua'])) {
