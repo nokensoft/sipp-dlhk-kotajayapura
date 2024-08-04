@@ -10,16 +10,16 @@
                 <div class="flex flex-col gap-4 flex-auto">
 
                     <h3 class="text-xl font-bold tracking-tight text-gray-900"> Rekapan </h3>
-                    <p>Rekap Data Pegawai Kontrak</p>
+                    <p>Rekap Data Pegawai ASN</p>
 
                     <div class="xl:flex gap-4">
-                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai Kontrak Berdasarkan Suku" :data="$sukus"/>
-                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai Kontrak Berdasarkan Jenis Kelamin" :data="$jenisKelamins"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai ASN Berdasarkan Suku" :data="$sukus"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai ASN Berdasarkan Jenis Kelamin" :data="$jenisKelamins"/>
                     </div>
 
                     <div class="xl:flex gap-4">
-                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai Kontrak Berdasarkan Jenjang Pendidikan" :data="$jenjangPendidikans"/>
-                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai Kontrak Berdasarkan Status Perkawinan" :data="$statusPerkawinans"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Rekap Pegawai ASN Berdasarkan Jenjang Pendidikan" :data="$jenjangPendidikans"/>
+                        <x-chart class="w-1/2 card card-layout-frame" title="Pegawai ASN Berdasarkan Status Perkawinan" :data="$statusPerkawinans"/>
                     </div>
                     
 

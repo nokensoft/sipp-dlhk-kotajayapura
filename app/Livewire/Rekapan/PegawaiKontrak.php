@@ -28,7 +28,7 @@ class PegawaiKontrak extends Component
         Suku::with('pegawai')->each(function ($suku) {
             $this->sukus[] = [
                 'name' => $suku->suku,
-                'data' => [$suku->pegawai->count()]
+                'data' => [$suku->pegawai->where('is_asn', false)->count()]
             ];
         });
         $this->sukus = json_encode($this->sukus);
@@ -37,7 +37,7 @@ class PegawaiKontrak extends Component
         JenisKelamin::with('pegawai')->each(function ($jenis_kelamin) {
             $this->jenisKelamins[] = [
                 'name' => $jenis_kelamin->jenis_kelamin,
-                'data' => [$jenis_kelamin->pegawai->count()]
+                'data' => [$jenis_kelamin->pegawai->where('is_asn', false)->count()]
             ];
         });
         $this->jenisKelamins = json_encode($this->jenisKelamins);
@@ -46,7 +46,7 @@ class PegawaiKontrak extends Component
         JenjangPendidikan::with('pegawai')->each(function ($jenjang_pendidikan) {
             $this->jenjangPendidikans[] = [
                 'name' => $jenjang_pendidikan->jenjang_pendidikan,
-                'data' => [$jenjang_pendidikan->pegawai->count()]
+                'data' => [$jenjang_pendidikan->pegawai->where('is_asn', false)->count()]
             ];
         });
         $this->jenjangPendidikans = json_encode($this->jenjangPendidikans);
@@ -55,7 +55,7 @@ class PegawaiKontrak extends Component
         StatusPerkawinan::with('pegawai')->each(function ($status_perkawinan) {
             $this->statusPerkawinans[] = [
                 'name' => $status_perkawinan->status_perkawinan,
-                'data' => [$status_perkawinan->pegawai->count()]
+                'data' => [$status_perkawinan->pegawai->where('is_asn', false)->count()]
             ];
         });
         $this->statusPerkawinans = json_encode($this->statusPerkawinans);
