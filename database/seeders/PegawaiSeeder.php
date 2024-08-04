@@ -18,7 +18,7 @@ class PegawaiSeeder extends Seeder
         collect([
             /*
                 Koordinator Wilayah | PNS
-            */ 
+            */
             [
                 'id' => 1,
                 'nama_depan' => 'Haerudin',
@@ -438,7 +438,7 @@ class PegawaiSeeder extends Seeder
 
             /*
                 Pegawai Honorer
-            */ 
+            */
             [
                 'id' => 1000,
                 'nama_depan' => 'Honorer',
@@ -453,13 +453,14 @@ class PegawaiSeeder extends Seeder
 
             /*
                 Pegawai Kontrak
-            */ 
+            */
             [
                 'id' => 2000,
                 'lapangan_id' => 101,
                 'nama_depan' => 'Kontrak',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Pegawai 2000',
+                'nik' => '1234',
                 'is_asn' => false,
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
@@ -472,6 +473,7 @@ class PegawaiSeeder extends Seeder
                 'nama_depan' => 'Kontrak',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Pegawai 2001',
+                'nik' => '1224',
                 'is_asn' => false,
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
@@ -484,6 +486,7 @@ class PegawaiSeeder extends Seeder
                 'nama_depan' => 'Kontrak',
                 'nama_tengah' => '',
                 'nama_belakang' => 'Pegawai 2002',
+                'nik' => '1225',
                 'is_asn' => false,
                 'jenis_kelamin_id' => 2,
                 'jenjang_pendidikan_id' => 5,
@@ -571,7 +574,7 @@ class PegawaiSeeder extends Seeder
             //     'user_id' => null,
             //     'deleted_at' => now(),
             // ],
-            
+
         ])->each(function ($items) {
             // for ($i = 0; $i < 5; $i++) {
             //     $items['bidang_id'] = fake()->numberBetween(1, 12);

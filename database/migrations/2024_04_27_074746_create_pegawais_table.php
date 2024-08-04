@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_depan');
             $table->string('nama_tengah')->nullable();
             $table->string('nama_belakang')->nullable();
+            $table->string('nik')->nullable();
             $table->string('email')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('gambar')->nullable();
@@ -49,7 +50,7 @@ return new class extends Migration
             $table->mediumText('keterangan')->nullable();
             $table->mediumText('catatan')->nullable();
             $table->string('user_id')->nullable();
-            
+
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
