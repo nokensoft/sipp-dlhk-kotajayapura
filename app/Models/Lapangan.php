@@ -16,7 +16,7 @@ class Lapangan extends Model
 
     public function pegawai()
     {
-        return $this->hasMany(Pegawai::class);
+        return $this->belongsTo(Pegawai::class);
     }
 
     public function wilayah(): BelongsTo
