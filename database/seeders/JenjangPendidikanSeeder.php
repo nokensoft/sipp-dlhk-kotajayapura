@@ -44,12 +44,12 @@ class JenjangPendidikanSeeder extends Seeder
             [
                 'jenjang_pendidikan' => 'S2',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
-                'published_at' => null,
+                'published_at' => now(),
             ],
             [
                 'jenjang_pendidikan' => 'S3',
                 'keterangan' => 'keterangan terkait jenjang pendidikan...',
-                'deleted_at' => now(),
+                'published_at' => now(),
             ]
         ])->each(function ($collection) {
             JenjangPendidikan::create($collection);

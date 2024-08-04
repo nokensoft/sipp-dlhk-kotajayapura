@@ -21,6 +21,45 @@
                         </a>
                     </li>
                 </ul>
+
+                
+
+                <ul>
+                    <li class="menu-collapse">
+                        <div class="menu-collapse-item">
+                            <i class="fa-solid fa-line-chart text-lg"></i>
+                            <span class="menu-item-text">Rekapan</span>
+                        </div>
+                        <ul>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('rekapanPegawaiKontrak') }}">
+                                    <span>Rekap Pegawai Kontrak</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('rekapanPegawaiASN') }}">
+                                    <span>Rekap Pegawai ASN</span>
+                                </a>
+                            </li>
+
+                            <li data-menu-item="classic-invoice" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('rekapanPegawaiHonorer') }}">
+                                    <span>Rekap Pegawai Honorer</span>
+                                </a>
+                            </li>
+                            
+                            <li data-menu-item="classic-settings" class="menu-item">
+                                <a class="h-full w-full flex items-center" href="{{ route('rekapanPegawaiKeseluruhan') }}">
+                                    <span>Rekap Pegawai Keseluruhan</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+
             </div>
             {{-- menu-group end --}}
 

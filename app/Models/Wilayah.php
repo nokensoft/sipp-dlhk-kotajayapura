@@ -19,7 +19,7 @@ class Wilayah extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
-    public function lapangan()
+    public function lapangans()
     {
         return $this->hasMany(Lapangan::class, 'wilayah_id');
     }

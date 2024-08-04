@@ -18,12 +18,15 @@ class Map extends Component
     public $districts = [];
     public $bidangs = [];
     public $wilayahs = [];
+    public $lapangans = [];
 
     public function mount(): void
     {
         // $this->districts = Distrik::with(['pegawais.bidang', 'pegawais.lokasi'])->get()->toArray();
-        $this->wilayahs = Wilayah::with(['lapangan.wilayah', 'lapangan.kontrak'])->get()->toArray();
+        $this->wilayahs = Wilayah::with(['lapangans.wilayah', 'lapangans.kontrak'])->get()->toArray();
         // $this->wilayahs = Wilayah::with(['pegawai.lapangan', 'pegawais.lokasi'])->get()->toArray();
+        $this->bidangs = Bidang::query()->get()->toArray();
+        
         $this->bidangs = Bidang::query()->get()->toArray();
 
         $this->resetMap();

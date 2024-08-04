@@ -25,6 +25,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => '',
                 'is_asn' => true,
+                'suku_id' => 2,
                 'published_at' => now(),
             ],
             [
@@ -33,6 +34,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => 'Saleh',
                 'nama_belakang' => 'Ayomi',
                 'is_asn' => true,
+                'suku_id' => 2,
                 'published_at' => now(),
             ],
             [
@@ -41,6 +43,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => '',
                 'is_asn' => true,
+                'suku_id' => 2,
                 'published_at' => now(),
             ],
             [
@@ -49,6 +52,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Erubun',
                 'is_asn' => true,
+                'suku_id' => 2,
                 'published_at' => now(),
             ],
             [
@@ -57,6 +61,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Suhara',
                 'is_asn' => true,
+                'suku_id' => 2,
                 'published_at' => now(),
             ],
             // -------------------------------------
@@ -68,6 +73,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Amamehi',
                 'is_asn' => true,
+                'suku_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -76,6 +82,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Mote',
                 'is_asn' => true,
+                'suku_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -84,6 +91,7 @@ class PegawaiSeeder extends Seeder
                 'nama_tengah' => '',
                 'nama_belakang' => 'Mansbawer',
                 'is_asn' => true,
+                'suku_id' => 1,
                 'published_at' => now(),
             ],
             [

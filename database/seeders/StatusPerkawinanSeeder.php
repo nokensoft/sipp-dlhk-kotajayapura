@@ -12,12 +12,12 @@ class StatusPerkawinanSeeder extends Seeder
     {
         collect([
             [
-                'status_perkawinan' => 'Sudah Kawin',
+                'status_perkawinan' => 'Sudah Nikah',
                 'keterangan' => '',
                 'published_at' => now(),
             ],
             [
-                'status_perkawinan' => 'Belum Kawin',
+                'status_perkawinan' => 'Belum Nikah',
                 'keterangan' => '',
                 'published_at' => now(),
             ]

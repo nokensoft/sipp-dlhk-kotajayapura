@@ -43,9 +43,9 @@
             let wilayahLayers = {};
             for(let i = 0; i<wilayahs.length; i++){
                 geoJsonData = JSON.parse(wilayahs[i]['geojson']);
-                pegawais = wilayahs[i]['pegawais'];
+                lapangans = wilayahs[i]['lapangans'];
                 color = colors[Math.floor(Math.random() * colors.length)];
-                console.log(pegawais)
+                console.log(lapangans)
                 var getGeoJson = { 
                     "type": "FeatureCollection",
                     "nama": "heram.js",
@@ -62,20 +62,20 @@
                 /*
                 | wilayah -----------------
                 */
-                wilayahLayers[wilayahs[i]['distrik']] = L.geoJson(getGeoJson, {
+                wilayahLayers[wilayahs[i]['nama_wilayah']] = L.geoJson(getGeoJson, {
                     style: {color: color, fillColor: color},
                     onEachFeature: (feature, layer) => {
                         layer.bindPopup(feature.properties.nama);
                         layer.on('add', () => {
-                            pegawais.forEach((pegawai) => {
-                                if(pegawai['lokasi'] != null && pegawai['bidang'] != null){
+                            lapangans.forEach((lapangan) => {
+                                if(lapangan['lokasi'] != null && lapangan['bidang'] != null){
 
-                                    latitude = pegawai['lokasi']['latitude'];
-                                    longitude = pegawai['lokasi']['longitude'];
-                                    bidang = pegawai['bidang']['bidang'];
-                                    nama = pegawai['nama_depan']+' '+pegawai['nama_tengah']+ ' '+pegawai['nama_belakang'];
-                                    iconUrl = baseUrl+pegawai['bidang']['icon'];
-                                    foto = baseUrl+pegawai['gambar'];
+                                    latitude = lapangan['lokasi']['latitude'];
+                                    longitude = lapangan['lokasi']['longitude'];
+                                    bidang = lapangan['bidang']['bidang'];
+                                    nama = lapangan['nama_depan']+' '+lapangan['nama_tengah']+ ' '+lapangan['nama_belakang'];
+                                    iconUrl = baseUrl+lapangan['bidang']['icon'];
+                                    foto = baseUrl+lapangan['gambar'];
                                     L.marker([latitude,longitude], {
                                         icon: L.icon({iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34]})
                                     })
@@ -86,8 +86,8 @@
                             })
                         });
                         layer.on('remove', () => {
-                            pegawais.forEach((pegawai) => {
-                                if(pegawai['lokasi'] != null && pegawai['bidang'] != null){
+                            lapangans.forEach((lapangan) => {
+                                if(lapangan['lokasi'] != null && lapangan['bidang'] != null){
                                     L.marker([latitude,longitude], {
                                         icon: L.icon({iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34]})
                                     })

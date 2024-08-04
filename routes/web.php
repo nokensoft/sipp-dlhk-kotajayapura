@@ -27,8 +27,6 @@ Route::get('/', function () {
 // ------------------ ADMIN MASTER
 // require_once 'AdminMaster/index.php';
 
-
-
 use App\Livewire\Dasbor;
 use App\Livewire\Profil;
 use App\Livewire\Pengaturan;
@@ -40,6 +38,10 @@ use App\Livewire\Lokasi\Index as Lokasi;
 use App\Livewire\Wilayah\Index as Wilayah;
 use App\Livewire\Lapangan\Index as Lapangan;
 use App\Livewire\Pengguna\Index as Pengguna;
+
+// rekapan
+use App\Livewire\Rekapan\PegawaiKontrak;
+use App\Livewire\Rekapan\PegawaiASN;
 
 Route::get('/profil', Profil::class)->name('adminmaster.profil');
 Route::get('/pengaturan', Pengaturan::class)->name('adminmaster.pengaturan');
@@ -84,8 +86,21 @@ Route::middleware([
 
     });
 
-    Route::get('laporan/kepaladinas', Laporan::class)->name('laporanKepalaDinas');
-    Route::get('laporan/kepalabidang', Laporan::class)->name('laporanKepalaBidang');
-    Route::get('laporan/kepalaseksi', Laporan::class)->name('laporanKepalaSeksi');
+    // rekapan
+    Route::prefix('rekapan')->group(function () {
+        Route::get('pegawaikontrak', PegawaiKontrak::class)->name('rekapanPegawaiKontrak');
+        Route::get('pegawaiasn', PegawaiASN::class)->name('rekapanPegawaiASN');
+        Route::get('pegawaihonorer', PegawaiKontrak::class)->name('rekapanPegawaiHonorer');
+        Route::get('pegawaikeseluruhan', PegawaiKontrak::class)->name('rekapanPegawaiKeseluruhan');
+
+    });
+
+
+    // laporan
+    Route::prefix('laporan')->group(function () {
+        Route::get('kepaladinas', Laporan::class)->name('laporanKepalaDinas');
+        Route::get('kepalabidang', Laporan::class)->name('laporanKepalaBidang');
+        Route::get('kepalaseksi', Laporan::class)->name('laporanKepalaSeksi');
+    });
 
 });

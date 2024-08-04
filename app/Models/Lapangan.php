@@ -19,24 +19,9 @@ class Lapangan extends Model
         return $this->belongsTo(Wilayah::class, 'wilayah_id');
     }
 
-    public function pegawai()
-    {
-        return $this->belongsTo(Pegawai::class);
-    }
-
     public function kontrak()
     {
         return $this->hasMany(Kontrak::class);
-    }
-
-    public function bidang(): BelongsTo
-    {
-        return $this->belongsTo(Bidang::class, 'bidang_id');
-    }
-
-    public function lokasi(): BelongsTo
-    {
-        return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 
     public function scopeDraft(Builder $query): void
