@@ -65,6 +65,29 @@
                 </div>
 
                 <div class="flex gap-1 items-center">
+                    <span>Status Pegawai</span>
+                    <div
+                        class="relative text-center"
+                        x-data="{
+                            isSelectOpen:false,
+                            select(){
+                                this.isSelectOpen = false;
+                            }
+                        }"
+                    >
+                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                            <span class="mr-1">{{$selectedStatusPegawai ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="border absolute bg-white top-10 left-0 w-20 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectStatusPegawai">Semua</a>
+                            @foreach($statusPegawai as $list)
+                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectStatusPegawai({{json_encode($list['status_pegawai'])}})">{{$list['status_pegawai']}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-1 items-center">
                     <span>Suku</span>
                     <div
                         class="relative text-center"
@@ -199,6 +222,7 @@
                     <thead>
                     <tr>
                         <th>Nama Lengkap</th>
+                        <th>Status Pegawai</th>
                         <th>No Hp</th>
                         <th>Email</th>
                         <th>Suku</th>
@@ -212,7 +236,7 @@
                         <th>Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
-                                <th>Toggle</th>
+                                <th>Aktif</th>
                             @endif
                         @endcan
                         <th></th>
@@ -240,6 +264,7 @@
                                         </span>
                                     </div>
                                 </td>
+                                <td>@if ($record->is_asn == true) ASN @else Non ASN @endif</td>
                                 <td>{{$record->no_hp ?? '-'}}</td>
                                 <td>{{$record->email ?? '-'}}</td>
                                 <td>{{$record->suku?->suku ?? '-'}}</td>

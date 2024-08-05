@@ -9,6 +9,7 @@ use App\Models\Pegawai;
 use App\Models\StatusPerkawinan;
 use App\Models\Suku;
 use App\Models\Agama;
+use App\Models\StatusPegawai;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +39,9 @@ class Record extends Component
     public $listPaginate = [5,10,25,50,100];
     public bool $isAsn = true;
 
+    public array $statusPegawai = [];
+    public ?string $selectedStatusPegawai;
+
     public array $suku = [];
     public ?string $selectedSuku;
     
@@ -60,6 +64,7 @@ class Record extends Component
         $this->isAsn = request()->segment(1) === 'asn';
 
         $this->suku = Suku::get()->toArray();
+        $this->statusPegawai = StatusPegawai::get()->toArray();
         $this->jenisKelamin = JenisKelamin::get()->toArray();
         $this->jenjangPendidikan = JenjangPendidikan::get()->toArray();
         $this->statusPernikahan = StatusPerkawinan::get()->toArray();
@@ -163,6 +168,11 @@ class Record extends Component
         ]);
     }
 
+    public function selectStatusPegawai($statusPegawai = null){
+        $this->selectedStatusPegawai = $statusPegawai;
+        $this->filters['statusPegawai'] = $statusPegawai;
+    }
+
     public function selectSuku($suku = null){
         $this->selectedSuku = $suku;
         $this->filters['suku'] = $suku;
@@ -210,6 +220,9 @@ class Record extends Component
             ->when(isset($this->selectedAgama), function($query){
                 $query->whereHas('agama', fn ($query) => $query->where('agama', $this->selectedAgama));
             })
+            ->when(isset($this->selectedStatusPegawai), function($query){
+                $query->whereHas('statusPegawai', fn ($query) => $query->where('status_pegawai', $this->selectedStatusPegawai));
+            })
             ->when(strlen($this->search) > 2, function ($query) {
                 $query
                     ->where('nama_depan', 'like', '%' . $this->search . '%')
@@ -225,6 +238,7 @@ class Record extends Component
                     ->orWhereHas('agama', fn ($query) => $query->where('agama', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('pangkatGolongan', fn ($query) => $query->where('pangkat_golongan', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('suku', fn ($query) => $query->where('suku', 'like', '%' . $this->search . '%'))
+                    ->orWhereHas('statusPegawai', fn ($query) => $query->where('status_pegawai', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('distrik', fn ($query) => $query->where('distrik', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('kelurahan', fn ($query) => $query->where('kelurahan', 'like', '%' . $this->search . '%'))
                     ->orWhereHas('jabatan', fn ($query) => $query->where('jabatan', 'like', '%' . $this->search . '%'))

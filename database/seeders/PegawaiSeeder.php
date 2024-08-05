@@ -29,6 +29,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -42,6 +43,7 @@ class PegawaiSeeder extends Seeder
                 'jenjang_pendidikan_id' => 4,
                 'status_perkawinan_id' => 2,
                 'agama_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -54,6 +56,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 4,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -66,6 +69,7 @@ class PegawaiSeeder extends Seeder
                 'suku_id' => 2,
                 'jenjang_pendidikan_id' => 4,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -78,6 +82,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 2,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             // -------------------------------------
@@ -93,6 +98,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -105,6 +111,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -117,6 +124,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -128,6 +136,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 2,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -139,6 +148,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -150,6 +160,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 6,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -161,6 +172,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 7,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -172,6 +184,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 7,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -185,6 +198,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 7,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -196,6 +210,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 7,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -207,6 +222,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -218,6 +234,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 2,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -229,6 +246,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -240,6 +258,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -251,6 +270,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -264,6 +284,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -275,6 +296,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -286,6 +308,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -296,6 +319,7 @@ class PegawaiSeeder extends Seeder
                 'is_asn' => true,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -307,6 +331,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -318,6 +343,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -329,6 +355,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -340,6 +367,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -355,6 +383,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -366,6 +395,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -377,6 +407,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -388,6 +419,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -399,6 +431,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -412,6 +445,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -423,6 +457,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -434,6 +469,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -449,6 +485,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 
@@ -466,6 +503,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -479,6 +517,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
             [
@@ -492,6 +531,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 2,
                 'jenjang_pendidikan_id' => 5,
                 'status_perkawinan_id' => 1,
+                'status_pegawai_id' => 1,
                 'published_at' => now(),
             ],
 

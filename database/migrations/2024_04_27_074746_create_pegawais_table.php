@@ -37,6 +37,7 @@ return new class extends Migration
             $table->bigInteger('jenis_kelamin_id')->nullable();
             $table->bigInteger('agama_id')->nullable();
             $table->bigInteger('pangkat_golongan_id')->nullable();
+            $table->bigInteger('status_pegawai_id')->nullable();
             $table->bigInteger('suku_id')->nullable();
             $table->bigInteger('distrik_id')->nullable();
             $table->bigInteger('kelurahan_id')->nullable();

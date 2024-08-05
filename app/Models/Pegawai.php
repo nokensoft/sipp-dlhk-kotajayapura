@@ -64,6 +64,11 @@ class Pegawai extends Model
         return $this->belongsTo(Suku::class, 'suku_id');
     }
 
+    public function statusPegawai(): BelongsTo
+    {
+        return $this->belongsTo(StatusPegawai::class, 'status_pegawai_id');
+    }
+
     public function distrik(): BelongsTo
     {
         return $this->belongsTo(Distrik::class, 'distrik_id');
