@@ -12,26 +12,31 @@ class AgamaSeeder extends Seeder
     {
         collect([
             [
+                'id' => 1,
                 'agama' => 'Kristen Protestan',
                 'keterangan' => 'Agama Kristen Protestan',
                 'published_at' => now(),
             ],
             [
+                'id' => 2,
                 'agama' => 'Islam',
                 'keterangan' => 'Agama Islam',
                 'published_at' => now(),
             ],
             [
+                'id' => 3,
                 'agama' => 'Katolik',
                 'keterangan' => 'Agama Katolik',
                 'published_at' => now(),
             ],
             [
+                'id' => 4,
                 'agama' => 'Hindu',
                 'keterangan' => 'Agama Hindu',
                 'published_at' => now(),
             ],
             [
+                'id' => 5,
                 'agama' => 'Budha',
                 'keterangan' => 'Agama Budha',
                 'published_at' => now(),

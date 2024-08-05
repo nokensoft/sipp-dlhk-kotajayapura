@@ -40,6 +40,7 @@
     <div class="relative shadow-md sm:rounded-lg mt-2 border p-2" x-data="{openModalDelete: false}" x-cloak>
         <div class="flex gap-4 flex-wrap">
             <div class="flex gap-4 z-50">
+                
                 <div class="flex gap-1 items-center">
                     <span>Tampilkan</span>
                     <div
@@ -62,6 +63,7 @@
                     </div>
                     <span>data</span>
                 </div>
+
                 <div class="flex gap-1 items-center">
                     <span>Suku</span>
                     <div
@@ -84,6 +86,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="flex gap-1 items-center">
                     <span>Jenis Kelamin</span>
                     <div
@@ -106,6 +109,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="flex gap-1 items-center">
                     <span>Jenjang Pendidikan</span>
                     <div
@@ -128,6 +132,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="flex gap-1 items-center">
                     <span>Status Pernikahan</span>
                     <div
@@ -150,6 +155,30 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="flex gap-1 items-center">
+                    <span>Agama</span>
+                    <div
+                        class="relative text-center"
+                        x-data="{
+                            isSelectOpen:false,
+                            select(){
+                                this.isSelectOpen = false;
+                            }
+                        }"
+                    >
+                        <div class="border p-2 w-30 cursor-pointer rounded-lg" :class="isSelectOpen ? 'border-gray-600' : 'border-gray-400'" @click="isSelectOpen = !isSelectOpen">
+                            <span class="mr-1">{{$selectedAgama ?? 'Semua'}}</span> <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="border absolute bg-white top-10 left-0 w-20 rounded-lg text-start" x-show="isSelectOpen" @click.away="isSelectOpen = false">
+                            <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectAgama">Semua</a>
+                            @foreach($agama as $list)
+                                <a href="#" class="block px-2 hover:bg-green-800 hover:text-white" @click="select()" wire:click.prevent="selectAgama({{json_encode($list['agama'])}})">{{$list['agama']}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="relative w-1/3 z-30">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -170,26 +199,16 @@
                     <thead>
                     <tr>
                         <th>Nama Lengkap</th>
-                        <th>Wilayah</th>
-                        <th>Lapangan</th>
-                        <th>Email</th>
                         <th>No Hp</th>
-                        <th>Bidang</th>
-                        <th>Lokasi</th>
+                        <th>Email</th>
+                        <th>Suku</th>
+                        <th>Jenjang Pendidikan</th>
+                        <th>Status Pernikahan</th>
                         <th>Jenis Kelamin</th>
                         <th>Agama</th>
-                        <th>Pangkat Golongan</th>
-                        <th>Suku</th>
-                        <th>Distrik</th>
-                        <th>Kelurahan</th>
-                        <th>Jabatan</th>
-                        <th>Deskripsi Tugas</th>
-                        <th>Gelar Depan</th>
-                        <th>Gelar Belakang</th>
-                        <th>Gelar Akademis</th>
-                        <th>Jenjang Pendidikan</th>
-                        <th>Status Perkawinan</th>
-                        <th>{{$isAsn ? 'Catatan' : 'Keterangan'}}</th>
+
+                        <th>Wilayah</th>
+                        <th>Lapangan</th>
                         <th>Kontrak</th>
                         @can('edit')
                             @if($menu != 'tempat_sampah')
@@ -221,28 +240,17 @@
                                         </span>
                                     </div>
                                 </td>
-                                <td>{{$record->lapangan?->wilayah?->nama_wilayah}}</td>
-                                <td>{{$record->lapangan?->nama_lapangan}}</td>
-                                <td>
-                                    <span class="capitalize">{{$record->email}}</span>
-                                </td>
-                                <td>{{$record->no_hp}}</td>
-                                <td>{{$record->bidang?->bidang}}</td>
-                                <td>{{$record->lokasi?->lokasi}}</td>
-                                <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
-                                <td>{{$record->agama?->agama}}</td>
-                                <td>{{$record->pangkatGolongan?->pangkat_golongan}}</td>
-                                <td>{{$record->suku?->suku}}</td>
-                                <td>{{$record->distrik?->distrik}}</td>
-                                <td>{{$record->kelurahan?->kelurahan}}</td>
-                                <td>{{$record->jabatan?->jabatan}}</td>
-                                <td>{{$record->deskripsiTugas?->deskripsi_tugas}}</td>
-                                <td>{{$record->gelarDepan?->gelar_depan}}</td>
-                                <td>{{$record->gelarBelakang?->gelar_belakang}}</td>
-                                <td>{{$record->gelarAkademis?->gelar_akademis}}</td>
+                                <td>{{$record->no_hp ?? '-'}}</td>
+                                <td>{{$record->email ?? '-'}}</td>
+                                <td>{{$record->suku?->suku ?? '-'}}</td>
                                 <td>{{$record->jenjangPendidikan?->jenjang_pendidikan}}</td>
                                 <td>{{$record->statusPerkawinan?->status_perkawinan}}</td>
-                                <td>{{$record->catatan}}</td>
+                                <td>{{$record->jenisKelamin?->jenis_kelamin}}</td>
+                                <td>{{$record->agama?->agama}}</td>
+
+                                <td>{{$record->lapangan?->wilayah?->nama_wilayah ?? '-'}}</td>
+                                <td>{{$record->lapangan?->nama_lapangan ?? '-'}}</td>
+
                                 <td>
                                     @if ($record->is_asn == false)
                                     <span class="cursor-pointer p-2 hover:text-indigo-600" wire:click.prevent="$dispatch('kontrak', { id: {{ $record->id }} })" id="kontrak{{$record->id}}">

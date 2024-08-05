@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Pegawai;
 use App\Models\StatusPerkawinan;
 use App\Models\Suku;
+use App\Models\Agama;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -39,21 +40,30 @@ class Record extends Component
 
     public array $suku = [];
     public ?string $selectedSuku;
+    
     public array $jenisKelamin = [];
     public ?string $selectedJenisKelamin;
+    
     public array $jenjangPendidikan = [];
     public ?string $selectedJenjangPendidikan;
+    
     public array $statusPernikahan = [];
     public ?string $selectedStatusPernikahan;
+    
+    public array $agama = [];
+    public ?string $selectedAgama;
+
     public array $filters = [];
 
     public function mount(): void
     {
         $this->isAsn = request()->segment(1) === 'asn';
+
         $this->suku = Suku::get()->toArray();
         $this->jenisKelamin = JenisKelamin::get()->toArray();
         $this->jenjangPendidikan = JenjangPendidikan::get()->toArray();
         $this->statusPernikahan = StatusPerkawinan::get()->toArray();
+        $this->agama = Agama::get()->toArray();
     }
 
     public function action($menu): void
@@ -173,6 +183,11 @@ class Record extends Component
         $this->filters['status_pernikahan'] = $statusPernikahan;
     }
 
+    public function selectAgama($agama = null){
+        $this->selectedAgama = $agama;
+        $this->filters['agama'] = $agama;
+    }
+
     public function render(): View
     {
         $this->totalAll = Pegawai::query()->withTrashed()->count();
@@ -191,6 +206,9 @@ class Record extends Component
             })
             ->when(isset($this->selectedStatusPernikahan), function($query){
                 $query->whereHas('statusPerkawinan', fn ($query) => $query->where('status_perkawinan', $this->selectedStatusPernikahan));
+            })
+            ->when(isset($this->selectedAgama), function($query){
+                $query->whereHas('agama', fn ($query) => $query->where('agama', $this->selectedAgama));
             })
             ->when(strlen($this->search) > 2, function ($query) {
                 $query

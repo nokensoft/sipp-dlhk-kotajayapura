@@ -41,6 +41,7 @@ class PegawaiSeeder extends Seeder
                 'jenis_kelamin_id' => 1,
                 'jenjang_pendidikan_id' => 4,
                 'status_perkawinan_id' => 2,
+                'agama_id' => 1,
                 'published_at' => now(),
             ],
             [
