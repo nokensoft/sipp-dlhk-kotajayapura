@@ -42,6 +42,7 @@ use App\Livewire\Pengguna\Index as Pengguna;
 // rekapan
 use App\Livewire\Rekapan\PegawaiKontrak;
 use App\Livewire\Rekapan\PegawaiASN;
+use App\Livewire\Rekapan\PegawaiKeseluruhan;
 
 Route::get('/profil', Profil::class)->name('adminmaster.profil');
 Route::get('/pengaturan', Pengaturan::class)->name('adminmaster.pengaturan');
@@ -91,7 +92,7 @@ Route::middleware([
         Route::get('pegawaikontrak', PegawaiKontrak::class)->name('rekapanPegawaiKontrak');
         Route::get('pegawaiasn', PegawaiASN::class)->name('rekapanPegawaiASN');
         Route::get('pegawaihonorer', PegawaiKontrak::class)->name('rekapanPegawaiHonorer');
-        Route::get('pegawaikeseluruhan', PegawaiKontrak::class)->name('rekapanPegawaiKeseluruhan');
+        Route::get('pegawaikeseluruhan', PegawaiKeseluruhan::class)->name('rekapanPegawaiKeseluruhan');
 
     });
 
