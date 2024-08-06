@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Bidang;
 use App\Models\Distrik;
+use App\Models\Lapangan;
 use App\Models\Wilayah;
 use Livewire\Component;
 use App\Models\Lokasi;
@@ -19,6 +20,7 @@ class Map extends Component
     public $bidangs = [];
     public $wilayahs = [];
     public $lapangans = [];
+    public $tahuns = [2024,2023];
 
     public function mount(): void
     {
@@ -27,7 +29,7 @@ class Map extends Component
         // $this->wilayahs = Wilayah::with(['pegawai.lapangan', 'pegawais.lokasi'])->get()->toArray();
         $this->bidangs = Bidang::query()->get()->toArray();
         
-        $this->bidangs = Bidang::query()->get()->toArray();
+        $this->lapangans = Lapangan::query()->get();
 
         $this->resetMap();
     }
