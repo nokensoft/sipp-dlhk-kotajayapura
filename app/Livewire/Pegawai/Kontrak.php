@@ -5,8 +5,14 @@ namespace App\Livewire\Pegawai;
 use Livewire\Component;
 
 use App\Models\Kontrak as KontrakPegawai;
-use Livewire\Attributes\Url;
 use App\Models\Pegawai;
+use App\Models\Lapangan;
+use App\Models\Wilayah;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 
 class Kontrak extends Component
 {
@@ -28,13 +34,57 @@ class Kontrak extends Component
     public $listPaginate = [5,10,25,50,100];
     public bool $isAsn = true;
     public $pegawai = [];
+    public $wilayah = [];
+    public ?string $selectedWilayah;
+    public $lapangan = [];
+    public ?string $selectedLapangan;
     public $status = ['Berjalan','Penggantian'];
-
+    public $tahun = ['2021','2022','2023','2024','2025','2026'];
+    public $idWilayah = '';
+    public array $filters = [];
+    public ?string $title = '';
+    public ?string $subtitle = '';
+    public ?string $buttonTitle = 'Tambah';
+    public ?string $buttonIcon = "fa-solid fa-plus";
+    public bool $isDisabled = false;
 
     public function mount(): void
     {
         $this->pegawai = Pegawai::where('id',$this->id)->first()->toArray();
+        $this->wilayah = Wilayah::get()->toArray();
+        $this->lapangan = Lapangan::where('wilayah_id',$this->idWilayah)->get()->toArray();
     }
+
+    public function selectLapangan($statusLapangan = null){
+        $this->selectedLapangan = $statusLapangan;
+        $this->filters['status_pernikahan'] = $statusLapangan;
+        $this->lapangan = Lapangan::where('wilayah_id',$this->idWilayah)->get()->toArray();
+    }
+
+    public function selectWilayah($statusWilayah = null, $idWilayah = null){
+        $this->selectedWilayah = $statusWilayah;
+        $this->idWilayah = $idWilayah;
+        $this->lapangan = Lapangan::where('wilayah_id',$this->idWilayah)->get()->toArray();
+        $this->filters['status_wilayah'] = $statusWilayah;
+
+    }
+
+
+
+    // #[On('actionkontrak')]
+    // public function actionkontrak():void
+    // {
+
+    //     if (in_array($this->menu, ['tambahkontrak', 'ubahkontrak'])) {
+    //         $this->redirect(route('pegawai'));
+    //     }
+    //     if($this->menu === 'kontrak'){
+    //         $this->menu = 'tambahkontrak';
+    //         $this->buttonTitle = 'Kembali';
+    //         $this->buttonIcon = 'fa-solid fa-arrow-left';
+    //         $this->subtitle = "Tambah Data ";
+    //     }
+    // }
 
 
     public function render()
@@ -45,11 +95,11 @@ class Kontrak extends Component
         $this->totalTempatSampah = KontrakPegawai::query()->where('pegawai_id',$this->id)->withTrashed()->whereNotNull('deleted_at')->count();
 
         $query = KontrakPegawai::query()
-        // ->when(isset($this->selectedSuku), function($query){
-        //     $query->whereHas('suku', fn ($query) => $query->where('suku', $this->selectedSuku));
-        // })
-        // ->when(isset($this->selectedJenisKelamin), function($query){
-        //     $query->whereHas('jenisKelamin', fn ($query) => $query->where('jenis_kelamin', $this->selectedJenisKelamin));
+         ->when(isset($this->selectedLapangan), function($query){
+             $query->whereHas('lapangan', fn ($query) => $query->where('nama_Lapangan', $this->selectedLapangan));
+        })
+        // ->when(isset($this->selectedWilayah), function($query){
+        //     $query->whereHas('jenisKelamin', fn ($query) => $query->where('jenis_kelamin', $this->selectedWilayah));
         // })
         // ->when(isset($this->selectedJenjangPendidikan), function($query){
         //     $query->whereHas('jenjangPendidikan', fn ($query) => $query->where('jenjang_pendidikan', $this->selectedJenjangPendidikan));
@@ -63,7 +113,10 @@ class Kontrak extends Component
                 ->orWhere('pegawai_id', 'like', '%' . $this->search . '%');
         })
     ;
-    if (in_array($this->menu, ['kontrak','semuakontrak',''])) {
+    if (in_array($this->menu, ['semuakontrak',''])) {
+        $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
+    }
+    if($this->menu === 'kontrak'){
         $records = $query->withTrashed()->paginate($this->paginate)->withQueryString();
     }
     if($this->menu === 'publikkontrak'){
@@ -75,7 +128,6 @@ class Kontrak extends Component
     if($this->menu === 'tempat_sampahkontrak'){
         $records = $query->withTrashed()->whereNotNull('deleted_at')->paginate($this->paginate)->withQueryString();
     }
-
 
         return view('livewire.pegawai.kontrak',['records' => $records]);
     }

@@ -31,6 +31,7 @@ class Index extends Component
     #[On('action')]
     public function action():void
     {
+
         if (in_array($this->menu, ['tambah', 'ubah','kontrak'])) {
             $this->redirect(route('pegawai'));
         }
@@ -46,21 +47,7 @@ class Index extends Component
         }
     }
 
-    #[On('actionkontrak')]
-    public function actionkontrak():void
-    {
 
-
-        if (in_array($this->menu, ['tambahkontrak', 'ubahkontrak'])) {
-            $this->redirect(route('pegawai'));
-        }
-        if($this->menu === 'kontrak'){
-            $this->menu = 'tambahkontrak';
-            $this->buttonTitle = 'Kembali';
-            $this->buttonIcon = 'fa-solid fa-arrow-left';
-            $this->subtitle = "Tambah Data ";
-        }
-    }
 
     #[On('ubah')]
     public function ubah($id):void
