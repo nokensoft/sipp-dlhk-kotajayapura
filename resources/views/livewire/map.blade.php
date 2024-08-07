@@ -11,20 +11,23 @@
                 </select>
             </div>
             <div class="w-1/4">
-                <x-admin.select label="Lapangan" id="lapangan-id" optionName="name" name="lapangan">
-                    <option>Semua</option>
-                    @foreach($lapangans as $lapangan)
-                        <option value="{{$lapangan['nama_lapangan']}}">{{$lapangan->nama_lapangan}}</option>
-                    @endforeach
-                </x-admin.select>
+                <label for="lapangan-id" class="block mb-2 text-sm font-medium text-gray-900 ">Lapangan</label>
+                <select id="lapangan-id" x-model="selectedLapangan" @change="updateMapLapangan()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="">Semua</option>
+                    <template x-for="lapangan in lapangans" :key="lapangan.id">
+                        <option :value="lapangan.id" x-text="lapangan.nama_lapangan"></option>
+                    </template>
+                </select>
             </div>
 
             <div class="w-1/4">
-                <x-admin.select label="Tahun Kontrak" id="tahun_kontrak" optionName="name" name="tahun_kontrak">
-                    @foreach($tahuns as $tahun)
-                        <option value="{{$tahun}}">{{$tahun}}</option>
-                    @endforeach
-                </x-admin.select>
+                <label for="tahun-id" class="block mb-2 text-sm font-medium text-gray-900 ">Tahun</label>
+                <select id="tahun-id" x-model="selectedTahun" @change="updateMapTahun()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="">Semua</option>
+                    <template x-for="tahun in tahuns" :key="tahun">
+                        <option :value="tahun" x-text="tahun"></option>
+                    </template>
+                </select>
             </div>
         </div>
         <div id="map" style="width: 100%; height: 600px;"></div>
@@ -37,17 +40,19 @@
         function mapComponent() {
             return {
                 wilayahs: @entangle('wilayahs'),
-                bidangs: @entangle('bidangs'),
+                tahuns: @entangle('tahuns'),
+                lapangans: @entangle('lapangans'),
                 map: null,
                 colors: ['#ff0000', '#eed959', '#00ff00', '#ffff00', '#0000ff'],
                 selectedWilayah: '',
+                selectedLapangan: '',
+                selectedTahun: '',
                 wilayahLayers: {},
-                bidangLayout: {},
+                lapanganLayout: {},
+                baseUrl: window.location.protocol + "//" + window.location.host + "/",
     
                 init() {
                     this.map = L.map('map').setView({lat: -2.53371, lng: 140.71813}, 12);
-                    const getUrl = window.location;
-                    const baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
     
                     this.map.createPane('labels');
                     this.map.getPane('labels').style.zIndex = 650;
@@ -68,8 +73,8 @@
                 },
     
                 initLayers() {
-                    for (let i = 0; i < this.bidangs.length; i++) {
-                        this.bidangLayout[this.bidangs[i]['bidang']] = L.layerGroup();
+                    for (let i = 0; i < this.lapangans.length; i++) {
+                        this.lapanganLayout[this.lapangans[i]['id']] = L.layerGroup();
                     }
     
                     for (let i = 0; i < this.wilayahs.length; i++) {
@@ -94,34 +99,38 @@
                                     layer.bindPopup(feature.properties.nama);
                                     layer.on('add', () => {
                                         lapangans.forEach((lapangan) => {
-                                            if (lapangan['lokasi'] && lapangan['bidang']) {
-                                                let latitude = lapangan['lokasi']['latitude'];
-                                                let longitude = lapangan['lokasi']['longitude'];
-                                                let bidang = lapangan['bidang']['bidang'];
-                                                let nama = lapangan['nama_depan'] + ' ' + lapangan['nama_tengah'] + ' ' + lapangan['nama_belakang'];
-                                                let iconUrl = baseUrl + lapangan['bidang']['icon'];
-                                                let foto = baseUrl + lapangan['gambar'];
-                                                L.marker([latitude, longitude], {
-                                                    icon: L.icon({ iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34] })
-                                                })
-                                                .bindPopup(`
-                                                    <b>${bidang}</b><br><img src="${foto}" alt="Profile Picture" style="width:100px;height:auto;"><br>Nama: ${nama}
-                                                `).addTo(this.bidangLayout[bidang]);
-                                            }
+                                            lapangan.kontrak.forEach((kontrak) => {
+                                                if (kontrak) {
+                                                    let latitude = kontrak['latitude'];
+                                                    let longitude = kontrak['longitude'];
+                                                    let iconUrl = this.baseUrl+'assets/location-pin.png';
+                                                    let nama = `${kontrak['pegawai']['nama_depan']} ${kontrak['pegawai']['nama_tengah']} ${kontrak['pegawai']['nama_belakang']}`;
+                                                    let foto = '';
+                                                    L.marker([latitude, longitude], {
+                                                        icon: L.icon({ iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34] })
+                                                    })
+                                                    .bindPopup(`
+                                                        <b>Detail Pegawai</b><br>Nama: ${nama}
+                                                    `).addTo(this.lapanganLayout[lapangan['id']]);
+                                                }
+                                            })
+                                            this.lapanganLayout[lapangan['id']].addTo(this.map);
                                         });
                                     });
-                                    layer.on('remove', () => {
-                                        lapangans.forEach((lapangan) => {
-                                            if (lapangan['lokasi'] && lapangan['bidang']) {
-                                                L.marker([latitude, longitude], {
-                                                    icon: L.icon({ iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34] })
-                                                })
-                                                .bindPopup(`
-                                                    <b>${bidang}</b><br><img src="${foto}" alt="Profile Picture" style="width:100px;height:auto;"><br>Nama: ${nama}
-                                                `).removeFrom(this.bidangLayout[bidang]);
-                                            }
-                                        });
-                                    });
+                                    // layer.on('remove', () => {
+                                    //     lapangans.forEach((lapangan) => {
+                                    //         lapangan.kontrak.forEach((kontrak) => {
+                                    //             if (kontrak) {
+                                    //                 L.marker([latitude, longitude], {
+                                    //                     icon: L.icon({ iconUrl, iconSize: [30, 30], iconAnchor: [12, 41], popupAnchor: [1, -34] })
+                                    //                 })
+                                    //                 .bindPopup(`
+                                    //                     <b>${bidang}</b><br><img src="${foto}" alt="Profile Picture" style="width:100px;height:auto;"><br>Nama: ${nama}
+                                    //                 `).removeFrom(this.lapanganLayout[bidang]);
+                                    //             }
+                                    //         })
+                                    //     });
+                                    // });
                                 }
                             });
                         } catch (e) {
@@ -131,15 +140,59 @@
     
                     this.updateMap();
                 },
+
+                updateMapTahun() {
+                    for (let key in this.lapanganLayout) {
+                        this.map.removeLayer(this.lapanganLayout[key]);
+                    }
+                    if (this.selectedTahun) {
+                        console.log('test');
+                        this.lapangans.forEach(lapangan => {
+                            lapangan.kontrak.forEach(kontrak => {
+                                if(kontrak['tahun'] == this.selectedTahun){
+                                    this.lapanganLayout[lapangan['id']].addTo(this.map);
+                                }
+                            });
+                        });
+                    } else {
+                        for (let key in this.lapanganLayout) {
+                            this.lapanganLayout[key].addTo(this.map);
+                        }
+                    }
+                },
+
+                updateMapLapangan() {
+                    for (let key in this.lapanganLayout) {
+                        this.map.removeLayer(this.lapanganLayout[key]);
+                    }
+                    if (this.selectedLapangan && this.lapanganLayout[this.selectedLapangan]) {
+                        this.lapanganLayout[this.selectedLapangan].addTo(this.map);
+                    } else {
+                        for (let key in this.lapanganLayout) {
+                            this.lapanganLayout[key].addTo(this.map);
+                        }
+                    }
+                },
     
                 updateMap() {
                     // Remove all layers from the map
                     for (let key in this.wilayahLayers) {
                         this.map.removeLayer(this.wilayahLayers[key]);
                     }
-    
+
+                    for (let key in this.lapanganLayout) {
+                        this.map.removeLayer(this.lapanganLayout[key]);
+                    }
+
+                    
                     // Add layers to the map
                     if (this.selectedWilayah && this.wilayahLayers[this.selectedWilayah]) {
+                        this.wilayahs.forEach(data => {
+                            if(data.nama_wilayah == this.selectedWilayah){
+                                this.lapangans = data.lapangans
+                                console.log(this.lapangans)
+                            }
+                        });
                         this.wilayahLayers[this.selectedWilayah].addTo(this.map);
                     } else {
                         for (let key in this.wilayahLayers) {
